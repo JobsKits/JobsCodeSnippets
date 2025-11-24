@@ -123,58 +123,43 @@
      }return _mailBtn;
  }
 /// 倒计时按钮
--(UIButton *)countDownBtn{
-    if (!_countDownBtn) {
+-(UIButton *)countdownBtn{
+    if (!_countdownBtn) {
         @jobs_weakify(self)
-        _countDownBtn = UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
-            /// 一些通用的设置
-            data.count = 50;
-            data.showTimeType = ShowTimeType_SS;// 时间显示风格
-            data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
-            data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
-            data.labelShowingType = UILabelShowingType_01;//【换行模式】
-            /// 计时器未开始【静态值】
-            data.readyPlayValue = jobsMakeButtonTimerProcessValueModel(^(ButtonTimerProcessValueModel * _Nullable model) {
-                model.layerBorderWidth = 1;
-                model.layerCornerRadius = JobsWidth(18);
-                model.bgCor = JobsClearColor;
-                model.layerBorderCor = JobsClearColor;
-                model.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-                model.text = Title9;
-                model.font = UIFontWeightMediumSize(JobsWidth(14));
-            });
-            /// 计时器进行中【动态值】
-            data.runningValue = jobsMakeButtonTimerProcessValueModel(^(ButtonTimerProcessValueModel * _Nullable model) {
-                model.bgCor = JobsClearColor;
-                model.text = JobsInternationalization(Title12);
-                model.layerBorderCor = JobsClearColor;
-                model.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-                model.font = UIFontWeightMediumSize(JobsWidth(14));
-            });
-            /// 计时器结束【静态值】
-            data.endValue = jobsMakeButtonTimerProcessValueModel(^(ButtonTimerProcessValueModel * _Nullable model) {
-                model.bgCor = JobsClearColor;
-            });
-        })).onClick(^(__kindof UIButton *x){
+        _countdownBtn = jobsMakeButton(^(__kindof UIButton * _Nullable btn) {//
             @jobs_strongify(self)
-            x.startTimer();//选择时机、触发启动
-            if (self.objectBlock) self.objectBlock(x);
-        }).onLongPressGesture(^(id data){
-            NSLog(@"");
-        }).heartBeat(^(id _Nullable data){
-            if ([data isKindOfClass:TimerProcessModel.class]) {
-                TimerProcessModel *model = (TimerProcessModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
-            }
+            self.view.addSubview
+            (
+             /// 基础 UI
+             btn.jobsResetBtnBgCor(HEXCOLOR(0xAE8330))
+                .jobsResetBtnTitle(JobsInternationalization(@"获取验证码"))
+                .jobsResetBtnTitleCor(JobsWhiteColor)
+                .jobsResetBtnTitleFont(UIFontWeightRegularSize(24))
+                /// Timer 配置（UIButton+Timer 提供的属性）
+                .byTimerStyle(TimerStyle_anticlockwise)  // 倒计时模式
+                .byStartTime(8)                          // 总时长 8 秒
+                .byTimeInterval(1)
+                .byClickWhenTimerCycle(YES)               // 计时器运行期间：禁止点击
+                .byOnTick(^(CGFloat time){
+                    NSLog(@"");
+                })
+                .byOnFinish(^(JobsTimer *_Nullable timer){
+                    NSLog(@"");
+                })
+                /// 点击开始倒计时
+                .onClickBy(^(UIButton *x){
+                    x.startTimer();
+                })
+                .jobsResetBtnCornerRadiusValue(JobsWidth(18))
+             )
+            .byAdd(^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(self.countdownView.mas_bottom).offset(JobsWidth(12));
+                make.height.mas_equalTo(JobsWidth(80));
+                make.width.mas_equalTo(JobsWidth(180));
+            });
         });
-        [self addSubview:_countDownBtn];
-        [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self).offset(-JobsWidth(120));
-            make.top.equalTo(self).offset(JobsWidth(8));
-            make.bottom.equalTo(self).offset(-JobsWidth(8));
-            make.width.mas_equalTo(JobsWidth(80));
-        }];
-    }return _countDownBtn;
+    }return _countdownBtn;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3E747309-55E5-44FB-8C99-A56BF1220256</string>
