@@ -9,56 +9,61 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>-(ZYTextField *)textField{
+	<string>@synthesize textField = _textField;
+-(ZYTextField *)textField{
     if (!_textField) {
-        _textField = ZYTextField.new;
-        _textField.delegate = self;
-        _textField.textColor = JobsBlackColor;
-        _textField.backgroundColor = RGBA_COLOR(245, 245, 245, 1);
-        _textField.returnKeyType = UIReturnKeyDefault;
-        _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
-        _textField.keyboardType = UIKeyboardTypeNumberPad;
-        _textField.rightView = self.titleLab;
-        _textField.rightViewMode = UITextFieldViewModeAlways;
-        _textField.placeholder = JobsInternationalization(@"投票数量");
-        _textField.placeholderColor = JobsCor(@"#333333");
-        _textField.placeholderFont = UIFontWeightRegularSize(12);
-
-        _textField.drawPlaceholderInRect = CGRectMake(0, 0, JobsWidth(255 - 20 - 40 - 5), JobsWidth(32));
-        _textField.rightViewRectForBounds = CGRectMake(JobsWidth(255 - 20 - 40), JobsWidth(10), JobsWidth(40), JobsWidth(12));
-        _textField.placeholderRectForBounds = CGRectMake(JobsWidth(10), JobsWidth(10), JobsWidth(255 - 20 - 40 - 5), 12);
-        _textField.textRectForBounds = CGRectMake(JobsWidth(10), 0, JobsWidth(255 - 20 - 40 - 10), 100);
-        _textField.editingRectForBounds = CGRectMake(JobsWidth(10), 0, JobsWidth(255 - 20 - 40 - 10), 100);
-
         @jobs_weakify(self)
-        [_textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
-//            @jobs_strongify(self)
-            return YES;
-        } subscribeNextBlock:^(NSString * _Nullable x) {
+        CGFloat TextFieldWidth = self.mj_w - JobsWidth(80);
+        _textField = jobsMakeZYTextField(^(ZYTextField *_Nullable textField) {
+            textField
+                .byPlaceholder(@"请输入搜索内容".tr)
+                .byDelegate(self)
+                .byLeftView(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+                    imageView.byImage(@"放大镜".img);
+                }))
+                .byTextCor(JobsPurpleColor)
+                .byInputAccessoryView(JobsAdNoticeView
+                                      .BySize(JobsAdNoticeView.viewSizeByModel(nil))
+                                      .JobsRichViewByModel2(nil)
+                                      .JobsBlock1(^(id _Nullable data) {
+
+                                      }))
+                .byLeftViewMode(UITextFieldViewModeAlways)
+                .byKeyboardAppearance(UIKeyboardAppearanceAlert)
+                .byReturnKeyType(UIReturnKeySearch)
+                .byPlaceHolderAlignment(NSTextAlignmentCenter)
+                .byLeftViewOffsetX(JobsWidth(5))
+                .byRightViewOffsetX(JobsWidth(3))
+                .addOn(self)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.centerY.equalTo(self);
+                    make.left.equalTo(self);
+                    make.right.equalTo(self.cancelBtn.mas_left);
+                    make.height.mas_equalTo(self.mj_h - JobsWidth(15));
+                })
+                .byBgColor(HEXCOLOR(0xFFFFFF))
+                .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+                    model.jobsWidth = .05f;
+                    model.layerCor = JobsBlueColor;
+                    model.cornerRadiusValue = JobsWidth(8);
+            }));
+        });
+        /// 不能写在 jobsMakeZYTextField 里面，否则会崩溃
+        [[_textField.rac_textSignal filter:^BOOL(NSString *_Nullable value) {
             @jobs_strongify(self)
-            self.textField.text = x;
-            [self textFieldBlock:self.textField
-                  textFieldValue:x];
-        }];
-        [_textField cornerCutToCircleWithCornerRadius:JobsWidth(8)];
-        [self addSubview:_textField];
-        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(255), JobsWidth(32)));
-            make.centerX.equalTo(self);
-            make.top.equalTo(self.titleView.mas_bottom).offset(JobsWidth(10));
+            if (isValue(self.textField.text)) {
+                self.cancelBtn.alpha = 1;
+                self.textField.width = TextFieldWidth - (self.cancelBtn.sizer.width + JobsWidth(5));
+            }return isValue(value);
+        }] subscribeNext:^(NSString * _Nullable x) {
+            @jobs_strongify(self)
+            JobsLog(@"输入的字符为 = %@",x);
+            if (self.objBlock) self.objBlock(x);
         }];
     }return _textField;
 }
-
-
-Prop_assign()CGRect clearButtonRectForBounds;/// 重置clearButton位置 😭
-Prop_assign()CGRect borderRectForBounds;/// 重置边缘区域  😭
-Prop_assign()CGRect drawPlaceholderInRect;/// Placeholder位置 【初始化的时候调用】🥶和placeholderRectForBounds有什么区别？
-Prop_assign()CGRect leftViewRectForBounds;/// leftView位置 【键盘弹起会调用此方法，但是键盘落下去不会调用】❤️
-Prop_assign()CGRect rightViewRectForBounds;/// rightView位置 【键盘弹起会调用此方法，但是键盘落下去不会调用】❤️
-Prop_assign()CGRect placeholderRectForBounds;/// Placeholder区域 【键盘弹起会调用此方法，但是键盘落下去不会调用】❤️ UITextFieldLabel的高度，即承载placeholder的控件的高度
-Prop_assign()CGRect textRectForBounds;/// 重置文字区域 【未编辑状态下光标的起始位置】【键盘弹起+落下会调用此方法】❤️❤️这个属性决定承载text的控件UITextLayoutFragmentView的父控件UITextLayoutCanvasView和UITouchPassthroughView的Fram。图层结构由上至下是：UITextLayoutFragmentView—&gt;UITextLayoutCanvasView—&gt;UITouchPassthroughView。其x和y都是0，文本超过这个size会以...的形式出现。textRectForBounds的高度过于小就会导致UITextLayoutFragmentView加载不到图层。一般这里的最后一个参数（高度，固定写死100，不要有任何比例尺）
-Prop_assign()CGRect editingRectForBounds;/// 重置编辑区域【编辑状态下的起始位置】、UIFieldEditor的位置大小【键盘弹起+落下会调用此方法】❤️❤️这个值，一般 == textRectForBounds。当超过输入距离的时候，新输入的字符会将之前的字符往左边顶</string>
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>F81C93CD-0B80-4D24-8F68-414BDCF7E097</string>
 	<key>IDECodeSnippetLanguage</key>

@@ -11,7 +11,7 @@
 	<key>IDECodeSnippetContents</key>
 	<string>-(UITextField *)idTypeTextField{
     if(!_idTypeTextField){
-        _idTypeTextField = self.addSubview(jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
+        _idTypeTextField = jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
             textField.byDelegate(self)
                 .bySecureTextEntry(NO)
                 .byClearButtonMode(UITextFieldViewModeNever)
@@ -20,18 +20,20 @@
                 .byText(@"")
                 .byFont(pingFangHKRegular(JobsWidth(14)))
                 .byTextCor(JobsBlackColor)
-                .byPlaceholder(JobsInternationalization(@"ID Type"))
+                .byPlaceholder(@"ID Type".tr)
                 .byPlaceholderColor(JobsGrayColor)
                 .byPlaceholderFont(pingFangHKRegular(JobsWidth(14)));
-        })).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+        })
+        .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.layerCor = JobsCor(@"#DEDEDE");
             data.jobsWidth = 1;
             data.cornerRadiusValue = JobsWidth(32 / 2);
-        })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-            make.top.equalTo(self.idTypeTitleLab.mas_bottom).offset(JobsWidth(8));
-            make.left.equalTo(self.section_1_titleLab);
-            make.width.mas_equalTo(JobsWidth(345));
-        }).on();
+        }))
+        .addOn(self.scrollView)
+        .byAdd(^(MASConstraintMaker *make) {
+            @jobs_strongify(self)
+            /// TODO
+        });
     }return _idTypeTextField;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>

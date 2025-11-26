@@ -24,9 +24,11 @@
             .jobsResetBtnTitle(@"APPLY NOW".tr)
             .onClickBy(^(UIButton *x){
                 JobsLog(@"");
-            }).onLongPressGestureBy(^(id data){
+            })
+            .onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             })
+            .addOn(self.view)
             .byAdd(^(MASConstraintMaker *make) {
                 @jobs_strongify(self)
                 // TODO
@@ -45,13 +47,20 @@
         .bgColorBy(JobsWhiteColor)
         .onClickBy(^(UIButton *x){
             JobsLog(@"");
-        }).onLongPressGestureBy(^(id data){
+        })
+        .onLongPressGestureBy(^(id data){
             JobsLog(@"");
-        }).setLayerBy((jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+        })
+        .setLayerBy((jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.layerCor = JobsCor(@"#C90000");
             data.jobsWidth = 1;
             data.cornerRadiusValue = JobsWidth(8);
-        })));
+        })))
+        .addOn(self.view)
+        .byAdd(^(MASConstraintMaker *make) {
+            @jobs_strongify(self)
+            // TODO
+        });
     }return _registerBtn;
 }
  /// 富文本按钮
@@ -92,8 +101,14 @@
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if (self.objBlock) self.objBlock(x);
-            }).onLongPressGestureBy(^(id data){
+            })
+            .onLongPressGestureBy(^(id data){
                 JobsLog(@"");
+            })
+            .addOn(self.view)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                // TODO
             });
     }return _applyNowBtn;
 }
@@ -114,12 +129,20 @@
                  } else {
                      JobsLog(@"图片加载成功");
                  }
-             }).onClickBy(^(UIButton *x){
+             })
+             .onClickBy(^(UIButton *x){
                  @jobs_strongify(self)
                  if (self.objBlock) self.objBlock(x);
-             }).onLongPressGestureBy(^(id data){
-             JobsLog(@"");
-         }).bgNormalLoad();
+             })
+             .onLongPressGestureBy(^(id data){
+                 JobsLog(@"");
+             })
+             .addOn(self.view)
+             .byAdd(^(MASConstraintMaker *make) {
+                 @jobs_strongify(self)
+                 // TODO
+             });
+             .bgNormalLoad();
      }return _mailBtn;
  }
 /// 倒计时按钮
@@ -128,37 +151,36 @@
         @jobs_weakify(self)
         _countdownBtn = jobsMakeButton(^(__kindof UIButton * _Nullable btn) {//
             @jobs_strongify(self)
-            self.view.addSubview
-            (
-             /// 基础 UI
-             btn.jobsResetBtnBgCor(HEXCOLOR(0xAE8330))
-                .jobsResetBtnTitle(JobsInternationalization(@"获取验证码"))
-                .jobsResetBtnTitleCor(JobsWhiteColor)
-                .jobsResetBtnTitleFont(UIFontWeightRegularSize(24))
-                /// Timer 配置（UIButton+Timer 提供的属性）
-                .byTimerType(JobsTimerTypeGCD)
-                .byTimerStyle(TimerStyle_anticlockwise)  // 倒计时模式
-                .byStartTime(8)                          // 总时长 8 秒
-                .byTimeInterval(1)
-                .byClickWhenTimerCycle(YES)              // 计时器运行期间：禁止点击
-                .byOnTick(^(CGFloat time){
-                    btn.jobsResetBtnTitle([NSString stringWithFormat:@"%f",ceil(time)].add(JobsSpace).add(@"秒"));
-                })
-                .byOnFinish(^(JobsTimer *_Nullable timer){
-                    NSLog(@"");
-                })
-                /// 点击开始倒计时
-                .onClickBy(^(UIButton *x){
-                    x.startTimer();
-                })
-                .jobsResetBtnCornerRadiusValue(JobsWidth(18))
-             )
-            .byAdd(^(MASConstraintMaker *make) {
-                make.centerX.equalTo(self.view);
-                make.top.equalTo(self.countdownView.mas_bottom).offset(JobsWidth(12));
-                make.height.mas_equalTo(JobsWidth(80));
-                make.width.mas_equalTo(JobsWidth(180));
-            });
+            /// 基础 UI
+            btn.jobsResetBtnBgCor(HEXCOLOR(0xAE8330))
+               .jobsResetBtnTitle(JobsInternationalization(@"获取验证码"))
+               .jobsResetBtnTitleCor(JobsWhiteColor)
+               .jobsResetBtnTitleFont(UIFontWeightRegularSize(24))
+               /// Timer 配置（UIButton+Timer 提供的属性）
+               .byTimerType(JobsTimerTypeGCD)
+               .byTimerStyle(TimerStyle_anticlockwise)  // 倒计时模式
+               .byStartTime(8)                          // 总时长 8 秒
+               .byTimeInterval(1)
+               .byClickWhenTimerCycle(YES)              // 计时器运行期间：禁止点击
+               .byOnTick(^(CGFloat time){
+                   btn.jobsResetBtnTitle([NSString stringWithFormat:@"%f",ceil(time)].add(JobsSpace).add(@"秒"));
+               })
+               .byOnFinish(^(JobsTimer *_Nullable timer){
+                   NSLog(@"");
+               })
+               /// 点击开始倒计时
+               .onClickBy(^(UIButton *x){
+                   x.startTimer();
+               })
+               .jobsResetBtnCornerRadiusValue(JobsWidth(18))
+               .addOn(self.view)
+               .byAdd(^(MASConstraintMaker *make) {
+                   @jobs_strongify(self)
+                   make.centerX.equalTo(self.view);
+                   make.top.equalTo(self.countdownView.mas_bottom).offset(JobsWidth(12));
+                   make.height.mas_equalTo(JobsWidth(80));
+                   make.width.mas_equalTo(JobsWidth(180));
+               });
         });
     }return _countdownBtn;
 }

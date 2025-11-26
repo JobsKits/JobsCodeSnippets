@@ -63,6 +63,15 @@ static dispatch_once_t static_tipsView01OnceToken;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(JobsExcelConfigureViewModel *_Nullable data){
+        @jobs_strongify(self)
+        self.jobsRichViewByModel(data);
+        return self;
+    };
+}
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
@@ -91,16 +100,15 @@ static dispatch_once_t static_tipsView01OnceToken;
 -(FMLoginByPhoneView *)phoneView{
     if(!_phoneView){
         @jobs_weakify(self)
-        _phoneView = self.view.addSubview(FMLoginByPhoneView
-                                          .JobsRichViewByModel(nil)
-                                          .JobsBlock1(^(id _Nullable data) {
-                                         
-                                     })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-                                         @jobs_strongify(self)
-                                         make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(5));
-                                         make.left.equalTo(self.view).offset(JobsWidth(10));
-                                         make.size.mas_equalTo(FMLoginByPhoneView.viewSizeByModel(nil));
-                                     }).on();
+        _phoneView = FMLoginByPhoneView
+            .JobsRichViewByModel(nil)
+            .JobsBlock1(^(id _Nullable data) {
+
+            }).addOn(self.view)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                /// TODO
+            })
     }return _phoneView;
 }
 
@@ -118,26 +126,28 @@ static dispatch_once_t static_tipsView01OnceToken;
 -(UIButton *)statusBtn{
     if(!_statusBtn){
         @jobs_weakify(self)
-        _statusBtn = self.addSubview(BaseButton.jobsInit()
-                                     .bgColorBy(JobsClearColor)
-                                     .jobsResetBtnTitleCor(JobsCor(@"#F53F3F"))
-                                     .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(14)))
-                                     .jobsResetBtnTitle(JobsInternationalization(@"Unverified"))
-                                     .onClickBy(^(UIButton *x){
-                                         @jobs_strongify(self)
-                                         self.getCurrentViewController.comingToPushVC(FMForgotPwdVC.new);
-                                     }).onLongPressGestureBy(^(id data){
-                                         JobsLog(@"");
-                                     }).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-                                         data.layerCor = JobsCor(@"#F53F3F");
-                                         data.jobsWidth = 1;
-                                         data.cornerRadiusValue = JobsWidth(32 / 2);
-                                     }))).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-                                         @jobs_strongify(self)
-                                         make.centerY.equalTo(self.titleLab);
-                                         make.right.equalTo(self).offset(JobsWidth(-15));
-                                         make.size.mas_equalTo(CGSizeMake(JobsWidth(86), JobsWidth(32)));
-        }).on();
+        _statusBtn = BaseButton.jobsInit()
+            .bgColorBy(JobsClearColor)
+            .jobsResetBtnTitleCor(JobsCor(@"#F53F3F"))
+            .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(14)))
+            .jobsResetBtnTitle(JobsInternationalization(@"Unverified"))
+            .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
+                self.getCurrentViewController.comingToPushVC(FMForgotPwdVC.new);
+            })
+            .onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            })
+            .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                data.layerCor = JobsCor(@"#F53F3F");
+                data.jobsWidth = 1;
+                data.cornerRadiusValue = JobsWidth(32 / 2);
+            }))
+            .addOn(self.view)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                /// TODO
+            });
     }return _statusBtn;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
