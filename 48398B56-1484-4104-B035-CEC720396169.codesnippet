@@ -36,12 +36,12 @@
             JobsRichRun(.text("¥199")).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow)
         ]))
         /// 按钮图片@图文关系
-        .byImage(UIImage(systemName: "eye.slash"), for: .normal)                // 未选中图标
-        .byImage(UIImage(systemName: "eye"), for: .selected)                    // 选中图标
+        .byImage("eye.slash".sysImg, for: .normal)                // 未选中图标
+        .byImage("eye".sysImg, for: .selected)                    // 选中图标
         .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))// 图文内边距
         .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 图标与文字间距
         /// 点击@播放声音
-        .byTapSound("Sounddd.wav")    
+        .byTapSound("Sound.wav")    
         /// 事件触发@点按
         .onTap { [weak self] sender in
             guard let self else { return }
