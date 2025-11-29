@@ -130,7 +130,7 @@ let views = UIView()
 	<key>IDECodeSnippetSummary</key>
 	<string>👋</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Swift@手势</string>
+	<string>Swift@手势👋</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
