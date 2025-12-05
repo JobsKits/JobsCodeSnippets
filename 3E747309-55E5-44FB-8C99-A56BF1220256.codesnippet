@@ -23,10 +23,16 @@
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(@"APPLY NOW".tr)
             .onClickBy(^(UIButton *x){
-                JobsLog(@"");
+                JobsLog(@"普通的点击事件");
+            })
+            .onClickAppendBy(^(UIButton *x){
+                JobsLog(@"追加的点击事件");
             })
             .onLongPressGestureBy(^(id data){
-                JobsLog(@"");
+                JobsLog(@"普通的长按事件");
+            })
+            .onLongPressGestureAppendBy(^(id data){
+                JobsLog(@"追加的长按事件");
             })
             .addOn(self.view)
             .byAdd(^(MASConstraintMaker *make) {
