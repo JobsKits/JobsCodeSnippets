@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Jobs@GetCell</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let cell = collectionView[section: 0, item: 3]
+let cell = tableView[section: 0, row: 3]</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9057D174-8806-42BE-8294-3C33987DE8EC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>通过数组下标安全取Cell，即使越界也不会奔溃（只是去不到Cell值返回nil）</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@安全取Cell</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
