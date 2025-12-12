@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#import &lt;TargetConditionals.h&gt;
+
+#if TARGET_OS_SIMULATOR
+    // 只在 iOS 模拟器里编译
+#else
+    // 只在真机里编译
+#endif</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>CB93565D-6A76-4BF4-B174-AF9B609716DC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>只能按照CPU架构来进行区分，具体设备要在真机代码部分，再进行详细区分</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@设备代码区分</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
