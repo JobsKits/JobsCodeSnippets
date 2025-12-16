@@ -83,7 +83,26 @@
                 make.edges.equalToSuperview()
             }
         }
-}()</string>
+}()
+
+extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int { Row.allCases.count }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {
+        tableView.py_dequeueReusableCell(withType: UITableViewCell.self, for: indexPath)
+            .byText(Row(rawValue: indexPath.row)?.title)
+            .byAccessoryType(.disclosureIndicator)
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -&gt; CGFloat { 64 }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        switch Row(rawValue: indexPath.row)! {
+        case .local:  PlayerLocalVC().byPush(self)
+        case .remote: PlayerRemoteVC().byPush(self)
+        case .feed:   FeedListVC().byPush(self)
+        case .float:  JobsLiveFloatPlayer.shared.showRemoteLive()
+        }
+    }
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>BE822F1F-E048-4ECD-A5D4-223D70F5BC41</string>
 	<key>IDECodeSnippetLanguage</key>
