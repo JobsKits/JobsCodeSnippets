@@ -89,6 +89,7 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int { Row.allCases.count }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {
         tableView.py_dequeueReusableCell(withType: UITableViewCell.self, for: indexPath)
+            .byData(data[indexPath.row])
             .byText(Row(rawValue: indexPath.row)?.title)
             .byAccessoryType(.disclosureIndicator)
     }
