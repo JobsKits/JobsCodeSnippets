@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>jad</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>.byAddTo(view) { [unowned self] make in
+    make.top.equalTo(self.hintLabel.snp.bottom).offset(20)
+    make.left.equalToSuperview().offset(horizontalInset)
+    make.right.equalToSuperview().inset(horizontalInset)
+    make.height.equalTo(50)
+}
+.byAddTo(view) { [unowned self] v, make in
+    make.top.equalTo(self.pickMultiVideoBtn.snp.bottom).offset(16)
+    make.left.right.equalToSuperview().inset(24)
+    make.height.equalTo(v.snp.width)
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>CF732DD5-FAD8-4C2F-9E94-8B4BC7E87E19</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@Snapkit</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
