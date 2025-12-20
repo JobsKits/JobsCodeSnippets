@@ -92,6 +92,9 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
             .byData(data[indexPath.row])
             .byText(Row(rawValue: indexPath.row)?.title)
             .byAccessoryType(.disclosureIndicator)
+            .onResult { _ in
+                
+            }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -&gt; CGFloat { 64 }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

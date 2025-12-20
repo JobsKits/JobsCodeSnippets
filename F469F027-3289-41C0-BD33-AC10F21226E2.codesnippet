@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>fwb</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// MARK: 设置富文本@UILabel
+UILabel().richTextBy(runs, paragraphStyle: ps)
+// MARK: 设置富文本@UIButton
+UIButton.sys()
+    /// 富文本字@设置按钮主标题
+    .byRichTitle(JobsRichText.make([
+        JobsRichRun(.text("¥99")).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
+        JobsRichRun(.text(" /月")).font(.systemFont(ofSize: 16)).color(.white)
+    ]))
+     /// 富文本字@设置按钮副标题
+    .byRichSubTitle(JobsRichText.make([
+        JobsRichRun(.text("原价 ")).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8)),
+        JobsRichRun(.text("¥199")).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow)
+    ]))
+// MARK: 设置富文本@UITextView
+UITextView().richTextBy(runs, paragraphStyle: ps)
+UITextView()
+        .byAttributedText(NSMutableAttributedString(
+            string: "🔗 默认蓝色链接（系统样式）：",
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 15),
+                .foregroundColor: UIColor.secondaryLabel
+            ])
+            .byAdd(NSAttributedString(
+                string: " Apple 官网",
+                attributes: [
+                    .link: URL(string: "https://www.apple.com")!,
+                    .font: UIFont.boldSystemFont(ofSize: 16)
+                ]))
+            .byAdd(NSAttributedString(
+                string: "\n客服电话：400-123-4567",
+                attributes: [.font: UIFont.systemFont(ofSize: 15)]
+            )))
+        /// 富文本字@点击事件
+        .linkTap
+        .observe(on: MainScheduler.instance)
+        .subscribe(onNext: { [weak self] url in
+            guard let self else { return }
+            if url.scheme == "click" {
+                self.presentAlert(for: url.absoluteString)
+            }
+        })
+        .disposed(by: disposeBag)
+// MARK: 设置富文本@UITextField
+UITextField().richTextBy(runs, paragraphStyle: ps)
+
+// MARK: 设置富文本@下划线
+// 段落样式
+let ps = jobsMakeParagraphStyle {
+    $0.alignment = .center
+    $0.lineSpacing = 6
+}
+// 富文本配置数组
+let runs: [JobsRichRun] = [
+    JobsRichRun(.text("欢迎使用 "))
+        .font(.systemFont(ofSize: 18))
+        .color(.secondaryLabel),
+
+    JobsRichRun(.text("JobsRichText "))
+        .font(.boldSystemFont(ofSize: 18))
+        .color(.systemBlue)
+        .underline(.single, color: .systemBlue),
+
+    JobsRichRun(.text("封装示例"))
+        .font(.systemFont(ofSize: 18))
+        .strike(.single, color: .systemRed)
+]
+// MARK: 设置富文本@超链接
+let ps = jobsMakeParagraphStyle {
+    $0.alignment = .center
+    $0.lineSpacing = 4
+}
+
+let runs: [JobsRichRun] = [
+    JobsRichRun(.text("如需帮助，请联系 "))
+        .font(.systemFont(ofSize: 15))
+        .color(.secondaryLabel),
+
+    JobsRichRun(.text("专属客服"))
+        .font(.systemFont(ofSize: 15))
+        .color(.systemBlue)
+        .link("click://customer")
+]
+// MARK: 设置富文本@图
+// 图标附件
+let config = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium)
+let image = UIImage(systemName: "paperclip", withConfiguration: config)!
+let att = NSTextAttachment()
+att.image = image
+
+let ps = jobsMakeParagraphStyle {
+    $0.alignment = .center
+    $0.lineSpacing = 2
+}
+
+let runs: [JobsRichRun] = [
+    JobsRichRun(.attachment(att, CGSize(width: 16, height: 16))),
+    JobsRichRun(.text("  附件说明"))
+        .font(.systemFont(ofSize: 15))
+        .color(.secondaryLabel)
+]
+// MARK: 利用代理设置富文本@点击事件
+extension RichTextDemoVC: UITextViewDelegate {
+    // MARK: ✅ iOS17+ 新 API
+    @available(iOS 17.0, *)
+    func textView(_ textView: UITextView,
+                  textItemMenuConfiguration configuration: UITextItem.MenuConfiguration,
+                  for textRange: UITextRange,
+                  point: CGPoint) -&gt; UITextItem.MenuConfiguration? {
+        // 可自定义菜单行为（复制/打开/分享）
+        return configuration
+    }
+
+    @available(iOS 17.0, *)
+    func textView(_ textView: UITextView,
+                  primaryActionFor textItem: UITextItem) -&gt; UIAction? {
+
+        switch textItem.content {
+        case .link(let url):
+            if url.scheme == "click" {
+                print("点击事件")
+                // 返回 nil 表示不执行系统默认行为
+                return nil
+            }
+            return nil
+
+        default:
+            // 非 link 类型的内容，保持默认
+            return nil
+        }
+    }
+    // MARK: ✅ iOS16 及以下旧 API
+    @available(iOS, introduced: 10.0, deprecated: 17.0, message: "Use textView(_:primaryActionFor:) on iOS17+ instead")
+    func textView(_ textView: UITextView,
+                  shouldInteractWith URL: URL,
+                  in characterRange: NSRange,
+                  interaction: UITextItemInteraction) -&gt; Bool {
+        if URL.scheme == "click" {
+            print("点击事件")
+            return false
+        }
+        return true
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F469F027-3289-41C0-BD33-AC10F21226E2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>对UIKIt框架中涉及到富文本的各处进行使用说明</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@富文本</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
