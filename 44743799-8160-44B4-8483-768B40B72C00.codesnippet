@@ -24,7 +24,7 @@ private lazy var collectionView: UICollectionView = {
         .registerCell(UICollectionViewCell.self)
         .byBackgroundView(nil)
         .byDragInteractionEnabled(false)
-
+        .byContentInsetTop(8)
         // 空态按钮（与 UITableView Demo 一致）
         .jobs_emptyButtonProvider { [unowned self] in
             UIButton.sys()

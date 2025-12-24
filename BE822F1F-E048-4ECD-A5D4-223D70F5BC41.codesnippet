@@ -17,7 +17,7 @@
         .byNoContentInsetAdjustment()
         .bySeparatorStyle(.singleLine)
         .byNoSectionHeaderTopPadding()
-    
+        .byContentInsetTop(8)
         .jobs_emptyButtonProvider { [unowned self] in
             UIButton(type: .system)
                 .byTitle("暂无数据", for: .normal)
@@ -91,6 +91,7 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
         tableView.py_dequeueReusableCell(withType: UITableViewCell.self, for: indexPath)
             .byData(data[indexPath.row])
             .byText(Row(rawValue: indexPath.row)?.title)
+            .bySecondaryText("Section \(indexPath.section) · Row \(indexPath.row)")
             .byAccessoryType(.disclosureIndicator)
             .onResult { _ in
                 
