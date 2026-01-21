@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import JobsSwiftTimer
+
+private var timer: JobsTimerProtocol?
+// DisplayLink 更适合这种“持续增长”的视觉
+timer?.stop()
+timer = nil
+
+let interval = max(0.000_001, tickInterval)
+
+let cfg = JobsTimerConfig(
+    interval: interval,
+    repeats: true,
+    tolerance: 0,
+    queue: .main,
+    runLoop: .main,
+    runLoopMode: .common,
+    pauseInBackground: true,
+    autoManageAppState: true
+)
+// ✅ 新版：直接 new JobsTimer（不再用 JobsTimerFactory.make）
+let t = JobsTimer(kind: .displayLink, config: cfg) { [weak self] in
+    // ✅ Swift 6：timer handler 是 @Sendable；UI/Layer 更新必须回 MainActor
+    Task { @MainActor in
+        self?.tickOnce()
+    }
+}
+
+timer = t
+t.start()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>C126CEA9-F9C5-4FC1-9D47-2E57013C7665</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@JobsTImer</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
