@@ -45,8 +45,11 @@
         .byImage("eye.slash".sysImg, for: .normal)                // 未选中图标
         .byImage("eye".sysImg, for: .selected)                    // 选中图标
         .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))// 图文内边距
+        /// 按钮图片@图文关系iOS13（与下文互斥）
         .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 图标与文字间距
         .byImagePlacement(.top)
+        /// 按钮图片@图文关系iOS12（与上文互斥）
+        .byImagePlacementLegacy(.top, padding: 5)
         /// 点击@播放声音
         .byTapSound("Sound.wav")    
         /// 普通@点按事件触发
