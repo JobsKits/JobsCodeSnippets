@@ -13,6 +13,12 @@
     UIButton.sys()
         /// 背景色
         .byBackgroundColor(.systemGreen, for: .normal)
+        /// 字体颜色渐变@只处理主标题（titleLabel）
+        .jobs_setGradientMainTitle(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .leftToRight)
+        /// 字体颜色渐变@只副标题渐变
+        .jobs_setGradientSubtitle(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .topLeftToBottomRight)
+        /// 字体颜色渐变@主副一致
+        .jobs_setGradientTitlesSame(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .leftToRight)
         /// 普通字符串@设置主标题
         .byTitle("显示", for: .normal)
         .byTitle("隐藏", for: .selected)
