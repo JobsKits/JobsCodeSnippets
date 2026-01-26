@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// MARK: - 发通知
+NotificationCenter.post("通知名称")
+NotificationCenter.post("通知名称", userInfo: ["id": 1])
+NotificationCenter.post("通知名称", payload: scrollView.contentOffset.y)
+// MARK: - 接收通知
+self.on("通知名称") { y in
+  /// TODO
+}
+// MARK: - 移除通知
+NotificationCenter.remove(self)
+NotificationCenter.remove(self, name: "通知名称")</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F2D5D6CD-C29D-4C19-A926-19BD8E816036</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@通知📢</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

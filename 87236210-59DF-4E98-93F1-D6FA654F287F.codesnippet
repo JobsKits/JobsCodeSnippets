@@ -26,6 +26,7 @@ private lazy var btnBG: UIButton = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20)
             make.height.equalTo(64)
         }
+        .byCornerRadius(12.h)
 }()
 /// 按钮网络前景图@SDWebImage
 private lazy var btnImage: UIButton = {
@@ -46,6 +47,7 @@ private lazy var btnImage: UIButton = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20)
             make.height.greaterThanOrEqualTo(56)
         }
+        .byCornerRadius(12.h)
 }()
 /// 按钮网络背景图@Kingfisher
 private lazy var btnBG_KF: UIButton = {
@@ -70,6 +72,7 @@ private lazy var btnBG_KF: UIButton = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20)
             make.height.equalTo(64)
         }
+        .byCornerRadius(12.h)
 }()
 /// 按钮网络前景图@Kingfisher
 private lazy var btnImage_KF: UIButton = {
@@ -96,6 +99,7 @@ private lazy var btnImage_KF: UIButton = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20)
             make.height.equalTo(64)
         }
+        .byCornerRadius(12.h)
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>87236210-59DF-4E98-93F1-D6FA654F287F</string>

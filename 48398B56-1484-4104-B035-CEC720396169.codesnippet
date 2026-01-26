@@ -99,6 +99,7 @@
             make.left.right.equalToSuperview().inset(24)
             make.height.equalTo(44)
         }
+        .byCornerRadius(12.h)
         /// UIButtonConfiguration
         if #available(iOS 15.0, *) {
             b.byConfiguration { c in
@@ -153,6 +154,7 @@ private lazy var countdownButton: UIButton = {
             make.right.equalToSuperview().inset(horizontalInset)
             make.height.equalTo(50)
         }
+        .byCornerRadius(12.h)
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>48398B56-1484-4104-B035-CEC720396169</string>

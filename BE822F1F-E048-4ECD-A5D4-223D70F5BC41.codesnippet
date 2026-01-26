@@ -18,6 +18,7 @@
         .bySeparatorStyle(.singleLine)
         .byNoSectionHeaderTopPadding()
         .byContentInsetTop(8)
+        .byExpandVerticalScrollDistance(200.h)
         .jobs_emptyButtonProvider { [unowned self] in
             UIButton(type: .system)
                 .byTitle("暂无数据", for: .normal)
