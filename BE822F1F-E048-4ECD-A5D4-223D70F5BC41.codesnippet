@@ -75,7 +75,6 @@
                 }
             }
         }
-
         .byAddTo(view) {[unowned self] make in
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
@@ -84,6 +83,72 @@
                 make.edges.equalToSuperview()
             }
         }
+//        .showRefreshHeaderInfo(NO)   // 竖向Header + 横向Left
+//        .showRefreshFooterInfo(YES)  // 竖向Footer + 横向Right
+        .setLeftLottie(.custom(.init(animationName: "9squares_AlBoardman")))
+        .setRightLottie(.inherit)     // 继承全局（没有全局就回退菊花）
+        .enableRefreshHaptics(true)
+        .setRefreshSound("Sound.wav") 
+        // 左侧拉：比如“上一页/回退”
+        .configSideRefresh(with: JobsDefaultLeftRefresher(),
+                           container: self,
+                           at: .left,
+                           trigger: 70) { [weak self] in
+            guard let self else { return }
+            jobsRunOnMain(self) { vc in
+                try? await Task.sleep(nanoseconds: 900_000_000)
+                // 模拟“刷新完成”：减少一个 item 并刷新
+                self.hItems = max(8, self.hItems - 1)
+                self.collectionView.byReloadData()
+                self.collectionView.switchSideRefresh(.left, to: .normal)
+            }
+       }
+       // 右侧拉：比如“下一页/加载更多卡片”
+       .configSideRefresh(with: JobsDefaultRightRefresher(),
+                          container: self,
+                          at: .right,
+                          trigger: 70) { [weak self] in
+           guard let self else { return }
+           jobsRunOnMain(self) { vc in
+               try? await Task.sleep(nanoseconds: 900_000_000)
+               self.hItems += 3
+               self.collectionView.byReloadData()
+               self.collectionView.switchSideRefresh(.right, to: .normal)
+           }
+       }
+      .setHeaderLottie(.custom(.init(animationName: "LottieLogo1")))
+      .setFooterLottie(.disabled) // 强制 footer 回退菊花（即使全局配置了）
+      .enableRefreshHaptics(true)
+      .setRefreshSound("Sound.wav")
+      // 下拉刷新 Header
+      .configRefreshHeader(component: JobsDefaultHeader(),
+                           container: self,
+                           trigger: 66) { [weak self] in
+          guard let self else { return }
+          jobsRunOnMain(self) { vc in
+              try? await Task.sleep(nanoseconds: 1_000_000_000)
+              self.rows = 20
+              self.tableView.byReloadData()
+              self.tableView.switchRefreshHeader(to: .normal)
+              self.tableView.switchRefreshFooter(to: .normal) // 复位“无更多”
+          }
+      }
+      // 上拉加载 Footer
+      .configRefreshFooter(component: JobsDefaultFooter(),
+                           container: self,
+                           trigger: 66) { [weak self] in
+          guard let self else { return }
+          jobsRunOnMain(self) { vc in
+              try? await Task.sleep(nanoseconds: 1_000_000_000)
+              if self.rows &lt; 60 {
+                  self.rows += 20
+                  self.tableView.byReloadData()
+                  self.tableView.switchRefreshFooter(to: .normal)
+              } else {
+                  self.tableView.switchRefreshFooter(to: .noMoreData)
+              }
+          }
+      }
 }()
 
 extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{

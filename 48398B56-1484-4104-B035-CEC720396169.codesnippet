@@ -13,6 +13,8 @@
     UIButton.sys()
         /// 背景色
         .byBackgroundColor(.systemGreen, for: .normal)
+        /// 背景图片
+        .byBackgroundImage("背景图片".img, for: .normal)
         /// 字体颜色渐变@只处理主标题（titleLabel）
         .jobs_setGradientMainTitle(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .leftToRight)
         /// 字体颜色渐变@只副标题渐变
