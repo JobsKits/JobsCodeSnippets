@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string></string>
+	<string>ProgressBar</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -34,7 +34,7 @@ private lazy var progressView: JobsProgressBar = {
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>import JobsProgressBar</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@自定义进度条</string>
 	<key>IDECodeSnippetUserSnippet</key>

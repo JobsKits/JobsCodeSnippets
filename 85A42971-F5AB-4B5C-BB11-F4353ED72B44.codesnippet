@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Jobs@UIVC</string>
+	<string>VC</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -59,7 +59,7 @@ class TextFieldVC: UIViewController {
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@ViewController</string>
 	<key>IDECodeSnippetUserSnippet</key>

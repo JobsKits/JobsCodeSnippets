@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Jobs@UICollectionView</string>
+	<string>CollectionView</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -26,7 +26,23 @@ private lazy var collectionView: UICollectionView = {
         .byDragInteractionEnabled(false)
         .byContentInsetTop(8)
         .byExpandVerticalScrollDistance(200.h)
-        // 空态按钮（与 UITableView Demo 一致）
+        // 非正式协议闭包化
+        .byTarget(self)
+        .numberOfItemsInSection { [weak self] (obj: AnyObject, cv: UICollectionView, section: Int) -&gt; Int in
+            self?.hItems ?? 0
+        }
+
+        .cellForItemAt { _, cv, indexPath in
+            cv
+                .dequeueCell(HCell.self, for: indexPath)
+                .byData(indexPath.item)
+                .onResult { _ in }
+        }
+        .didSelectItemAt({ obj, cv, idx in
+            cv.deselectItem(at: idx, animated: true)
+            print("点选逻辑")
+        })
+        // 空态按钮
         .jobs_emptyButtonProvider { [unowned self] in
             UIButton.sys()
                 .byTitle("暂无数据", for: .normal)
@@ -47,7 +63,6 @@ private lazy var collectionView: UICollectionView = {
                     make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
                 }
         }
-
         // 下拉刷新 Header
         .configRefreshHeader(component: JobsDefaultHeader(),
                              container: self,
@@ -195,7 +210,7 @@ func collectionView(_ collectionView: UICollectionView,
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>UICollectionView</string>
+	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UICollectionView</string>
 	<key>IDECodeSnippetUserSnippet</key>

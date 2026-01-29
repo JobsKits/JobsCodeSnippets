@@ -3,15 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Jobs@GKNavBar</string>
+	<string>NavBar</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import GKNavigationBarSwift
-
-override func viewDidLoad() {
+	<string>override func viewDidLoad() {
     super.viewDidLoad()
     jobsSetupGKNav(
         title: "Demo 列表",
@@ -90,7 +88,7 @@ override func viewDidLoad() {
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Ruby</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>import GKNavigationBarSwift</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@GKNavigationBarSwift的二次封装和使用</string>
 	<key>IDECodeSnippetUserSnippet</key>

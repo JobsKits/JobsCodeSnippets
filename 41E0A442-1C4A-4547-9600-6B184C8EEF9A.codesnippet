@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Jobs@UIToolbar</string>
+	<string>Toolbar</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -43,7 +43,7 @@
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UIToolbar</string>
 	<key>IDECodeSnippetUserSnippet</key>

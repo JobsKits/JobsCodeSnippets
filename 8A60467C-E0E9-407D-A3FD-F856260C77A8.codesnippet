@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Jobs@Gesture</string>
+	<string>Gesture</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -128,7 +128,7 @@ let views = UIView()
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>👋</string>
+	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@手势👋</string>
 	<key>IDECodeSnippetUserSnippet</key>

@@ -3,29 +3,72 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>jad</string>
+	<string>Snapkit</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>.byAddTo(view) { [unowned self] make in
-    make.top.equalTo(self.hintLabel.snp.bottom).offset(20)
-    make.left.equalToSuperview().offset(horizontalInset)
-    make.right.equalToSuperview().inset(horizontalInset)
-    make.height.equalTo(50)
+	<string>/// safeArea 示例（iOS/tvOS 11+）：
+if #available(iOS 11.0, tvOS 11.0, *) {
+    card.mas_makeConstraints { make in
+        make.edges.mas_equalTo(view.mas_safeArea.mas_edges).insets(UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
+    }
 }
-.byAddTo(view) { [unowned self] v, make in
-    make.top.equalTo(self.pickMultiVideoBtn.snp.bottom).offset(16)
-    make.left.right.equalToSuperview().inset(24)
-    make.height.equalTo(v.snp.width)
-}</string>
+
+// 1) 直接对 superview（Masonry 常用）
+card.mas_makeConstraints { make in
+    make.left.mas_equalToSuperview().offset(16)
+    make.right.mas_equalToSuperview().offset(-16)
+    make.top.mas_equalToSuperview().offset(120)
+    make.height.mas_equalTo(200)
+}
+
+// 2) 用你封装的属性引用：view.mas_left / mas_top / mas_size ...
+avatar.mas_makeConstraints { make in
+    make.left.mas_equalTo(card.mas_left).offset(16)
+    make.top.mas_equalTo(card.mas_top).offset(16)
+    make.size.mas_equalTo(CGSize(width: 48, height: 48)).priority(999).key("avatar.size")
+}
+
+// 3) 参照另一个 view 的 anchor：avatar.mas_right / mas_centerY
+titleLabel.mas_makeConstraints { make in
+    make.left.mas_equalTo(avatar.mas_right).offset(12)
+    make.centerY.mas_equalTo(avatar.mas_centerY)
+    make.right.mas_lessThanOrEqualTo(card.mas_right).offset(-16)
+}
+
+// 4) edges/centerX/bottom 这种基础 API
+button.mas_makeConstraints { make in
+    make.left.mas_equalTo(card.mas_left).offset(16)
+    make.right.mas_equalTo(card.mas_right).offset(-16)
+    make.bottom.mas_equalTo(card.mas_bottom).offset(-16)
+    make.height.mas_equalTo(44)
+}
+
+// 5) safeArea 示例（iOS/tvOS 11+）
+if #available(iOS 11.0, tvOS 11.0, *) {
+    card.mas_updateConstraints { make in
+        make.top.mas_equalTo(view.mas_safeArea.mas_top).offset(24)
+    }
+}
+
+// 6) update 示例：动画里改 top
+DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+    UIView.animate(withDuration: 0.25) {
+        self.card.mas_updateConstraints { make in
+            make.top.mas_equalToSuperview().offset(60)
+        }
+        self.view.layoutIfNeeded()
+    }
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>CF732DD5-FAD8-4C2F-9E94-8B4BC7E87E19</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@Snapkit</string>
 	<key>IDECodeSnippetUserSnippet</key>

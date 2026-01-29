@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string></string>
+	<string>AlertController</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -84,13 +84,28 @@ private lazy var simpleAlert: UIAlertController = {
             print("Cancel tapped")
         }
         .byPresent(self, anchor: .view(sender, sender.bounds)) // 指定锚点
-}()</string>
+}()
+// MARK:  主标题 + 垂直排列3个按钮 + 从屏幕中间弹出
+private lazy var simpleAlert: UIAlertController = {
+    UIAlertController
+        .makeActionSheet("请选择".tr, nil)
+        .byAddAction(title: "相册".tr) { [weak self] _ in
+            self?.pushTZImagePickerController()
+        }
+        .byAddAction(title: "照相".tr) { [weak self] _ in
+            self?.takePhoto()
+        }
+        .byAddCancel("取消".tr)
+        .byPresent(self, anchor: .center, animated: true)
+}()
+
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>50109609-C2F7-4D66-AA1E-ABF7A0741D49</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UIAlertController</string>
 	<key>IDECodeSnippetUserSnippet</key>

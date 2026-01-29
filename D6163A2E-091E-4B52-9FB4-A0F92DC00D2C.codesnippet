@@ -3,70 +3,79 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Jobs@TextView</string>
+	<string>TextView</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var tv: UITextView = { [unowned self] in
+	<string>private lazy var tv1: UITextView = {
     UITextView()
-        .byText("这里展示基础链式调用：字体、颜色、边框、内边距等。")
         .byFont(.systemFont(ofSize: 16))
-        .byTextColor(.label)
-        .byTextAlignment(.left)
+        .byKeyboardType(.default)
         .byEditable(true)
         .bySelectable(true)
         .byTextContainerInset(UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10))
         .byRoundedBorder(color: .systemGray4, width: 1, radius: 8)
-        .onChange { tv, input, old, isDeleting in
-            let new = tv.text ?? ""
-            print("✏️ input='\(input)' old='\(old)' new='\(new)' deleting=\(isDeleting)")
+        .byHintLimit(12) { lb in
+            lb.byFont(.monospacedDigitSystemFont(ofSize: 11, weight: .semibold))
+                .byTextColor(.red)
+        }
+        .byOnInput(limit: nil) { [unowned self] char, value, mode, isLimited, text ,tv in
+            // text 就是当前 UITextView.text（保证不是 nil，空就是 ""）
+            // value 仍然是“本次变更后的值”（由监听器计算出来的 new）
+            // char：删除/回车时为 ""
+            // mode：space/delete/return/normal
+            // isLimited：是否设置了限制（limit != nil）
+            print("✏️ char='\(char)' value='\(value)' mode=\(mode) limited=\(isLimited) text='\(text)'")
+        }
+        .byBeginEditing { value in
+            print("✍️ begin:", value)
+        }
+        .byEndEditing { value in
+            print("✅ end:", value)
+        }
+        .byAddTo(contentView) { [unowned self] make in
+            make.top.equalTo(title1.snp.bottom).offset(8)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+            make.height.equalTo(100)
+        }
+    }()
 
-            // 6~20 有效：绿边，否则红边
-            let ok = (6...20).contains(new.count)
-            tv.layer.borderWidth = 1
-            tv.layer.borderColor = (ok ? UIColor.systemGreen : UIColor.systemRed).cgColor
-            tv.layer.masksToBounds = true
-            if #available(iOS 13.0, *) { tv.layer.cornerCurve = .continuous }
-        }
-        .onBackspace { tv in
-            print("👈 backspace: len=\(tv.text?.count ?? 0)")
-        }
-        .byAddTo(self.view) { [unowned self] make in
-            make.top.equalTo(self.textField.snp.bottom).offset(12)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(36)
-        }
-}()
-
-private lazy var tvBlue: UITextView = { [unowned self] in
-    return UITextView()
+private lazy var tvRed: UITextView = {
+    UITextView()
         .byAttributedText(NSMutableAttributedString(
-            string: "🔗 默认蓝色链接（系统样式）：",
-            attributes: [
-                .font: UIFont.systemFont(ofSize: 15),
-                .foregroundColor: UIColor.secondaryLabel
-            ])
-            .add(NSAttributedString(
-                string: " Apple 官网",
-                attributes: [
-                    .link: URL(string: "https://www.apple.com")!,
-                    .font: UIFont.boldSystemFont(ofSize: 16)
-                ]))
-            .add(NSAttributedString(
-                string: "\n客服电话：400-123-4567",
-                attributes: [.font: UIFont.systemFont(ofSize: 15)]
-            )))
+            string: "🔴 自定义红色链接：",
+            attributes: [.font: UIFont.systemFont(ofSize: 15),
+                         .foregroundColor: UIColor.secondaryLabel]
+        ).byAdd(NSAttributedString(
+            string: " Jobs 官网",
+            attributes: [.link: URL(string: "https://www.google.com")!,
+                         .font: UIFont.boldSystemFont(ofSize: 16)]
+        )).byAdd(NSAttributedString(
+            string: "\n客服电话：400-123-4567",
+            attributes: [.font: UIFont.systemFont(ofSize: 15)]
+        )))
         .byEditable(false)
         .bySelectable(true)
-        .byDataDetectorTypes([.link, .phoneNumber])   // 系统自动识别
+        .byDataDetectorTypes([.link, .phoneNumber])
+        .byLinkTextAttributes([
+            .foregroundColor: UIColor.systemRed,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
         .byTextContainerInset(UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10))
         .byRoundedBorder(color: .systemGray4, width: 1, radius: 8)
-        .byAddTo(self.view) { [unowned self] make in
-            make.top.equalTo(self.tv.snp.bottom).offset(12)   // 紧跟在 tv 下面
-            make.centerX.equalToSuperview()
-            make.height.equalTo(36)
+        .jobs_onBeginEditing { value in
+            print("✍️ begin:", value)
+        }
+        .jobs_onEndEditing { value in
+            print("✅ end:", value)
+        }
+        .byAddTo(contentView) { [unowned self] make in
+            make.top.equalTo(tvBlue.snp.bottom).offset(12)
+            make.left.right.equalTo(tv1)
+            make.height.equalTo(110)
         }
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
@@ -74,7 +83,7 @@ private lazy var tvBlue: UITextView = { [unowned self] in
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UITextView</string>
 	<key>IDECodeSnippetUserSnippet</key>

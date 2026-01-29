@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Jobs@UITableView</string>
+	<string>TableView</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -19,6 +19,24 @@
         .byNoSectionHeaderTopPadding()
         .byContentInsetTop(8)
         .byExpandVerticalScrollDistance(200.h)
+        // 非正式协议闭包化
+        .byTarget(self)
+        .numberOfRowsInSection { [weak self] (obj: AnyObject, tv: UITableView, section: Int) -&gt; Int in
+            self?.rows ?? 0
+        }
+        .cellForRowAt { _, tv, indexPath in
+            let c = tv.dequeueReusableCell(withIdentifier: "cell") ??
+                    UITableViewCell(style: .default, reuseIdentifier: "cell")
+            var cfg = c.defaultContentConfiguration()
+            cfg.text = "Row \(indexPath.row)"
+            c.contentConfiguration = cfg
+            return c
+        }
+        .didSelectRowAt { _, tv, indexPath in
+            tv.deselectRow(at: indexPath, animated: true)
+            print("点选逻辑")
+        }
+         // 空态按钮
         .jobs_emptyButtonProvider { [unowned self] in
             UIButton(type: .system)
                 .byTitle("暂无数据", for: .normal)
@@ -179,7 +197,7 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>创建UITableView的相关子类</string>
+	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UITableView</string>
 	<key>IDECodeSnippetUserSnippet</key>

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string></string>
+	<string>noti</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -14,8 +14,9 @@ NotificationCenter.post("通知名称")
 NotificationCenter.post("通知名称", userInfo: ["id": 1])
 NotificationCenter.post("通知名称", payload: scrollView.contentOffset.y)
 // MARK: - 接收通知
-self.on("通知名称") { y in
-  /// TODO
+self.on("通知名称") { noti in
+    guard let noti = noti as? Notification else { return }
+    /// TODO
 }
 // MARK: - 移除通知
 NotificationCenter.remove(self)
@@ -25,7 +26,7 @@ NotificationCenter.remove(self, name: "通知名称")</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@通知📢</string>
 	<key>IDECodeSnippetUserSnippet</key>

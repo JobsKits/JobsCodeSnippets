@@ -19,6 +19,12 @@ make.left.equalTo(contentView.superview!.snp.centerX)
 
 .byText("已抢到".tr + ":" + String(count) + "个".tr)
 
+.byBorderColor(.cyan)
+.byBorderWidth(0.5)
+.byMasksToBounds(YES)
+.byClipsToBounds(YES)
+.byCornerRadius(8.h)
+
 jobsSetupGKNav(title: "Lottie 动画")
 
 jobsSetupGKNav(
