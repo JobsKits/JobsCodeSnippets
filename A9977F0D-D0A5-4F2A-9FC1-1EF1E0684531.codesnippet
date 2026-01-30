@@ -9,7 +9,8 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>if view.jobs_hasVisibleTopBar() {
+	<string>make.left.right.bottom.equalToSuperview()
+if view.jobs_hasVisibleTopBar() {
     make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
 } else {
     make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -34,14 +35,20 @@ jobsSetupGKNav(
         /// 按钮图片@图文关系
         .byImage("list.bullet".sysImg, for: .normal)
         .byImage("list.bullet".sysImg, for: .selected)
-        /// 事件触发@点按
-        .onTap { sender in
+        /// 普通@点按事件触发
+        .onTap {[weak self] sender in
+            guard let self else { return }
             sender.isSelected.toggle()
-            debugOnly {  // 仅 Debug 执行
-                toastBy("点按了列表按钮")
-            }
+            self.jobsSideDrawer?.toggleDrawer()
+//                    let cell = tableView[section: 0, row: 3]
+//                    let cell1 = tableView[section: 12, row: 3]
+            print("")
         }
-        /// 事件触发@长按
+        /// 追加@点按事件触发
+        .onTapAppend{ sender in
+            print("追加的点按事件")
+        }
+        /// 普通@长按事件触发
         .onLongPress(minimumPressDuration: 0.8) { btn, gr in
              if gr.state == .began {
                  btn.alpha = 0.6
@@ -50,6 +57,10 @@ jobsSetupGKNav(
                  btn.alpha = 1.0
                  print("长按结束")
              }
+        }
+        /// 追加@长按事件触发
+        .onLongPressAppend(minimumPressDuration: 0.8) { btn, gr in
+            print("追加的长按事件")
         },
     rightButtons: [
         UIButton.sys()
@@ -76,7 +87,6 @@ jobsSetupGKNav(
                 let to = (LanguageManager.shared.currentLanguageCode == "zh-Hans") ? "en" : "zh-Hans"
                 LanguageManager.shared.switchTo(to)
 //                        var s = "🔑 注册登录".tr
-                demos = makeDemos()
                 tableView.reloadData()
                 print("🌐 切换语言 tapped（占位）")
             },
