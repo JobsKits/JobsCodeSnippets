@@ -104,6 +104,8 @@ private lazy var simpleAlert: UIAlertController = {
 	<string>50109609-C2F7-4D66-AA1E-ABF7A0741D49</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>

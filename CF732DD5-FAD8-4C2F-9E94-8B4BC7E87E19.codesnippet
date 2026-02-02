@@ -67,6 +67,8 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
 	<string>CF732DD5-FAD8-4C2F-9E94-8B4BC7E87E19</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>

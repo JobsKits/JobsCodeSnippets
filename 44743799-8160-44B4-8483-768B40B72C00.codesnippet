@@ -209,6 +209,8 @@ func collectionView(_ collectionView: UICollectionView,
 	<string>44743799-8160-44B4-8483-768B40B72C00</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>

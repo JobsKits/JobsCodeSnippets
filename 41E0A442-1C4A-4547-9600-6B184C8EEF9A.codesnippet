@@ -42,6 +42,8 @@
 	<string>41E0A442-1C4A-4547-9600-6B184C8EEF9A</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>

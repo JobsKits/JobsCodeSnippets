@@ -144,6 +144,8 @@ private lazy var wrapperImgViewSD: UIImageView = {
 	<string>7E33EADB-8A2C-43D1-9104-A95BAFFF0D82</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>

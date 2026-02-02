@@ -85,6 +85,8 @@ private lazy var tvRed: UITextView = {
 	<string>D6163A2E-091E-4B52-9FB4-A0F92DC00D2C</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>

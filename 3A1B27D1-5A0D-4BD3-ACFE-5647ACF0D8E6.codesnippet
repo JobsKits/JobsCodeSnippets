@@ -30,6 +30,8 @@ private lazy var webView: WKWebView = {
 	<string>3A1B27D1-5A0D-4BD3-ACFE-5647ACF0D8E6</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>import JobsByUIKit</string>
 	<key>IDECodeSnippetTitle</key>

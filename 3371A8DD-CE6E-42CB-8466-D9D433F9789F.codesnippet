@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsButton</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>private lazy var btn1: JobsButton = {
+    JobsButton()
+        .byMode(.imageTopTextBottom)
+        .byTitleLabel { lab in
+            lab.byText("上图下文")
+                .byTextColor(.red)
+        }
+        .bySubTitleLabel { lab in
+            lab.byText("image -&gt; title -&gt; subtitle")
+                .byTextColor(.blue)
+        }
+        // 前景图：内部 foregroundImageView（链式不丢 self）
+        .byForegroundImageView { iv in
+            iv.byContentMode(.scaleAspectFill)
+                .byClipsToBounds()
+                .kf_setImage("https://picsum.photos/200?random=111", placeholder: "Ani".img)
+        }
+        // 背景图：JobsButton 自己是 UIImageView
+        .byContentMode(.scaleAspectFill)
+        .byClipsToBounds()
+        .kf_setImage("https://picsum.photos/600/200?random=11", placeholder: "Ani".img)
+        .byImageTitleSpacing(6)
+        .byTitleSubtitleSpacing(2)
+        .byContentInsets(.zero)
+        .byForegroundImageFixedSize(true)
+        .addTapActionAppend { _ in
+            print("btn1 tap #1")
+            "点击了悬浮按钮：上图下文（tap #1）".toast
+        }
+        .addTapActionAppend { _ in
+            print("btn1 tap #2 (append)")
+            "点击了悬浮按钮：上图下文（tap #2 叠加）".toast
+        }
+        .addLongPressActionAppend { gr in
+            guard gr.state == .began else { return }
+            print("btn1 longPress #1 began")
+            "长按了悬浮按钮：上图下文（longPress #1）".toast
+        }
+        .addLongPressActionAppend { gr in
+            guard gr.state == .began else { return }
+            print("btn1 longPress #2 began (append)")
+            "长按了悬浮按钮：上图下文（longPress #2 叠加）".toast
+        }
+        .byBorderColor(.cyan)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        .byCornerRadius(8.h)
+        .byAddTo(view) { [unowned self] make in
+            make.top.equalTo(self.hintLabel.snp.bottom).offset(18)
+            make.left.equalToSuperview().offset(horizontalInset)
+            make.right.equalToSuperview().inset(horizontalInset)
+            make.height.equalTo(itemHeight)
+        }
+}()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3371A8DD-CE6E-42CB-8466-D9D433F9789F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@JobsButton</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
