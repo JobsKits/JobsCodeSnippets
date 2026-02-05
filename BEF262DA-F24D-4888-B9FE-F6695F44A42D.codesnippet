@@ -9,42 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/// 密码输入框
-private lazy var passwordTF: UITextField = {
-    UITextField()
-        .byPlaceholder("请输入密码（最长 5）")
-        .byFont(.systemFont(ofSize: 16))
-        .byTextColor(.label)
-        .byKeyboardType(.default)
-        .byReturnKeyType(.done)
-        .byClearButtonMode(.whileEditing)
-        .byDelegate(self)
-        .byLeftView(UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 1)))
-        .byLeftViewMode(.always)
-        .bySecureTextEntry(true)
-        // MARK: Jobs 输入监听（无 Rx）—— 密码：最长 5，只做监听
-        .jobs_onBeginEditing { value in
-            print("✍️ password begin:", value)
-        }
-        .jobs_onInput(limit: 5) { [weak self] char, value, mode, isLimited in
-            guard let self else { return }
-            let current = self.passwordTF.text ?? value
-            print("🔐 char='\(char)' value='\(current)' mode=\(mode) limited=\(isLimited)")
-        }
-        .jobs_onEndEditing { value in
-            print("✅ password end:", value)
-        }
-        .byAddTo(view) { [unowned self] make in
-            make.top.equalTo(emailTF.snp.bottom).offset(16)
-            make.left.right.height.equalTo(emailTF)
-        }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
-        .byCornerRadius(8.h)
-}()
-/// 邮箱输入框
+	<string>/// 邮箱输入框
 private lazy var emailTF: UITextField = {
     UITextField()
         .byPlaceholder("请输入邮箱（去空格 / 最长 8）")
@@ -56,11 +21,33 @@ private lazy var emailTF: UITextField = {
         .byDelegate(self)
         .byLeftView(UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 1)))
         .byLeftViewMode(.always)
-        // MARK: Jobs 输入监听（无 Rx）—— 邮箱：去空格 + 最长 8 + 简单规则
-        .jobs_onBeginEditing { value in
+        .byRightView(
+            UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+                .byAddSubviewRetSuper(
+                    UIButton.sys()
+                        .bySize(CGSizeMake(20, 20))
+                        /// 背景图片
+                        .byBackgroundImage("删除".img, for: .normal)
+                        /// 普通@点按事件触发
+                        .onTap { [weak self] sender in
+                            guard let self else { return }
+                            sender.isSelected.toggle()
+                            titleTF.text = ""
+                        }
+                )
+        )
+        .byRightViewMode(.whileEditing)
+        /// 父系方法@UIControl.byAddAction
+        .byAddAction(for: .editingChanged, { [weak self] tf in
+            guard let self else { return }
+            /// TODO
+        })
+        /// 输入框由不活跃状态 ➤ 活跃状态 只调用一次
+        .byBeginEditing { value in
             print("✍️ email begin:", value)
         }
-        .jobs_onInput(limit: 8) { [weak self] char, value, mode, isLimited in
+        /// 效果@等于父系方法UIControl.byAddAction.editingChanged，只不过比父系方法先调用
+        .byOnInput(limit: 8) { [weak self] char, value, mode, isLimited in
             guard let self else { return }
             let trimmed = value.trimmingCharacters(in: .whitespaces)
             if trimmed != value {
@@ -70,7 +57,7 @@ private lazy var emailTF: UITextField = {
             let ok = current.count &gt;= 3 &amp;&amp; current.contains("@")
             print("📧 char='\(char)' value='\(current)' mode=\(mode) limited=\(isLimited) ok=\(ok)")
         }
-        .jobs_onEndEditing { value in
+        .byEndEditing { value in
             print("✅ email end:", value)
         }
         .byAddTo(view) {[unowned self] make in
@@ -82,6 +69,49 @@ private lazy var emailTF: UITextField = {
             } else {
                 make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             }
+        }
+        .byBorderColor(.cyan)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        .byCornerRadius(8.h)
+}()
+/// 密码输入框
+private lazy var passwordTF: UITextField = {
+    UITextField()
+        .byPlaceholder("请输入密码（最长 5）")
+        .byFont(.systemFont(ofSize: 16))
+        .byTextColor(.label)
+        .byKeyboardType(.default)
+        .byReturnKeyType(.done)
+        .byClearButtonMode(.whileEditing)
+        .byDelegate(self)
+        .bySecureTextEntry(true)
+        .byLeftView(UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 1)))
+        .byLeftViewMode(.always)
+        .byRightView(UIImageView().bySize(CGSizeMake(22, 22)).byImage("删除".img))
+        .byRightViewMode(.whileEditing)
+        /// 父系方法@UIControl.byAddAction
+        .byAddAction(for: .editingChanged, { [weak self] tf in
+            guard let self else { return }
+            /// TODO
+        })
+        /// 输入框由不活跃状态 ➤ 活跃状态 只调用一次
+        .byBeginEditing { value in
+            print("✍️ password begin:", value)
+        }
+        /// 效果@等于父系方法UIControl.byAddAction.editingChanged，只不过比父系方法先调用
+        .byOnInput(limit: 5) { [weak self] char, value, mode, isLimited in
+            guard let self else { return }
+            let current = self.passwordTF.text ?? value
+            print("🔐 char='\(char)' value='\(current)' mode=\(mode) limited=\(isLimited)")
+        }
+        .byEndEditing { value in
+            print("✅ password end:", value)
+        }
+        .byAddTo(view) { [unowned self] make in
+            make.top.equalTo(emailTF.snp.bottom).offset(16)
+            make.left.right.height.equalTo(emailTF)
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)

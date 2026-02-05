@@ -15,12 +15,12 @@ NotificationCenter.post("通知名称", userInfo: ["id": 1])
 NotificationCenter.post("通知名称", payload: scrollView.contentOffset.y)
 // MARK: - 接收通知
 self.on("通知名称") { noti in
-    guard let noti = noti as? Notification else { return }
+    guard noti is Notification else { return }
     /// TODO
 }
 // MARK: - 移除通知
-NotificationCenter.remove(self)
-NotificationCenter.remove(self, name: "通知名称")</string>
+"通知名称".removeNotification(self)
+Notification.Name("通知名称").removeNotification(self)</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>F2D5D6CD-C29D-4C19-A926-19BD8E816036</string>
 	<key>IDECodeSnippetLanguage</key>

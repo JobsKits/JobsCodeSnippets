@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>public final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell {
+	<string>public final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell,UITableViewCellProtocol {
     func byData(_ item: JobsCountdownItem) -&gt; Self {
         /// TODO
         return self

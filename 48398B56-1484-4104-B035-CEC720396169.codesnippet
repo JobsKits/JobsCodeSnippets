@@ -11,6 +11,14 @@
 	<key>IDECodeSnippetContents</key>
 	<string>private lazy var exampleButton: UIButton = {
     UIButton.sys()
+        /// 锁死标题颜色：任何 state 都保持同一种颜色，不跟 tint / 系统态自动变化
+        .byLockTitleColor(.red)
+        /// 图片吃 tint，但 tint 锁死为某个颜色
+        .byLockTintColor(.red)
+        /// 只锁 Background（背景色不随状态变）
+        .byLockBackgroundColor(.red)
+        /// 只锁 Border（边框色不随状态变，iOS 15+）
+        .byLockBorderColor(.red)
         /// 背景色
         .byBackgroundColor(.systemGreen, for: .normal)
         /// 背景图片
