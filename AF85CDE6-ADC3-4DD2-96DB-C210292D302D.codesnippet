@@ -9,62 +9,62 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>    private lazy var titleTF: JobsTextField = {
-        JobsTextField()
-            .byTextFieldConfig({ textField in
-                textField
-                    .byPlaceholder("请输入内容（必填）")
-                    .byPlaceholderFont(.PingFangSC.Regular(14))
-                    .byPlaceholderColor("#BBBBBB".cor)
-                    .byFont(.PingFangSC.Regular(14))
-                    .byTextColor("#BBBBBB".cor)
-                    .byKeyboardType(.default)
-                    .byReturnKeyType(.next)
-                    .byClearButtonMode(.whileEditing)
-                    .byRightView(
-                        UIButton.sys()
-                            .bySize(CGSizeMake(22, 22))
-                            /// 背景图片
-                            .byBackgroundImage("删除".img, for: .normal)
-                            /// 普通@点按事件触发
-                            .onTap { [weak self] sender in
-                                guard let self else { return }
-                                sender.isSelected.toggle()
-                                 titleTF.text = ""
-                            })
-                    .byRightViewMode(.whileEditing)
-                    /// 输入框由不活跃状态 ➤ 活跃状态 只调用一次
-                    .byBeginEditing { value in
-                        self.titleTF.byBorderColor("#C33E2D".cor)
-                            .byBorderWidth(0.5)
-                            .byMasksToBounds(YES)
-                        print("✍️ email begin:", value)
-                    }
-                    /// 效果@等于父系方法UIControl.byAddAction.editingChanged，只不过比父系方法先调用
-                    .byOnInput(limit: nil) { [weak self] char, value, mode, isLimited in
-                        guard let self else { return }
-                        self.buttonStatusToChange()
-                    }
-                    .byEndEditing { value in
-                        print("✅ email end:", value)
-                        self.titleTF.byBorderColor("#eaeaea".cor)
-                    }
-            })
-            .byInsetTop(14)
-            .byInsetLeft(12)
-            .byInsetRight(12)
-            .byInsetBottom(14)
-            .byAddTo(cardView) { [unowned self] make in
-                make.top.equalTo(typeRowView.snp.bottom).offset(AD(0))
-                make.leading.equalTo(cardView).offset(AD(16))
-                make.trailing.equalTo(cardView).offset(AD(-16))
-                make.height.equalTo(AD(44))
-            }
-            .byBorderColor("#eaeaea".cor)
-            .byBorderWidth(0.5)
-            .byMasksToBounds(YES)
-            .byClipsToBounds(YES)
-            .byCornerRadius(4.h)
+	<string>private lazy var titleTF: JobsTextField = {
+    JobsTextField()
+        .byTextFieldConfig({ textField in
+            textField
+                .byPlaceholder("请输入内容（必填）")
+                .byPlaceholderFont(.PingFangSC.Regular(14))
+                .byPlaceholderColor("#BBBBBB".cor)
+                .byFont(.PingFangSC.Regular(14))
+                .byTextColor("#BBBBBB".cor)
+                .byKeyboardType(.default)
+                .byReturnKeyType(.next)
+                .byClearButtonMode(.whileEditing)
+                .byRightView(
+                    UIButton.sys()
+                        .bySize(CGSizeMake(22, 22))
+                        /// 背景图片
+                        .byBackgroundImage("删除".img, for: .normal)
+                        /// 普通@点按事件触发
+                        .onTap { [weak self] sender in
+                            guard let self else { return }
+                            sender.isSelected.toggle()
+                             titleTF.text = ""
+                        })
+                .byRightViewMode(.whileEditing)
+                /// 输入框由不活跃状态 ➤ 活跃状态 只调用一次
+                .byBeginEditing { value in
+                    self.titleTF.byBorderColor("#C33E2D".cor)
+                        .byBorderWidth(0.5)
+                        .byMasksToBounds(YES)
+                    print("✍️ email begin:", value)
+                }
+                /// 效果@等于父系方法UIControl.byAddAction.editingChanged，只不过比父系方法先调用
+                .byOnInput(limit: nil) { [weak self] char, value, mode, isLimited in
+                    guard let self else { return }
+                    self.buttonStatusToChange()
+                }
+                .byEndEditing { value in
+                    print("✅ email end:", value)
+                    self.titleTF.byBorderColor("#eaeaea".cor)
+                }
+        })
+        .byInsetTop(14)
+        .byInsetLeft(12)
+        .byInsetRight(12)
+        .byInsetBottom(14)
+        .byAddTo(cardView) { [unowned self] make in
+            make.top.equalTo(typeRowView.snp.bottom).offset(AD(0))
+            make.leading.equalTo(cardView).offset(AD(16))
+            make.trailing.equalTo(cardView).offset(AD(-16))
+            make.height.equalTo(AD(44))
+        }
+        .byBorderColor("#eaeaea".cor)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        .byCornerRadius(4.h)
     }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>AF85CDE6-ADC3-4DD2-96DB-C210292D302D</string>
