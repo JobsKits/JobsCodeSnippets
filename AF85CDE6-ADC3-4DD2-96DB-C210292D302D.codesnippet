@@ -22,16 +22,20 @@
                 .byReturnKeyType(.next)
                 .byClearButtonMode(.whileEditing)
                 .byRightView(
-                    UIButton.sys()
-                        .bySize(CGSizeMake(22, 22))
-                        /// 背景图片
-                        .byBackgroundImage("删除".img, for: .normal)
-                        /// 普通@点按事件触发
-                        .onTap { [weak self] sender in
-                            guard let self else { return }
-                            sender.isSelected.toggle()
-                             titleTF.text = ""
-                        })
+                    UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+                        .byAddSubviewRetSuper(
+                            UIButton.sys()
+                                .bySize(CGSizeMake(20, 20))
+                                /// 背景图片
+                                .byBackgroundImage("删除".img, for: .normal)
+                                /// 普通@点按事件触发
+                                .onTap { [weak self] sender in
+                                    guard let self else { return }
+                                    sender.isSelected.toggle()
+                                    titleTF.text = ""
+                                }
+                        )
+                )
                 .byRightViewMode(.whileEditing)
                 /// 输入框由不活跃状态 ➤ 活跃状态 只调用一次
                 .byBeginEditing { value in

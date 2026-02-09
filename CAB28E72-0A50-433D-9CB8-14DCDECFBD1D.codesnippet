@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsDialogBox</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>UIView().byDialogBoxContent { dialogBoxView in
+    UITextView()
+        .byBackgroundColor(.clear)
+        .byText(
+            "1.电话、QQ、微信号、乱码、全数字皆、不雅字眼、辱骂 词汇带、负面情绪字眼、标点符号皆会审核失败"
+                .add("\n")
+                .add("2. 中文字母8个为限、全英文字母或全拼音、中文字母或拼 音加数字、字母数字最多2个、超过、一律拒绝")
+                .add("\n")
+                .add("3. 昵称30日内仅能更改一次")
+        )
+        .byTextColor(.white)
+        .byFont(.systemFont(ofSize: 16))
+        .byEditable(NO)
+        .byAddTo(dialogBoxView) { [unowned self] make in
+            make.edges.equalToSuperview()
+        }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>CAB28E72-0A50-433D-9CB8-14DCDECFBD1D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>带箭头的对话框</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@JobsDialogBox</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

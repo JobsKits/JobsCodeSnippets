@@ -19,8 +19,9 @@
         .byLockBackgroundColor(.red)
         /// 只锁 Border（边框色不随状态变，iOS 15+）
         .byLockBorderColor(.red)
-        /// 背景色
+        /// 背景色@按照不同的状态
         .byBackgroundColor(.systemGreen, for: .normal)
+        .byBackgroundColor("#2F2F2F".cor, for: .disabled) // 对应按钮不可点击的状态
         /// 背景图片
         .byBackgroundImage("背景图片".img, for: .normal)
         /// 字体颜色渐变@只处理主标题（titleLabel）
@@ -32,8 +33,9 @@
         /// 普通字符串@设置主标题
         .byTitle("显示", for: .normal)
         .byTitle("隐藏", for: .selected)
-        .byTitleColor(.systemBlue, for: .normal)
-        .byTitleColor(.systemRed, for: .selected)
+        /// 字体颜色@按照不同的状态
+        .byTitleColor("#2F2F2F".cor, for: .normal)
+        .byTitleColor("#BBBBBB".cor, for: .disabled) // 对应按钮不可点击的状态
         .byTitleFont(.systemFont(ofSize: 16, weight: .medium))
         /// 普通字符串@设置副标题
         .bySubTitle("显示", for: .normal)
