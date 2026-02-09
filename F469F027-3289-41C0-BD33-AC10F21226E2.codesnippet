@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// MARK: 设置富文本@UILabel
+	<string>import JobsByUIKit
+
+// MARK: 设置富文本@UILabel
 UILabel().richTextBy(runs, paragraphStyle: ps)
 // MARK: 设置富文本@UIButton
 UIButton.sys()

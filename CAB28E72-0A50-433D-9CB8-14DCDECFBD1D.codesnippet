@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>UIView().byDialogBoxContent { dialogBoxView in
+	<string>import JobsBy3rdTools
+
+UIView().byDialogBoxContent { dialogBoxView in
     UITextView()
         .byBackgroundColor(.clear)
         .byText(

@@ -11,6 +11,7 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import UIKit
 import SnapKit
+import JobsByUIKit
 
 class TextFieldVC: UIViewController {
     /// 1️⃣ 初始化阶段
@@ -61,7 +62,7 @@ class TextFieldVC: UIViewController {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@ViewController</string>
 	<key>IDECodeSnippetUserSnippet</key>

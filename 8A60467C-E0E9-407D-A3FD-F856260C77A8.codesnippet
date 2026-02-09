@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// MARK: - 点击 Tap
+	<string>import JobsByUIKit
+
+// MARK: - 点击 Tap
 UIView().jobs_addGesture(
     UITapGestureRecognizer
         .byConfig { gr in
@@ -128,7 +130,7 @@ let views = UIView()
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@手势👋</string>
 	<key>IDECodeSnippetUserSnippet</key>

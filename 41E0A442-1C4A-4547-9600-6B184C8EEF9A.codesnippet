@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var passwordAccessory: UIToolbar = {
+	<string>import JobsByUIKit
+
+private lazy var passwordAccessory: UIToolbar = {
     UIToolbar().byItems([
         UIBarButtonItem()
             .byTitle("清空")
@@ -45,7 +47,7 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UIToolbar</string>
 	<key>IDECodeSnippetUserSnippet</key>

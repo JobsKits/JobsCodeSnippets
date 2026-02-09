@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var exampleButton: UIButton = {
+	<string>import JobsByUIKit
+
+private lazy var exampleButton: UIButton = {
     UIButton.sys()
         /// 锁死标题颜色：任何 state 都保持同一种颜色，不跟 tint / 系统态自动变化
         .byLockTitleColor(.red)

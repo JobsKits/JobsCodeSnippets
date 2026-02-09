@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var web: BaseWebView = { [unowned self] in
+	<string>import JobsByUIKit
+
+private lazy var web: BaseWebView = { [unowned self] in
         return BaseWebView()
             .byBgColor(.clear)
             .byAllowedHosts([])                  // 不限域
@@ -102,7 +104,7 @@
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@BaseWebView</string>
 	<key>IDECodeSnippetUserSnippet</key>

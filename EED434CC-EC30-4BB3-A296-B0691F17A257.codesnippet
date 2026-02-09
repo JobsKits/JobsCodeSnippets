@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>public final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell,UITableViewCellProtocol {
+	<string>import JobsByUIKit
+
+public final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell,UITableViewCellProtocol {
     func byData(_ item: JobsCountdownItem) -&gt; Self {
         /// TODO
         return self
@@ -23,7 +25,7 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UITableViewCell</string>
 	<key>IDECodeSnippetUserSnippet</key>

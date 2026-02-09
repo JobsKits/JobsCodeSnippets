@@ -3,13 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string></string>
+	<string>JobsTextField</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var titleTF: JobsTextField = {
+	<string>import JobsInheritance
+
+private lazy var titleTF: JobsTextField = {
     JobsTextField()
         .byTextFieldConfig({ textField in
             textField
@@ -74,6 +76,8 @@
 	<string>AF85CDE6-ADC3-4DD2-96DB-C210292D302D</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>在UITextField下面加了一个UImageView作为父视图，方便设置边距</string>
 	<key>IDECodeSnippetTitle</key>

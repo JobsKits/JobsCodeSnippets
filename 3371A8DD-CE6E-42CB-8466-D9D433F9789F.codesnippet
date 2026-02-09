@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var btn1: JobsButton = {
+	<string>import JobsBy3rdTools
+
+private lazy var btn1: JobsButton = {
     JobsButton()
         .byMode(.imageTopTextBottom)
         .byTitleLabel { lab in
@@ -71,7 +73,7 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>解决在某些iOS版本向下兼容的情况下，无法把握UIButton内部控件的生命周期，导致UI错版的问题</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@JobsButton</string>
 	<key>IDECodeSnippetUserSnippet</key>

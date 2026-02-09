@@ -9,7 +9,10 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/// safeArea 示例（iOS/tvOS 11+）：
+	<string>import Snapkit
+import JobsByUIKit
+
+/// safeArea 示例（iOS/tvOS 11+）：
 if #available(iOS 11.0, tvOS 11.0, *) {
     card.mas_makeConstraints { make in
         make.edges.mas_equalTo(view.mas_safeArea.mas_edges).insets(UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
@@ -70,7 +73,7 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@Snapkit</string>
 	<key>IDECodeSnippetUserSnippet</key>

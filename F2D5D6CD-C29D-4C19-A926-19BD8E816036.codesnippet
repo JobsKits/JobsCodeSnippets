@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// MARK: - 发通知
+	<string>import JobsByUIKit
+
+// MARK: - 发通知
 NotificationCenter.post("通知名称")
 NotificationCenter.post("通知名称", userInfo: ["id": 1])
 NotificationCenter.post("通知名称", payload: scrollView.contentOffset.y)
@@ -26,7 +28,7 @@ Notification.Name("通知名称").removeNotification(self)</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@通知📢</string>
 	<key>IDECodeSnippetUserSnippet</key>

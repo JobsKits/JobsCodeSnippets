@@ -9,7 +9,10 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>override func viewDidLoad() {
+	<string>import GKNavigationBarSwift
+import JobsByUIKit
+
+override func viewDidLoad() {
     super.viewDidLoad()
     jobsSetupGKNav(
         title: "Demo 列表",
@@ -88,7 +91,7 @@
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Ruby</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import GKNavigationBarSwift</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@GKNavigationBarSwift的二次封装和使用</string>
 	<key>IDECodeSnippetUserSnippet</key>

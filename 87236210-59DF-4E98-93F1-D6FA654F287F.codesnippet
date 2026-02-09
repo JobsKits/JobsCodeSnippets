@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/// 按钮网络背景图@SDWebImage
+	<string>import JobsByUIKit
+
+/// 按钮网络背景图@SDWebImage
 private lazy var btnBG: UIButton = {
     UIButton.sys()
         .byCornerRadius(12)

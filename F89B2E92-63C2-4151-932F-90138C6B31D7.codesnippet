@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var valueLabel: UILabel = {
+	<string>import JobsByUIKit
+
+private lazy var valueLabel: UILabel = {
     UILabel()
         .byTextAlignment(.center)
         .byFont(.systemFont(ofSize: 52, weight: .bold))
@@ -43,6 +45,6 @@
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

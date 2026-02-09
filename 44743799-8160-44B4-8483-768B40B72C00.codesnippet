@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var flowLayout: UICollectionViewFlowLayout = {
+	<string>import JobsByUIKit
+
+private lazy var flowLayout: UICollectionViewFlowLayout = {
     UICollectionViewFlowLayout()
         .byScrollDirection(.vertical)
         .byMinimumLineSpacing(10)
@@ -212,7 +214,7 @@ func collectionView(_ collectionView: UICollectionView,
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UICollectionView</string>
 	<key>IDECodeSnippetUserSnippet</key>

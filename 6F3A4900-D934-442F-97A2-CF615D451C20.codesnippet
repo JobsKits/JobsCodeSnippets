@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import Jobsl10n
+
+func App显示语言环境配置(){
+    // MARK: - 语言跟随系统
+    LanguageManager.shared.followSystemLanguage()
+  
+    // MARK: - 语言切换成固定的
+//        Bundle.enableLanguageOverride()
+//        /// 先切语言（会更新 localizedBundle）
+//        LanguageManager.shared.switchTo("vi")
+//        /// 再把 Bundle.main 指到你的语言 bundle（让 storyboard/xib 也变）
+//        Bundle.setLanguageBundle(LanguageManager.shared.localizedBundle)
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>6F3A4900-D934-442F-97A2-CF615D451C20</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@App语言切换</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

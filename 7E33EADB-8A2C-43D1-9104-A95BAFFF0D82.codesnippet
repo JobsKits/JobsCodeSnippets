@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// MARK: - UIImageView
+	<string>import JobsByUIKit
+
+// MARK: - UIImageView
 /// UIImageView@字符串本地图
 private lazy var localImgView: UIImageView = {
     UIImageView()
@@ -147,7 +149,7 @@ private lazy var wrapperImgViewSD: UIImageView = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UIImageView</string>
 	<key>IDECodeSnippetUserSnippet</key>

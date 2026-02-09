@@ -10,6 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import WebKit
+import JobsByUIKit
 
 private lazy var webView: WKWebView = {
     WKWebView(frame: .zero, configuration: WKWebViewConfiguration()
@@ -33,7 +34,7 @@ private lazy var webView: WKWebView = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@WKWebView</string>
 	<key>IDECodeSnippetUserSnippet</key>

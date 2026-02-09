@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var tableView: UITableView = {
+	<string>import JobsByUIKit
+
+private lazy var tableView: UITableView = {
     UITableView(frame: .zero, style: .insetGrouped)
         .byDataSource(self)
         .byDelegate(self)
@@ -168,7 +170,7 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UITableView</string>
 	<key>IDECodeSnippetUserSnippet</key>

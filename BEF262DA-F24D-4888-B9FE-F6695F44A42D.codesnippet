@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/// 邮箱输入框
+	<string>import JobsByUIKit
+
+/// 邮箱输入框
 private lazy var emailTF: UITextField = {
     UITextField()
         .byPlaceholder("请输入邮箱（去空格 / 最长 8）")
@@ -134,7 +136,7 @@ if #available(iOS 18.0, *) {
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@输入框</string>
 	<key>IDECodeSnippetUserSnippet</key>

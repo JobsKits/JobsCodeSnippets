@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// MARK: 最简单的 Alert：主/副标题 + 取消_确定@按钮行为监听 + 中间弹出 + 点击空白区域不可取消
+	<string>import JobsByUIKit
+
+// MARK: 最简单的 Alert：主/副标题 + 取消_确定@按钮行为监听 + 中间弹出 + 点击空白区域不可取消
 private lazy var simpleAlert: UIAlertController = {
     UIAlertController
         .makeAlert("提示", "这是一条简单提示")
@@ -107,7 +109,7 @@ private lazy var simpleAlert: UIAlertController = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UIAlertController</string>
 	<key>IDECodeSnippetUserSnippet</key>

@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var flowLayout: UICollectionViewFlowLayout = {
+	<string>import JobsByUIKit
+
+private lazy var flowLayout: UICollectionViewFlowLayout = {
     UICollectionViewFlowLayout()
         .byScrollDirection(.vertical)
         .byMinimumLineSpacing(10)
@@ -23,7 +25,7 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UICollectionViewFlowLayout</string>
 	<key>IDECodeSnippetUserSnippet</key>

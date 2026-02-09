@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var tv1: UITextView = {
+	<string>import JobsByUIKit
+
+private lazy var tv1: UITextView = {
     UITextView()
         .byFont(.systemFont(ofSize: 16))
         .byKeyboardType(.default)
@@ -88,7 +90,7 @@ private lazy var tvRed: UITextView = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsByUIKit</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UITextView</string>
 	<key>IDECodeSnippetUserSnippet</key>

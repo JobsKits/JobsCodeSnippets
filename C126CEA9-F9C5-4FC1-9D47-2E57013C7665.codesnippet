@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private var timer: JobsTimerProtocol?
+	<string>import JobsSwiftTimer
+
+private var timer: JobsTimerProtocol?
 // DisplayLink 更适合这种“持续增长”的视觉
 timer?.stop()
 timer = nil
@@ -43,7 +45,7 @@ t.start()</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsSwiftTimer</string>
+	<string>基础模块</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@JobsTImer</string>
 	<key>IDECodeSnippetUserSnippet</key>

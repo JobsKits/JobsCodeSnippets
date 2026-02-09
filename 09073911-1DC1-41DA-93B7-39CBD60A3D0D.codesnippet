@@ -9,7 +9,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/// 自定义进度条
+	<string>import JobsProgressBar
+
+/// 自定义进度条
 private lazy var progressView: JobsProgressBar = {
     JobsProgressBar()
         .byDirection(.leftToRight)
@@ -34,7 +36,7 @@ private lazy var progressView: JobsProgressBar = {
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>import JobsProgressBar</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@自定义进度条</string>
 	<key>IDECodeSnippetUserSnippet</key>
