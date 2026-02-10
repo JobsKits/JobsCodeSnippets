@@ -65,7 +65,43 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
         self.view.layoutIfNeeded()
     }
 }
-</string>
+// MARK: - 水平 / 垂直 均分排布
+private lazy var btnArr = [fundsBtn, recordsBtn, rulesBtn, resultsBtn] as [JobsButton]
+btnArr.addDistributeTo(
+    btnBgView.byVisible(true),                 // ✅ 把 btnBgView 显示出来，并作为承载容器
+    model: SnapDistributeModel(
+        axis: .horizontal,                     // ✅ 分布方向：horizontal=横向一排，vertical=纵向一列
+        fixedItemLength: nil,                  // ✅ 固定 item 宽/高（沿 axis 的长度）
+                                               //    nil = 不固定，改为“均分”（宽度/高度相等）
+                                               //    horizontal -&gt; 固定宽度
+                                               //    vertical   -&gt; 固定高度
+        leadSpacing: 12.w,                     // ✅ 头部间距（第一个 item 到容器边的距离）
+                                               //    horizontal -&gt; 左边距
+                                               //    vertical   -&gt; 上边距
+        tailSpacing: 12.w,                     // ✅ 尾部间距（最后一个 item 到容器边的距离）
+                                               //    horizontal -&gt; 右边距
+                                               //    vertical   -&gt; 下边距
+        makeContainerConstraints: false,       // ✅ 是否顺便给“容器本身”补约束（一般不需要）
+                                               //    true  -&gt; 这个 distribute 方法会额外对容器加 top/bottom/crossSize 等约束
+                                               //    false -&gt; 只给 items 加约束（推荐，容器约束由外部负责）
+        top: 12.h,                             // ✅ 交叉方向上边距
+                                               //    horizontal -&gt; item 的 top inset
+                                               //    vertical   -&gt; 无意义（通常用 left/right）
+        bottom: 12.h,                          // ✅ 交叉方向下边距
+                                               //    horizontal -&gt; item 的 bottom inset
+                                               //    vertical   -&gt; 无意义（通常用 left/right）
+        left: nil,                             // ✅ 交叉方向左边距
+                                               //    vertical -&gt; item 的 left inset
+                                               //    horizontal -&gt; 通常不用（横向用 top/bottom）
+        right: nil,                            // ✅ 交叉方向右边距
+                                               //    vertical -&gt; item 的 right inset
+                                               //    horizontal -&gt; 通常不用（横向用 top/bottom）
+        crossSize: nil                         // ✅ 交叉方向固定尺寸
+                                               //    horizontal -&gt; 固定 item 高度 height
+                                               //    vertical   -&gt; 固定 item 宽度 width
+                                               //    nil -&gt; 不固定，交叉方向用 top/bottom 或 left/right 拉伸
+    )
+)</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>CF732DD5-FAD8-4C2F-9E94-8B4BC7E87E19</string>
 	<key>IDECodeSnippetLanguage</key>

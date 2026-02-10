@@ -18,10 +18,12 @@ private lazy var localImgView: UIImageView = {
         .byImage("Ani".img)
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
-        .onTap { iv in
+        .addTapAction { (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
-        .onLongPress(minDuration: 0.8, movement: 12, touches: 1, name: "customLongPress") { iv, gr in
+        .addLongPressAction(minimumPressDuration: 0.8,
+                            allowableMovement: 12,
+                            numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
                 toastBy("长按开始 on \(iv)")
@@ -44,10 +46,12 @@ private lazy var asyncImgView: UIImageView = {
         .byAsyncImageKF("https://picsum.photos/200/300", fallback: "唐老鸭".img)
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
-        .onTap { iv in
+        .addTapAction { (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
-        .onLongPress(minDuration: 0.8, movement: 12, touches: 1, name: "customLongPress") { iv, gr in
+        .addLongPressAction(minimumPressDuration: 0.8,
+                            allowableMovement: 12,
+                            numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
                 toastBy("长按开始 on \(iv)")
@@ -70,10 +74,12 @@ private lazy var asyncImgViewSD: UIImageView = {
         .byAsyncImageSD("https://picsum.photos/400/300", fallback: "唐老鸭".img)
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
-        .onTap { iv in
+        .addTapAction { (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
-        .onLongPress(minDuration: 0.8, movement: 12, touches: 1, name: "customLongPress") { iv, gr in
+        .addLongPressAction(minimumPressDuration: 0.8,
+                            allowableMovement: 12,
+                            numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
                 toastBy("长按开始 on \(iv)")
@@ -96,10 +102,12 @@ private lazy var wrapperImgView: UIImageView = {
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
         .kf_setImage(from: "https://picsum.photos/200", placeholder: "Ani".img)
-        .onTap { iv in
+        .addTapAction { (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
-        .onLongPress(minDuration: 0.8, movement: 12, touches: 1, name: "customLongPress") { iv, gr in
+        .addLongPressAction(minimumPressDuration: 0.8,
+                            allowableMovement: 12,
+                            numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
                 toastBy("长按开始 on \(iv)")
@@ -122,10 +130,12 @@ private lazy var wrapperImgViewSD: UIImageView = {
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
         .sd_setImage(from: "https://picsum.photos/200", placeholder: "Ani".img)
-        .onTap { iv in
+        .addTapAction { (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
-        .onLongPress(minDuration: 0.8, movement: 12, touches: 1, name: "customLongPress") { iv, gr in
+        .addLongPressAction(minimumPressDuration: 0.8,
+                            allowableMovement: 12,
+                            numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
                 toastBy("长按开始 on \(iv)")
