@@ -23,7 +23,7 @@ private lazy var collectionView: UICollectionView = {
     UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         .byDataSource(self)
         .byDelegate(self)
-        .registerCell(UICollectionViewCell.self)
+        .byRegisterCell(UICollectionViewCell.self)
         .byBackgroundView(nil)
         .byDragInteractionEnabled(false)
         .byContentInsetTop(8)
@@ -180,7 +180,7 @@ func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection s
 func collectionView(_ collectionView: UICollectionView,
                     cellForItemAt indexPath: IndexPath) -&gt; UICollectionViewCell {
     collectionView
-        .dequeueCell(HCell.self, for: indexPath)
+        .byDequeueCell(HCell.self, for: indexPath)
         .byData(indexPath.item)
         .onResult { _ in
 
