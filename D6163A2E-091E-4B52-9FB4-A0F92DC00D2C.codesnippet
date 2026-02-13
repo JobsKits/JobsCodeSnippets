@@ -27,6 +27,7 @@ private lazy var tv1: UITextView = {
                 .byTextColor(.red)
         }
         .byOnInput(limit: nil) { [unowned self] char, value, mode, isLimited, text ,tv in
+            guard let self else { return }
             // text 就是当前 UITextView.text（保证不是 nil，空就是 ""）
             // value 仍然是“本次变更后的值”（由监听器计算出来的 new）
             // char：删除/回车时为 ""
