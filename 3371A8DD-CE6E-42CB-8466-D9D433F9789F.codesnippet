@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import JobsBy3rdTools
+	<string>import JobsInheritance
 
 private lazy var btn1: JobsButton = {
     JobsButton()

@@ -18,7 +18,7 @@ private lazy var localImgView: UIImageView = {
         .byImage("Ani".img)
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
-        .addTapAction { (iv: UIImageView) in
+        .addTapAction { [weak self] (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
         .addLongPressAction(minimumPressDuration: 0.8,
@@ -46,7 +46,7 @@ private lazy var asyncImgView: UIImageView = {
         .byAsyncImageKF("https://picsum.photos/200/300", fallback: "唐老鸭".img)
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
-        .addTapAction { (iv: UIImageView) in
+        .addTapAction { [weak self] (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
         .addLongPressAction(minimumPressDuration: 0.8,
@@ -74,7 +74,7 @@ private lazy var asyncImgViewSD: UIImageView = {
         .byAsyncImageSD("https://picsum.photos/400/300", fallback: "唐老鸭".img)
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
-        .addTapAction { (iv: UIImageView) in
+        .addTapAction { [weak self] (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
         .addLongPressAction(minimumPressDuration: 0.8,
@@ -102,7 +102,7 @@ private lazy var wrapperImgView: UIImageView = {
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
         .kf_setImage(from: "https://picsum.photos/200", placeholder: "Ani".img)
-        .addTapAction { (iv: UIImageView) in
+        .addTapAction { [weak self] (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
         .addLongPressAction(minimumPressDuration: 0.8,
@@ -130,7 +130,7 @@ private lazy var wrapperImgViewSD: UIImageView = {
         .byContentMode(.scaleAspectFill)
         .byClipsToBounds()
         .sd_setImage(from: "https://picsum.photos/200", placeholder: "Ani".img)
-        .addTapAction { (iv: UIImageView) in
+        .addTapAction { [weak self] (iv: UIImageView) in
             toastBy("单击图片：\(iv)")
          }
         .addLongPressAction(minimumPressDuration: 0.8,

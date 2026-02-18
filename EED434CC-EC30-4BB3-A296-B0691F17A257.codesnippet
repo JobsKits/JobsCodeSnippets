@@ -11,10 +11,16 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
 
-public final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell,UITableViewCellProtocol {
-    func byData(_ item: JobsCountdownItem) -&gt; Self {
+public final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell {
+    /// ViewDataProtocol
+    @discardableResult
+    func byData(_ item: BSportHomeGridItem) -&gt; Self {
         /// TODO
         return self
+    }
+    /// UITableViewCellProtocol
+    static func cellSizeByData(_ data: Any?) -&gt; CGSize{
+        CGSizeMake(176.w, 120.h)
     }
 }
 </string>

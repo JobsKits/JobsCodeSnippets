@@ -11,13 +11,48 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
 
-public final class &lt;#UICollectionViewCell的子类名#&gt;: UICollectionViewCell,UICollectionViewCellProtocol {
-    func byData(_ item: JobsCountdownItem) -&gt; Self {
+public final class &lt;#UICollectionViewCell的子类名#&gt;: UICollectionViewCell {
+    /// ViewDataProtocol
+    @discardableResult
+    func byData(_ item: BSportHomeGridItem) -&gt; Self {
         /// TODO
         return self
+    }   
+    /// UICollectionViewCellProtocol
+    static func cellSizeByData(_ data: Any?) -&gt; CGSize{
+        CGSizeMake(176.w, 120.h)
     }
 }
-</string>
+
+extension &lt;#承接UICollectionView的UI控件#&gt; : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    func collectionView(
+        _ cv: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -&gt; Int {
+        items.count
+    }
+
+    func collectionView(
+        _ cv: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -&gt; UICollectionViewCell {
+        cv
+            .byDequeueReusableCell(
+                withType: GridCell.self,
+                for: indexPath
+            )
+            .byData(items[indexPath.item])
+    }
+
+    func collectionView(
+        _ cv: UICollectionView,
+        layout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -&gt; CGSize {
+        GridCell.cellSizeByData(nil)
+    }
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>906364DF-436B-479F-89BC-973D953ADDEB</string>
 	<key>IDECodeSnippetLanguage</key>
