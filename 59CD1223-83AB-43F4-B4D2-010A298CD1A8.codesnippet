@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#if os(OSX)
+import AppKit
+#elseif os(iOS) || os(tvOS)
+import UIKit
+#endif
+
+import SnapKit
+import JXSegmentedView
+import JobsByUIKit
+import JobsMarqueeView
+import JobsSwiftBaseDefines
+
+final class BSportHomeListAllSubVC: UIViewController {
+    
+    private lazy var segmentedDataSource: JXSegmentedTitleImageDataSource = {
+        JXSegmentedTitleImageDataSource()
+            .byTitles(["全部".tr, "体育".tr, "真人".tr, "棋牌".tr, "电子".tr, "捕鱼".tr, "彩票".tr, "电竞".tr])
+            .byTitleColorGradientEnabled(YES)
+            .byTitleNormalColor("#666666".cor)
+            .byTitleSelectedColor("#C33E2D".cor)
+            .byTitleNormalFont(.PingFangSC.Semibold(14.fz))
+            .byTitleSelectedFont(.PingFangSC.Semibold(16.fz))
+            .byTitleImageType(.topImage)
+            .byNormalImages(["全部（未选择）","体育（未选择）","真人（未选择）","棋牌（未选择）","电子（未选择）","捕鱼（未选择）","彩票（未选择）","电竞（未选择）"])
+            .bySelectedImages(["全部（已选择）","体育（已选择）","真人（已选择）","棋牌（已选择）","电子（已选择）","捕鱼（已选择）","彩票（已选择）","电竞（已选择）"])
+    }()
+    
+    private lazy var listContainerView: JXSegmentedListContainerView = {
+        JXSegmentedListContainerView(dataSource: self).byBackgroundColor(.clear)
+            .byAddTo(view) { [unowned self] make in
+                make.top.equalTo(view)
+                make.left.right.bottom.equalToSuperview()
+            }
+    }()
+
+    private lazy var segmentedView: JXSegmentedView = {
+        JXSegmentedView()
+            .byBackgroundColor(.clear)
+            .byListContainer(listContainerView, defaultIndex: 0)
+            .byDataSource(segmentedDataSource)
+            .byAddTo(view) { [unowned self] make in
+                make.top.equalTo(view)
+                make.left.right.equalToSuperview()
+                make.height.equalTo(62.h)
+
+            }
+    }()
+    
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    /// 1️⃣ 初始化阶段
+    override func loadView() {
+        super.loadView()
+        print("🟢 loadView() - 负责创建或加载视图层级")
+    }
+    /// 2️⃣ 视图加载完成（适合初始化数据、绑定、UI配置）
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(red: 245/255.0, green: 246/255.0, blue: 250/255.0, alpha: 1)
+        segmentedView.byVisible(YES)
+
+    }
+    /// 3️⃣ 视图即将出现（适合控制状态栏、导航栏显示、动画准备）
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("🟠 viewWillAppear() - 视图即将显示")
+    }
+    /// 4️⃣ 视图已出现（适合动画、网络请求等）
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("🟢 viewDidAppear() - 视图已显示完成")
+    }
+    /// 5️⃣ 视图即将消失（适合保存状态、取消任务）
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("🟡 viewWillDisappear() - 视图即将被移除")
+    }
+    /// 6️⃣ 视图已消失（适合释放资源、通知）
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("🔴 viewDidDisappear() - 视图已被移除")
+    }
+    /// 7️⃣ 内存警告（iOS 低内存时触发）
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("⚠️ didReceiveMemoryWarning() - 收到内存警告")
+    }
+    /// 8️⃣ 销毁（对象释放）
+    deinit {
+        print("💀 deinit - 控制器已销毁")
+    }
+}
+// MARK: - JXSegmentedListContainerViewListDelegate
+extension BSportHomeListAllSubVC: JXSegmentedListContainerViewListDelegate {
+    func listView() -&gt; UIView { view }
+}
+// MARK: - JXSegmentedListContainerViewDataSource
+extension BSportHomeListAllSubVC: JXSegmentedListContainerViewDataSource {
+
+    func numberOfLists(in listContainerView: JXSegmentedListContainerView) -&gt; Int {
+        segmentedDataSource.titles.count
+    }
+
+    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -&gt; any JXSegmentedListContainerViewListDelegate {
+        [
+            BSportHomeList全部SubVC(),   // 全部
+            BSportHomeList2ndSubVC(),   // 体育
+            BSportHomeList2ndSubVC(),   // 真人
+            BSportHomeList2ndSubVC(),   // 棋牌
+            BSportHomeList2ndSubVC(),   // 电子
+            BSportHomeList2ndSubVC(),   // 捕鱼
+            BSportHomeList2ndSubVC(),   // 彩票
+            BSportHomeList2ndSubVC()    // 电竞
+        ][index]
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>59CD1223-83AB-43F4-B4D2-010A298CD1A8</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>JXSegmentedView（JXCategoryView）框架的使用</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@创建JXSegmentedView（JXCategoryView）🇺🇸</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

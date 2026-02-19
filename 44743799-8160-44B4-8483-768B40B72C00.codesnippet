@@ -56,7 +56,7 @@ private lazy var collectionView: UICollectionView = {
                     self.collectionView.byReloadData()        // ✅ reload 后自动评估空态
                 }
                 // 可选：自定义空态按钮布局
-                .jobs_setEmptyLayout { btn, make, host in
+                .byEmptyLayout { btn, make, host in
                     make.centerX.equalTo(host)
                     make.centerY.equalTo(host).offset(-40)
                     make.leading.greaterThanOrEqualTo(host).offset(16)
