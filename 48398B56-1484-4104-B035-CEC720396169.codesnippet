@@ -27,11 +27,11 @@ private lazy var exampleButton: UIButton = {
         /// 背景图片
         .byBackgroundImage("背景图片".img, for: .normal)
         /// 字体颜色渐变@只处理主标题（titleLabel）
-        .jobs_setGradientMainTitle(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .leftToRight)
+        .byGradientMainTitle(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .leftToRight)
         /// 字体颜色渐变@只副标题渐变
-        .jobs_setGradientSubtitle(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .topLeftToBottomRight)
+        .byGradientSubtitle(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .topLeftToBottomRight)
         /// 字体颜色渐变@主副一致
-        .jobs_setGradientTitlesSame(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .leftToRight)
+        .byGradientTitlesSame(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .leftToRight)
         /// 普通字符串@设置主标题
         .byTitle("显示", for: .normal)
         .byTitle("隐藏", for: .selected)
@@ -55,17 +55,20 @@ private lazy var exampleButton: UIButton = {
             JobsRichRun(.text("原价 ")).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8)),
             JobsRichRun(.text("¥199")).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow)
         ]))
+        /// 主标题和副标题之间的距离（兼容 iOS12+）
+        .byTitlePadding(4.h)
         /// 按钮图片@图文关系
         .byImage("eye.slash".sysImg, for: .normal)                // 未选中图标
         .byImage("eye".sysImg, for: .selected)                    // 选中图标
         /// iOS15专用@清除偏移
         .byClearConfigurationBackground() 
-        /// 按钮图片@图文关系iOS13（与下文互斥）
-        .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 图标与文字间距
-        .byImagePlacement(.top)
-        /// 按钮图片@图文关系iOS12（与上文互斥）
-        .byImagePlacementLegacy(.top, padding: 5)
-        .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))// 图文内边距
+        /// 按钮@图文位置关系
+        .byImagePlacement(.top ,padding: 5)        // 通用（向下兼容）
+        .byImagePlacementLegacy(.top, padding: 5)  // 只满足iOS13以下
+        /// 按钮图文间距@iOS13（与下文互斥）
+        .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) 
+        /// 按钮图文内边距@iOS12（与上文互斥）
+        .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))
         /// 点击@播放声音
         .byTapSound("Sound.wav")    
         /// 普通@点按事件触发
@@ -143,12 +146,11 @@ private lazy var countdownButton: UIButton = {
         .byBackgroundColor(.systemGreen, for: .normal)
         .onCountdownTick { [weak self] btn, remain, total, kind in
             guard let self else { return }
-            print("⏱️ [\(kind.jobs_displayName)] \(remain)/\(total)")
-            self.lastFireLabel.text = "Last: " + Self.fmt(Date())
+            print("⏱️ [\(kind.displayName)] \(remain)/\(total)")
             btn.byTitle("还剩 \(remain)s", for: .normal)
         }
         .onCountdownFinish { _, kind in
-            print("✅ [\(kind.jobs_displayName)] 倒计时完成")
+            print("✅ [\(kind.displayName)] 倒计时完成")
         }
         .onTap { [weak self] btn in
             guard let self else { return }

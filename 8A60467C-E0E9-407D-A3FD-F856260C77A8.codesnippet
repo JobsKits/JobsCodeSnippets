@@ -11,6 +11,9 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
 
+UIView().addTapAction { [weak self] (iv: UIView) in
+    /// TODO
+}
 // MARK: - 点击 Tap
 UIView().jobs_addGesture(
     UITapGestureRecognizer
