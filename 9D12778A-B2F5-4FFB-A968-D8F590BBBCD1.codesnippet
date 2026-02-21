@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>private lazy var valueLabel: UILabel = {
+    UILabel()
+        .byTextAlignment(.center)
+        .byFont(.systemFont(ofSize: 52, weight: .bold))
+        .byTextColor(.label)
+        .byText("\(Int(defaultStart))")
+        .byNumberOfLines(1)
+        /// 配置@数字动效
+        .byAnimatedTextNumber(duration: 0.9, minimumInterval: 1.0 / 60.0)
+        .byAddTo(cardView) { [unowned self] make in
+            make.top.equalToSuperview().offset(24)
+            make.left.equalToSuperview().offset(self.cardInset)
+            make.right.equalToSuperview().inset(self.cardInset)
+        }
+}()
+/// 启动@数字动效
+self.valueLabel
+    .byStopAnimatedTextNumber()
+    .byAnimatedTextNumber(
+        start: startValue,
+        step: nil,
+        duration: 0.9,
+        minimumInterval: 1.0 / 60.0,
+        completion: nil
+    )
+    .byStartAnimatedTextNumber(endText)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9D12778A-B2F5-4FFB-A968-D8F590BBBCD1</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@UILabel</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

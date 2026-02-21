@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import JobsByUIKit
+
+/// 数字动效按钮@主标题（普通文本）
+private lazy var btn1: UIButton = {
+    UIButton.sys()
+        .byTitle("¥99", for: .normal)
+        .byTitle("¥99", for: .selected)
+        .byTitle("¥99", for: .disabled)
+        .byTitleColor(.white, for: .normal)
+        .byTitleFont(.systemFont(ofSize: 18, weight: .semibold))
+        .byBackgroundColor(.systemBlue)
+        .byCornerRadius(10)
+        .onTap { [weak self] sender in
+            guard let self else { return }
+            let start = Double(tf1Start.text ?? "") ?? 99
+            let end   = Double(tf1End.text ?? "") ?? 199
+            sender
+                .byAnimatedMainTitleNumber_Compat(start: start,
+                                                  initialTitle: "¥\(Int(start))",
+                                                  duration: 0.9,
+                                                  minimumInterval: 1.0/60.0) {
+                    "动画结束".tr.toast
+                }
+                .byStartAnimatedMainTitleNumber("¥\(Int(end))")
+        }
+        .byAddTo(contentView) { [unowned self] make in
+            make.top.equalTo(tf1Start.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(52)
+        }
+}()
+/// 数字动效按钮@副标题（富文本）
+private lazy var btn2: UIButton = {
+    UIButton.sys()
+        .byTitle("会员价格", for: .normal)
+        .byTitleColor(.white, for: .normal)
+        .byTitleFont(.systemFont(ofSize: 16, weight: .medium))
+        .bySubTitle("原价 ¥199 /月", for: .normal)
+        .bySubTitleColor(.white.withAlphaComponent(0.85), for: .normal)
+        .bySubTitleFont(.systemFont(ofSize: 13))
+        .byBackgroundColor("#2F2F2F".cor)
+        .byCornerRadius(10)
+        .onTap { [weak self] sender in
+            guard let self else { return }
+            let start = Double(tf2Start.text ?? "") ?? 199
+            let end   = Double(tf2End.text ?? "") ?? 99
+            // subtitle 富文本：只动数字，其他不动
+            let startAttr = JobsRichText.make([
+                JobsRichRun(.text("原价 ")).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8)),
+                JobsRichRun(.text("¥\(Int(start))")).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow),
+                JobsRichRun(.text(" /月")).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8))
+            ])
+            let endAttr = JobsRichText.make([
+                JobsRichRun(.text("原价 ")).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8)),
+                JobsRichRun(.text("¥\(Int(end))")).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow),
+                JobsRichRun(.text(" /月")).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8))
+            ])
+            
+            sender
+                .byRichSubTitle(startAttr)
+                .byAnimatedSubTitleNumber(start: start,
+                                          duration: 1.0,
+                                          minimumInterval: 1.0/60.0) {
+                    "动画结束".tr.toast
+                }.byStartAnimatedSubTitleNumber(endAttr)
+        }
+        .byAddTo(contentView) { [unowned self] make in
+            make.top.equalTo(tf2Start.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(64)
+        }
+}()
+/// 数字动效按钮@主标题（富文本）
+private lazy var btn3: UIButton = {
+    UIButton.sys()
+        .byRichTitle(JobsRichText.make([
+            JobsRichRun(.text("¥99")).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
+            JobsRichRun(.text(" /月")).font(.systemFont(ofSize: 16)).color(.white)
+        ]))
+        .byTitleColor(.white, for: .normal)
+        .byImage("star.fill".sysImg, for: .normal)
+        .byImagePlacement(.leading, padding: 8)
+        .byBackgroundColor(.systemGreen)
+        .byCornerRadius(10)
+        .onTap { [weak self] sender in
+            guard let self else { return }
+            let start = Double(tf3Start.text ?? "") ?? 99
+            let end   = Double(tf3End.text ?? "") ?? 299
+            
+            let startRich = JobsRichText.make([
+                JobsRichRun(.text("¥\(Int(start))")).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
+                JobsRichRun(.text(" /月")).font(.systemFont(ofSize: 16)).color(.white)
+            ])
+            let endRich = JobsRichText.make([
+                JobsRichRun(.text("¥\(Int(end))")).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
+                JobsRichRun(.text(" /月")).font(.systemFont(ofSize: 16)).color(.white)
+            ])
+            
+            sender
+                .byRichTitle(startRich)
+                .byAnimatedMainTitleNumber(start: start,
+                                           duration: 0.9,
+                                           minimumInterval: 1.0/60.0) {
+                    "动画结束".tr.toast
+                }.byStartAnimatedMainTitleNumber(endRich)
+        }
+        .byAddTo(contentView) { [unowned self] make in
+            make.top.equalTo(tf3Start.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(56)
+        }
+}()
+/// 数字动效按钮@副标题（普通文本）
+private lazy var btn4: UIButton = {
+    UIButton.sys()
+        .byTitle("限时折扣", for: .normal)
+        .byTitleColor(.white, for: .normal)
+        .byTitleFont(.systemFont(ofSize: 16, weight: .medium))
+        .bySubTitle("倒计时 199 秒", for: .normal)
+        .bySubTitleColor(.white.withAlphaComponent(0.85), for: .normal)
+        .bySubTitleFont(.systemFont(ofSize: 13))
+        .byImage("clock".sysImg, for: .normal)
+        .byImagePlacement(.leading, padding: 8)
+        .byBackgroundColor(.systemPurple)
+        .byCornerRadius(10)
+        .onTap { [weak self] sender in
+            guard let self else { return }
+            let start = Double(tf4Start.text ?? "") ?? 199
+            let end   = Double(tf4End.text ?? "") ?? 9
+            sender
+                .bySubTitle("倒计时 \(Int(start)) 秒", for: .normal)
+                .bySubTitle("倒计时 \(Int(start)) 秒", for: .selected)
+                .bySubTitle("倒计时 \(Int(start)) 秒", for: .disabled)
+                .byAnimatedSubTitleNumber(start: start, duration: 1.1, minimumInterval: 1.0/60.0) {
+                    "动画结束".tr.toast
+                }
+                .byStartAnimatedSubTitleNumber("倒计时 \(Int(end)) 秒")
+        }
+        .byAddTo(contentView) { [unowned self] make in
+            make.top.equalTo(tf4Start.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(64)
+            make.bottom.equalToSuperview().offset(-24)
+        }
+}()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>021DD146-1FD9-4F4F-98FA-39C1B62E4E80</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@按钮（数字动效）❤️</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
