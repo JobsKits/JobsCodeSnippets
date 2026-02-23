@@ -66,6 +66,10 @@ private lazy var titleTF: JobsTextField = {
             make.trailing.equalTo(cardView).offset(AD(-16))
             make.height.equalTo(AD(44))
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
         .byBorderColor("#eaeaea".cor)
         .byBorderWidth(0.5)
         .byMasksToBounds(YES)

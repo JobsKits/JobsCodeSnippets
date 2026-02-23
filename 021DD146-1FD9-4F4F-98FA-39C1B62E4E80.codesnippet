@@ -39,6 +39,10 @@ private lazy var btn1: UIButton = {
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(52)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
 }()
 /// 数字动效按钮@副标题（富文本）
 private lazy var btn2: UIButton = {
@@ -80,6 +84,10 @@ private lazy var btn2: UIButton = {
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(64)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
 }()
 /// 数字动效按钮@主标题（富文本）
 private lazy var btn3: UIButton = {
@@ -120,6 +128,10 @@ private lazy var btn3: UIButton = {
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(56)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
 }()
 /// 数字动效按钮@副标题（普通文本）
 private lazy var btn4: UIButton = {
@@ -153,6 +165,10 @@ private lazy var btn4: UIButton = {
             make.height.equalTo(64)
             make.bottom.equalToSuperview().offset(-24)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>021DD146-1FD9-4F4F-98FA-39C1B62E4E80</string>
@@ -167,6 +183,6 @@ private lazy var btn4: UIButton = {
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

@@ -23,6 +23,10 @@
             make.left.equalToSuperview().offset(self.cardInset)
             make.right.equalToSuperview().inset(self.cardInset)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
 }()
 /// 启动@数字动效
 self.valueLabel
@@ -48,6 +52,6 @@ self.valueLabel
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

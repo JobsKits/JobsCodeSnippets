@@ -28,6 +28,10 @@ private lazy var btnBG: UIButton = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20)
             make.height.equalTo(64)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
         .byCornerRadius(12.h)
 }()
 /// 按钮网络前景图@SDWebImage
@@ -48,6 +52,10 @@ private lazy var btnImage: UIButton = {
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20)
             make.height.greaterThanOrEqualTo(56)
+        }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
         }
         .byCornerRadius(12.h)
 }()
@@ -73,6 +81,10 @@ private lazy var btnBG_KF: UIButton = {
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20)
             make.height.equalTo(64)
+        }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
         }
         .byCornerRadius(12.h)
 }()
@@ -100,6 +112,10 @@ private lazy var btnImage_KF: UIButton = {
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20)
             make.height.equalTo(64)
+        }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
         }
         .byCornerRadius(12.h)
 }()</string>

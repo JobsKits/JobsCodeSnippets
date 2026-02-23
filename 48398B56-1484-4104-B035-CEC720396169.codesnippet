@@ -116,6 +116,10 @@ private lazy var exampleButton: UIButton = {
             make.left.right.equalToSuperview().inset(24)
             make.height.equalTo(44)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
         .byMasksToBounds(YES)

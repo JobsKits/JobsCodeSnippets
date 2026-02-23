@@ -23,7 +23,52 @@ public final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell {
         CGSizeMake(176.w, 120.h)
     }
 }
-</string>
+// MARK: - 演示：UITableViewCell 最小代价切圆角 + 与 UITableView 留边距（只动 contentView）
+final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell,
+                                    UITableViewCellInsetProtocol,
+                                    SectionCornerRoundable {
+    // MARK: - Inset 配置（支持上下左右）
+    var contentInsets: UIEdgeInsets { .init(top: 8, left: 16, bottom: 8, right: 16) }
+    // MARK: - Separator（卡片风格通常关掉系统 separator）
+    var shouldInsetSeparator: Bool { false }
+    // MARK: - Section 圆角配置
+    var sectionCornerRadius: CGFloat { 8 }
+    // MARK: - Init
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        // MARK: - Base appearance
+        // 建议：cell 背景透明，让 tableView 背景作为“间距露出来的底色”
+        backgroundColor = .clear
+        contentView.byBackgroundColor("#f9dcba".cor)
+        // MARK: - Selected background（避免选中态露底）
+        let sbg = UIView()
+        sbg.byBackgroundColor("#f9dcba".cor)
+        selectedBackgroundView = sbg
+    }
+    // MARK: - Layout
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // ✅ 只在 cell 内部缩进：不修改外界 tableView 调用方式
+        applyInsets()
+        // ✅ 圆角建议在缩进后做（因为 corner 作用在最终 frame 上）
+        // 你这里依赖 SectionCornerRoundable 的逻辑的话，
+        // 确保它是对 contentView / selectedBackgroundView 生效
+        // （如果你在别处已经处理，这里可以不动）
+    }
+    // MARK: - Reuse
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // 防止复用时视觉残留（尤其是 middle &lt;-&gt; first/last）
+        contentView.layer.cornerRadius = 0
+        contentView.layer.maskedCorners = []
+        selectedBackgroundView?.layer.cornerRadius = 0
+        selectedBackgroundView?.layer.maskedCorners = []
+    }
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>EED434CC-EC30-4BB3-A296-B0691F17A257</string>
 	<key>IDECodeSnippetLanguage</key>

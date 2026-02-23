@@ -72,6 +72,10 @@ private lazy var collectionView: UICollectionView = {
                 make.edges.equalToSuperview()
             }
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
 //        .showRefreshHeaderInfo(NO)   // 竖向Header + 横向Left
 //        .showRefreshFooterInfo(YES)  // 竖向Footer + 横向Right
         .setLeftLottie(.custom(.init(animationName: "9squares_AlBoardman")))

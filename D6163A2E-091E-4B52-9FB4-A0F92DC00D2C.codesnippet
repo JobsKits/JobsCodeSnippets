@@ -47,6 +47,10 @@ private lazy var tv1: UITextView = {
             make.right.equalToSuperview().offset(-16)
             make.height.equalTo(100)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
     }()
 
 private lazy var tvRed: UITextView = {
@@ -82,6 +86,10 @@ private lazy var tvRed: UITextView = {
             make.top.equalTo(tvBlue.snp.bottom).offset(12)
             make.left.right.equalTo(tv1)
             make.height.equalTo(110)
+        }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
         }
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>

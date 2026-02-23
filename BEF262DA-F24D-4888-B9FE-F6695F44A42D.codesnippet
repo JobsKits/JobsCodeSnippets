@@ -77,6 +77,10 @@ private lazy var emailTF: UITextField = {
                 make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             }
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
         .byMasksToBounds(YES)
@@ -124,6 +128,10 @@ private lazy var passwordTF: UITextField = {
         .byAddTo(view) { [unowned self] make in
             make.top.equalTo(emailTF.snp.bottom).offset(16)
             make.left.right.height.equalTo(emailTF)
+        }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)

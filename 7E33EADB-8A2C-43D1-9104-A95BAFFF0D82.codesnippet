@@ -39,6 +39,10 @@ private lazy var localImgView: UIImageView = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
 }()
 /// UIImageView字符串网络图@Kingfisher
 private lazy var asyncImgView: UIImageView = {
@@ -66,6 +70,10 @@ private lazy var asyncImgView: UIImageView = {
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
+        }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
         }
 }()
 /// UIImageView字符串网络图@SDWebImage
@@ -95,6 +103,10 @@ private lazy var asyncImgViewSD: UIImageView = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
 }()
 /// UIImageView网络图（失败兜底图）@Kingfisher
 private lazy var wrapperImgView: UIImageView = {
@@ -123,6 +135,10 @@ private lazy var wrapperImgView: UIImageView = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
+        }
 }()
 /// UIImageView网络图（失败兜底图）@SDWebImage
 private lazy var wrapperImgViewSD: UIImageView = {
@@ -150,6 +166,10 @@ private lazy var wrapperImgViewSD: UIImageView = {
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
+        }
+        /// 只贴约束
+        .byMakeConstraints { make in
+            make.width.height.equalTo(AD(76))
         }
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
