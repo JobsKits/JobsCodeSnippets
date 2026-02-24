@@ -43,6 +43,12 @@ private lazy var btn1: UIButton = {
         .byMakeConstraints { make in
             make.width.height.equalTo(AD(76))
         }
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()
 /// 数字动效按钮@副标题（富文本）
 private lazy var btn2: UIButton = {
@@ -88,6 +94,12 @@ private lazy var btn2: UIButton = {
         .byMakeConstraints { make in
             make.width.height.equalTo(AD(76))
         }
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()
 /// 数字动效按钮@主标题（富文本）
 private lazy var btn3: UIButton = {
@@ -132,6 +144,12 @@ private lazy var btn3: UIButton = {
         .byMakeConstraints { make in
             make.width.height.equalTo(AD(76))
         }
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()
 /// 数字动效按钮@副标题（普通文本）
 private lazy var btn4: UIButton = {
@@ -169,6 +187,12 @@ private lazy var btn4: UIButton = {
         .byMakeConstraints { make in
             make.width.height.equalTo(AD(76))
         }
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>021DD146-1FD9-4F4F-98FA-39C1B62E4E80</string>

@@ -30,7 +30,6 @@ private lazy var btn1: JobsButton = {
         }
         // 背景图：JobsButton 自己是 UIImageView
         .byContentMode(.scaleAspectFill)
-        .byClipsToBounds()
         .kf_setImage("https://picsum.photos/600/200?random=11", placeholder: "Ani".img)
         .byImageTitleSpacing(6)
         .byTitleSubtitleSpacing(2)
@@ -54,17 +53,22 @@ private lazy var btn1: JobsButton = {
             print("btn1 longPress #2 began (append)")
             "长按了悬浮按钮：上图下文（longPress #2 叠加）".toast
         }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
-        .byCornerRadius(8.h)
         .byAddTo(view) { [unowned self] make in
             make.top.equalTo(self.hintLabel.snp.bottom).offset(18)
             make.left.equalToSuperview().offset(horizontalInset)
             make.right.equalToSuperview().inset(horizontalInset)
             make.height.equalTo(itemHeight)
         }
+        .byBorderColor(.cyan)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3371A8DD-CE6E-42CB-8466-D9D433F9789F</string>

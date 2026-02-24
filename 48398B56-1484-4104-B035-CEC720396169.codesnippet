@@ -124,7 +124,12 @@ private lazy var exampleButton: UIButton = {
         .byBorderWidth(0.5)
         .byMasksToBounds(YES)
         .byClipsToBounds(YES)
+        /// 切角@平面四个角全切
         .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
         /// UIButtonConfiguration
         if #available(iOS 15.0, *) {
             b.byConfiguration { c in
@@ -182,7 +187,12 @@ private lazy var countdownButton: UIButton = {
         .byBorderWidth(0.5)
         .byMasksToBounds(YES)
         .byClipsToBounds(YES)
+        /// 切角@平面四个角全切
         .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>48398B56-1484-4104-B035-CEC720396169</string>

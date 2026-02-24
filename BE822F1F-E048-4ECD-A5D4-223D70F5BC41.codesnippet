@@ -117,8 +117,8 @@ private lazy var tableView: UITableView = {
                 try? await Task.sleep(nanoseconds: 900_000_000)
                 // 模拟“刷新完成”：减少一个 item 并刷新
                 self.hItems = max(8, self.hItems - 1)
-                self.collectionView.byReloadData()
-                self.collectionView.switchSideRefresh(.left, to: .normal)
+                self.tableView.byReloadData()
+                self.tableView.switchSideRefresh(.left, to: .normal)
             }
        }
        // 右侧拉：比如“下一页/加载更多卡片”
@@ -130,14 +130,24 @@ private lazy var tableView: UITableView = {
            jobsRunOnMain(self) { vc in
                try? await Task.sleep(nanoseconds: 900_000_000)
                self.hItems += 3
-               self.collectionView.byReloadData()
-               self.collectionView.switchSideRefresh(.right, to: .normal)
+               self.tableView.byReloadData()
+               self.tableView.switchSideRefresh(.right, to: .normal)
            }
        }
       .setHeaderLottie(.custom(.init(animationName: "LottieLogo1")))
       .setFooterLottie(.disabled) // 强制 footer 回退菊花（即使全局配置了）
       .enableRefreshHaptics(true)
       .setRefreshSound("Sound.wav")
+      .byBorderColor(.cyan)
+      .byBorderWidth(0.5)
+      .byMasksToBounds(YES)
+      .byClipsToBounds(YES)
+      /// 切角@平面四个角全切
+      .byCornerRadius(8.h)
+      /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+      .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+      /// 切角@切固定角，兼容旧版本iOS系统
+      .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()
 
 extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
@@ -153,6 +163,15 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
                 
             }
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -&gt; UIView? {
+        tableView.byDequeueReusableHeaderFooterView(headerFooterViewWithType: BetSettleSectionHeaderView.self)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -&gt; UIView? {
+        tableView.byDequeueReusableHeaderFooterView(headerFooterViewWithType: BetSettleSectionHeaderView.self)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -&gt; CGFloat { 64 }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

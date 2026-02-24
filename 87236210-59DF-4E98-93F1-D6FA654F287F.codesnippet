@@ -14,8 +14,6 @@
 /// 按钮网络背景图@SDWebImage
 private lazy var btnBG: UIButton = {
     UIButton.sys()
-        .byCornerRadius(12)
-        .byClipsToBounds(true)
         .byTitle("我是主标题@SDWebImage")
         .bySubTitle("我是副标题@SDWebImage")
         .sd_imageURL("https://picsum.photos/3000/2000")
@@ -31,16 +29,21 @@ private lazy var btnBG: UIButton = {
         /// 只贴约束
         .byMakeConstraints { make in
             make.width.height.equalTo(AD(76))
-        }
-        .byCornerRadius(12.h)
+        }    
+        .byBorderColor(.cyan)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()
 /// 按钮网络前景图@SDWebImage
 private lazy var btnImage: UIButton = {
     UIButton.sys()
-        .byCornerRadius(12)
-        .byBorderWidth(1)
-        .byBorderColor(UIColor.systemGray3)
-        .byClipsToBounds(true)
         .byTitle("我是主标题@SDWebImage")
         .bySubTitle("我是副标题@SDWebImage")
         .sd_imageURL("https://picsum.photos/200")
@@ -58,12 +61,20 @@ private lazy var btnImage: UIButton = {
             make.width.height.equalTo(AD(76))
         }
         .byCornerRadius(12.h)
+        .byBorderColor(.cyan)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()
 /// 按钮网络背景图@Kingfisher
 private lazy var btnBG_KF: UIButton = {
     UIButton.sys()
-        .byCornerRadius(12)
-        .byClipsToBounds(true)
         .byTitle("我是主标题@Kingfisher")
         .bySubTitle("我是副标题@Kingfisher")
         .kf_imageURL("https://picsum.photos/300/200")
@@ -86,15 +97,20 @@ private lazy var btnBG_KF: UIButton = {
         .byMakeConstraints { make in
             make.width.height.equalTo(AD(76))
         }
-        .byCornerRadius(12.h)
+        .byBorderColor(.cyan)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()
 /// 按钮网络前景图@Kingfisher
 private lazy var btnImage_KF: UIButton = {
     UIButton.sys()
-        .byCornerRadius(12)
-        .byBorderWidth(1)
-        .byBorderColor(UIColor.systemGray3)
-        .byClipsToBounds(true)
         .byTitle("我是主标题@Kingfisher")
         .bySubTitle("我是副标题@Kingfisher")
         .kf_imageURL("https://picsum.photos/200")
@@ -117,7 +133,16 @@ private lazy var btnImage_KF: UIButton = {
         .byMakeConstraints { make in
             make.width.height.equalTo(AD(76))
         }
-        .byCornerRadius(12.h)
+        .byBorderColor(.cyan)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>87236210-59DF-4E98-93F1-D6FA654F287F</string>

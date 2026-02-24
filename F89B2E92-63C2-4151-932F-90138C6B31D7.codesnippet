@@ -33,6 +33,16 @@ private lazy var valueLabel: UILabel = {
             make.left.equalToSuperview().offset(self.cardInset)
             make.right.equalToSuperview().inset(self.cardInset)
         }
+        .byBorderColor(.cyan)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>F89B2E92-63C2-4151-932F-90138C6B31D7</string>
