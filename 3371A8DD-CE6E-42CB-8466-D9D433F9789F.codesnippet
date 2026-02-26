@@ -77,9 +77,9 @@ private lazy var btn1: JobsButton = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>解决在某些iOS版本向下兼容的情况下，无法把握UIButton内部控件的生命周期，导致UI错版的问题</string>
+	<string>JobsButton@解决在某些iOS版本向下兼容的情况下，无法把握UIButton内部控件的生命周期，导致UI错版的问题</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Swift@JobsButton</string>
+	<string>Swift@按钮（系统平替）❤️</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

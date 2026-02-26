@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/// 是否正在倒计时这个状态除了本页使用以外，也要防止App闪退，所以需要实时记录在UserDefaults
+/// 倒计时剩余的时间，也需要用UserDefaults进行存取，防止App闪退
+/// 只有倒计时正在进行中的状态时，有剩余的时间（数据来源：UserDefaults存取，如果为0，则用默认值）
+
+private let countdownTimeKey = "com.BSports.countdownTimeKey"
+private let isCountdownTimeKey = "com.BSports.isCountdownTimeKey"
+
+private let defaultCountdownTime = 15 * 60
+/// 为真则正在跑计时器
+var isCountdownTime: Bool {
+    get {
+        UserDefaults.standard.bool(forKey: isCountdownTimeKey)
+    }
+    set {
+        UserDefaults.standard.set(newValue, forKey: isCountdownTimeKey)
+    }
+}
+
+var countdownTime: Int {
+    get {
+        // 不在倒计时，直接返回默认值
+        guard isCountdownTime else {
+            return defaultCountdownTime
+        }
+        let value = UserDefaults.standard.integer(forKey: countdownTimeKey)
+        // 如果 UserDefaults 里是 0，说明异常或未存储，用默认值
+        return value &gt; 0 ? value : defaultCountdownTime
+    }
+    set {
+        UserDefaults.standard.set(newValue, forKey: countdownTimeKey)
+    }
+}
+
+private lazy var countdownButton: UIButton = {
+    UIButton()
+        .onTap { [weak self] sender in
+            guard let self else { return }
+            guard isCountdownTime else {
+                countdownButton.startTimer(
+                    total: countdownTime,
+                    interval: 1,
+                    kind: nil) { [weak self] btn in
+                        guard let self else { return }
+                        isCountdownTime = YES
+                    };return
+            }
+        }
+        /// 倒计时正在进行中...
+        .onCountdownTick { [weak self] btn, remain, total, kind in
+            guard let self else { return }
+            isCountdownTime = YES
+            jobsRunOnMain {
+                /// UI
+            }
+        }
+        /// 倒计时结束
+        .onCountdownFinish { [unowned self] _, kind in
+            isCountdownTime = NO
+        }
+        .byAddTo(self) { [unowned self] make in
+            /// TODO
+        }
+        .byBorderColor(.cyan)
+        .byBorderWidth(0.5)
+        .byMasksToBounds(YES)
+        .byClipsToBounds(YES)
+        /// 切角@平面四个角全切
+        .byCornerRadius(8.h)
+        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        /// 切角@切固定角，兼容旧版本iOS系统
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+}()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B1B58E11-1E0C-454D-BFD3-8E1C47607846</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>倒计时监控逻辑 ➤ 计算属性 + UserDefaults存取</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@按钮（倒计时）❤️</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

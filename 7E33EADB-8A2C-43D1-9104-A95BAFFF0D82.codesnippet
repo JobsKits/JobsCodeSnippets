@@ -10,7 +10,6 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
-
 // MARK: - UIImageView
 /// UIImageView@字符串本地图
 private lazy var localImgView: UIImageView = {
@@ -221,6 +220,26 @@ private lazy var wrapperImgViewSD: UIImageView = {
         .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
         /// 切角@切固定角，兼容旧版本iOS系统
         .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+}()
+/// UIImageView本地gif（失败兜底图）@SDWebImage
+private lazy var imageView: UIImageView = {
+    UIImageView()
+        .bySDLocalGIF(Bundle.main.url(forResource: "mine_prize_icon", withExtension: "gif"))
+        .byAddTo(typeRowView) { [unowned self] make in
+            make.size.equalTo(15.w)
+            make.centerY.equalTo(feedbackBtn)
+            make.right.mas_equalTo(feedbackBtn.mas_left)
+        }
+}()
+/// UIImageView本地gif（失败兜底图）@Kingfisher
+private lazy var imageView: UIImageView = {
+    UIImageView()
+        .byKfLocalGIF(Bundle.main.url(forResource: "mine_prize_icon", withExtension: "gif"))
+        .byAddTo(typeRowView) { [unowned self] make in
+            make.size.equalTo(15.w)
+            make.centerY.equalTo(feedbackBtn)
+            make.right.mas_equalTo(feedbackBtn.mas_left)
+        }
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7E33EADB-8A2C-43D1-9104-A95BAFFF0D82</string>

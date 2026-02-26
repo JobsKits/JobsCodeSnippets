@@ -147,53 +147,7 @@ private lazy var exampleButton: UIButton = {
                 .byBgColor(.systemBlue)
         }
 }()
-// MARK: - 倒计时演示按钮（同一套 API：传 total =&gt; 倒计时）
-private lazy var countdownButton: UIButton = {
-    UIButton.sys()
-        .byTitle("获取验证码", for: .normal)
-        .byTitleColor(.white, for: .normal)
-        .byBackgroundColor(.systemGreen, for: .normal)
-        .onCountdownTick { [weak self] btn, remain, total, kind in
-            guard let self else { return }
-            print("⏱️ [\(kind.displayName)] \(remain)/\(total)")
-            btn.byTitle("还剩 \(remain)s", for: .normal)
-        }
-        .onCountdownFinish { _, kind in
-            print("✅ [\(kind.displayName)] 倒计时完成")
-        }
-        .onTap { [weak self] btn in
-            guard let self else { return }
-            let total = self.parseCountdownTotal(10)
-            btn.startTimer(
-                total: total, // ❤️ 传 total =&gt; 倒计时
-                interval: self.intervalSec,
-                kind: self.currentKind
-            )
-            // 关键：等 startTimer 把 "10s" 设好后再加前缀，避免被覆盖
-            DispatchQueue.main.async {
-                let cur = btn.title(for: .normal) ?? "\(total)s"
-                if !cur.hasPrefix("还剩 ") {
-                    btn.byTitle("还剩 \(cur)", for: .normal)
-                }
-            }
-        }
-        .byAddTo(view) { [unowned self] make in
-            make.top.equalTo(self.hintLabel.snp.bottom).offset(20)
-            make.left.equalToSuperview().offset(horizontalInset)
-            make.right.equalToSuperview().inset(horizontalInset)
-            make.height.equalTo(50)
-        }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
-        /// 切角@平面四个角全切
-        .byCornerRadius(8.h)
-        /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
-        /// 切角@切固定角，兼容旧版本iOS系统
-        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
-}()</string>
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>48398B56-1484-4104-B035-CEC720396169</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -201,7 +155,7 @@ private lazy var countdownButton: UIButton = {
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Swift@按钮❤️</string>
+	<string>Swift@按钮（系统）❤️</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
