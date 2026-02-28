@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import BRPickerViewSwift
+/// 显示
+pickerView.byPresent(in: self.view)
+/// 文本：单列（学历）
+private lazy var textSinglePicker: BRStringPicker = { [unowned self] in
+    BRStringPicker()
+        .byDataSource(["大专以下".tr, "大专".tr, "本科".tr, "硕士".tr, "博士".tr, "博士后".tr])
+        .bySelectedIndex(2)
+        .byTheme { theme in
+            theme
+                .byPanelBackgroundColor(.yellow)
+                .byToolbarBackgroundColor(.systemCyan)
+                .byTitleColor(.white)
+                .byButtonColor(.systemRed)
+                .byMaskColor(.black.withAlphaComponent(0.55))
+                .byPickerTextColor(.red)
+                .byPickerSelectedTextColor(.blue)
+                .byPickerFont(.systemFont(ofSize: 20))
+                .byAutoSelect(false)
+        }
+        .byToolbar { cfg in
+            cfg.byTitle("学历".tr)
+                .byCancelText("取消")
+                .byConfirmText("完成")
+        }
+        .byAnimation(.spring)
+        .byResult { value in
+            ("单列：\(value)".tr).toast
+        }
+}()
+/// 文本：多列（尺码/颜色）
+private lazy var textMultiPicker: BRMultiColumnPicker = { [unowned self] in
+    BRMultiColumnPicker()
+        .byColumns([
+            ["S".tr, "M".tr, "L".tr, "XL"],
+            ["黑".tr, "白".tr, "蓝".tr, "粉".tr]
+        ])
+        .bySelectedRows([1, 2])
+        .byTheme { theme in
+            theme.byAutoSelect(false)
+        }
+        .byToolbar { cfg in
+            cfg.byTitle("尺码/颜色".tr)
+                .byCancelText("取消")
+                .byConfirmText("完成")
+        }
+        .byAnimation(.slide)
+        .byResult { values in
+            ("多列：\(values.joined(separator: " / "))（index=?）").toast
+        }
+}()
+/// 文本：三级联动（省/市/区）
+private lazy var textCascadePicker: BRAreaPicker = { [unowned self] in
+    BRAreaPicker()
+        .byDataSource([
+            .init(name: "浙江省".tr, children: [
+                .init(name: "杭州市".tr, children: [
+                    .init(name: "西湖区".tr),
+                    .init(name: "滨江区".tr),
+                    .init(name: "拱墅区".tr)
+                ]),
+                .init(name: "宁波市".tr, children: [
+                    .init(name: "鄞州区".tr),
+                    .init(name: "海曙区".tr)
+                ])
+            ]),
+            .init(name: "江苏省".tr, children: [
+                .init(name: "南京市".tr, children: [
+                    .init(name: "玄武区".tr),
+                    .init(name: "鼓楼区".tr)
+                ])
+            ])
+        ])
+        .bySelect(.init(province: "浙江省".tr, city: "杭州市".tr, district: "滨江区".tr))
+        .byTheme { theme in
+            theme.byAutoSelect(true)   // 对应你原来 cascade isAutoSelect = true
+        }
+        .byToolbar { cfg in
+            cfg.byTitle("选择地区".tr)
+                .byCancelText("取消")
+                .byConfirmText("完成")
+        }
+        .byAnimation(.spring)
+        .byResult { sel in
+            let text = [sel.province, sel.city, sel.district].compactMap { $0 }.joined(separator: " / ")
+            ("联动：\(text)").toast
+        }
+}()
+/// 日期：系统 Date（年月日）
+private lazy var dateSysDatePicker: BRSystemDatePicker = { [unowned self] in
+    BRSystemDatePicker()
+        .byTitle("出生日".tr)
+        .bySelectDate(Date())
+        .byMinDate(Calendar.current.date(byAdding: .year, value: -80, to: Date()))
+        .byMaxDate(Date())
+        .byMinuteInterval(1)
+        .byTheme { theme in
+            theme.byAutoSelect(false)
+        }
+        .byToolbar { cfg in
+            cfg.byTitle("出生日".tr).byCancelText("取消").byConfirmText("完成")
+        }
+        .byResult { [weak self] dt in
+            guard let self else { return }
+            ("系统 Date：\(fmt(dt, "yyyy-MM-dd"))").toast
+        }
+}()
+/// 日期：系统 Date &amp; Time
+private lazy var dateSysDateTimePicker: BRSystemDateTimePicker = { [unowned self] in
+    BRSystemDateTimePicker()
+        .byTitle("开会时间".tr)
+        .bySelectDate(Date())
+        .byMinuteInterval(5)
+        .byToolbar { $0.byTitle("开会时间".tr).byCancelText("取消").byConfirmText("完成") }
+        .byResult { [weak self] dt in
+            guard let self else { return }
+            ("系统 Date&amp;Time：\(fmt(dt, "yyyy-MM-dd HH:mm"))").toast
+        }
+}()
+/// 日期：系统 Time（12h）
+private lazy var dateSysTimePicker: BRSystemTimePicker = { [unowned self] in
+    BRSystemTimePicker()
+        .byTitle("提醒时间".tr)
+        .bySelectDate(Date())
+        .byUse12HourClock(true)
+        .byMinuteInterval(10)
+        .byToolbar { $0.byTitle("提醒时间".tr).byCancelText("取消").byConfirmText("完成") }
+        .byResult { [weak self] dt in
+            guard let self else { return }
+            ("系统 Time：\(fmt(dt, "HH:mm"))").toast
+        }
+}()
+/// 日期：系统 CountDownTimer
+private lazy var dateSysCountPicker: BRSystemCountDownPicker = { [unowned self] in
+    BRSystemCountDownPicker()
+        .byTitle("倒计时".tr)
+        .bySelectDate(Date())
+        .byToolbar { $0.byTitle("倒计时".tr).byCancelText("取消").byConfirmText("完成") }
+        .byResult { [weak self] dt in
+            guard let self else { return }
+            ("系统 CountDownTimer：\(fmt(dt, "HH:mm"))").toast
+        }
+}()
+/// 日期：自定义 YMD（年月日）
+private lazy var dateYMDPicker: BRDatePicker = { [unowned self] in
+    BRDatePicker()
+        .byMode(.ymd)
+        .bySelectDate(Date())
+        .byToolbar { $0.byTitle("生日（YMD）".tr).byCancelText("取消").byConfirmText("完成") }
+        .byTheme { theme in
+            theme.byAutoSelect(false)
+        }
+        .byResult { [weak self] dt in
+            guard let self else { return }
+            ("自定义 YMD：\(fmt(dt, "yyyy-MM-dd"))").toast
+        }
+}()
+/// 日期：自定义 YM（年月）
+private lazy var dateYMPicker: BRDatePicker = { [unowned self] in
+    BRDatePicker()
+        .byMode(.ym)
+        .bySelectDate(Date())
+        .byToolbar { $0.byTitle("账期（月度）".tr).byCancelText("取消").byConfirmText("完成") }
+        .byTheme { $0.byAutoSelect(false) }
+        .byResult { [weak self] dt in
+            guard let self else { return }
+            ("自定义 YM：\(fmt(dt, "yyyy-MM"))").toast
+        }
+}()
+/// 日期：自定义 Y（年）
+private lazy var dateYPicker: BRDatePicker = { [unowned self] in
+    BRDatePicker()
+        .byMode(.y)
+        .bySelectDate(Date())
+        .byToolbar { $0.byTitle("年份".tr).byCancelText("取消").byConfirmText("完成") }
+        .byTheme { $0.byAutoSelect(false) }
+        .byResult { [weak self] dt in
+            guard let self else { return }
+            ("自定义 Y：\(fmt(dt, "yyyy"))").toast
+        }
+}()
+/// 日期：自定义 MD（月日）
+private lazy var dateMDPicker: BRMonthDayPicker = { [unowned self] in
+    BRMonthDayPicker()
+        .bySelectDate(Date())
+        .byToolbar { $0.byTitle("纪念日（月/日）".tr).byCancelText("取消").byConfirmText("完成") }
+        .byTheme { $0.byAutoSelect(false) }
+        .byResult { [weak self] dt in
+            guard let self else { return }
+            ("自定义 MD：\(fmt(dt, "MM-dd"))").toast
+        }
+}()
+/// 日期：自定义 HM（时:分，步进 = 5）
+private lazy var dateHMPicker: BRHourMinutePicker = { [unowned self] in
+    BRHourMinutePicker()
+        .byMinuteInterval(5)
+        .bySelectDate(Date())
+        .byToolbar { $0.byTitle("提醒（时:分）".tr).byCancelText("取消").byConfirmText("完成") }
+        .byTheme { $0.byAutoSelect(false) }
+        .byResult { [weak self] dt in
+            guard let self else { return }
+            ("自定义 HM：\(fmt(dt, "HH:mm"))").toast
+        }
+}()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D50B0EC4-D967-40B2-852E-357901DE1194</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>选择器</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@PickerView</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
