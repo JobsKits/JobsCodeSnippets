@@ -43,6 +43,9 @@ extension &lt;#承接UICollectionView的UI控件#&gt; : UICollectionViewDataSour
                 for: indexPath
             )
             .byData(items[indexPath.item])
+            .onResult { _ in
+
+            }
     }
 
     func collectionView(
@@ -52,7 +55,17 @@ extension &lt;#承接UICollectionView的UI控件#&gt; : UICollectionViewDataSour
     ) -&gt; CGSize {
         GridCell.cellSizeByData(nil)
     }
-}</string>
+}
+
+extension &lt;#承接UICollectionView的UI控件#&gt; : UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("✅ didSelect Item: \(indexPath.item)")
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>906364DF-436B-479F-89BC-973D953ADDEB</string>
 	<key>IDECodeSnippetLanguage</key>

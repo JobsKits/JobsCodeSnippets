@@ -11,18 +11,16 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
 
-private lazy var flowLayout: UICollectionViewFlowLayout = {
-    UICollectionViewFlowLayout()
-        .byScrollDirection(.vertical)
-        .byMinimumLineSpacing(10)
-        .byMinimumInteritemSpacing(10)
-        .bySectionInset(UIEdgeInsets(top: 10, left: 12, bottom: 10, right: 12))
-}()
-
 private lazy var collectionView: UICollectionView = {
-    UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        .byDataSource(self)
-        .byDelegate(self)
+    UICollectionView(frame: .zero,collectionViewLayout:UICollectionViewFlowLayout()
+        .byScrollDirection(.vertical)
+        .byMinimumLineSpacing(7.w)
+        .byMinimumInteritemSpacing(8.w)
+        .byItemSize(GridCell.cellSizeByData(nil))
+        .bySectionInset(UIEdgeInsets(top: 12.h, left: 8.w, bottom: 12.h, right: 8.w))
+    )
+//        .byDataSource(self)
+//        .byDelegate(self)
         .byRegisterCell(UICollectionViewCell.self)
         .byBackgroundView(nil)
         .byDragInteractionEnabled(false)
@@ -35,7 +33,7 @@ private lazy var collectionView: UICollectionView = {
         }
         .cellForItemAt { _, cv, indexPath in
             cv
-                .dequeueCell(HCell.self, for: indexPath)
+                .byDequeueCell(HCell.self, for: indexPath)
                 .byData(indexPath.item)
                 .onResult { _ in }
         }
@@ -46,23 +44,22 @@ private lazy var collectionView: UICollectionView = {
         // 空态按钮
         .byEmptyButtonProvider { [unowned self] in
             UIButton.sys()
-                .byTitle("暂无数据", for: .normal)
-                .bySubTitle("点我填充示例数据", for: .normal)
-                .byImage(UIImage(systemName: "square.grid.2x2"), for: .normal)
-                .byImagePlacement(.top)
-                .onTap { [weak self] _ in
-                    guard let self else { return }
-                    self.items = (1...12).map { "Item \($0)" }
-                    self.collectionView.byReloadData()        // ✅ reload 后自动评估空态
-                }
-                // 可选：自定义空态按钮布局
-                .byEmptyLayout { btn, make, host in
-                    make.centerX.equalTo(host)
-                    make.centerY.equalTo(host).offset(-40)
-                    make.leading.greaterThanOrEqualTo(host).offset(16)
-                    make.trailing.lessThanOrEqualTo(host).inset(16)
-                    make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
-                }
+               .byTitle("暂无数据", for: .normal)
+               .bySubTitle("点我填充示例数据", for: .normal)
+               .byImage("tray".sysImg, for: .normal)
+               .byImagePlacement(.top)
+               .onTap { [weak self] _ in
+                   guard let self else { return }
+                   self.collectionView.reloadData()   // ✅ reload 后会自动评估空态，无需你再手动调用
+               }
+               // 可选：不满意默认居中 -&gt; 自定义布局
+               .byEmptyLayout { btn, make, host in
+                   make.centerX.equalTo(host)
+                   make.centerY.equalTo(host).offset(-40)
+                   make.leading.greaterThanOrEqualTo(host).offset(16)
+                   make.trailing.lessThanOrEqualTo(host).inset(16)
+                   make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
+               }
         }
         .byAddTo(view) { [unowned self] make in
             if view.jobs_hasVisibleTopBar() {
@@ -150,44 +147,7 @@ private lazy var collectionView: UICollectionView = {
       .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
       /// 切角@切固定角，兼容旧版本iOS系统
       .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
-}()
-/// UICollectionViewDataSource
-func numberOfSections(in collectionView: UICollectionView) -&gt; Int { 1 }
-
-func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -&gt; Int {
-    items.count
-}
-
-func collectionView(_ collectionView: UICollectionView,
-                    cellForItemAt indexPath: IndexPath) -&gt; UICollectionViewCell {
-    collectionView
-        .byDequeueCell(HCell.self, for: indexPath)
-        .byData(indexPath.item)
-        .onResult { _ in
-
-        }
-}
-/// UICollectionViewDelegate 
-func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    print("✅ didSelect Item: \(indexPath.item)")
-    collectionView.deselectItem(at: indexPath, animated: true)
-}
-
-/// UICollectionViewDelegateFlowLayout
-func collectionView(_ collectionView: UICollectionView,
-                    layout collectionViewLayout: UICollectionViewLayout,
-                    sizeForItemAt indexPath: IndexPath) -&gt; CGSize {
-    // 计算 2 列卡片宽度（考虑 sectionInset / interItemSpacing）
-    guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else {
-        return CGSize(width: 100, height: 60)
-    }
-    let inset = layout.sectionInset
-    let spacing = layout.minimumInteritemSpacing
-    let columns: CGFloat = 2
-    let totalH = inset.left + inset.right + (columns - 1) * spacing
-    let w = floor((collectionView.bounds.width - totalH) / columns)
-    return CGSize(width: w, height: 64)
-}</string>
+}()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>44743799-8160-44B4-8483-768B40B72C00</string>
 	<key>IDECodeSnippetLanguage</key>
