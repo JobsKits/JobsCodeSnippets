@@ -11,24 +11,31 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsSwiftTimer
 
-let t = JobsTimer(kind: kind, config: config) { [weak self] in
- guard let self else { return }
- guard self.state == .running else { return }
- guard let start = self.startDate else { return }
-     /// TODO
-}
+private var timer: JobsTimer?
+func makeTimer() {
+    let t = JobsTimer(kind: kind, config: config) { [weak self] in
+     guard let self else { return }
+     guard self.state == .running else { return }
+     guard let start = self.startDate else { return }
+        jobsRunOnMain {
+            /// TODO
+        }
+    }
 
-timer?.stop()
-timer = t
-t.start()</string>
+    timer?.stop()
+    timer = t
+    t.start()
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>A8372162-BED2-43CE-BF26-28A7F902F199</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>JobsSwiftTimerProtocol</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Swift@定时器的封装使用</string>
+	<string>Swift@⏰定时器的封装使用</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
