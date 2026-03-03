@@ -24,6 +24,7 @@ private lazy var collectionView: UICollectionView = {
         .byRegisterCell(UICollectionViewCell.self)
         .byBackgroundView(nil)
         .byDragInteractionEnabled(false)
+        .byAlwaysBounceVertical(true)
         .byContentInsetTop(8)
         .byExpandVerticalScrollDistance(200.h)
         // 非正式协议闭包化
@@ -135,7 +136,6 @@ private lazy var collectionView: UICollectionView = {
        }
       .setHeaderLottie(.custom(.init(animationName: "LottieLogo1")))
       .setFooterLottie(.disabled) // 强制 footer 回退菊花（即使全局配置了）
-      .enableRefreshHaptics(true)
       .setRefreshSound("Sound.wav")
       .byBorderColor(.cyan)
       .byBorderWidth(0.5)
