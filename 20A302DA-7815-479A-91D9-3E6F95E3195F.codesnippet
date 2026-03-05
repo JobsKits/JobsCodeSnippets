@@ -15,6 +15,7 @@ private lazy var upContinuousMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.top)
         .byScrollMode(.continuous(speed: 40))
+        .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fitContent)   // 典型公告跑马灯
         .byDataSourceButtons([
             UIButton.sys()
@@ -112,6 +113,7 @@ private lazy var downContinuousMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.bottom)
         .byScrollMode(.continuous(speed: 40))
+        .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fitContent)
         .byDataSourceButtons([
             UIButton.sys()
@@ -201,6 +203,7 @@ private lazy var leftContinuousMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.left)
         .byScrollMode(.continuous(speed: 60))
+        .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fitContent)
         .byDataSourceButtons([
             UIButton.sys()
@@ -290,6 +293,7 @@ private lazy var rightContinuousMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.right)
         .byScrollMode(.continuous(speed: 60))
+        .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fitContent)
         .byDataSourceButtons([
             UIButton.sys()
@@ -378,6 +382,7 @@ private lazy var rightContinuousMarquee: JobsMarqueeView = { [unowned self] in
 private lazy var upFrequencyMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.top)
+        .byScrollMode(.continuous(speed: 60))
         .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fillBounds)   // 每页 1 行
         .byDataSourceButtons([
@@ -467,6 +472,7 @@ private lazy var upFrequencyMarquee: JobsMarqueeView = { [unowned self] in
 private lazy var downFrequencyMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.bottom)
+        .byScrollMode(.continuous(speed: 60))
         .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fillBounds)
         .byDataSourceButtons([
@@ -556,7 +562,8 @@ private lazy var downFrequencyMarquee: JobsMarqueeView = { [unowned self] in
 private lazy var leftFrequencyMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.left)
-        .byScrollMode(.frequency(interval: 1.5))
+        .byScrollMode(.continuous(speed: 60))
+        .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fillBounds)   // 轮播图：一页一个按钮
         .byDataSourceButtons([
             UIButton.sys()
@@ -645,7 +652,8 @@ private lazy var leftFrequencyMarquee: JobsMarqueeView = { [unowned self] in
 private lazy var rightFrequencyMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.right)
-        .byScrollMode(.frequency(interval: 1.5))
+        .byScrollMode(.continuous(speed: 60))
+        .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fillBounds)
         .byDataSourceButtons([
             UIButton.sys()
@@ -734,7 +742,8 @@ private lazy var rightFrequencyMarquee: JobsMarqueeView = { [unowned self] in
 private lazy var oneButtonMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.left)
-        .byScrollMode(.continuous(speed: 40))
+        .byScrollMode(.continuous(speed: 60))
+        .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fillBounds)   // 视图宽度 == 按钮宽度，内部会复制到至少 3 个
         .byDataSourceButtons([
             UIButton.sys()
@@ -773,7 +782,8 @@ private lazy var oneButtonMarquee: JobsMarqueeView = { [unowned self] in
 private lazy var twoButtonsMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.left)
-        .byScrollMode(.continuous(speed: 40))
+        .byScrollMode(.continuous(speed: 60))
+        .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fillBounds)
         .byDataSourceButtons([
             UIButton.sys()
@@ -828,6 +838,7 @@ private lazy var twoButtonsMarquee: JobsMarqueeView = { [unowned self] in
 private lazy var localImageButtonsMarquee: JobsMarqueeView = {  [unowned self] in
     JobsMarqueeView()
         .byDirection(.left)
+        .byScrollMode(.continuous(speed: 60))
         .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fillBounds)
         .byManualScrollEnabled(true)   // ✅ 开启手动拖拽
@@ -906,6 +917,7 @@ private lazy var localImageButtonsMarquee: JobsMarqueeView = {  [unowned self] i
 private lazy var sdWebImageButtonsMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.left)
+        .byScrollMode(.continuous(speed: 60))
         .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fillBounds)
         .byManualScrollEnabled(true)   // ✅ 开启手动拖拽
@@ -999,6 +1011,7 @@ private lazy var sdWebImageButtonsMarquee: JobsMarqueeView = { [unowned self] in
 private lazy var kingfisherImageButtonsMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
         .byDirection(.left)
+        .byScrollMode(.continuous(speed: 60))
         .byScrollMode(.frequency(interval: 1.0))
         .byItemSizeMode(.fillBounds)
         .byManualScrollEnabled(true)   // ✅ 开启手动拖拽
@@ -1113,6 +1126,8 @@ private lazy var kingfisherImageButtonsMarquee: JobsMarqueeView = { [unowned sel
 	<string>20A302DA-7815-479A-91D9-3E6F95E3195F</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>JobsMarqueeView</string>
 	<key>IDECodeSnippetTitle</key>

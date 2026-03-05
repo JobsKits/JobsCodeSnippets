@@ -37,7 +37,12 @@ final class BSportHomeListAllSubVC: UIViewController {
     }()
     
     private lazy var listContainerView: JXSegmentedListContainerView = {
-        JXSegmentedListContainerView(dataSource: self).byBackgroundColor(.clear)
+        JXSegmentedListContainerView(dataSource: self)
+            .byBackgroundColor(.clear)
+            .byIndexChange()
+            .byDidIndexChanged { from, to in
+                "切换完成：\(from) -&gt; \(to)".toast
+            }
             .byAddTo(view) { [unowned self] make in
                 make.top.equalTo(view)
                 make.left.right.bottom.equalToSuperview()
@@ -46,6 +51,7 @@ final class BSportHomeListAllSubVC: UIViewController {
 
     private lazy var segmentedView: JXSegmentedView = {
         JXSegmentedView()
+            .byDefaultSelectedIndex(0)
             .byBackgroundColor(.clear)
             .byListContainer(listContainerView, defaultIndex: 0)
             .byDataSource(segmentedDataSource)

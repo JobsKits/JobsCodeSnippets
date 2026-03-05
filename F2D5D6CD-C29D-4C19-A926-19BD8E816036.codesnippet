@@ -29,7 +29,8 @@
 // MARK: - 接收通知
 self.on("通知名称") { [weak self] noti, obj, userInfo in
     guard let self else { return }
-    guard noti is Notification else { return }
+//    guard noti is Notification else { return }
+    guard let noti = noti as? Notification else { return }
     /// TODO
 }
 // MARK: - 移除通知
