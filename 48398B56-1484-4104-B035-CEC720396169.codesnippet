@@ -111,14 +111,29 @@ private lazy var exampleButton: UIButton = {
         .onLongPressAppend(minimumPressDuration: 0.8) { btn, gr in
             print("追加的长按事件")
         }
-        .byAddTo(view) { [unowned self] make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
-            make.left.right.equalToSuperview().inset(24)
-            make.height.equalTo(44)
-        }
-        /// 只贴约束
-        .byMakeConstraints { make in
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
             make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
@@ -152,6 +167,8 @@ private lazy var exampleButton: UIButton = {
 	<string>48398B56-1484-4104-B035-CEC720396169</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>

@@ -48,8 +48,29 @@ private lazy var btn_1: UIButton = {
                 "动画结束".tr.toast
             }
         }
-        .byAddTo(topBarBackgroundView) { [unowned self] make in
-            /// TODO
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 /// 数字动效按钮@主标题（富文本）
@@ -122,10 +143,29 @@ private lazy var btn_2: UIButton = {
                 "动画结束".tr.toast
             }
         }
-        .byAddTo(contentView) { [unowned self] make in
-            make.top.equalTo(tf3Start.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(16)
-            make.height.equalTo(56)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 /// 数字动效按钮@副标题（普通文本）
@@ -165,10 +205,29 @@ private lazy var btn_3: UIButton = {
                 "动画结束".tr.toast
             }
         }
-        .byAddTo(contentView) { [unowned self] make in
-            make.top.equalTo(tf2Start.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(16)
-            make.height.equalTo(64)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 /// 数字动效按钮@副标题（富文本）
@@ -237,11 +296,29 @@ private lazy var btn_4: UIButton = {
                 "动画结束".tr.toast
             }
         }
-        .byAddTo(contentView) { [unowned self] make in
-            make.top.equalTo(tf4Start.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(16)
-            make.height.equalTo(64)
-            make.bottom.equalToSuperview().offset(-24)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>

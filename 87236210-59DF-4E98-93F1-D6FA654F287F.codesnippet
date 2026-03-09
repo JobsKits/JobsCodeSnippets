@@ -123,15 +123,29 @@ private lazy var btnImage_KF: UIButton = {
             .retryStrategy(DelayRetryStrategy(maxRetryCount: 2, retryInterval: .seconds(1)))
         ])
         .kf_normalLoad() // 之前是配置项，这里才是真正决定渲染背景图/前景图
-        .byAddTo(scrollView) { [unowned self] make in
-            make.top.equalTo(btnBG_KF.snp.bottom).offset(16)
-            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20)
-            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20)
-            make.height.equalTo(64)
-        }
-        /// 只贴约束
-        .byMakeConstraints { make in
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
             make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
@@ -148,6 +162,8 @@ private lazy var btnImage_KF: UIButton = {
 	<string>87236210-59DF-4E98-93F1-D6FA654F287F</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>

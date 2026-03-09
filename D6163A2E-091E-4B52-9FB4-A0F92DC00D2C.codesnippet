@@ -41,15 +41,29 @@ private lazy var tv1: UITextView = {
         .byEndEditing { value in
             print("✅ end:", value)
         }
-        .byAddTo(contentView) { [unowned self] make in
-            make.top.equalTo(title1.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(-16)
-            make.height.equalTo(100)
-        }
-        /// 只贴约束
-        .byMakeConstraints { make in
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
             make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
@@ -92,14 +106,29 @@ private lazy var tvRed: UITextView = {
         .jobs_onEndEditing { value in
             print("✅ end:", value)
         }
-        .byAddTo(contentView) { [unowned self] make in
-            make.top.equalTo(tvBlue.snp.bottom).offset(12)
-            make.left.right.equalTo(tv1)
-            make.height.equalTo(110)
-        }
-        /// 只贴约束
-        .byMakeConstraints { make in
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
             make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)

@@ -95,17 +95,29 @@ private lazy var upContinuousMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            if #available(iOS 11.0, *) {
-                make.top.equalTo(self.scrollView.contentLayoutGuide.snp.top).offset(10)
-                make.left.equalTo(self.scrollView.frameLayoutGuide.snp.left).offset(self.horizontalInset)
-                make.right.equalTo(self.scrollView.frameLayoutGuide.snp.right).inset(self.horizontalInset)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
             } else {
-                make.top.equalTo(self.scrollView.snp.top).offset(10)
-                make.left.equalTo(self.scrollView).offset(self.horizontalInset)
-                make.right.equalTo(self.scrollView).inset(self.horizontalInset)
+                make.edges.equalToSuperview()
             }
-            make.height.equalTo(self.marqueeHeight)
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 2. 向下连续滚动
@@ -193,9 +205,29 @@ private lazy var downContinuousMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.upContinuousMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 3. 向左连续滚动（典型横向跑马灯）
@@ -283,9 +315,29 @@ private lazy var leftContinuousMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.downContinuousMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 4. 向右连续滚动
@@ -373,9 +425,29 @@ private lazy var rightContinuousMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.leftContinuousMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 5. 向上间隔滚动（公告一条一条翻）
@@ -463,9 +535,29 @@ private lazy var upFrequencyMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.rightContinuousMarquee.snp.bottom).offset(self.verticalSpacing * 2)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 6. 向下间隔滚动
@@ -553,9 +645,29 @@ private lazy var downFrequencyMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.upFrequencyMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 7. 向左间隔滚动（轮播图：一屏一页）
@@ -643,9 +755,29 @@ private lazy var leftFrequencyMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.downFrequencyMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 8. 向右间隔滚动（轮播图）
@@ -733,9 +865,29 @@ private lazy var rightFrequencyMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.leftFrequencyMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 9. 极端：只有 1 个按钮
@@ -773,9 +925,29 @@ private lazy var oneButtonMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.rightFrequencyMarquee.snp.bottom).offset(self.verticalSpacing * 2)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 10. 极端：只有 2 个按钮
@@ -829,9 +1001,29 @@ private lazy var twoButtonsMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.oneButtonMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 // MARK: - 11. 本地@背景图
@@ -896,9 +1088,29 @@ private lazy var localImageButtonsMarquee: JobsMarqueeView = {  [unowned self] i
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.twoButtonsMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
         .then { v in
 //                v.pageControlPosition = .bottomCenter   // 默认（不写也行）
@@ -990,9 +1202,29 @@ private lazy var sdWebImageButtonsMarquee: JobsMarqueeView = { [unowned self] in
                 }
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.localImageButtonsMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
         .then { v in
 //                v.pageControlPosition = .bottomCenter   // 默认（不写也行）
@@ -1099,15 +1331,29 @@ private lazy var kingfisherImageButtonsMarquee: JobsMarqueeView = { [unowned sel
                 },
         ])
         .byBackgroundColor(.randomColor)
-        .byAddTo(self.scrollView) { [unowned self] make in
-            make.top.equalTo(self.sdWebImageButtonsMarquee.snp.bottom).offset(self.verticalSpacing)
-            make.left.right.height.equalTo(self.upContinuousMarquee)
-            // 🔚 最后一条封底，决定 scrollView.contentSize.height
-            if #available(iOS 11.0, *) {
-                make.bottom.equalTo(self.scrollView.contentLayoutGuide.snp.bottom).inset(20)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
             } else {
-                make.bottom.equalTo(self.scrollView.snp.bottom).inset(20)
+                make.edges.equalToSuperview()
             }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
         .then { v in
 //                v.pageControlPosition = .bottomCenter   // 默认（不写也行）

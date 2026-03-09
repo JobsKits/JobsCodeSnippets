@@ -11,17 +11,21 @@
 	<key>IDECodeSnippetContents</key>
 	<string>bgImageView().byImage("唐老鸭".img)
 
-Task { @MainActor in
-    bgImageView().byImage(await "https://picsum.photos/400/300".kfLoadImage(fallbackImage: "唐老鸭".img))
+jobsRunOnMain { [weak self] in
+    guard let self else { return }
+    self.bgImageView().byImage(await "https://picsum.photos/400/300".kfLoadImage(fallbackImage: "唐老鸭".img))
 }
 
-Task { @MainActor in
-    bgImageView().byImage(await "https://picsum.photos/400/300".sdLoadImage(fallbackImage: "唐老鸭".img))
+jobsRunOnMain {
+    guard let self else { return }
+    self.bgImageView().byImage(await "https://picsum.photos/400/300".sdLoadImage(fallbackImage: "唐老鸭".img))
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>03BE374A-233A-4260-98AF-D1AC55DB2B34</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>当前是控制器</string>
 	<key>IDECodeSnippetTitle</key>

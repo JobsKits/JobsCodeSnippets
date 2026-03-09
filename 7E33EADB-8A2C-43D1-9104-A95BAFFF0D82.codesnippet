@@ -32,15 +32,29 @@ private lazy var localImgView: UIImageView = {
                 break
             }
         }
-        .byAddTo(scrollView) { [unowned self] make in
-            make.top.equalTo(scrollView.contentLayoutGuide.snp.top).offset(10.h)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
-        }
-        /// 只贴约束
-        .byMakeConstraints { make in
-            make.width.height.equalTo(AD(76))
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
@@ -74,15 +88,29 @@ private lazy var asyncImgView: UIImageView = {
                 break
             }
         }
-        .byAddTo(scrollView) { [unowned self] make in
-            make.top.equalTo(localImgView.snp.bottom).offset(20.h)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
-        }
-        /// 只贴约束
-        .byMakeConstraints { make in
-            make.width.height.equalTo(AD(76))
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
@@ -116,15 +144,29 @@ private lazy var asyncImgViewSD: UIImageView = {
                 break
             }
         }
-        .byAddTo(scrollView) { [unowned self] make in
-            make.top.equalTo(asyncImgView.snp.bottom).offset(20.h)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
-        }
-        /// 只贴约束
-        .byMakeConstraints { make in
-            make.width.height.equalTo(AD(76))
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
@@ -158,15 +200,29 @@ private lazy var wrapperImgView: UIImageView = {
                 break
             }
         }
-        .byAddTo(scrollView) { [unowned self] make in
-            make.top.equalTo(asyncImgViewSD.snp.bottom).offset(20.h)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
-        }
-        /// 只贴约束
-        .byMakeConstraints { make in
-            make.width.height.equalTo(AD(76))
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
@@ -200,15 +256,29 @@ private lazy var wrapperImgViewSD: UIImageView = {
                 break
             }
         }
-        .byAddTo(scrollView) { [unowned self] make in
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
-        }
-        /// 只贴约束
-        .byMakeConstraints { make in
-            make.width.height.equalTo(AD(76))
         }
         .byBorderColor(.cyan)
         .byBorderWidth(0.5)
@@ -225,20 +295,58 @@ private lazy var wrapperImgViewSD: UIImageView = {
 private lazy var imageView: UIImageView = {
     UIImageView()
         .bySDLocalGIF(Bundle.main.url(forResource: "mine_prize_icon", withExtension: "gif"))
-        .byAddTo(typeRowView) { [unowned self] make in
-            make.size.equalTo(15.w)
-            make.centerY.equalTo(feedbackBtn)
-            make.right.mas_equalTo(feedbackBtn.mas_left)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()
 /// UIImageView本地gif（失败兜底图）@Kingfisher
 private lazy var imageView: UIImageView = {
     UIImageView()
         .byKfLocalGIF(Bundle.main.url(forResource: "mine_prize_icon", withExtension: "gif"))
-        .byAddTo(typeRowView) { [unowned self] make in
-            make.size.equalTo(15.w)
-            make.centerY.equalTo(feedbackBtn)
-            make.right.mas_equalTo(feedbackBtn.mas_left)
+        /// 加载到目标视图上，并第一次配置新约束
+        .byAddTo(view) {[unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+                make.left.right.bottom.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
+         }
+        ///（并未加载到目标视图上）第一次部署新约束
+        .byMakeConstraints { [unowned self] make in
+            make.width.height.equalTo(AD(76))
+        }
+        /// 只修改某一条约束，其余约束不动
+        .byUpdateConstraints { [unowned self] make in
+            make.top.equalToSuperview().inset(8.h)
+        }
+        /// 清除以前的全部的旧约束，用目前最新的
+        .byRemakeConstraints { [unowned self] make in
+            make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+            make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
+            make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
+            make.height.equalTo(180.h)
         }
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>

@@ -35,7 +35,8 @@ self.on("通知名称") { [weak self] noti, obj, userInfo in
 }
 // MARK: - 移除通知
 "通知名称".removeNotification(self)
-Notification.Name("通知名称").removeNotification(self)</string>
+Notification.Name("通知名称").removeNotification(self)
+NotificationCenter.default.removeObserver(self)</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>F2D5D6CD-C29D-4C19-A926-19BD8E816036</string>
 	<key>IDECodeSnippetLanguage</key>
