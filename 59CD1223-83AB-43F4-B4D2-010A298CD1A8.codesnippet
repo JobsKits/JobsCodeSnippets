@@ -62,7 +62,7 @@ final class BSportHomeListAllSubVC: UIViewController {
             }
             /// 清除以前的全部的旧约束，用目前最新的
             .byRemakeConstraints { [unowned self] make in
-                make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
+                make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)/// ⚠️需要特别注意⚠️
                 make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
                 make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
                 make.height.equalTo(180.h)
