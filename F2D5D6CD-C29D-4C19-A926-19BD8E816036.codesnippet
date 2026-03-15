@@ -26,6 +26,7 @@
 ///
 /// 4) 同时发 object + userInfo：
      self.post("SomethingChanged", object: model, userInfo: ["from": "mine"])
+     NSObject.post("SomethingChanged", object: model, userInfo: ["from": "mine"])
 // MARK: - 接收通知
 self.on("通知名称") { [weak self] noti, obj, userInfo in
     guard let self else { return }
