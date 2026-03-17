@@ -171,7 +171,21 @@ extension BSportHomeListAllSubVC: JXSegmentedListContainerViewDataSource {
         ][index]
     }
 }
-</string>
+/// 主题适配
+self.on("STThemeDidChange") { noti, obj, userInfo in
+    guard let theme = obj as? STThemeType else { return }
+    switch theme {
+    case .day:
+        self.segmentedView.byBackgroundColor("#ffffff".cor)
+    case .night:
+        self.segmentedView.byBackgroundColor("#1e1e1e".cor)
+    }
+    // 重新设置普通态/选中态富文本
+    self.segmentedDataSource
+        .byAttributedTitles(self.makePlayAttributedTitles(selected: false))
+        .bySelectedAttributedTitles(self.makePlayAttributedTitles(selected: true))
+    self.segmentedView.reloadData()
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>59CD1223-83AB-43F4-B4D2-010A298CD1A8</string>
 	<key>IDECodeSnippetLanguage</key>

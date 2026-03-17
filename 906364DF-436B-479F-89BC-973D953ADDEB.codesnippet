@@ -34,10 +34,10 @@ extension &lt;#承接UICollectionView的UI控件#&gt; : UICollectionViewDataSour
     }
 
     func collectionView(
-        _ cv: UICollectionView,
+        _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -&gt; UICollectionViewCell {
-        cv
+        collectionView
             .byDequeueReusableCell(
                 withType: GridCell.self,
                 for: indexPath
