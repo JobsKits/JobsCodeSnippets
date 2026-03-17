@@ -94,7 +94,7 @@ private lazy var tableView: UITableView = {
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) { [unowned self] make in
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()

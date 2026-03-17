@@ -75,6 +75,10 @@ final class BSportHomeListAllSubVC: UIViewController {
             .byBackgroundColor(.clear)
             .byListContainer(listContainerView, defaultIndex: 0)
             .byDataSource(segmentedDataSource)
+            .byClickTransitionAnimationEnabled(false)
+            .byContentScrollViewConfig({ scrollView in
+                scrollView.byBounces(false).byDecelerationRate(.fast)
+            })
             /// 加载到目标视图上，并第一次配置新约束
             .byAddTo(view) {[unowned self] make in
                 if view.jobs_hasVisibleTopBar() {
