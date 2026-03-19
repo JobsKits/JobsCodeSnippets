@@ -43,7 +43,8 @@ private lazy var tableView: UITableView = {
         // 非正式协议闭包化
         .byTarget(self)
         .numberOfRowsInSection { [weak self] (obj: AnyObject, tv: UITableView, section: Int) -&gt; Int in
-            self?.rows ?? 0
+            guard let self else { return }
+            self.rows ?? 0
         }
         .cellForRowAt { _, tv, indexPath in
             let c = tv.dequeueReusableCell(withIdentifier: "cell") ??

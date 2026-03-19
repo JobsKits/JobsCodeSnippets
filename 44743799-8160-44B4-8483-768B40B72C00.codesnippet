@@ -42,7 +42,8 @@ private lazy var collectionView: UICollectionView = {
         // 非正式协议闭包化
         .byTarget(self)
         .numberOfItemsInSection { [weak self] (obj: AnyObject, cv: UICollectionView, section: Int) -&gt; Int in
-            self?.hItems ?? 0
+            guard let self else { return }
+            self.hItems ?? 0
         }
         .cellForItemAt { _, cv, indexPath in
             cv
