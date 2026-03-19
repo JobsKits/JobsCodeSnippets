@@ -23,6 +23,18 @@ private lazy var tableView: UITableView = {
         .byNoSectionHeaderTopPadding()
         .byContentInsetTop(8)
         .byExpandVerticalScrollDistance(200.h)
+//        .byContentInset({
+//            containerTableView.contentInset.byBottom(bottomInset)
+//        })
+//        .byContentInset(UIEdgeInsets(
+//            top: UIApplication.jobsSafeTopInset + 30,
+//            left: 0,
+//            bottom: 0,
+//            right: 0
+//        ))
+//        .byScrollIndicatorInsets {
+//            containerTableView.scrollIndicatorInsets.byBottom(bottomInset)
+//        }
         .byTableHeaderView(
             UIView()
                 .byHeight(65)
@@ -45,7 +57,7 @@ private lazy var tableView: UITableView = {
             tv.deselectRow(at: indexPath, animated: true)
             print("点选逻辑")
         }
-         // 空态按钮
+        // 无数据@空态按钮
         .byEmptyButtonProvider { [unowned self] in
             UIButton(type: .system)
                 .byTitle("暂无数据", for: .normal)
@@ -66,13 +78,20 @@ private lazy var tableView: UITableView = {
                     make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
                 }
         }
-
-//            .byContentInset(UIEdgeInsets(
-//                top: UIApplication.jobsSafeTopInset + 30,
-//                left: 0,
-//                bottom: 0,
-//                right: 0
-//            ))
+        // 无数据@自定义视图
+        .byEmptyViewProvider { [unowned self] in
+            JobsEmptyView()
+                .byOnTapRetry { [weak self] in
+                    "hello".tr.toast
+                }
+        }
+        .byEmptyViewLayout { emptyView, make, host in
+            make.centerX.equalTo(host)
+            make.centerY.equalTo(host).offset(-40)
+            make.leading.greaterThanOrEqualTo(host).offset(16)
+            make.trailing.lessThanOrEqualTo(host).inset(16)
+            make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
+        }
         // 下拉刷新 Header
         .byRefreshHeader(component: JobsDefaultHeader(),
                          container: self,

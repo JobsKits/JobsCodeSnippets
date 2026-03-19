@@ -21,6 +21,18 @@ private lazy var collectionView: UICollectionView = {
     )
 //        .byDataSource(self)
 //        .byDelegate(self)
+//        .byContentInset({
+//            containerTableView.contentInset.byBottom(bottomInset)
+//        })
+//        .byContentInset(UIEdgeInsets(
+//            top: UIApplication.jobsSafeTopInset + 30,
+//            left: 0,
+//            bottom: 0,
+//            right: 0
+//        ))
+//        .byScrollIndicatorInsets {
+//            containerTableView.scrollIndicatorInsets.byBottom(bottomInset)
+//        }
         .byRegisterCell(UICollectionViewCell.self)
         .byBackgroundView(nil)
         .byDragInteractionEnabled(false)
@@ -61,6 +73,20 @@ private lazy var collectionView: UICollectionView = {
                    make.trailing.lessThanOrEqualTo(host).inset(16)
                    make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
                }
+        }
+        // 无数据@自定义视图
+        .byEmptyViewProvider { [unowned self] in
+            JobsEmptyView()
+                .byOnTapRetry { [weak self] in
+                    "hello".tr.toast
+                }
+        }
+        .byEmptyViewLayout { emptyView, make, host in
+            make.centerX.equalTo(host)
+            make.centerY.equalTo(host).offset(-40)
+            make.leading.greaterThanOrEqualTo(host).offset(16)
+            make.trailing.lessThanOrEqualTo(host).inset(16)
+            make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
         }
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in
