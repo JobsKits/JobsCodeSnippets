@@ -10,7 +10,6 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
-
 /// 按钮网络背景图@SDWebImage
 private lazy var btnBG: UIButton = {
     UIButton.sys()
