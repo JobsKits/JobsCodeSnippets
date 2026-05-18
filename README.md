@@ -2,16 +2,18 @@
 
 ![Jobs倾情奉献](https://picsum.photos/1500/400 "Jobs出品，必属精品")
 
+[toc]
+
 ## 一、背景介绍
 
-* 实操发现，由于 **Xcode** 自身的功能不足，导致我们经常在重写一些系统父类方法时容易忘了调用 `super`，从而出现一些很难排查的诡异bug；
+- 实操发现，由于 **Xcode** 自身的功能不足，导致我们经常在重写一些系统父类方法时容易忘了调用 `super`，从而出现一些很难排查的诡异bug；
 
-* **Xcode** 虽然有模糊匹配的代码提醒，但代码提醒只能帮你写方法名，而**code snippets** 还可以帮你填充一些默认的方法实现，或者直接移动光标到方法体内，省去几次光标操作；
+- **Xcode** 虽然有模糊匹配的代码提醒，但代码提醒只能帮你写方法名，而**code snippets** 还可以帮你填充一些默认的方法实现，或者直接移动光标到方法体内，省去几次光标操作；
 
-* 一些常用的写法本身语法可能比较复杂，难以记忆，例如：实现一个类的单例、使用 `swizzle` 来重写系统控件的方法、block 在不同地方的语法不同等；
+- 一些常用的写法本身语法可能比较复杂，难以记忆，例如：实现一个类的单例、使用 `swizzle` 来重写系统控件的方法、block 在不同地方的语法不同等；
 
-* 一些代码本身看似简单，但由于特别常用，所以使用 **code snippets** 可以大大节省时间；
-* <font color=red>**特别鸣谢**</font>：[**QMUI_iOS_CodeSnippets**](https://github.com/QMUI/QMUI_iOS_CodeSnippets.git)
+- 一些代码本身看似简单，但由于特别常用，所以使用 **code snippets** 可以大大节省时间；
+- <font color=red>**特别鸣谢**</font>：[**QMUI_iOS_CodeSnippets**](https://github.com/QMUI/QMUI_iOS_CodeSnippets.git)
 
 ## 二、使用方式
 ### 1、脚本自动化
@@ -163,7 +165,7 @@ main
 
 ### 2、手动配置
 
-* **Xcode** 的 **Code Snippets** 文件存放于 `~/Library/Developer/Xcode/UserData/CodeSnippets` 目录
+- **Xcode** 的 **Code Snippets** 文件存放于 `~/Library/Developer/Xcode/UserData/CodeSnippets` 目录
 
   * 但是`CodeSnippets`目录默认是没有创建的；
 
@@ -173,9 +175,9 @@ main
     open ~/Library/Developer/Xcode/UserData
     ```
 
-* <font color=red>**注意：不是在 CodeSnippets 里创建一个 JobsCodeSnippets 的目录，这里不支持子目录**</font>；
+- <font color=red>**注意：不是在 CodeSnippets 里创建一个 JobsCodeSnippets 的目录，这里不支持子目录**</font>；
 
-* 为了方便更新，建议直接将 **JobsCodeSnippets**的内容 `git clone` 到这个目录内，并将这个目录的内容全部提到`CodeSnippets`的根目录下（包括**git**的隐藏文件），再与[**sourcetree**](https://www.sourcetreeapp.com/)等Git 管理工具进行关联；
+- 为了方便更新，建议直接将 **JobsCodeSnippets**的内容 `git clone` 到这个目录内，并将这个目录的内容全部提到`CodeSnippets`的根目录下（包括**git**的隐藏文件），再与[**sourcetree**](https://www.sourcetreeapp.com/)等Git 管理工具进行关联；
 
   * ```shell
     git clone git@github.com:JobsKit/JobsCodeSnippets.git ./
@@ -185,5 +187,5 @@ main
 
   * ![image-20240629115031438](./assets/image-20240629115031438.png)
 
-* 重启 **Xcode** 即可生效
+- 重启 **Xcode** 即可生效
 
