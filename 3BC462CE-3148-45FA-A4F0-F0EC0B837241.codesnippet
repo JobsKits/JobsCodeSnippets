@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@PDF</string>
@@ -9,7 +8,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#import &lt;PDFKit/PDFKit.h&gt; /// 处理PDF
+	<string>#import &lt;PDFKit/PDFKit.h&gt; /// 处理 PDF
 
 @synthesize pdfView = _pdfView;
 -(__kindof PDFView *)pdfView{
@@ -17,16 +16,22 @@
         @jobs_weakify(self)
         _pdfView = jobsMakePDFView(^(__kindof PDFView * _Nullable view) {
             @jobs_strongify(self)
-            view.autoScales = YES;
-            view.document = PDFDocument.byURL([NSBundle.mainBundle URLForResource:@"Terms of Use" withExtension:@"pdf"]);
-            [self.addSubview(view) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(self);
-                make.top.equalTo(self.label.mas_bottom).offset(JobsWidth(10));
-                make.size.mas_equalTo(CGSizeMake(JobsWidth(290), JobsWidth(300)));
-            }];
+            view
+                .byAutoScales(YES) // 自动缩放 PDF
+                .byDocument(PDFDocument.byURL([NSBundle.mainBundle URLForResource:@&quot;Terms of Use&quot; withExtension:@&quot;pdf&quot;])) // 设置 PDF 文档
+                .byDisplayMode(kPDFDisplaySinglePageContinuous) // 设置显示模式
+                .byDisplayDirection(kPDFDisplayDirectionVertical) // 设置滚动方向
+                .byBackgroundColor(UIColor.clearColor) // 设置背景色
+                .addOn(self) // 加入父视图
+                .byAdd(^(MASConstraintMaker *make) { // 部署约束
+                    make.centerX.equalTo(self);
+                    make.top.equalTo(self.label.mas_bottom).offset(JobsWidth(10));
+                    make.size.mas_equalTo(CGSizeMake(JobsWidth(290), JobsWidth(300)));
+                });
         });
     }return _pdfView;
-}</string>
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3BC462CE-3148-45FA-A4F0-F0EC0B837241</string>
 	<key>IDECodeSnippetLanguage</key>

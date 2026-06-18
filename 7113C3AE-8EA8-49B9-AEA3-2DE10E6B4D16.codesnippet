@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@Runtime</string>
@@ -10,12 +9,12 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>/// 获取 GKPhotoBrowser 类的 layoutSubviews 方法。
-Method method = class_getInstanceMethod(GKPhotoBrowser.class, sel_registerName("layoutSubviews"));
+Method method = class_getInstanceMethod(GKPhotoBrowser.class, sel_registerName(&quot;layoutSubviews&quot;));
 /// 获取到的方法实现转换为一个函数指针 super_func，并指定了函数的参数类型为 (id, SEL)。
 void (*super_func)(id,SEL) = (void *)method_getImplementation(method);
 /// 检查 super_func 是否为非空，即是否成功获取到 layoutSubviews 方法的实现。
-/// 如果 super_func 不为空，它执行 super_func 函数，传递 self 和 sel_registerName("layoutSubviews") 作为参数，从而调用了 GKPhotoBrowser 类的 layoutSubviews 方法。
-if (super_func) super_func(self, sel_registerName("layoutSubviews"));
+/// 如果 super_func 不为空，它执行 super_func 函数，传递 self 和 sel_registerName(&quot;layoutSubviews&quot;) 作为参数，从而调用了 GKPhotoBrowser 类的 layoutSubviews 方法。
+if (super_func) super_func(self, sel_registerName(&quot;layoutSubviews&quot;));
 
 [super layoutSubviews];</string>
 	<key>IDECodeSnippetIdentifier</key>

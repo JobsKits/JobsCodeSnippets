@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>FlowLayout</string>
@@ -13,10 +12,10 @@
 
 private lazy var flowLayout: UICollectionViewFlowLayout = {
     UICollectionViewFlowLayout()
-        .byScrollDirection(.vertical)
-        .byMinimumLineSpacing(10)
-        .byMinimumInteritemSpacing(10)
-        .bySectionInset(UIEdgeInsets(top: 10, left: 12, bottom: 10, right: 12))
+        .byScrollDirection(.vertical) // 设置滚动方向
+        .byMinimumLineSpacing(10) // 设置行间距
+        .byMinimumInteritemSpacing(10) // 设置列间距
+        .bySectionInset(UIEdgeInsets(top: 10, left: 12, bottom: 10, right: 12)) // 设置分区边距
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>EE7A6960-DA28-4B6F-ADBD-B72E86F39806</string>
@@ -25,7 +24,7 @@ private lazy var flowLayout: UICollectionViewFlowLayout = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UICollectionViewFlowLayout</string>
 	<key>IDECodeSnippetUserSnippet</key>

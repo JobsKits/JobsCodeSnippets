@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>JobsTextField</string>
@@ -13,55 +12,55 @@
 
 private lazy var titleTF: JobsTextField = {
     JobsTextField()
-        .byTextFieldConfig({ textField in
+        .byTextFieldConfig({ textField in // 设置 Text Field Config
             textField
-                .byPlaceholder("请输入内容（必填）")
-                .byPlaceholderFont(.PingFangSC.Regular(14))
-                .byPlaceholderColor("#BBBBBB".cor)
-                .byFont(.PingFangSC.Regular(14))
-                .byTextColor("#BBBBBB".cor)
-                .byKeyboardType(.default)
-                .byReturnKeyType(.next)
-                .byClearButtonMode(.whileEditing)
-                .byRightView(
+                .byPlaceholder(&quot;请输入内容（必填）&quot;) // 设置占位文字
+                .byPlaceholderFont(.PingFangSC.Regular(14)) // 设置占位字体
+                .byPlaceholderColor(&quot;#BBBBBB&quot;.cor) // 设置占位颜色
+                .byFont(.PingFangSC.Regular(14)) // 设置字体
+                .byTextColor(&quot;#BBBBBB&quot;.cor) // 设置文字颜色
+                .byKeyboardType(.default) // 设置键盘类型
+                .byReturnKeyType(.next) // 设置返回键
+                .byClearButtonMode(.whileEditing) // 设置清除按钮
+                .byRightView( // 设置 Right View
                     UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-                        .byAddSubviewRetSuper(
+                        .byAddSubviewRetSuper( // 设置 Add Subview Ret Super
                             UIButton.sys()
-                                .bySize(CGSizeMake(20, 20))
+                                .bySize(CGSizeMake(20, 20)) // 设置 Size
                                 /// 背景图片
-                                .byBackgroundImage("删除".img, for: .normal)
+                                .byBackgroundImage(&quot;删除&quot;.img) // 设置背景图
                                 /// 普通@点按事件触发
-                                .onTap { [weak self] sender in
+                                .onTap { [weak self] sender in // 绑定点按事件
                                     guard let self else { return }
                                     sender.isSelected.toggle()
-                                    titleTF.text = ""
+                                    titleTF.byText(&quot;&quot;) // 清空文本
                                 }
                         )
                 )
-                .byRightViewMode(.whileEditing)
+                .byRightViewMode(.whileEditing) // 设置 Right View Mode
                 /// 输入框由不活跃状态 ➤ 活跃状态 只调用一次
-                .byBeginEditing { value in
-                    self.titleTF.byBorderColor("#C33E2D".cor)
-                        .byBorderWidth(0.5)
-                        .byMasksToBounds(YES)
-                    print("✍️ email begin:", value)
+                .byBeginEditing { value in // 绑定开始编辑
+                    self.titleTF.byBorderColor(&quot;#C33E2D&quot;.cor)
+                        .byBorderWidth(0.5) // 设置边框宽度
+                        .byMasksToBounds(YES) // 设置图层裁剪
+                    print(&quot;✍️ email begin:&quot;, value)
                 }
                 /// 效果@等于父系方法UIControl.byAddAction.editingChanged，只不过比父系方法先调用
-                .byOnInput(limit: nil) { [weak self] char, value, mode, isLimited in
+                .byOnInput(limit: nil) { [weak self] char, value, mode, isLimited in // 设置 On Input
                     guard let self else { return }
                     self.buttonStatusToChange()
                 }
-                .byEndEditing { value in
-                    print("✅ email end:", value)
-                    self.titleTF.byBorderColor("#eaeaea".cor)
+                .byEndEditing { value in // 绑定结束编辑
+                    print(&quot;✅ email end:&quot;, value)
+                    self.titleTF.byBorderColor(&quot;#eaeaea&quot;.cor)
                 }
         })
-        .byInsetTop(14)
-        .byInsetLeft(12)
-        .byInsetRight(12)
-        .byInsetBottom(14)
+        .byInsetTop(14) // 设置 Inset Top
+        .byInsetLeft(12) // 设置 Inset Left
+        .byInsetRight(12) // 设置 Inset Right
+        .byInsetBottom(14) // 设置 Inset Bottom
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -70,30 +69,30 @@ private lazy var titleTF: JobsTextField = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor("#eaeaea".cor)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
+        .byBorderColor(&quot;#eaeaea&quot;.cor) // 设置边框颜色
+        .byBorderWidth(0.5) // 设置边框宽度
+        .byMasksToBounds(YES) // 设置图层裁剪
+        .byClipsToBounds(YES) // 设置裁剪
         /// 切角@平面四个角全切
-        .byCornerRadius(8.h)
+        .byCornerRadius(8.h) // 设置圆角
         /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
-        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
     }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>AF85CDE6-ADC3-4DD2-96DB-C210292D302D</string>

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@Btn</string>
@@ -14,184 +13,105 @@
     if(!_usrNameBtn){
         @jobs_weakify(self)
         _usrNameBtn = UIButton.jobsInit()
-            .bgColorBy(JobsWhiteColor)
-            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePadding(1)
-            .jobsResetBtnImage(@"APPLY NOW".img)
-            .jobsResetBtnBgImage(@"APPLY NOW".img)
-            .jobsResetBtnTitleCor(JobsWhiteColor)
-            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(@"APPLY NOW".tr)
-            .onClickBy(^(UIButton *x){
-                JobsLog(@"普通的点击事件");
+            .byBgColor(JobsWhiteColor) // 设置背景色
+            .byTitle(@&quot;APPLY NOW&quot;.tr) // 设置标题
+            .byTitleCor(JobsWhiteColor) // 设置标题颜色
+            .byTitleFont(UIFontWeightBoldSize(JobsWidth(12))) // 设置标题字体
+            .byImage(@&quot;APPLY NOW&quot;.img) // 设置图片
+            .byBackgroundImage(@&quot;APPLY NOW&quot;.img) // 设置背景图
+            .byImagePlacement(NSDirectionalRectEdgeLeading) // 设置图文方向
+            .byImagePadding(1) // 设置图文间距
+            .onClickBy(^(UIButton *x){ // 绑定点按事件
+                JobsLog(@&quot;普通的点击事件&quot;);
             })
-            .onClickAppendBy(^(UIButton *x){
-                JobsLog(@"追加的点击事件");
+            .onClickAppendBy(^(UIButton *x){ // 追加点按事件
+                JobsLog(@&quot;追加的点击事件&quot;);
             })
-            .onLongPressGestureBy(^(id data){
-                JobsLog(@"普通的长按事件");
+            .onLongPressGestureBy(^(id data){ // 绑定长按事件
+                JobsLog(@&quot;普通的长按事件&quot;);
             })
-            .onLongPressGestureAppendBy(^(id data){
-                JobsLog(@"追加的长按事件");
+            .onLongPressGestureAppendBy(^(id data){ // 追加长按事件
+                JobsLog(@&quot;追加的长按事件&quot;);
             })
-            .addOn(self.view)
-            .byAdd(^(MASConstraintMaker *make) {
+            .addOn(self.view) // 加入父视图
+            .byAdd(^(MASConstraintMaker *make) { // 部署约束
                 @jobs_strongify(self)
-                // TODO
+                make.center.equalTo(self.view);
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(180), JobsWidth(44)));
             });
         _usrNameBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _usrNameBtn;
 }
+
 /// 普通文本按钮
 -(BaseButton *)registerBtn{
     if(!_registerBtn){
+        @jobs_weakify(self)
         _registerBtn = BaseButton.initByTextModel(jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
-            data.text = JobsInternationalization(@"REGISTER");
-            data.textCor = JobsCor(@"#C90000");
-            data.font = bayonRegular(JobsWidth(15));
+            data
+                .byText(JobsInternationalization(@&quot;REGISTER&quot;)) // 设置文本
+                .byTextCor(JobsCor(@&quot;#C90000&quot;)) // 设置文本颜色
+                .byFont(bayonRegular(JobsWidth(15))); // 设置字体
         }))
-        .bgColorBy(JobsWhiteColor)
-        .onClickBy(^(UIButton *x){
-            JobsLog(@"");
+        .byBgColor(JobsWhiteColor) // 设置背景色
+        .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 设置图层
+            data
+                .byLayerCor(JobsCor(@&quot;#C90000&quot;)) // 设置边框颜色
+                .byJobsWidth(1) // 设置边框宽度
+                .byCornerRadiusValue(JobsWidth(8)); // 设置圆角
+        }))
+        .onClickBy(^(UIButton *x){ // 绑定点按事件
+            JobsLog(@&quot;点击注册&quot;);
         })
-        .onLongPressGestureBy(^(id data){
-            JobsLog(@"");
+        .onLongPressGestureBy(^(id data){ // 绑定长按事件
+            JobsLog(@&quot;长按注册&quot;);
         })
-        .setLayerBy((jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-            data.layerCor = JobsCor(@"#C90000");
-            data.jobsWidth = 1;
-            data.cornerRadiusValue = JobsWidth(8);
-        })))
-        .addOn(self.view)
-        .byAdd(^(MASConstraintMaker *make) {
+        .addOn(self.view) // 加入父视图
+        .byAdd(^(MASConstraintMaker *make) { // 部署约束
             @jobs_strongify(self)
-            // TODO
+            make.left.right.equalTo(self.view).inset(JobsWidth(16));
+            make.height.mas_equalTo(JobsWidth(44));
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-JobsWidth(16));
         });
     }return _registerBtn;
 }
- /// 富文本按钮
--(BaseButton *)applyNowBtn{
-    if(!_applyNowBtn){
-        @jobs_weakify(self)
-        _applyNowBtn = BaseButton
-            .jobsInit()
-            .jobsResetBtnNormalAttributedTitle(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray &lt;__kindof JobsRichTextConfig *&gt;* _Nullable data) {
-                data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                @jobs_strongify(self)
-                data1.font = UIFontWeightRegularSize(14);
-                data1.textCor = JobsCor(@"#666666");
-                data1.targetString = self.richTextMutArr[0];
-                data1.paragraphStyle = self.jobsParagraphStyleCenter;
-            })).add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                @jobs_strongify(self)
-                data1.font = UIFontWeightRegularSize(14);
-                data1.textCor = JobsCor(@"#BA9B77");
-                data1.targetString = self.richTextMutArr[1];
-                data1.paragraphStyle = self.jobsParagraphStyleCenter;
-            })).add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                @jobs_strongify(self)
-                data1.font = UIFontWeightRegularSize(14);
-                data1.textCor = JobsCor(@"#666666");
-                data1.targetString = self.richTextMutArr[2];
-                data1.paragraphStyle = self.jobsParagraphStyleCenter;
-            }));
-        }))).bgColorBy(JobsWhiteColor)
-            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePadding(1)
-            .jobsResetBtnImage(@"APPLY NOW".img)
-            .jobsResetBtnBgImage(@"APPLY NOW".img)
-            .jobsResetBtnTitleCor(JobsWhiteColor)
-            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(@"APPLY NOW".tr)
-            .onClickBy(^(UIButton *x){
-                @jobs_strongify(self)
-                x.selected = !x.selected;
-                if (self.objBlock) self.objBlock(x);
-            })
-            .onLongPressGestureBy(^(id data){
-                JobsLog(@"");
-            })
-            .addOn(self.view)
-            .byAdd(^(MASConstraintMaker *make) {
-                @jobs_strongify(self)
-                // TODO
-            });
-    }return _applyNowBtn;
-}
-/// SDWebImage按钮
--(UIButton *)mailBtn{
-     if(!_mailBtn){
-         @jobs_weakify(self)
-         _mailBtn = BaseButton.jobsInit()
-             .imageURL(@"".jobsUrl)
-             .placeholderImage(JobsIMG(@"小狮子"))
-             .options(SDWebImageRefreshCached)/// 强制刷新缓存
-             .completed(^(UIImage * _Nullable image,
-                          NSError * _Nullable error,
-                          SDImageCacheType cacheType,
-                          NSURL * _Nullable imageURL) {
-                 if (error) {
-                     JobsLog(@"图片加载失败: %@-%@", error,imageURL);
-                 } else {
-                     JobsLog(@"图片加载成功");
-                 }
-             })
-             .onClickBy(^(UIButton *x){
-                 @jobs_strongify(self)
-                 if (self.objBlock) self.objBlock(x);
-             })
-             .onLongPressGestureBy(^(id data){
-                 JobsLog(@"");
-             })
-             .addOn(self.view)
-             .byAdd(^(MASConstraintMaker *make) {
-                 @jobs_strongify(self)
-                 // TODO
-             });
-             .bgNormalLoad();
-     }return _mailBtn;
- }
+
 /// 倒计时按钮
 -(UIButton *)countdownBtn{
     if (!_countdownBtn) {
         @jobs_weakify(self)
-        _countdownBtn = jobsMakeButton(^(__kindof UIButton * _Nullable btn) {//
+        _countdownBtn = jobsMakeButton(^(__kindof UIButton * _Nullable btn) {
             @jobs_strongify(self)
-            /// 基础 UI
-            btn.jobsResetBtnBgCor(HEXCOLOR(0xAE8330))
-               .jobsResetBtnTitle(JobsInternationalization(@"获取验证码"))
-               .jobsResetBtnTitleCor(JobsWhiteColor)
-               .jobsResetBtnTitleFont(UIFontWeightRegularSize(24))
-               /// Timer 配置（UIButton+Timer 提供的属性）
-               .byTimerType(JobsTimerTypeGCD)
-               .byTimerStyle(TimerStyle_anticlockwise)  // 倒计时模式
-               .byStartTime(8)                          // 总时长 8 秒
-               .byTimeInterval(1)
-               .byClickWhenTimerCycle(YES)              // 计时器运行期间：禁止点击
-               .byOnTick(^(CGFloat time){
-                   btn.jobsResetBtnTitle([NSString stringWithFormat:@"%f",ceil(time)].add(JobsSpace).add(@"秒"));
-               })
-               .byOnFinish(^(JobsTimer *_Nullable timer){
-                   NSLog(@"");
-               })
-               /// 点击开始倒计时
-               .onClickBy(^(UIButton *x){
-                   x.startTimer();
-               })
-               .jobsResetBtnCornerRadiusValue(JobsWidth(18))
-               .addOn(self.view)
-               .byAdd(^(MASConstraintMaker *make) {
-                   @jobs_strongify(self)
-                   make.centerX.equalTo(self.view);
-                   make.top.equalTo(self.countdownView.mas_bottom).offset(JobsWidth(12));
-                   make.height.mas_equalTo(JobsWidth(80));
-                   make.width.mas_equalTo(JobsWidth(180));
-               });
+            btn
+                .byBgColor(HEXCOLOR(0xAE8330)) // 设置背景色
+                .byTitle(JobsInternationalization(@&quot;获取验证码&quot;)) // 设置标题
+                .byTitleCor(JobsWhiteColor) // 设置标题颜色
+                .byTitleFont(UIFontWeightRegularSize(24)) // 设置标题字体
+                .byTimerType(JobsTimerTypeGCD) // 设置计时器类型
+                .byTimerStyle(TimerStyle_anticlockwise) // 设置倒计时模式
+                .byStartTime(8) // 设置总时长
+                .byTimeInterval(1) // 设置时间间隔
+                .byClickWhenTimerCycle(YES) // 计时期间禁止点击
+                .byOnTick(^(CGFloat time){ // 设置倒计时回调
+                    btn.byTitle([NSString stringWithFormat:@&quot;%f&quot;,ceil(time)].add(JobsSpace).add(@&quot;秒&quot;));
+                })
+                .byOnFinish(^(JobsTimer *_Nullable timer){ // 设置完成回调
+                    JobsLog(@&quot;倒计时完成&quot;);
+                })
+                .onClickBy(^(UIButton *x){ // 绑定点按事件
+                    x.startTimer();
+                })
+                .byCornerRadius(JobsWidth(18)) // 设置圆角
+                .addOn(self.view) // 加入父视图
+                .byAdd(^(MASConstraintMaker *make) { // 部署约束
+                    make.centerX.equalTo(self.view);
+                    make.height.mas_equalTo(JobsWidth(80));
+                    make.width.mas_equalTo(JobsWidth(180));
+                });
         });
     }return _countdownBtn;
 }
-[self.countdownView.timer stop];
-self.countdownBtn.timerDestroy();</string>
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3E747309-55E5-44FB-8C99-A56BF1220256</string>
 	<key>IDECodeSnippetLanguage</key>

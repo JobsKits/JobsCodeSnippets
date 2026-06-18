@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>VC</string>
@@ -17,41 +16,41 @@ class &lt;#自定义的类名#&gt;: UIViewController {
     /// 1️⃣ 初始化阶段
     override func loadView() {
         super.loadView()
-        print("🟢 loadView() - 负责创建或加载视图层级")
+        print(&quot;🟢 loadView() - 负责创建或加载视图层级&quot;)
     }
     /// 2️⃣ 视图加载完成（适合初始化数据、绑定、UI配置）
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("🟢 viewDidLoad() - 视图加载完成，可安全访问 self.view")
+        print(&quot;🟢 viewDidLoad() - 视图加载完成，可安全访问 self.view&quot;)
     }
     /// 3️⃣ 视图即将出现（适合控制状态栏、导航栏显示、动画准备）
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("🟠 viewWillAppear() - 视图即将显示")
+        print(&quot;🟠 viewWillAppear() - 视图即将显示&quot;)
     }
     /// 4️⃣ 视图已出现（适合动画、网络请求等）
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("🟢 viewDidAppear() - 视图已显示完成")
+        print(&quot;🟢 viewDidAppear() - 视图已显示完成&quot;)
     }
     /// 5️⃣ 视图即将消失（适合保存状态、取消任务）
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("🟡 viewWillDisappear() - 视图即将被移除")
+        print(&quot;🟡 viewWillDisappear() - 视图即将被移除&quot;)
     }
     /// 6️⃣ 视图已消失（适合释放资源、通知）
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("🔴 viewDidDisappear() - 视图已被移除")
+        print(&quot;🔴 viewDidDisappear() - 视图已被移除&quot;)
     }
     /// 7️⃣ 内存警告（iOS 低内存时触发）
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        print("⚠️ didReceiveMemoryWarning() - 收到内存警告")
+        print(&quot;⚠️ didReceiveMemoryWarning() - 收到内存警告&quot;)
     }
     /// 8️⃣ 销毁（对象释放）
     deinit {
-        print("💀 deinit - 控制器已销毁")
+        print(&quot;💀 deinit - 控制器已销毁&quot;)
     }
 }
 </string>
@@ -62,7 +61,7 @@ class &lt;#自定义的类名#&gt;: UIViewController {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@ViewController</string>
 	<key>IDECodeSnippetUserSnippet</key>

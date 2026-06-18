@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@NSNotification</string>
@@ -32,7 +31,7 @@
                             id _Nullable arg) {
     @jobs_strongify(self)
     NSNotification *notification = (NSNotification *)arg;
-    NSLog(@"通知传递过来的 = %@",notification.object);
+    NSLog(@&quot;通知传递过来的 = %@&quot;,notification.object);
 }];</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>2F253D33-35B8-407B-AE16-933659BA6858</string>

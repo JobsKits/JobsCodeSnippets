@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>fwb</string>
@@ -16,44 +15,44 @@ UILabel().richTextBy(runs, paragraphStyle: ps)
 // MARK: 设置富文本@UIButton
 UIButton.sys()
     /// 富文本字@设置按钮主标题
-    .byRichTitle(JobsRichText.make([
-        JobsRichRun(.text("¥99")).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
-        JobsRichRun(.text(" /月")).font(.systemFont(ofSize: 16)).color(.white)
+    .byRichTitle(JobsRichText.make([ // 设置 Rich Title
+        JobsRichRun(.text(&quot;¥99&quot;)).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
+        JobsRichRun(.text(&quot; /月&quot;)).font(.systemFont(ofSize: 16)).color(.white)
     ]))
      /// 富文本字@设置按钮副标题
-    .byRichSubTitle(JobsRichText.make([
-        JobsRichRun(.text("原价 ")).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8)),
-        JobsRichRun(.text("¥199")).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow)
+    .byRichSubTitle(JobsRichText.make([ // 设置 Rich Sub Title
+        JobsRichRun(.text(&quot;原价 &quot;)).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8)),
+        JobsRichRun(.text(&quot;¥199&quot;)).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow)
     ]))
 // MARK: 设置富文本@UITextView
 UITextView().richTextBy(runs, paragraphStyle: ps)
 UITextView()
-        .byAttributedText(NSMutableAttributedString(
-            string: "🔗 默认蓝色链接（系统样式）：",
+        .byAttributedText(NSMutableAttributedString( // 设置富文本
+            string: &quot;🔗 默认蓝色链接（系统样式）：&quot;,
             attributes: [
-                .font: UIFont.systemFont(ofSize: 15),
-                .foregroundColor: UIColor.secondaryLabel
+                .font: UIFont.systemFont(ofSize: 15), // 配置链式能力
+                .foregroundColor: UIColor.secondaryLabel // 配置链式能力
             ])
-            .byAdd(NSAttributedString(
-                string: " Apple 官网",
+            .byAdd(NSAttributedString( // 部署约束
+                string: &quot; Apple 官网&quot;,
                 attributes: [
-                    .link: URL(string: "https://www.apple.com")!,
-                    .font: UIFont.boldSystemFont(ofSize: 16)
+                    .link: URL(string: &quot;https://www.apple.com&quot;)!,
+                    .font: UIFont.boldSystemFont(ofSize: 16) // 配置链式能力
                 ]))
-            .byAdd(NSAttributedString(
-                string: "\n客服电话：400-123-4567",
+            .byAdd(NSAttributedString( // 部署约束
+                string: &quot;\n客服电话：400-123-4567&quot;,
                 attributes: [.font: UIFont.systemFont(ofSize: 15)]
             )))
         /// 富文本字@点击事件
-        .linkTap
-        .observe(on: MainScheduler.instance)
-        .subscribe(onNext: { [weak self] url in
+        .linkTap // 配置链式能力
+        .observe(on: MainScheduler.instance) // 配置链式能力
+        .subscribe(onNext: { [weak self] url in // 配置链式能力
             guard let self else { return }
-            if url.scheme == "click" {
+            if url.scheme == &quot;click&quot; {
                 self.presentAlert(for: url.absoluteString)
             }
         })
-        .disposed(by: disposeBag)
+        .disposed(by: disposeBag) // 配置链式能力
 // MARK: 设置富文本@UITextField
 UITextField().richTextBy(runs, paragraphStyle: ps)
 
@@ -65,18 +64,18 @@ let ps = jobsMakeParagraphStyle {
 }
 // 富文本配置数组
 let runs: [JobsRichRun] = [
-    JobsRichRun(.text("欢迎使用 "))
-        .font(.systemFont(ofSize: 18))
-        .color(.secondaryLabel),
+    JobsRichRun(.text(&quot;欢迎使用 &quot;))
+        .font(.systemFont(ofSize: 18)) // 配置链式能力
+        .color(.secondaryLabel), // 配置链式能力
 
-    JobsRichRun(.text("JobsRichText "))
-        .font(.boldSystemFont(ofSize: 18))
-        .color(.systemBlue)
-        .underline(.single, color: .systemBlue),
+    JobsRichRun(.text(&quot;JobsRichText &quot;))
+        .font(.boldSystemFont(ofSize: 18)) // 配置链式能力
+        .color(.systemBlue) // 配置链式能力
+        .underline(.single, color: .systemBlue), // 配置链式能力
 
-    JobsRichRun(.text("封装示例"))
-        .font(.systemFont(ofSize: 18))
-        .strike(.single, color: .systemRed)
+    JobsRichRun(.text(&quot;封装示例&quot;))
+        .font(.systemFont(ofSize: 18)) // 配置链式能力
+        .strike(.single, color: .systemRed) // 配置链式能力
 ]
 // MARK: 设置富文本@超链接
 let ps = jobsMakeParagraphStyle {
@@ -85,21 +84,21 @@ let ps = jobsMakeParagraphStyle {
 }
 
 let runs: [JobsRichRun] = [
-    JobsRichRun(.text("如需帮助，请联系 "))
-        .font(.systemFont(ofSize: 15))
-        .color(.secondaryLabel),
+    JobsRichRun(.text(&quot;如需帮助，请联系 &quot;))
+        .font(.systemFont(ofSize: 15)) // 配置链式能力
+        .color(.secondaryLabel), // 配置链式能力
 
-    JobsRichRun(.text("专属客服"))
-        .font(.systemFont(ofSize: 15))
-        .color(.systemBlue)
-        .link("click://customer")
+    JobsRichRun(.text(&quot;专属客服&quot;))
+        .font(.systemFont(ofSize: 15)) // 配置链式能力
+        .color(.systemBlue) // 配置链式能力
+        .link(&quot;click://customer&quot;)
 ]
 // MARK: 设置富文本@图
 // 图标附件
 let config = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium)
-let image = UIImage(systemName: "paperclip", withConfiguration: config)!
+let image = UIImage(systemName: &quot;paperclip&quot;, withConfiguration: config)!
 let att = NSTextAttachment()
-att.image = image
+att.byImage(image) // 设置附件图片
 
 let ps = jobsMakeParagraphStyle {
     $0.alignment = .center
@@ -108,9 +107,9 @@ let ps = jobsMakeParagraphStyle {
 
 let runs: [JobsRichRun] = [
     JobsRichRun(.attachment(att, CGSize(width: 16, height: 16))),
-    JobsRichRun(.text("  附件说明"))
-        .font(.systemFont(ofSize: 15))
-        .color(.secondaryLabel)
+    JobsRichRun(.text(&quot;  附件说明&quot;))
+        .font(.systemFont(ofSize: 15)) // 配置链式能力
+        .color(.secondaryLabel) // 配置链式能力
 ]
 // MARK: 利用代理设置富文本@点击事件
 extension RichTextDemoVC: UITextViewDelegate {
@@ -130,8 +129,8 @@ extension RichTextDemoVC: UITextViewDelegate {
 
         switch textItem.content {
         case .link(let url):
-            if url.scheme == "click" {
-                print("点击事件")
+            if url.scheme == &quot;click&quot; {
+                print(&quot;点击事件&quot;)
                 // 返回 nil 表示不执行系统默认行为
                 return nil
             }
@@ -143,13 +142,13 @@ extension RichTextDemoVC: UITextViewDelegate {
         }
     }
     // MARK: ✅ iOS16 及以下旧 API
-    @available(iOS, introduced: 10.0, deprecated: 17.0, message: "Use textView(_:primaryActionFor:) on iOS17+ instead")
+    @available(iOS, introduced: 10.0, deprecated: 17.0, message: &quot;Use textView(_:primaryActionFor:) on iOS17+ instead&quot;)
     func textView(_ textView: UITextView,
                   shouldInteractWith URL: URL,
                   in characterRange: NSRange,
                   interaction: UITextItemInteraction) -&gt; Bool {
-        if URL.scheme == "click" {
-            print("点击事件")
+        if URL.scheme == &quot;click&quot; {
+            print(&quot;点击事件&quot;)
             return false
         }
         return true

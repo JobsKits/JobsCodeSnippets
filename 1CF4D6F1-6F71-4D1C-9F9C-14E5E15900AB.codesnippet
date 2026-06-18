@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@UITextField</string>
@@ -13,24 +12,24 @@
     if(!_idTypeTextField){
         _idTypeTextField = jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
             textField.byDelegate(self)
-                .bySecureTextEntry(NO)
-                .byClearButtonMode(UITextFieldViewModeNever)
-                .byLeftViewMode(UITextFieldViewModeNever)
-                .byRightViewMode(UITextFieldViewModeNever)
-                .byText(@"")
-                .byFont(pingFangHKRegular(JobsWidth(14)))
-                .byTextCor(JobsBlackColor)
-                .byPlaceholder(@"ID Type".tr)
-                .byPlaceholderColor(JobsGrayColor)
-                .byPlaceholderFont(pingFangHKRegular(JobsWidth(14)));
+                .bySecureTextEntry(NO) // 设置密文输入
+                .byClearButtonMode(UITextFieldViewModeNever) // 设置清除按钮
+                .byLeftViewMode(UITextFieldViewModeNever) // 设置 Left View Mode
+                .byRightViewMode(UITextFieldViewModeNever) // 设置 Right View Mode
+                .byText(@&quot;&quot;) // 设置文本
+                .byFont(pingFangHKRegular(JobsWidth(14))) // 设置字体
+                .byTextCor(JobsBlackColor) // 设置文字颜色
+                .byPlaceholder(@&quot;ID Type&quot;.tr) // 设置占位文字
+                .byPlaceholderColor(JobsGrayColor) // 设置占位颜色
+                .byPlaceholderFont(pingFangHKRegular(JobsWidth(14))); // 设置占位字体
         })
-        .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-            data.layerCor = JobsCor(@"#DEDEDE");
+        .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 设置图层
+            data.layerCor = JobsCor(@&quot;#DEDEDE&quot;);
             data.jobsWidth = 1;
             data.cornerRadiusValue = JobsWidth(32 / 2);
         }))
-        .addOn(self.scrollView)
-        .byAdd(^(MASConstraintMaker *make) {
+        .addOn(self.scrollView) // 加入父视图
+        .byAdd(^(MASConstraintMaker *make) { // 部署约束
             @jobs_strongify(self)
             /// TODO
         });

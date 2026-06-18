@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>CollectionView</string>
@@ -13,11 +12,11 @@
 
 private lazy var collectionView: UICollectionView = {
     UICollectionView(frame: .zero,collectionViewLayout:UICollectionViewFlowLayout()
-        .byScrollDirection(.vertical)
-        .byMinimumLineSpacing(7.w)
-        .byMinimumInteritemSpacing(8.w)
-        .byItemSize(GridCell.cellSizeByData(nil))
-        .bySectionInset(UIEdgeInsets(top: 12.h, left: 8.w, bottom: 12.h, right: 8.w))
+        .byScrollDirection(.vertical) // 设置滚动方向
+        .byMinimumLineSpacing(7.w) // 设置行间距
+        .byMinimumInteritemSpacing(8.w) // 设置列间距
+        .byItemSize(GridCell.cellSizeByData(nil)) // 设置 item 尺寸
+        .bySectionInset(UIEdgeInsets(top: 12.h, left: 8.w, bottom: 12.h, right: 8.w)) // 设置分区边距
     )
 //        .byDataSource(self)
 //        .byDelegate(self)
@@ -33,41 +32,41 @@ private lazy var collectionView: UICollectionView = {
 //        .byScrollIndicatorInsets {
 //            containerTableView.scrollIndicatorInsets.byBottom(bottomInset)
 //        }
-        .byRegisterCell(UICollectionViewCell.self)
-        .byBackgroundView(nil)
-        .byDragInteractionEnabled(false)
-        .byAlwaysBounceVertical(true)
-        .byContentInsetTop(8)
-        .byExpandVerticalScrollDistance(200.h)
+        .byRegisterCell(UICollectionViewCell.self) // 注册 cell
+        .byBackgroundView(nil) // 设置背景视图
+        .byDragInteractionEnabled(false) // 设置 Drag Interaction Enabled
+        .byAlwaysBounceVertical(true) // 设置纵向回弹
+        .byContentInsetTop(8) // 设置 Content Inset Top
+        .byExpandVerticalScrollDistance(200.h) // 设置 Expand Vertical Scroll Distance
         // 非正式协议闭包化
-        .byTarget(self)
-        .numberOfItemsInSection { [weak self] (obj: AnyObject, cv: UICollectionView, section: Int) -&gt; Int in
+        .byTarget(self) // 设置目标对象
+        .numberOfItemsInSection { [weak self] (obj: AnyObject, cv: UICollectionView, section: Int) -&gt; Int in // 配置链式能力
             guard let self else { return }
             self.hItems ?? 0
         }
-        .cellForItemAt { _, cv, indexPath in
+        .cellForItemAt { _, cv, indexPath in // 配置 collection cell
             cv
-                .byDequeueCell(HCell.self, for: indexPath)
-                .byData(indexPath.item)
-                .onResult { _ in }
+                .byDequeueCell(HCell.self, for: indexPath) // 设置 Dequeue Cell
+                .byData(indexPath.item) // 设置 Data
+                .onResult { _ in } // 绑定事件
         }
-        .didSelectItemAt({ obj, cv, idx in
+        .didSelectItemAt({ obj, cv, idx in // 设置 item 选中事件
             cv.deselectItem(at: idx, animated: true)
-            print("点选逻辑")
+            print(&quot;点选逻辑&quot;)
         })
         // 空态按钮
-        .byEmptyButtonProvider { [unowned self] in
+        .byEmptyButtonProvider { [unowned self] in // 设置 Empty Button Provider
             UIButton.sys()
-               .byTitle("暂无数据", for: .normal)
-               .bySubTitle("点我填充示例数据", for: .normal)
-               .byImage("tray".sysImg, for: .normal)
-               .byImagePlacement(.top)
-               .onTap { [weak self] _ in
+               .byTitle(&quot;暂无数据&quot;) // 设置标题
+               .bySubTitle(&quot;点我填充示例数据&quot;) // 设置副标题
+               .byImage(&quot;tray&quot;.sysImg) // 设置图片
+               .byImagePlacement(.top) // 设置 Image Placement
+               .onTap { [weak self] _ in // 绑定点按事件
                    guard let self else { return }
                    self.collectionView.reloadData()   // ✅ reload 后会自动评估空态，无需你再手动调用
                }
                // 可选：不满意默认居中 -&gt; 自定义布局
-               .byEmptyLayout { btn, make, host in
+               .byEmptyLayout { btn, make, host in // 设置 Empty Layout
                    make.centerX.equalTo(host)
                    make.centerY.equalTo(host).offset(-40)
                    make.leading.greaterThanOrEqualTo(host).offset(16)
@@ -76,13 +75,13 @@ private lazy var collectionView: UICollectionView = {
                }
         }
         // 无数据@自定义视图
-        .byEmptyViewProvider { [unowned self] in
+        .byEmptyViewProvider { [unowned self] in // 设置 Empty View Provider
             JobsEmptyView()
-                .byOnTapRetry { [weak self] in
-                    "hello".tr.toast
+                .byOnTapRetry { [weak self] in // 设置 On Tap Retry
+                    &quot;hello&quot;.tr.toast
                 }
         }
-        .byEmptyViewLayout { emptyView, make, host in
+        .byEmptyViewLayout { emptyView, make, host in // 设置 Empty View Layout
             make.centerX.equalTo(host)
             make.centerY.equalTo(host).offset(-40)
             make.leading.greaterThanOrEqualTo(host).offset(16)
@@ -90,7 +89,7 @@ private lazy var collectionView: UICollectionView = {
             make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -99,15 +98,15 @@ private lazy var collectionView: UICollectionView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
@@ -115,12 +114,12 @@ private lazy var collectionView: UICollectionView = {
         }
 //        .showRefreshHeaderInfo(NO)   // 竖向Header + 横向Left
 //        .showRefreshFooterInfo(YES)  // 竖向Footer + 横向Right
-        .setLeftLottie(.custom(.init(animationName: "9squares_AlBoardman")))
+        .setLeftLottie(.custom(.init(animationName: &quot;9squares_AlBoardman&quot;))) // 配置链式能力
         .setRightLottie(.inherit)     // 继承全局（没有全局就回退菊花）
-        .enableRefreshHaptics(true)
-        .setRefreshSound("Sound.wav") 
+        .enableRefreshHaptics(true) // 配置链式能力
+        .setRefreshSound(&quot;Sound.wav&quot;)  // 配置链式能力
         // 下拉刷新
-        .byRefreshHeader(component: JobsDefaultHeader(),
+        .byRefreshHeader(component: JobsDefaultHeader(), // 设置 Refresh Header
                          container: self,
                          trigger: 66) { [weak self] in
             guard let self else { return }
@@ -132,7 +131,7 @@ private lazy var collectionView: UICollectionView = {
             }
         }
         // 上拉加载
-        .byRefreshFooter(component: JobsDefaultFooter(),
+        .byRefreshFooter(component: JobsDefaultFooter(), // 设置 Refresh Footer
                          container: self,
                          trigger: 66) { [weak self] in
             guard let self else { return }
@@ -147,7 +146,7 @@ private lazy var collectionView: UICollectionView = {
             }
         }
         // 左侧拉：比如“上一页/回退”
-        .configSideRefresh(with: JobsDefaultLeftRefresher(),
+        .configSideRefresh(with: JobsDefaultLeftRefresher(), // 配置链式能力
                            container: self,
                            at: .left,
                            trigger: 70) { [weak self] in
@@ -161,7 +160,7 @@ private lazy var collectionView: UICollectionView = {
             }
        }
        // 右侧拉：比如“下一页/加载更多卡片”
-       .configSideRefresh(with: JobsDefaultRightRefresher(),
+       .configSideRefresh(with: JobsDefaultRightRefresher(), // 配置链式能力
                           container: self,
                           at: .right,
                           trigger: 70) { [weak self] in
@@ -173,19 +172,19 @@ private lazy var collectionView: UICollectionView = {
                self.collectionView.switchSideRefresh(.right, to: .normal)
            }
        }
-      .setHeaderLottie(.custom(.init(animationName: "LottieLogo1")))
+      .setHeaderLottie(.custom(.init(animationName: &quot;LottieLogo1&quot;))) // 配置链式能力
       .setFooterLottie(.disabled) // 强制 footer 回退菊花（即使全局配置了）
-      .setRefreshSound("Sound.wav")
-      .byBorderColor(.cyan)
-      .byBorderWidth(0.5)
-      .byMasksToBounds(YES)
-      .byClipsToBounds(YES)
+      .setRefreshSound(&quot;Sound.wav&quot;) // 配置链式能力
+      .byBorderColor(.cyan) // 设置边框颜色
+      .byBorderWidth(0.5) // 设置边框宽度
+      .byMasksToBounds(YES) // 设置图层裁剪
+      .byClipsToBounds(YES) // 设置裁剪
       /// 切角@平面四个角全切
-      .byCornerRadius(8.h)
+      .byCornerRadius(8.h) // 设置圆角
       /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-      .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+      .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
       /// 切角@切固定角，兼容旧版本iOS系统
-      .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+      .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>44743799-8160-44B4-8483-768B40B72C00</string>
@@ -194,7 +193,7 @@ private lazy var collectionView: UICollectionView = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UICollectionView</string>
 	<key>IDECodeSnippetUserSnippet</key>

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>TextView</string>
@@ -13,36 +12,36 @@
 
 private lazy var tv1: UITextView = {
     UITextView()
-        .byFont(.systemFont(ofSize: 16))
-        .byKeyboardType(.default)
-        .byEditable(true)
-        .bySelectable(true)
-        .byTextContainerInset(UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10))
-        .byRoundedBorder(color: .systemGray4, width: 1, radius: 8)
-        .byPlaceHolder("哈哈哈哈".tr)
-        .byPlaceHolderCor(.blue)
-        .byPlaceHolderFont(.boldSystemFont(ofSize: 15))
-        .byHintLimit(12) { lb in
+        .byFont(.systemFont(ofSize: 16)) // 设置字体
+        .byKeyboardType(.default) // 设置键盘类型
+        .byEditable(true) // 设置可编辑
+        .bySelectable(true) // 设置可选择
+        .byTextContainerInset(UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10)) // 设置文本内边距
+        .byRoundedBorder(color: .systemGray4, width: 1, radius: 8) // 设置 Rounded Border
+        .byPlaceHolder(&quot;哈哈哈哈&quot;.tr) // 设置占位文字
+        .byPlaceHolderCor(.blue) // 设置占位颜色
+        .byPlaceHolderFont(.boldSystemFont(ofSize: 15)) // 设置占位字体
+        .byHintLimit(12) { lb in // 设置 Hint Limit
             lb.byFont(.monospacedDigitSystemFont(ofSize: 11, weight: .semibold))
-                .byTextColor(.red)
+                .byTextColor(.red) // 设置文字颜色
         }
-        .byOnInput(limit: nil) { [unowned self] char, value, mode, isLimited, text ,tv in
+        .byOnInput(limit: nil) { [unowned self] char, value, mode, isLimited, text ,tv in // 设置 On Input
             guard let self else { return }
-            // text 就是当前 UITextView.text（保证不是 nil，空就是 ""）
+            // text 就是当前 UITextView.text（保证不是 nil，空就是 &quot;&quot;）
             // value 仍然是“本次变更后的值”（由监听器计算出来的 new）
-            // char：删除/回车时为 ""
+            // char：删除/回车时为 &quot;&quot;
             // mode：space/delete/return/normal
             // isLimited：是否设置了限制（limit != nil）
-            print("✏️ char='\(char)' value='\(value)' mode=\(mode) limited=\(isLimited) text='\(text)'")
+            print(&quot;✏️ char=&apos;\(char)&apos; value=&apos;\(value)&apos; mode=\(mode) limited=\(isLimited) text=&apos;\(text)&apos;&quot;)
         }
-        .byBeginEditing { value in
-            print("✍️ begin:", value)
+        .byBeginEditing { value in // 绑定开始编辑
+            print(&quot;✍️ begin:&quot;, value)
         }
-        .byEndEditing { value in
-            print("✅ end:", value)
+        .byEndEditing { value in // 绑定结束编辑
+            print(&quot;✅ end:&quot;, value)
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -51,63 +50,63 @@ private lazy var tv1: UITextView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
+        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderWidth(0.5) // 设置边框宽度
+        .byMasksToBounds(YES) // 设置图层裁剪
+        .byClipsToBounds(YES) // 设置裁剪
         /// 切角@平面四个角全切
-        .byCornerRadius(8.h)
+        .byCornerRadius(8.h) // 设置圆角
         /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
-        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
     }()
 
 private lazy var tvRed: UITextView = {
     UITextView()
-        .byAttributedText(NSMutableAttributedString(
-            string: "🔴 自定义红色链接：",
+        .byAttributedText(NSMutableAttributedString( // 设置富文本
+            string: &quot;🔴 自定义红色链接：&quot;,
             attributes: [.font: UIFont.systemFont(ofSize: 15),
-                         .foregroundColor: UIColor.secondaryLabel]
+                         .foregroundColor: UIColor.secondaryLabel] // 配置链式能力
         ).byAdd(NSAttributedString(
-            string: " Jobs 官网",
-            attributes: [.link: URL(string: "https://www.google.com")!,
-                         .font: UIFont.boldSystemFont(ofSize: 16)]
+            string: &quot; Jobs 官网&quot;,
+            attributes: [.link: URL(string: &quot;https://www.google.com&quot;)!,
+                         .font: UIFont.boldSystemFont(ofSize: 16)] // 配置链式能力
         )).byAdd(NSAttributedString(
-            string: "\n客服电话：400-123-4567",
+            string: &quot;\n客服电话：400-123-4567&quot;,
             attributes: [.font: UIFont.systemFont(ofSize: 15)]
         )))
-        .byEditable(false)
-        .bySelectable(true)
-        .byDataDetectorTypes([.link, .phoneNumber])
-        .byLinkTextAttributes([
-            .foregroundColor: UIColor.systemRed,
-            .underlineStyle: NSUnderlineStyle.single.rawValue
+        .byEditable(false) // 设置可编辑
+        .bySelectable(true) // 设置可选择
+        .byDataDetectorTypes([.link, .phoneNumber]) // 设置数据识别
+        .byLinkTextAttributes([ // 设置 Link Text Attributes
+            .foregroundColor: UIColor.systemRed, // 配置链式能力
+            .underlineStyle: NSUnderlineStyle.single.rawValue // 配置链式能力
         ])
-        .byTextContainerInset(UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10))
-        .byRoundedBorder(color: .systemGray4, width: 1, radius: 8)
-        .jobs_onBeginEditing { value in
-            print("✍️ begin:", value)
+        .byTextContainerInset(UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10)) // 设置文本内边距
+        .byRoundedBorder(color: .systemGray4, width: 1, radius: 8) // 设置 Rounded Border
+        .jobs_onBeginEditing { value in // 设置 _on Begin Editing
+            print(&quot;✍️ begin:&quot;, value)
         }
-        .jobs_onEndEditing { value in
-            print("✅ end:", value)
+        .jobs_onEndEditing { value in // 设置 _on End Editing
+            print(&quot;✅ end:&quot;, value)
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -116,30 +115,30 @@ private lazy var tvRed: UITextView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
+        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderWidth(0.5) // 设置边框宽度
+        .byMasksToBounds(YES) // 设置图层裁剪
+        .byClipsToBounds(YES) // 设置裁剪
         /// 切角@平面四个角全切
-        .byCornerRadius(8.h)
+        .byCornerRadius(8.h) // 设置圆角
         /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
-        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>D6163A2E-091E-4B52-9FB4-A0F92DC00D2C</string>
@@ -148,7 +147,7 @@ private lazy var tvRed: UITextView = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UITextView</string>
 	<key>IDECodeSnippetUserSnippet</key>

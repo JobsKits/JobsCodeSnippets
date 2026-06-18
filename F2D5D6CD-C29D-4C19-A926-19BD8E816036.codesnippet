@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>noti</string>
@@ -13,30 +12,30 @@
 
 // MARK: - 发通知
 /// 1) 只发通知名：
-     self.post("RefreshUI")
-     NSObject.post("RefreshUI")
+     self.post(&quot;RefreshUI&quot;)
+     NSObject.post(&quot;RefreshUI&quot;)
 ///
 /// 2) 发 object：
-     self.post("IFSpecifiedTab", object: 3)
-     NSObject.post("IFSpecifiedTab", object: 3)
+     self.post(&quot;IFSpecifiedTab&quot;, object: 3)
+     NSObject.post(&quot;IFSpecifiedTab&quot;, object: 3)
 ///
 /// 3) 发 userInfo：
-     self.post("LoginStateChanged", userInfo: ["id": 1])
-     NSObject.post("LoginStateChanged", userInfo: ["id": 1])
+     self.post(&quot;LoginStateChanged&quot;, userInfo: [&quot;id&quot;: 1])
+     NSObject.post(&quot;LoginStateChanged&quot;, userInfo: [&quot;id&quot;: 1])
 ///
 /// 4) 同时发 object + userInfo：
-     self.post("SomethingChanged", object: model, userInfo: ["from": "mine"])
-     NSObject.post("SomethingChanged", object: model, userInfo: ["from": "mine"])
+     self.post(&quot;SomethingChanged&quot;, object: model, userInfo: [&quot;from&quot;: &quot;mine&quot;])
+     NSObject.post(&quot;SomethingChanged&quot;, object: model, userInfo: [&quot;from&quot;: &quot;mine&quot;])
 // MARK: - 接收通知
-self.on("通知名称") { [weak self] noti, obj, userInfo in
+self.on(&quot;通知名称&quot;) { [weak self] noti, obj, userInfo in
     guard let self else { return }
 //    guard noti is Notification else { return }
     guard let noti = noti as? Notification else { return }
     /// TODO
 }
 // MARK: - 移除通知
-"通知名称".removeNotification(self)
-Notification.Name("通知名称").removeNotification(self)
+&quot;通知名称&quot;.removeNotification(self)
+Notification.Name(&quot;通知名称&quot;).removeNotification(self)
 NotificationCenter.default.removeObserver(self)</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>F2D5D6CD-C29D-4C19-A926-19BD8E816036</string>
@@ -45,7 +44,7 @@ NotificationCenter.default.removeObserver(self)</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@通知📢</string>
 	<key>IDECodeSnippetUserSnippet</key>

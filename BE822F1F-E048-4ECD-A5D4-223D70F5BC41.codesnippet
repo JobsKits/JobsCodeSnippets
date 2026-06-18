@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>TableView</string>
@@ -15,14 +14,14 @@ import JobsSwiftBaseDefines
 
 private lazy var tableView: UITableView = {
     UITableView(frame: .zero, style: .insetGrouped)
-        .byDataSource(self)
-        .byDelegate(self)
-        .byRegisterCell(UITableViewCell.self)
-        .byNoContentInsetAdjustment()
-        .bySeparatorStyle(.singleLine)
-        .byNoSectionHeaderTopPadding()
-        .byContentInsetTop(8)
-        .byExpandVerticalScrollDistance(200.h)
+        .byDataSource(self) // 设置数据源
+        .byDelegate(self) // 设置代理
+        .byRegisterCell(UITableViewCell.self) // 注册 cell
+        .byNoContentInsetAdjustment() // 设置 No Content Inset Adjustment
+        .bySeparatorStyle(.singleLine) // 设置分割线样式
+        .byNoSectionHeaderTopPadding() // 设置 No Section Header Top Padding
+        .byContentInsetTop(8) // 设置 Content Inset Top
+        .byExpandVerticalScrollDistance(200.h) // 设置 Expand Vertical Scroll Distance
 //        .byContentInset({
 //            containerTableView.contentInset.byBottom(bottomInset)
 //        })
@@ -35,43 +34,43 @@ private lazy var tableView: UITableView = {
 //        .byScrollIndicatorInsets {
 //            containerTableView.scrollIndicatorInsets.byBottom(bottomInset)
 //        }
-        .byTableHeaderView(
+        .byTableHeaderView( // 设置表头
             UIView()
-                .byHeight(65)
-                .byBackgroundColor(.clear)
+                .byHeight(65) // 设置 Height
+                .byBackgroundColor(.clear) // 设置背景色
         )
         // 非正式协议闭包化
-        .byTarget(self)
-        .numberOfRowsInSection { [weak self] (obj: AnyObject, tv: UITableView, section: Int) -&gt; Int in
+        .byTarget(self) // 设置目标对象
+        .numberOfRowsInSection { [weak self] (obj: AnyObject, tv: UITableView, section: Int) -&gt; Int in // 配置链式能力
             guard let self else { return }
             self.rows ?? 0
         }
-        .cellForRowAt { _, tv, indexPath in
-            let c = tv.dequeueReusableCell(withIdentifier: "cell") ??
-                    UITableViewCell(style: .default, reuseIdentifier: "cell")
+        .cellForRowAt { _, tv, indexPath in // 配置 table cell
+            let c = tv.dequeueReusableCell(withIdentifier: &quot;cell&quot;) ??
+                    UITableViewCell(style: .default, reuseIdentifier: &quot;cell&quot;)
             var cfg = c.defaultContentConfiguration()
-            cfg.text = "Row \(indexPath.row)"
+            cfg.byText(&quot;Row \(indexPath.row)&quot;) // 设置文本
             c.contentConfiguration = cfg
             return c
         }
-        .didSelectRowAt { _, tv, indexPath in
+        .didSelectRowAt { _, tv, indexPath in // 设置行选中事件
             tv.deselectRow(at: indexPath, animated: true)
-            print("点选逻辑")
+            print(&quot;点选逻辑&quot;)
         }
         // 无数据@空态按钮
-        .byEmptyButtonProvider { [unowned self] in
+        .byEmptyButtonProvider { [unowned self] in // 设置 Empty Button Provider
             UIButton(type: .system)
-                .byTitle("暂无数据", for: .normal)
-                .bySubTitle("点我填充示例数据", for: .normal)
-                .byImage("tray".sysImg, for: .normal)
-                .byImagePlacement(.top)
-                .onTap { [weak self] _ in
+                .byTitle(&quot;暂无数据&quot;) // 设置标题
+                .bySubTitle(&quot;点我填充示例数据&quot;) // 设置副标题
+                .byImage(&quot;tray&quot;.sysImg) // 设置图片
+                .byImagePlacement(.top) // 设置 Image Placement
+                .onTap { [weak self] _ in // 绑定点按事件
                     guard let self else { return }
-                    self.items = (1...10).map { "Row \($0)" }
+                    self.items = (1...10).map { &quot;Row \($0)&quot; }
                     self.tableView.reloadData()   // ✅ reload 后会自动评估空态，无需你再手动调用
                 }
                 // 可选：不满意默认居中 -&gt; 自定义布局
-                .byEmptyLayout { btn, make, host in
+                .byEmptyLayout { btn, make, host in // 设置 Empty Layout
                     make.centerX.equalTo(host)
                     make.centerY.equalTo(host).offset(-40)
                     make.leading.greaterThanOrEqualTo(host).offset(16)
@@ -80,13 +79,13 @@ private lazy var tableView: UITableView = {
                 }
         }
         // 无数据@自定义视图
-        .byEmptyViewProvider { [unowned self] in
+        .byEmptyViewProvider { [unowned self] in // 设置 Empty View Provider
             JobsEmptyView()
-                .byOnTapRetry { [weak self] in
-                    "hello".tr.toast
+                .byOnTapRetry { [weak self] in // 设置 On Tap Retry
+                    &quot;hello&quot;.tr.toast
                 }
         }
-        .byEmptyViewLayout { emptyView, make, host in
+        .byEmptyViewLayout { emptyView, make, host in // 设置 Empty View Layout
             make.centerX.equalTo(host)
             make.centerY.equalTo(host).offset(-40)
             make.leading.greaterThanOrEqualTo(host).offset(16)
@@ -94,7 +93,7 @@ private lazy var tableView: UITableView = {
             make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
         }
         // 下拉刷新 Header
-        .byRefreshHeader(component: JobsDefaultHeader(),
+        .byRefreshHeader(component: JobsDefaultHeader(), // 设置 Refresh Header
                          container: self,
                          trigger: 66) { [weak self] in
             guard let self else { return }
@@ -105,7 +104,7 @@ private lazy var tableView: UITableView = {
             }
         }
         // 上拉加载 Footer
-        .byRefreshFooter(component: JobsDefaultFooter(),
+        .byRefreshFooter(component: JobsDefaultFooter(), // 设置 Refresh Footer
                          container: self,
                          trigger: 66) { [weak self] in
             guard let self else { return }
@@ -114,7 +113,7 @@ private lazy var tableView: UITableView = {
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) { [unowned self] make in
+        .byAddTo(view) { [unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -123,15 +122,15 @@ private lazy var tableView: UITableView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
@@ -139,10 +138,10 @@ private lazy var tableView: UITableView = {
         }
 //        .showRefreshHeaderInfo(NO)   // 竖向Header + 横向Left
 //        .showRefreshFooterInfo(YES)  // 竖向Footer + 横向Right
-        .setLeftLottie(.custom(.init(animationName: "9squares_AlBoardman")))
+        .setLeftLottie(.custom(.init(animationName: &quot;9squares_AlBoardman&quot;))) // 配置链式能力
         .setRightLottie(.inherit)     // 继承全局（没有全局就回退菊花）
         // 左侧拉：比如“上一页/回退”
-        .configSideRefresh(with: JobsDefaultLeftRefresher(),
+        .configSideRefresh(with: JobsDefaultLeftRefresher(), // 配置链式能力
                            container: self,
                            at: .left,
                            trigger: 70) { [weak self] in
@@ -156,7 +155,7 @@ private lazy var tableView: UITableView = {
             }
        }
        // 右侧拉：比如“下一页/加载更多卡片”
-       .configSideRefresh(with: JobsDefaultRightRefresher(),
+       .configSideRefresh(with: JobsDefaultRightRefresher(), // 配置链式能力
                           container: self,
                           at: .right,
                           trigger: 70) { [weak self] in
@@ -168,32 +167,32 @@ private lazy var tableView: UITableView = {
                self.tableView.switchSideRefresh(.right, to: .normal)
            }
        }
-      .setHeaderLottie(.custom(.init(animationName: "LottieLogo1")))
+      .setHeaderLottie(.custom(.init(animationName: &quot;LottieLogo1&quot;))) // 配置链式能力
       .setFooterLottie(.disabled) // 强制 footer 回退菊花（即使全局配置了）
       .enableRefreshHaptics(true) // 开启震动反馈
-      .setRefreshSound("Sound.wav")
-      .byBorderColor(.cyan)
-      .byBorderWidth(0.5)
-      .byMasksToBounds(YES)
-      .byClipsToBounds(YES)
+      .setRefreshSound(&quot;Sound.wav&quot;) // 配置链式能力
+      .byBorderColor(.cyan) // 设置边框颜色
+      .byBorderWidth(0.5) // 设置边框宽度
+      .byMasksToBounds(YES) // 设置图层裁剪
+      .byClipsToBounds(YES) // 设置裁剪
       /// 切角@平面四个角全切
-      .byCornerRadius(8.h)
+      .byCornerRadius(8.h) // 设置圆角
       /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-      .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+      .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
       /// 切角@切固定角，兼容旧版本iOS系统
-      .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+      .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
 }()
 
 extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int { Row.allCases.count }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {
         tableView
-            .byDequeueReusableCell(withType: UITableViewCell.self, for: indexPath)
-            .byData(data[indexPath.row])
-            .byText(Row(rawValue: indexPath.row)?.title)
-            .bySecondaryText("Section \(indexPath.section) · Row \(indexPath.row)")
-            .byAccessoryType(.disclosureIndicator)
-            .onResult { _ in
+            .byDequeueReusableCell(withType: UITableViewCell.self, for: indexPath) // 设置 Dequeue Reusable Cell
+            .byData(data[indexPath.row]) // 设置 Data
+            .byText(Row(rawValue: indexPath.row)?.title) // 设置文本
+            .bySecondaryText(&quot;Section \(indexPath.section) · Row \(indexPath.row)&quot;) // 设置 Secondary Text
+            .byAccessoryType(.disclosureIndicator) // 设置 Accessory Type
+            .onResult { _ in // 绑定事件
                 
             }
     }
@@ -224,7 +223,7 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UITableView</string>
 	<key>IDECodeSnippetUserSnippet</key>

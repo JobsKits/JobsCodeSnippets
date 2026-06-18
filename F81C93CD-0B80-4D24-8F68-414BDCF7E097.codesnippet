@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@ZYTextField</string>
@@ -16,34 +15,34 @@
         CGFloat TextFieldWidth = self.mj_w - JobsWidth(80);
         _textField = jobsMakeZYTextField(^(ZYTextField *_Nullable textField) {
             textField
-                .byPlaceholder(@"请输入搜索内容".tr)
-                .byDelegate(self)
-                .byLeftView(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-                    imageView.byImage(@"放大镜".img);
+                .byPlaceholder(@&quot;请输入搜索内容&quot;.tr) // 设置占位文字
+                .byDelegate(self) // 设置代理
+                .byLeftView(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) { // 设置 Left View
+                    imageView.byImage(@&quot;放大镜&quot;.img);
                 }))
-                .byTextCor(JobsPurpleColor)
-                .byInputAccessoryView(JobsAdNoticeView
-                                      .BySize(JobsAdNoticeView.viewSizeByModel(nil))
-                                      .JobsRichViewByModel2(nil)
-                                      .JobsBlock1(^(id _Nullable data) {
+                .byTextCor(JobsPurpleColor) // 设置文字颜色
+                .byInputAccessoryView(JobsAdNoticeView // 设置 Input Accessory View
+                                      .BySize(JobsAdNoticeView.viewSizeByModel(nil)) // 配置链式能力
+                                      .JobsRichViewByModel2(nil) // 配置链式能力
+                                      .JobsBlock1(^(id _Nullable data) { // 配置链式能力
 
                                       }))
-                .byLeftViewMode(UITextFieldViewModeAlways)
-                .byKeyboardAppearance(UIKeyboardAppearanceAlert)
-                .byReturnKeyType(UIReturnKeySearch)
-                .byPlaceHolderAlignment(NSTextAlignmentCenter)
-                .byLeftViewOffsetX(JobsWidth(5))
-                .byRightViewOffsetX(JobsWidth(3))
-                .addOn(self)
-                .byAdd(^(MASConstraintMaker *make) {
+                .byLeftViewMode(UITextFieldViewModeAlways) // 设置 Left View Mode
+                .byKeyboardAppearance(UIKeyboardAppearanceAlert) // 设置 Keyboard Appearance
+                .byReturnKeyType(UIReturnKeySearch) // 设置返回键
+                .byPlaceHolderAlignment(NSTextAlignmentCenter) // 设置 Place Holder Alignment
+                .byLeftViewOffsetX(JobsWidth(5)) // 设置 Left View Offset X
+                .byRightViewOffsetX(JobsWidth(3)) // 设置 Right View Offset X
+                .addOn(self) // 加入父视图
+                .byAdd(^(MASConstraintMaker *make) { // 部署约束
                     @jobs_strongify(self)
                     make.centerY.equalTo(self);
                     make.left.equalTo(self);
                     make.right.equalTo(self.cancelBtn.mas_left);
                     make.height.mas_equalTo(self.mj_h - JobsWidth(15));
                 })
-                .byBgColor(HEXCOLOR(0xFFFFFF))
-                .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+                .byBgColor(HEXCOLOR(0xFFFFFF)) // 设置背景色
+                .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) { // 设置图层
                     model.jobsWidth = .05f;
                     model.layerCor = JobsBlueColor;
                     model.cornerRadiusValue = JobsWidth(8);
@@ -58,7 +57,7 @@
             }return isValue(value);
         }] subscribeNext:^(NSString * _Nullable x) {
             @jobs_strongify(self)
-            JobsLog(@"输入的字符为 = %@",x);
+            JobsLog(@&quot;输入的字符为 = %@&quot;,x);
             if (self.objBlock) self.objBlock(x);
         }];
     }return _textField;
