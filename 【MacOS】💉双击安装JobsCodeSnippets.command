@@ -1,4 +1,12 @@
 #!/bin/zsh
+# 脚本自述：
+# - 脚本名称：【MacOS】💉双击安装JobsCodeSnippets.command
+# - 核心用途：执行“💉双击安装JobsCodeSnippets”对应的本机环境配置任务。
+# - 影响范围：可能安装、更新或修改当前用户的工具链与配置文件。
+# - 运行提示：运行后会先打印内置自述；终端模式按回车确认后继续，按 Ctrl+C 可取消。
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")" && pwd)"
+SCRIPT_PATH="${SCRIPT_DIR}/$(basename -- "$0")"
 #set -x  # 启用调试模式
 # 打印 "Jobs" logo
 jobs_logo() {
@@ -44,6 +52,20 @@ self_intro() {
     
     _JobsPrint_Red "按回车键继续..."
     read
+}
+# 展示同目录 README，并等待用户确认后执行。
+show_readme_and_wait() {
+  print -r -- '============================== 脚本内置自述 =============================='
+  print -r -- '脚本名称：【MacOS】💉双击安装JobsCodeSnippets.command'
+  print -r -- '核心用途：执行“💉双击安装JobsCodeSnippets”对应的本机环境配置任务。'
+  print -r -- '影响范围：可能安装、更新或修改当前用户的工具链与配置文件。'
+  print -r -- '取消方式：确认前按 Ctrl+C 终止，不会继续执行后续业务。'
+  print -r -- '============================================================================'
+    local readme_path="${SCRIPT_DIR}/README.md"
+    [[ -f "$readme_path" ]] || { _JobsPrint_Red "未找到配套 README.md：$readme_path"; return 1; }
+    cat "$readme_path"
+    echo ""
+    read -r "?👉 已阅读 README，按回车继续；按 Ctrl+C 取消：" _
 }
 # 打印当前脚本所在文件夹及其名称，并检查是否为指定文件夹
 print_current_dir_info() {
@@ -112,8 +134,8 @@ move_and_remove_folder() {
     rm -rf "$SOURCE_DIR"
     _JobsPrint_Green "删除成功。"
 }
-# 主函数
-main() {
+# 执行入口下沉后的完整业务流程和控制逻辑。
+run_main_business_flow() {
     # 打印 "Jobs" logo
     jobs_logo
     # 自述信息
@@ -134,7 +156,22 @@ main() {
     open_downloaded_folder
     # 移动内容并删除文件夹
     move_and_remove_folder
+    # 执行当前流程中的独立业务步骤：_JobsPrint_Green。
     _JobsPrint_Green "脚本执行完成。"
 }
+# 编排脚本的高层业务流程。
+# 初始化脚本运行环境，并集中承载原有的顶层执行逻辑。
+initialize_script_runtime() {
+  setopt NO_NOMATCH
+}
+# 编排脚本的高层业务流程。
+main() {
+  # 展示脚本内置自述，并按运行入口完成防误触确认。
+  show_readme_and_wait
+  # 初始化 Shell 选项、日志、依赖和入口运行状态。
+  initialize_script_runtime
+  # 执行入口下沉后的完整业务流程。
+  run_main_business_flow "$@"
+}
 
-main
+main "$@"
