@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@UITableView</string>
@@ -74,10 +73,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     return JobsBaseTableViewCell.cellStyleDefaultWithTableView(tableView)
-        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
-        .byIndexPath(indexPath)
-        .jobsRichElementsTableViewCellBy(self.datas[indexPath.row])
-            .JobsBlock1(^(id _Nullable data) {
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator) // 设置 Accessory Type
+        .byIndexPath(indexPath) // 设置 Index Path
+        .jobsRichElementsTableViewCellBy(self.datas[indexPath.row]) // 设置 Rich Elements Table View Cell By
+            .JobsBlock1(^(id _Nullable data) { // 配置链式能力
              
             });
 }
@@ -92,35 +91,35 @@ heightForFooterInSection:(NSInteger)section{
     return section ? [BaseTableViewHeaderFooterView heightForFooterInSection:nil] : JobsWidth(10);
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-/// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@"");
+/// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@&quot;&quot;);
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
                  viewForHeaderInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
         /// 什么不配置就是悬浮
         /// JobsHeaderFooterViewStyleNone 还是悬浮
         /// JobsHeaderViewStyle 不是悬浮
-        return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@"")
+        return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@&quot;&quot;)
             .byStyle(JobsHeaderViewStyle)/// 悬浮开关
             .bySection(section)/// 悬浮配置
-            .JobsRichViewByModel2(self.titleDatas[section])
-            .JobsBlock1(^(id _Nullable data) {
+            .JobsRichViewByModel2(self.titleDatas[section]) // 配置链式能力
+            .JobsBlock1(^(id _Nullable data) { // 配置链式能力
                 
             });
     }return nil;
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-/// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@"");
+/// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@&quot;&quot;);
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
                  viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
         /// 什么不配置就是悬浮
         /// JobsHeaderFooterViewStyleNone 还是悬浮
         /// JobsHeaderViewStyle 不是悬浮
-        return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@"")
+        return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@&quot;&quot;)
             .byStyle(JobsHeaderViewStyle)/// 悬浮开关
             .bySection(section)/// 悬浮配置
-            .JobsRichViewByModel2(self.titleDatas[section])
-            .JobsBlock1(^(id _Nullable data) {
+            .JobsRichViewByModel2(self.titleDatas[section]) // 配置链式能力
+            .JobsBlock1(^(id _Nullable data) { // 配置链式能力
                 
             });
     }return nil;
@@ -135,8 +134,8 @@ heightForFooterInSection:(NSInteger)section{
  
  // 在具体的子类去实现,分类调用异常
  -(void)setFrame:(CGRect)frame{
-     NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-     NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+     NSLog(@&quot;self.offsetXForEach = %f&quot;,self.offsetXForEach);
+     NSLog(@&quot;self.offsetYForEach = %f&quot;,self.offsetYForEach);
      frame.origin.x += self.offsetXForEach;
      frame.origin.y += self.offsetYForEach;
      frame.size.height -= self.offsetYForEach * 2;
@@ -167,12 +166,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView hideSeparatorLineAtLast:indexPath
                                   cell:cell];
-    cell.img = JobsIMG(@"向右的箭头（大）");
+    cell.img = JobsIMG(@&quot;向右的箭头（大）&quot;);
     @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {
         @jobs_strongify(self)
         BaiShaETProjMembersTBVCell1 *cell = (BaiShaETProjMembersTBVCell1 *)data;
-        NSLog(@"MMM - %ld",cell.index);
+        NSLog(@&quot;MMM - %ld&quot;,cell.index);
     }];
     
     [cell cutFirstAndLastTableViewCellByBackgroundCor:HEXCOLOR(0xFFFFFF)
@@ -194,27 +193,27 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView = jobsMakeTableViewByInsetGrouped(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
             tableView.bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
-                .bySeparatorColor(HEXCOLOR(0xEEE2C8))
-                .registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil)
-                .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
-                .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                .bySeparatorColor(HEXCOLOR(0xEEE2C8)) // 设置分割线颜色
+                .registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil) // 配置链式能力
+                .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0)) // 设置内容 inset
+                .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) { // 设置表头
                     /// TODO
                 })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-                .byTableFooterView(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
-                    label.byText(@"- 没有更多的内容了 -".tr)
-                        .byFont(UIFontWeightRegularSize(12))
-                        .byTextAlignment(NSTextAlignmentCenter)
-                        .byTextCor(HEXCOLOR(0xB0B0B0))
-                        .makeLabelByShowingType(UILabelShowingType_03);
+                .byTableFooterView(jobsMakeLabel(^(__kindof UILabel *_Nullable label) { // 设置表尾
+                    label.byText(@&quot;- 没有更多的内容了 -&quot;.tr)
+                        .byFont(UIFontWeightRegularSize(12)) // 设置字体
+                        .byTextAlignment(NSTextAlignmentCenter) // 设置文字对齐
+                        .byTextCor(HEXCOLOR(0xB0B0B0)) // 设置文字颜色
+                        .makeLabelByShowingType(UILabelShowingType_03); // 配置链式能力
                 })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-                .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                    data.title = @"NO MESSAGES FOUND".tr;
+                .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) { // 配置链式能力
+                    data.title = @&quot;NO MESSAGES FOUND&quot;.tr;
                     data.titleCor = JobsWhiteColor;
                     data.titleFont = bayonRegular(JobsWidth(30));
-                    data.normalImage = @"小狮子".img;
+                    data.normalImage = @&quot;小狮子&quot;.img;
                 }))
                 /// 普通的MJRefreshHeader（触发事件）@二选一
-                .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{ // 设置 MJRefresh Header
                     @jobs_strongify(self)
                     NSObject.feedbackGenerator(nil);/// 震动反馈
                     self-&gt;_tableView.endRefreshing(YES);
@@ -231,16 +230,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 /// MJRefreshHeader的拓展：下拉刷新Lottie动画@二选一
                 //.byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {})))
                 /// 普通的MJRefreshFooter（触发事件）
-                .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{ // 设置 MJRefresh Footer
                     @jobs_strongify(self)
                     NSObject.feedbackGenerator(nil);/// 震动反馈
                     self-&gt;_tableView.endRefreshing(YES);
                 }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
 
-                .byShowsVerticalScrollIndicator(NO)
-                .byShowsHorizontalScrollIndicator(NO)
-                .byScrollEnabled(YES)
-                .byBgCor(JobsClearColor);
+                .byShowsVerticalScrollIndicator(NO) // 设置纵向滚动条
+                .byShowsHorizontalScrollIndicator(NO) // 设置横向滚动条
+                .byScrollEnabled(YES) // 设置 Scroll Enabled
+                .byBgCor(JobsClearColor); // 设置背景色
 
             if(@available(iOS 11.0, *)) {
                 tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -259,7 +258,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 //              [tableView xzm_addNormalHeaderWithTarget:self
 //                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
 //                                                                                     id _Nullable arg) {
-//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
+//                  NSLog(@&quot;SSSS加载新的数据，参数: %@&quot;, arg);
 //                  @jobs_strongify(self)
 //                  /// 在需要结束刷新的时候调用（只能调用一次）
 //                  /// _tableView.endRefreshing();
@@ -269,7 +268,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 //              [tableView xzm_addNormalFooterWithTarget:self
 //                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
 //                                                                                     id _Nullable arg) {
-//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
+//                  NSLog(@&quot;SSSS加载新的数据，参数: %@&quot;, arg);
 //                  @jobs_strongify(self)
 //                  /// 在需要结束刷新的时候调用（只能调用一次）
 //                  /// _tableView.endRefreshing();
@@ -278,8 +277,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 //              [tableView.xzm_header beginRefreshing];
 //          }
         })
-        .addOn(self.view)
-        .byAdd(^(MASConstraintMaker *make) {
+        .addOn(self.view) // 加入父视图
+        .byAdd(^(MASConstraintMaker *make) { // 部署约束
             @jobs_strongify(self)
             make.left.right.bottom.equalTo(self.view);
             [self make:make topOffset:10];

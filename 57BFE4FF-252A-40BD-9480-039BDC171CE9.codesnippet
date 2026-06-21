@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@UITableViewCell</string>
@@ -31,8 +30,8 @@ UIViewModelProtocol_synthesize
          // 在具体的子类去实现,分类调用异常
          #pragma mark —— 复写父类方法
          -(void)setFrame:(CGRect)frame{
-         JobsLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-         JobsLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+         JobsLog(@&quot;self.offsetXForEach = %f&quot;,self.offsetXForEach);
+         JobsLog(@&quot;self.offsetYForEach = %f&quot;,self.offsetYForEach);
          frame.origin.x += self.offsetXForEach;
          frame.origin.y += self.offsetYForEach;
          frame.size.height -= self.offsetYForEach * 2;

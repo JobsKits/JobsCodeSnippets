@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@ViewGesture</string>
@@ -23,15 +22,15 @@ Prop_strong()UIScreenEdgePanGestureRecognizer *screenEdgePanGR;/// 屏幕边缘�
     _collectionView.minimumPressDuration = 0.1;
     _collectionView.numberOfTouchesRequired = 1;
     _collectionView.allowableMovement = 1;
-    _collectionView.userInteractionEnabled = YES;
+    _collectionView.byUserInteractionEnabled(YES); // 开启交互
     _collectionView.target = self;
     _collectionView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^(id _Nullable target, UILongPressGestureRecognizer *_Nullable arg) {
-        NSLog(@"");
+        NSLog(@&quot;&quot;);
     }];
     _collectionView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
     
     _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^(id _Nullable target, UITapGestureRecognizer *_Nullable arg) {
-        NSLog(@"");
+        NSLog(@&quot;&quot;);
     }];
     _collectionView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
 }

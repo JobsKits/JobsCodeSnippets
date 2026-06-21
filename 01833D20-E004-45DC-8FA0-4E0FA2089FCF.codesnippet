@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@Keyboard</string>
@@ -10,7 +9,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>相关类：
-#import "NSObject+Extras.h"
+#import &quot;NSObject+Extras.h&quot;
 /// 在初始化方法里面进行接入
 -(instancetype)init{
     if (self = [super init]) {
@@ -26,11 +25,11 @@
     /// 键盘弹起的时候的方法监听回调
     [self actionkeyboardUpNotificationBlock:^id(NSNotificationKeyboardModel *data) {
         @jobs_strongify(self)
-        NSLog(@"userInfo = %@",data.userInfo);
-        NSLog(@"beginFrame = %@",NSStringFromCGRect(data.beginFrame));
-        NSLog(@"endFrame = %@",NSStringFromCGRect(data.endFrame));
-        NSLog(@"keyboardOffsetY = %f",data.keyboardOffsetY);
-        NSLog(@"notificationName = %@",data.notificationName);
+        NSLog(@&quot;userInfo = %@&quot;,data.userInfo);
+        NSLog(@&quot;beginFrame = %@&quot;,NSStringFromCGRect(data.beginFrame));
+        NSLog(@&quot;endFrame = %@&quot;,NSStringFromCGRect(data.endFrame));
+        NSLog(@&quot;keyboardOffsetY = %f&quot;,data.keyboardOffsetY);
+        NSLog(@&quot;notificationName = %@&quot;,data.notificationName);
         
         // 键盘高度：data.keyboardOffsetY
         // view底的Y值：self.y + [MSPayView viewSizeWithModel:nil].height
@@ -52,7 +51,7 @@
     [self actionkeyboardDownNotificationBlock:^id(id data) {
         @jobs_strongify(self)
         self.y += gg;
-        NSLog(@"ddd = %f",self.origin.y);
+        NSLog(@&quot;ddd = %f&quot;,self.origin.y);
         return nil;
     }];
 }</string>

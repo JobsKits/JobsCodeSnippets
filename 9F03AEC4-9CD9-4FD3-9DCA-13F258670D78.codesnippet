@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>BarButtonItem</string>
@@ -13,11 +12,11 @@
 
 private lazy var barButtonItem: UIBarButtonItem = {
     UIBarButtonItem()
-        .byTitle("完成")
-        .byTitleFont(.systemFont(ofSize: 15))
-        .byTitleColor(.systemYellow)
-        .byStyle(.done)
-        .onTap { [weak self] _ in
+        .byTitle(&quot;完成&quot;) // 设置标题
+        .byTitleFont(.systemFont(ofSize: 15)) // 设置标题字体
+        .byTitleColor(.systemYellow) // 设置标题颜色
+        .byStyle(.done) // 设置样式
+        .onTap { [weak self] _ in // 绑定点按事件
             guard let self = self else { return }   // ✅ 确保生命周期安全
             view.endEditing(true)
     }
@@ -29,7 +28,7 @@ private lazy var barButtonItem: UIBarButtonItem = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UIBarButtonItem</string>
 	<key>IDECodeSnippetUserSnippet</key>

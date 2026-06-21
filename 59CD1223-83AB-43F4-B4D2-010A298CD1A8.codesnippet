@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -25,26 +24,26 @@ final class BSportHomeListAllSubVC: UIViewController {
     
     private lazy var segmentedDataSource: JXSegmentedTitleImageDataSource = {
         JXSegmentedTitleImageDataSource()
-            .byTitles(["全部".tr, "体育".tr, "真人".tr, "棋牌".tr, "电子".tr, "捕鱼".tr, "彩票".tr, "电竞".tr])
-            .byTitleColorGradientEnabled(YES)
-            .byTitleNormalColor("#666666".cor)
-            .byTitleSelectedColor("#C33E2D".cor)
-            .byTitleNormalFont(.PingFangSC.Semibold(14.fz))
-            .byTitleSelectedFont(.PingFangSC.Semibold(16.fz))
-            .byTitleImageType(.topImage)
-            .byNormalImages(["全部（未选择）","体育（未选择）","真人（未选择）","棋牌（未选择）","电子（未选择）","捕鱼（未选择）","彩票（未选择）","电竞（未选择）"])
-            .bySelectedImages(["全部（已选择）","体育（已选择）","真人（已选择）","棋牌（已选择）","电子（已选择）","捕鱼（已选择）","彩票（已选择）","电竞（已选择）"])
+            .byTitles([&quot;全部&quot;.tr, &quot;体育&quot;.tr, &quot;真人&quot;.tr, &quot;棋牌&quot;.tr, &quot;电子&quot;.tr, &quot;捕鱼&quot;.tr, &quot;彩票&quot;.tr, &quot;电竞&quot;.tr]) // 设置 Titles
+            .byTitleColorGradientEnabled(YES) // 设置 Title Color Gradient Enabled
+            .byTitleNormalColor(&quot;#666666&quot;.cor) // 设置 Title Normal Color
+            .byTitleSelectedColor(&quot;#C33E2D&quot;.cor) // 设置 Title Selected Color
+            .byTitleNormalFont(.PingFangSC.Semibold(14.fz)) // 设置 Title Normal Font
+            .byTitleSelectedFont(.PingFangSC.Semibold(16.fz)) // 设置 Title Selected Font
+            .byTitleImageType(.topImage) // 设置 Title Image Type
+            .byNormalImages([&quot;全部（未选择）&quot;,&quot;体育（未选择）&quot;,&quot;真人（未选择）&quot;,&quot;棋牌（未选择）&quot;,&quot;电子（未选择）&quot;,&quot;捕鱼（未选择）&quot;,&quot;彩票（未选择）&quot;,&quot;电竞（未选择）&quot;]) // 设置 Normal Images
+            .bySelectedImages([&quot;全部（已选择）&quot;,&quot;体育（已选择）&quot;,&quot;真人（已选择）&quot;,&quot;棋牌（已选择）&quot;,&quot;电子（已选择）&quot;,&quot;捕鱼（已选择）&quot;,&quot;彩票（已选择）&quot;,&quot;电竞（已选择）&quot;]) // 设置 Selected Images
     }()
     
     private lazy var listContainerView: JXSegmentedListContainerView = {
         JXSegmentedListContainerView(dataSource: self)
-            .byBackgroundColor(.clear)
-            .byIndexChange()
-            .byDidIndexChanged { from, to in
-                "切换完成：\(from) -&gt; \(to)".toast
+            .byBackgroundColor(.clear) // 设置背景色
+            .byIndexChange() // 设置 Index Change
+            .byDidIndexChanged { from, to in // 设置 Did Index Changed
+                &quot;切换完成：\(from) -&gt; \(to)&quot;.toast
             }
             /// 加载到目标视图上，并第一次配置新约束
-            .byAddTo(view) {[unowned self] make in
+            .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
                 if view.jobs_hasVisibleTopBar() {
                     make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                     make.left.right.bottom.equalToSuperview()
@@ -53,15 +52,15 @@ final class BSportHomeListAllSubVC: UIViewController {
                 }
              }
             ///（并未加载到目标视图上）第一次部署新约束
-            .byMakeConstraints { [unowned self] make in
+            .byMakeConstraints { [unowned self] make in // 部署约束
                 make.width.height.equalTo(AD(76))
             }
             /// 只修改某一条约束，其余约束不动
-            .byUpdateConstraints { [unowned self] make in
+            .byUpdateConstraints { [unowned self] make in // 更新约束
                 make.top.equalToSuperview().inset(8.h)
             }
             /// 清除以前的全部的旧约束，用目前最新的
-            .byRemakeConstraints { [unowned self] make in
+            .byRemakeConstraints { [unowned self] make in // 重建约束
                 make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)/// ⚠️需要特别注意⚠️
                 make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
                 make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
@@ -71,16 +70,16 @@ final class BSportHomeListAllSubVC: UIViewController {
 
     private lazy var segmentedView: JXSegmentedView = {
         JXSegmentedView()
-            .byDefaultSelectedIndex(0)
-            .byBackgroundColor(.clear)
-            .byListContainer(listContainerView, defaultIndex: 0)
-            .byDataSource(segmentedDataSource)
-            .byClickTransitionAnimationEnabled(false)
-            .byContentScrollViewConfig({ scrollView in
+            .byDefaultSelectedIndex(0) // 设置 Default Selected Index
+            .byBackgroundColor(.clear) // 设置背景色
+            .byListContainer(listContainerView, defaultIndex: 0) // 设置 List Container
+            .byDataSource(segmentedDataSource) // 设置数据源
+            .byClickTransitionAnimationEnabled(false) // 设置 Click Transition Animation Enabled
+            .byContentScrollViewConfig({ scrollView in // 设置 Content Scroll View Config
                 scrollView.byBounces(false).byDecelerationRate(.fast)
             })
             /// 加载到目标视图上，并第一次配置新约束
-            .byAddTo(view) {[unowned self] make in
+            .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
                 if view.jobs_hasVisibleTopBar() {
                     make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                     make.left.right.bottom.equalToSuperview()
@@ -89,15 +88,15 @@ final class BSportHomeListAllSubVC: UIViewController {
                 }
              }
             ///（并未加载到目标视图上）第一次部署新约束
-            .byMakeConstraints { [unowned self] make in
+            .byMakeConstraints { [unowned self] make in // 部署约束
                 make.width.height.equalTo(AD(76))
             }
             /// 只修改某一条约束，其余约束不动
-            .byUpdateConstraints { [unowned self] make in
+            .byUpdateConstraints { [unowned self] make in // 更新约束
                 make.top.equalToSuperview().inset(8.h)
             }
             /// 清除以前的全部的旧约束，用目前最新的
-            .byRemakeConstraints { [unowned self] make in
+            .byRemakeConstraints { [unowned self] make in // 重建约束
                 make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
                 make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
                 make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
@@ -105,50 +104,50 @@ final class BSportHomeListAllSubVC: UIViewController {
             }
     }()
     
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required init?(coder: NSCoder) { fatalError(&quot;init(coder:) has not been implemented&quot;) }
     init() {
         super.init(nibName: nil, bundle: nil)
     }
     /// 1️⃣ 初始化阶段
     override func loadView() {
         super.loadView()
-        print("🟢 loadView() - 负责创建或加载视图层级")
+        print(&quot;🟢 loadView() - 负责创建或加载视图层级&quot;)
     }
     /// 2️⃣ 视图加载完成（适合初始化数据、绑定、UI配置）
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 245/255.0, green: 246/255.0, blue: 250/255.0, alpha: 1)
+        view.byBackgroundColor(UIColor(red: 245/255.0, green: 246/255.0, blue: 250/255.0, alpha: 1)) // 设置背景色
         segmentedView.byVisible(YES)
 
     }
     /// 3️⃣ 视图即将出现（适合控制状态栏、导航栏显示、动画准备）
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("🟠 viewWillAppear() - 视图即将显示")
+        print(&quot;🟠 viewWillAppear() - 视图即将显示&quot;)
     }
     /// 4️⃣ 视图已出现（适合动画、网络请求等）
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("🟢 viewDidAppear() - 视图已显示完成")
+        print(&quot;🟢 viewDidAppear() - 视图已显示完成&quot;)
     }
     /// 5️⃣ 视图即将消失（适合保存状态、取消任务）
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("🟡 viewWillDisappear() - 视图即将被移除")
+        print(&quot;🟡 viewWillDisappear() - 视图即将被移除&quot;)
     }
     /// 6️⃣ 视图已消失（适合释放资源、通知）
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("🔴 viewDidDisappear() - 视图已被移除")
+        print(&quot;🔴 viewDidDisappear() - 视图已被移除&quot;)
     }
     /// 7️⃣ 内存警告（iOS 低内存时触发）
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        print("⚠️ didReceiveMemoryWarning() - 收到内存警告")
+        print(&quot;⚠️ didReceiveMemoryWarning() - 收到内存警告&quot;)
     }
     /// 8️⃣ 销毁（对象释放）
     deinit {
-        print("💀 deinit - 控制器已销毁")
+        print(&quot;💀 deinit - 控制器已销毁&quot;)
     }
 }
 // MARK: - JXSegmentedListContainerViewListDelegate
@@ -176,18 +175,18 @@ extension BSportHomeListAllSubVC: JXSegmentedListContainerViewDataSource {
     }
 }
 /// 主题适配
-self.on("STThemeDidChange") { noti, obj, userInfo in
+self.on(&quot;STThemeDidChange&quot;) { noti, obj, userInfo in
     guard let theme = obj as? STThemeType else { return }
     switch theme {
     case .day:
-        self.segmentedView.byBackgroundColor("#ffffff".cor)
+        self.segmentedView.byBackgroundColor(&quot;#ffffff&quot;.cor)
     case .night:
-        self.segmentedView.byBackgroundColor("#1e1e1e".cor)
+        self.segmentedView.byBackgroundColor(&quot;#1e1e1e&quot;.cor)
     }
     // 重新设置普通态/选中态富文本
     self.segmentedDataSource
-        .byAttributedTitles(self.makePlayAttributedTitles(selected: false))
-        .bySelectedAttributedTitles(self.makePlayAttributedTitles(selected: true))
+        .byAttributedTitles(self.makePlayAttributedTitles(selected: false)) // 设置 Attributed Titles
+        .bySelectedAttributedTitles(self.makePlayAttributedTitles(selected: true)) // 设置 Selected Attributed Titles
     self.segmentedView.reloadData()
 }</string>
 	<key>IDECodeSnippetIdentifier</key>

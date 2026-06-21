@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>plan</string>
@@ -12,7 +11,7 @@
 	<string>import JobsSwiftTaskCenter
 
 let task = JobsPlan.after(.second * 2).do {
-    print("2 秒后执行")
+    print(&quot;2 秒后执行&quot;)
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>553110F7-9FD2-42BD-9DB9-9D83496D4CC5</string>

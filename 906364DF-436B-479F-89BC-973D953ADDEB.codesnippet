@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>CollectionViewCell</string>
@@ -38,12 +37,12 @@ extension &lt;#承接UICollectionView的UI控件#&gt; : UICollectionViewDataSour
         cellForItemAt indexPath: IndexPath
     ) -&gt; UICollectionViewCell {
         collectionView
-            .byDequeueReusableCell(
+            .byDequeueReusableCell( // 设置 Dequeue Reusable Cell
                 withType: GridCell.self,
                 for: indexPath
             )
-            .byData(items[indexPath.item])
-            .onResult { _ in
+            .byData(items[indexPath.item]) // 设置 Data
+            .onResult { _ in // 绑定事件
 
             }
     }
@@ -60,7 +59,7 @@ extension &lt;#承接UICollectionView的UI控件#&gt; : UICollectionViewDataSour
 extension &lt;#承接UICollectionView的UI控件#&gt; : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("✅ didSelect Item: \(indexPath.item)")
+        print(&quot;✅ didSelect Item: \(indexPath.item)&quot;)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
@@ -73,7 +72,7 @@ extension &lt;#承接UICollectionView的UI控件#&gt; : UICollectionViewDelegate
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UICollectionViewCell</string>
 	<key>IDECodeSnippetUserSnippet</key>

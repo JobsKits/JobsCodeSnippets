@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@DataAnalysis</string>
@@ -10,23 +9,26 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>/*
-     常用的解析方法:
+ 常用解析：
+ 1、NSMutableArray *tags = [VideoTagModel mj_objectArrayWithKeyValuesArray:model.data];
+ 2、DDMyVipModel *myVipModel = [DDMyVipModel mj_objectWithKeyValues:data];
+*/
 
-     1、NSMutableArray *tags = [VideoTagModel mj_objectArrayWithKeyValuesArray:model.data]; //【对待data是数组】
-     2、DDMyVipModel *myVipModel = [DDMyVipModel mj_objectWithKeyValues:data]; //【对待data是字典】
- */
+VideoTagModel *tagModel = [VideoTagModel mj_objectWithKeyValues:data];
+NSArray &lt;VideoTagModel *&gt;*tagArr = [VideoTagModel mj_objectArrayWithKeyValuesArray:model.data];
 
--(jobsByImageBlock _Nonnull)normalImage{
-    @jobs_weakify(self)
-    return ^(UIImage *_Nonnull image) {
-        @jobs_strongify(self)
-        if (@available(iOS 16.0, *)) {
-            [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
-                config.image = image;
-            }];
-        } else [self setImage:image forState:UIControlStateNormal];
-    };
-}</string>
+UIButton.jobsInit()
+    .byTitle(tagModel.name) // 设置标题
+    .byTitleCor(UIColor.labelColor) // 设置标题颜色
+    .byTitleFont([UIFont systemFontOfSize:14]) // 设置标题字体
+    .byBgColor(UIColor.secondarySystemBackgroundColor) // 设置背景色
+    .byCornerRadius(JobsWidth(8)) // 设置圆角
+    .addOn(self.view) // 加入父视图
+    .byAdd(^(MASConstraintMaker *make) { // 部署约束
+        make.left.right.equalTo(self.view).inset(JobsWidth(16));
+        make.height.mas_equalTo(JobsWidth(44));
+    });
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>0A06BFDA-708E-4DE1-A6CE-EBE7ED822BE2</string>
 	<key>IDECodeSnippetLanguage</key>

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@JXCategoryView.Normal</string>
@@ -21,7 +20,7 @@
 #if __has_include(&lt;JXCategoryView/JXCategoryView.h&gt;)
 #import &lt;JXCategoryView/JXCategoryView.h&gt;
 #else
-#import "JXCategoryView.h"
+#import &quot;JXCategoryView.h&quot;
 #endif
 ```
 ## 图文结合
@@ -39,12 +38,12 @@ Prop_strong()JXCategoryTitleView *categoryView;/// 文字
          _categoryView = jobsMakeCategoryTitleView(^(JXCategoryTitleView * _Nullable view) {
              @jobs_strongify(self)
              view.byTitleSelectedColor(JobsRedColor)¡
-                 .byTitleColor(JobsGrayColor)
-                 .byTitleFont(UIFontWeightRegularSize(JobsWidth(10)))
-                 .byTitleSelectedFont(UIFontWeightRegularSize(JobsWidth(11)))
-                 .byTitles(self.titles)
-                 .byTitleColorGradientEnabled(YES)
-                 .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray &lt;JXCategoryIndicatorBackgroundView *&gt;* _Nullable arr) {
+                 .byTitleColor(JobsGrayColor) // 设置标题颜色
+                 .byTitleFont(UIFontWeightRegularSize(JobsWidth(10))) // 设置标题字体
+                 .byTitleSelectedFont(UIFontWeightRegularSize(JobsWidth(11))) // 设置 Title Selected Font
+                 .byTitles(self.titles) // 设置 Titles
+                 .byTitleColorGradientEnabled(YES) // 设置 Title Color Gradient Enabled
+                 .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray &lt;JXCategoryIndicatorBackgroundView *&gt;* _Nullable arr) { // 设置 Indicators
                      arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable indicator) {
                          indicator.indicatorColor = HEXCOLOR(0xFFEABA);
                          indicator.indicatorHeight = JobsWidth(4);
@@ -52,7 +51,7 @@ Prop_strong()JXCategoryTitleView *categoryView;/// 文字
                          indicator.verticalMargin = 0;
                      }));
                  }))/// 跟随的指示器（二选一）
-                 .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray &lt;JXCategoryIndicatorBackgroundView *&gt;* _Nullable arr) {
+                 .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray &lt;JXCategoryIndicatorBackgroundView *&gt;* _Nullable arr) { // 设置 Indicators
                      arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable bgView) {
                          bgView.indicatorHeight = JobsWidth(30);
                          bgView.indicatorWidth = JobsWidth(76);
@@ -61,13 +60,13 @@ Prop_strong()JXCategoryTitleView *categoryView;/// 文字
                      }));
                  }))/// 跟随的指示器（二选一）BackgroundView 椭圆形
                  .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
-                 .byCellSpacing(JobsWidth(-20))
+                 .byCellSpacing(JobsWidth(-20)) // 设置 Cell Spacing
                  .byContentScrollView(self.listContainerView.scrollView)/// 关联cotentScrollView，关联之后才可以互相联动！！！
-                 .byDelegate(self)
-                 .byBgCor(JobsClearColor);
+                 .byDelegate(self) // 设置代理
+                 .byBgCor(JobsClearColor); // 设置背景色
          })
-         .addOn(self)
-         .byAdd(^(MASConstraintMaker *make) {
+         .addOn(self) // 加入父视图
+         .byAdd(^(MASConstraintMaker *make) { // 部署约束
              @jobs_strongify(self)
              make.centerY.equalTo(self);
              make.left.equalTo(self);
@@ -83,45 +82,45 @@ Prop_strong()JXCategoryImageView *categoryView;/// 纯图
          @jobs_weakify(self)
          _categoryView = jobsMakeCategoryImageView(^(JXCategoryImageView * _Nullable view) {
              view.byImageNames(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) {
-                 arr.add(@"彩票_已选择")
-                     .add(@"电子_已选择")
-                     .add(@"棋牌_已选择")
-                     .add(@"全部游戏_已选择")
-                     .add(@"体育_已选择")
-                     .add(@"真人直播_已选择");
+                 arr.add(@&quot;彩票_已选择&quot;)
+                     .add(@&quot;电子_已选择&quot;) // 追加元素
+                     .add(@&quot;棋牌_已选择&quot;) // 追加元素
+                     .add(@&quot;全部游戏_已选择&quot;) // 追加元素
+                     .add(@&quot;体育_已选择&quot;) // 追加元素
+                     .add(@&quot;真人直播_已选择&quot;); // 追加元素
              }))
-             .bySelectedImageNames(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) {
-                 arr.add(@"彩票_已选择")
-                     .add(@"电子_已选择")
-                     .add(@"棋牌_已选择")
-                     .add(@"全部游戏_已选择")
-                     .add(@"体育_已选择")
-                     .add(@"真人直播_已选择");
+             .bySelectedImageNames(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) { // 设置 Selected Image Names
+                 arr.add(@&quot;彩票_已选择&quot;)
+                     .add(@&quot;电子_已选择&quot;) // 追加元素
+                     .add(@&quot;棋牌_已选择&quot;) // 追加元素
+                     .add(@&quot;全部游戏_已选择&quot;) // 追加元素
+                     .add(@&quot;体育_已选择&quot;) // 追加元素
+                     .add(@&quot;真人直播_已选择&quot;); // 追加元素
              }))
-             .byImageInfoArray(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) {
-                 arr.add(@"彩票_已选择")
-                     .add(@"电子_已选择")
-                     .add(@"棋牌_已选择")
-                     .add(@"全部游戏_已选择")
-                     .add(@"体育_已选择")
-                     .add(@"真人直播_已选择");
+             .byImageInfoArray(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) { // 设置 Image Info Array
+                 arr.add(@&quot;彩票_已选择&quot;)
+                     .add(@&quot;电子_已选择&quot;) // 追加元素
+                     .add(@&quot;棋牌_已选择&quot;) // 追加元素
+                     .add(@&quot;全部游戏_已选择&quot;) // 追加元素
+                     .add(@&quot;体育_已选择&quot;) // 追加元素
+                     .add(@&quot;真人直播_已选择&quot;); // 追加元素
              }))
-             .bySelectedImageInfoArray(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) {
-                 arr.add(@"彩票_已选择")
-                     .add(@"电子_已选择")
-                     .add(@"棋牌_已选择")
-                     .add(@"全部游戏_已选择")
-                     .add(@"体育_已选择")
-                     .add(@"真人直播_已选择");
+             .bySelectedImageInfoArray(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) { // 设置 Selected Image Info Array
+                 arr.add(@&quot;彩票_已选择&quot;)
+                     .add(@&quot;电子_已选择&quot;) // 追加元素
+                     .add(@&quot;棋牌_已选择&quot;) // 追加元素
+                     .add(@&quot;全部游戏_已选择&quot;) // 追加元素
+                     .add(@&quot;体育_已选择&quot;) // 追加元素
+                     .add(@&quot;真人直播_已选择&quot;); // 追加元素
              }))
-             .byImageSize(CGSizeMake(JobsWidth(30), JobsWidth(30)))
-             .byImageCornerRadius(JobsWidth(8))
-             .byImageZoomEnabled(YES)
-             .byImageZoomScale(2)
+             .byImageSize(CGSizeMake(JobsWidth(30), JobsWidth(30))) // 设置 Image Size
+             .byImageCornerRadius(JobsWidth(8)) // 设置 Image Corner Radius
+             .byImageZoomEnabled(YES) // 设置 Image Zoom Enabled
+             .byImageZoomScale(2) // 设置 Image Zoom Scale
              .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
-             .byCellSpacing(JobsWidth(-20))
+             .byCellSpacing(JobsWidth(-20)) // 设置 Cell Spacing
              .byContentScrollView(self.listContainerView.scrollView)/// 关联cotentScrollView，关联之后才可以互相联动！！！
-             .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray &lt;JXCategoryIndicatorLineView *&gt;* _Nullable arr) {
+             .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray &lt;JXCategoryIndicatorLineView *&gt;* _Nullable arr) { // 设置 Indicators
                  arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
                      view.indicatorColor = HEXCOLOR(0xFFEABA);
                      view.indicatorHeight = JobsWidth(4);
@@ -129,7 +128,7 @@ Prop_strong()JXCategoryImageView *categoryView;/// 纯图
                      view.verticalMargin = 0;
                  }));
              }))/// 二选一
-             .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+             .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) { // 设置 Indicators
                  arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
                      view.indicatorHeight = JobsWidth(30);
                      view.indicatorWidth = JobsWidth(76);
@@ -137,11 +136,11 @@ Prop_strong()JXCategoryImageView *categoryView;/// 纯图
                      view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
                  }));
              }))/// 二选一
-             .byDelegate(self)
-             .byBgCor(JobsClearColor);
+             .byDelegate(self) // 设置代理
+             .byBgCor(JobsClearColor); // 设置背景色
          })
-         .addOn(self)
-         .byAdd(^(MASConstraintMaker *make) {
+         .addOn(self) // 加入父视图
+         .byAdd(^(MASConstraintMaker *make) { // 部署约束
              @jobs_strongify(self)
              make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
              make.left.right.equalTo(self.view);
@@ -157,21 +156,21 @@ Prop_strong()JXCategoryDotView *categoryView;/// 右上角带红点
          _categoryView = jobsMakeCategoryDotView(^(JXCategoryDotView * _Nullable view) {
              view.byDotStates(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSNumber *&gt;* _Nullable arr) {
                  arr.add(@YES)
-                     .add(@NO)
-                     .add(@NO)
-                     .add(@NO)
-                     .add(@NO)
-                     .add(@NO);
+                     .add(@NO) // 追加元素
+                     .add(@NO) // 追加元素
+                     .add(@NO) // 追加元素
+                     .add(@NO) // 追加元素
+                     .add(@NO); // 追加元素
              }))
-             .byDotSize(CGSizeMake(JobsWidth(5), JobsWidth(5)))
-             .byTitleSelectedColor(HEXCOLOR(0xAE8330))
-             .byTitleColor(HEXCOLOR(0xC4C4C4))
-             .byTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-             .byTitleSelectedFont(UIFontWeightBoldSize(JobsWidth(14)))
+             .byDotSize(CGSizeMake(JobsWidth(5), JobsWidth(5))) // 设置 Dot Size
+             .byTitleSelectedColor(HEXCOLOR(0xAE8330)) // 设置 Title Selected Color
+             .byTitleColor(HEXCOLOR(0xC4C4C4)) // 设置标题颜色
+             .byTitleFont(UIFontWeightBoldSize(JobsWidth(12))) // 设置标题字体
+             .byTitleSelectedFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置 Title Selected Font
              .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
-             .byTitleColorGradientEnabled(YES)
-             .byTitles(self.titles)
-             .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+             .byTitleColorGradientEnabled(YES) // 设置 Title Color Gradient Enabled
+             .byTitles(self.titles) // 设置 Titles
+             .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) { // 设置 Indicators
                  arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
                      view.indicatorColor = HEXCOLOR(0xFFEABA);
                      view.indicatorHeight = JobsWidth(4);
@@ -179,7 +178,7 @@ Prop_strong()JXCategoryDotView *categoryView;/// 右上角带红点
                      view.verticalMargin = 0;
                  }));
              }))/// 二选一
-             .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+             .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) { // 设置 Indicators
                  arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
                      view.indicatorHeight = JobsWidth(30);
                      view.indicatorWidth = JobsWidth(76);
@@ -188,13 +187,13 @@ Prop_strong()JXCategoryDotView *categoryView;/// 右上角带红点
                  }));
              }))/// 二选一：BackgroundView 椭圆形
              .byContentScrollView(self.listContainerView.scrollView)/// 关联cotentScrollView，关联之后才可以互相联动！！！
-             .byListContainer(self.listContainerView)
-             .reloadDatasWithoutListContainer()
-             .byDelegate(self)
-             .byBgCor(HEXCOLOR(0xFCFBFB));
+             .byListContainer(self.listContainerView) // 设置 List Container
+             .reloadDatasWithoutListContainer() // 配置链式能力
+             .byDelegate(self) // 设置代理
+             .byBgCor(HEXCOLOR(0xFCFBFB)); // 设置背景色
          })
-         .addOn(self)
-         .byAdd(^(MASConstraintMaker *make) {
+         .addOn(self) // 加入父视图
+         .byAdd(^(MASConstraintMaker *make) { // 部署约束
              @jobs_strongify(self)
              make.top.equalTo(self.gk_navigationBar.mas_bottom);
              make.left.right.equalTo(self.view);
@@ -211,11 +210,11 @@ didSelectedItemAtIndex:(NSInteger)index {
         self.dotStatesMutArr[index] = @(NO);
         self.categoryTitleView.dotStates = jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSNumber *&gt;* _Nullable arr) {
             arr.add(@YES)
-                .add(@NO)
-                .add(@NO)
-                .add(@NO)
-                .add(@NO)
-                .add(@NO);
+                .add(@NO) // 追加元素
+                .add(@NO) // 追加元素
+                .add(@NO) // 追加元素
+                .add(@NO) // 追加元素
+                .add(@NO); // 追加元素
         });[categoryView reloadCellAtIndex:index];
     }
 }
@@ -225,28 +224,28 @@ didSelectedItemAtIndex:(NSInteger)index {
         @jobs_weakify(self)
         _categoryView = jobsMakeCategoryNumberView(^(JXCategoryNumberView * _Nullable view) {
             view.byNumberLabelOffset(CGPointMake(JobsWidth(5), JobsWidth(2)))
-                .byCounts(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSNumber *&gt;* _Nullable arr) {
+                .byCounts(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSNumber *&gt;* _Nullable arr) { // 设置 Counts
                     arr.add(@1)
-                        .add(@1)
-                        .add(@1)
-                        .add(@1)
-                        .add(@1)
-                        .add(@1);
+                        .add(@1) // 追加元素
+                        .add(@1) // 追加元素
+                        .add(@1) // 追加元素
+                        .add(@1) // 追加元素
+                        .add(@1); // 追加元素
                 }))
                 /// 内部默认不会格式化数字，直接转成字符串显示。比如业务需要数字超过999显示999+，可以通过该block实现。
-                .byNumberStringFormatterBlock(^NSString *(NSInteger number) {
+                .byNumberStringFormatterBlock(^NSString *(NSInteger number) { // 设置 Number String Formatter Block
                     if (number &gt; 999) {
-                        return @"999+";
-                    }return [NSString stringWithFormat:@"%ld", (long)number];
+                        return @&quot;999+&quot;;
+                    }return [NSString stringWithFormat:@&quot;%ld&quot;, (long)number];
                 })
-                .byTitles(self.titles)
-                .byTitleSelectedColor(HEXCOLOR(0xAE8330))
-                .byTitleColor(HEXCOLOR(0xC4C4C4))
-                .byTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                .byTitleSelectedFont(UIFontWeightBoldSize(JobsWidth(14)))
+                .byTitles(self.titles) // 设置 Titles
+                .byTitleSelectedColor(HEXCOLOR(0xAE8330)) // 设置 Title Selected Color
+                .byTitleColor(HEXCOLOR(0xC4C4C4)) // 设置标题颜色
+                .byTitleFont(UIFontWeightBoldSize(JobsWidth(12))) // 设置标题字体
+                .byTitleSelectedFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置 Title Selected Font
                 .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
-                .byTitleColorGradientEnabled(YES)
-                .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                .byTitleColorGradientEnabled(YES) // 设置 Title Color Gradient Enabled
+                .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) { // 设置 Indicators
                     arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
                         view.indicatorColor = HEXCOLOR(0xFFEABA);
                         view.indicatorHeight = JobsWidth(4);
@@ -254,7 +253,7 @@ didSelectedItemAtIndex:(NSInteger)index {
                         view.verticalMargin = 0;
                     }));
                 }))/// 二选一
-                .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) { // 设置 Indicators
                     arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
                         view.indicatorHeight = JobsWidth(30);
                         view.indicatorWidth = JobsWidth(76);
@@ -263,13 +262,13 @@ didSelectedItemAtIndex:(NSInteger)index {
                     }));
                 }))/// 二选一：BackgroundView 椭圆形
                 .byContentScrollView(self.listContainerView.scrollView) /// 关联cotentScrollView，关联之后才可以互相联动！！！
-                .byListContainer(self.listContainerView)
-                .reloadDatasWithoutListContainer()
-                .byDelegate(self)
-                .byBgCor(HEXCOLOR(0xFCFBFB));
+                .byListContainer(self.listContainerView) // 设置 List Container
+                .reloadDatasWithoutListContainer() // 配置链式能力
+                .byDelegate(self) // 设置代理
+                .byBgCor(HEXCOLOR(0xFCFBFB)); // 设置背景色
         })
-        .addOn(self)
-        .byAdd(^(MASConstraintMaker *make) {
+        .addOn(self) // 加入父视图
+        .byAdd(^(MASConstraintMaker *make) { // 部署约束
             @jobs_strongify(self)
             make.top.equalTo(self.gk_navigationBar.mas_bottom);
             make.left.right.equalTo(self.view);
@@ -297,8 +296,8 @@ Prop_copy()NSMutableArray &lt;__kindof NSString *&gt;*titles;
     if (!_listContainerView) {
         _listContainerView = jobsMakeCategoryListContainerViewByCollectionViewStyle(self)
             .byDefaultSelectedIndex(1); // 默认从第二个开始显示
-            .addOn(self.view)
-            .byAdd(^(MASConstraintMaker *make) {
+            .addOn(self.view) // 加入父视图
+            .byAdd(^(MASConstraintMaker *make) { // 部署约束
                 @jobs_strongify(self)
 //                make.edges.equalTo(self.view);
                 make.top.equalTo(self.balanceView.mas_bottom).offset(listContainerViewDefaultOffset);
@@ -306,8 +305,8 @@ Prop_copy()NSMutableArray &lt;__kindof NSString *&gt;*titles;
             });
         self.view.refresh();
         /// ❤️在需要的地方写❤️
-        NSNumber *currentIndex = self.listContainerView.valueForKey(@"currentIndex");
-        NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
+        NSNumber *currentIndex = self.listContainerView.valueForKey(@&quot;currentIndex&quot;);
+        NSLog(@&quot;滑动或者点击以后，改变控制器，得到的目前最新的index = %d&quot;,currentIndex.intValue);
     }return _listContainerView;
 }
 
@@ -315,10 +314,10 @@ Prop_copy()NSMutableArray &lt;__kindof NSString *&gt;*titles;
     if(!_childVCMutArr){
         _childVCMutArr = jobsMakeMutArr(^(__kindof NSMutableArray &lt;__kindof UIViewController&lt;JXCategoryListContentViewDelegate&gt; *&gt;* _Nullable arr) {
             arr.add(FMPromoAllVC.new)
-                .add(FMPromoNewComerVC.new)
-                .add(FMPromoDailyVC.new)
-                .add(FMPromoLimitedVC.new)
-                .add(FMPromoOfferVC.new);
+                .add(FMPromoNewComerVC.new) // 追加元素
+                .add(FMPromoDailyVC.new) // 追加元素
+                .add(FMPromoLimitedVC.new) // 追加元素
+                .add(FMPromoOfferVC.new); // 追加元素
         });
     }return _childVCMutArr;
 }
@@ -326,11 +325,11 @@ Prop_copy()NSMutableArray &lt;__kindof NSString *&gt;*titles;
 -(NSMutableArray&lt;__kindof NSString *&gt; *)titles{
     if(!_titles){
         _titles = jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) {
-            arr.add(JobsInternationalization(@"ALL"))
-                .add(JobsInternationalization(@"NEWCOMER"))
-                .add(JobsInternationalization(@"DAILY"))
-                .add(JobsInternationalization(@"LIMITED"))
-                .add(JobsInternationalization(@"OFFER"));
+            arr.add(JobsInternationalization(@&quot;ALL&quot;))
+                .add(JobsInternationalization(@&quot;NEWCOMER&quot;)) // 追加元素
+                .add(JobsInternationalization(@&quot;DAILY&quot;)) // 追加元素
+                .add(JobsInternationalization(@&quot;LIMITED&quot;)) // 追加元素
+                .add(JobsInternationalization(@&quot;OFFER&quot;)); // 追加元素
         });
     }return _titles;
 }
@@ -386,7 +385,7 @@ didScrollSelectedItemAtIndex:(NSInteger)index{
 scrollingFromLeftIndex:(NSInteger)leftIndex
         toRightIndex:(NSInteger)rightIndex
                ratio:(CGFloat)ratio {
-    NSLog(@"");
+    NSLog(@&quot;&quot;);
 //    [self.listContainerView scrollingFromLeftIndex:leftIndex
 //                                      toRightIndex:rightIndex
 //                                             ratio:ratio

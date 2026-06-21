@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>NavBar</string>
@@ -15,69 +14,69 @@ import JobsByUIKit
 override func viewDidLoad() {
     super.viewDidLoad()
     jobsSetupGKNav(
-        title: "Demo 列表",
+        title: &quot;Demo 列表&quot;,
         leftButton:UIButton.sys()
-            .byFrame(CGRect(x: 0, y: 0, width: 32.w, height: 32.h))
+            .byFrame(CGRect(x: 0, y: 0, width: 32.w, height: 32.h)) // 设置 frame
             /// 按钮图片@图文关系
-            .byImage("list.bullet".sysImg, for: .normal)
-            .byImage("list.bullet".sysImg, for: .selected)
+            .byImage(&quot;list.bullet&quot;.sysImg) // 设置图片
+            .byImage(&quot;list.bullet&quot;.sysImg, for: .selected) // 设置图片
             /// 事件触发@点按
-            .onTap { [weak self] sender in
+            .onTap { [weak self] sender in // 绑定点按事件
                 guard let self else { return }
                 sender.isSelected.toggle()
                 debugOnly {  // 仅 Debug 执行
                     JobsToast.show(
-                        text: "点按了列表按钮",
+                        text: &quot;点按了列表按钮&quot;,
                         config: JobsToast.Config()
-                            .byBgColor(.systemGreen.withAlphaComponent(0.9))
-                            .byCornerRadius(12)
+                            .byBackgroundColor(.systemGreen.withAlphaComponent(0.9)) // 设置背景色
+                            .byCornerRadius(12) // 设置圆角
                     )
                 }
             }
             /// 事件触发@长按
-            .onLongPress(minimumPressDuration: 0.8) { btn, gr in
+            .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                  if gr.state == .began {
                      btn.alpha = 0.6
-                     print("长按开始 on \(btn)")
+                     print(&quot;长按开始 on \(btn)&quot;)
                  } else if gr.state == .ended || gr.state == .cancelled {
                      btn.alpha = 1.0
-                     print("长按结束")
+                     print(&quot;长按结束&quot;)
                  }
             },
         rightButtons: [
             UIButton.sys()
                 /// 按钮图片@图文关系
-                .byImage("moon.circle.fill".sysImg, for: .normal)
-                .byImage("moon.circle.fill".sysImg, for: .selected)
+                .byImage(&quot;moon.circle.fill&quot;.sysImg) // 设置图片
+                .byImage(&quot;moon.circle.fill&quot;.sysImg, for: .selected) // 设置图片
                 /// 事件触发@点按
-                .onTap { [weak self] sender in
+                .onTap { [weak self] sender in // 绑定点按事件
                     guard let self else { return }
                     sender.isSelected.toggle()
                     guard let ws = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                           let win = ws.windows.first else { return }
                     win.overrideUserInterfaceStyle =
                         (win.overrideUserInterfaceStyle == .dark) ? .light : .dark
-                    print("🌓 主题已切换 -&gt; \(win.overrideUserInterfaceStyle == .dark ? "Dark" : "Light")")
+                    print(&quot;🌓 主题已切换 -&gt; \(win.overrideUserInterfaceStyle == .dark ? &quot;Dark&quot; : &quot;Light&quot;)&quot;)
                 },
             UIButton.sys()
                 /// 按钮图片@图文关系
-                .byImage("globe".sysImg, for: .normal)
-                .byImage("globe".sysImg, for: .selected)
+                .byImage(&quot;globe&quot;.sysImg) // 设置图片
+                .byImage(&quot;globe&quot;.sysImg, for: .selected) // 设置图片
                 /// 事件触发@点按
-                .onTap { [weak self] sender in
+                .onTap { [weak self] sender in // 绑定点按事件
                     guard let self else { return }
                     sender.isSelected.toggle()
-                    print("🌐 切换语言 tapped（占位）")
+                    print(&quot;🌐 切换语言 tapped（占位）&quot;)
                 },
             UIButton.sys()
                 /// 按钮图片@图文关系
-                .byImage("stop.circle.fill".sysImg, for: .normal)
-                .byImage("stop.circle.fill".sysImg, for: .selected)
+                .byImage(&quot;stop.circle.fill&quot;.sysImg) // 设置图片
+                .byImage(&quot;stop.circle.fill&quot;.sysImg, for: .selected) // 设置图片
                 /// 事件触发@点按
-                .onTap { [weak self] sender in
+                .onTap { [weak self] sender in // 绑定点按事件
                     guard let self else { return }
                     sender.isSelected.toggle()
-                    print("🛑 手动停止刷新")
+                    print(&quot;🛑 手动停止刷新&quot;)
                     isPullRefreshing = false
                     isLoadingMore    = false
                     tableView.pullDownStop()
@@ -89,9 +88,9 @@ override func viewDidLoad() {
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3A187BE0-A2DF-45DC-B45A-366042DDBA3E</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Ruby</string>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@GKNavigationBarSwift的二次封装和使用</string>
 	<key>IDECodeSnippetUserSnippet</key>

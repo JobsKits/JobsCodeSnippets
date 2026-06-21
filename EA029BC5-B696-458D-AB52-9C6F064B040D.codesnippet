@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@ViewForHeaderAndFooterInSection</string>
@@ -9,73 +8,23 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#  tableHeaderView_tableFooterView
-如果想在整个TableView的头部或者尾部出现一个View，注意区别于viewForHeaderInSection
-需要涉及的相关属性
-```
-_tableView.tableHeaderView;
-_tableView.tableFooterView;
-```
+	<string>@implementation DemoHeaderFooterView
 
-# UICollectionView 没有类型相关的东西
-
-
-tableView.registerHeaderFooterViewClass(FMInBoxTableViewHeaderView.class,@"");
-
-#import "BaseViewProtocol.h"
-#import "UIViewModelOthersProtocol.h"
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface FMInBoxTableViewHeaderView : UITableViewHeaderFooterView
-&lt;BaseViewProtocol,UIViewModelOthersProtocol&gt;
-@end
-
-NS_ASSUME_NONNULL_END
-
-#import "FMInBoxTableViewHeaderView.h"
-
-@interface FMInBoxTableViewHeaderView ()
-
-@end
-
-@implementation FMInBoxTableViewHeaderView
-@synthesize viewModel = _viewModel;
--(instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier{
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        /// self.backgroundColor 和  self.contentView.backgroundColor 均是无效操作❌
-        /// 只有 self.backgroundView.backgroundColor 是有效操作✅
-        /// 默认情况下，backgroundView 是 nil
-        self.backgroundView = UIView.initByFrame(self.bounds);
-    }return self;
-}
-
--(void)layoutSubviews{
-    [super layoutSubviews];
-    /// 内部指定圆切角
-    [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
-}
-
--(jobsByIDBlock _Nonnull)jobsRichViewByModel{
-    @jobs_weakify(self)
-    return ^(NSString *_Nullable data) {
-        @jobs_strongify(self)
-        self.backgroundColor = JobsCor(@"#E2E2E2");
-        self.label.byText(data);
-    };
-}
-/// BaseViewProtocol
-@synthesize label = _label;
--(__kindof UILabel *)label{
+-(UILabel *)label{
     if(!_label){
-        _label = self.contentView.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-            label.byTextCor(JobsCor(@"#878787"))
-                .byFont(pingFangHKRegular(JobsWidth(16)))
-                .byTextAlignment(NSTextAlignmentCenter);
-        })).masonryBy(^(MASConstraintMaker *_Nonnull make){
-            make.right.equalTo(self.contentView).offset(JobsWidth(-12));
-            make.centerY.equalTo(self.contentView);
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label
+                .byText(@&quot;标题&quot;) // 设置文本
+                .byTextCor(JobsCor(@&quot;#878787&quot;)) // 设置文字颜色
+                .byFont(pingFangHKRegular(JobsWidth(16))) // 设置字体
+                .byTextAlignment(NSTextAlignmentCenter) // 设置文字对齐
+                .byNumberOfLines(1) // 设置行数
+                .byBgColor(UIColor.clearColor) // 设置背景色
+                .addOn(self.contentView) // 加入父视图
+                .byAdd(^(MASConstraintMaker *make) { // 部署约束
+                    make.right.equalTo(self.contentView).offset(JobsWidth(-12));
+                    make.centerY.equalTo(self.contentView);
+                });
         });
         _label.makeLabelByShowingType(UILabelShowingType_03);
     }return _label;

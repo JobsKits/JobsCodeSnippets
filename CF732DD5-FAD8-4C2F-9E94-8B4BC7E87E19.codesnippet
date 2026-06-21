@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Snapkit</string>
@@ -9,99 +8,82 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import Snapkit
+	<string>import SnapKit
 import JobsByUIKit
 
-/// safeArea 示例（iOS/tvOS 11+）：
-if #available(iOS 11.0, tvOS 11.0, *) {
-    card.mas_makeConstraints { make in
-        make.edges.mas_equalTo(view.mas_safeArea.mas_edges).insets(UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
-    }
-}
-
-// 1) 直接对 superview（Masonry 常用）
-card.mas_makeConstraints { make in
-    make.left.mas_equalToSuperview().offset(16)
-    make.right.mas_equalToSuperview().offset(-16)
-    make.top.mas_equalToSuperview().offset(120)
-    make.height.mas_equalTo(200)
-}
-
-// 2) 用你封装的属性引用：view.mas_left / mas_top / mas_size ...
-avatar.mas_makeConstraints { make in
-    make.left.mas_equalTo(card.mas_left).offset(16)
-    make.top.mas_equalTo(card.mas_top).offset(16)
-    make.size.mas_equalTo(CGSize(width: 48, height: 48)).priority(999).key("avatar.size")
-}
-
-// 3) 参照另一个 view 的 anchor：avatar.mas_right / mas_centerY
-titleLabel.mas_makeConstraints { make in
-    make.left.mas_equalTo(avatar.mas_right).offset(12)
-    make.centerY.mas_equalTo(avatar.mas_centerY)
-    make.right.mas_lessThanOrEqualTo(card.mas_right).offset(-16)
-}
-
-// 4) edges/centerX/bottom 这种基础 API
-button.mas_makeConstraints { make in
-    make.left.mas_equalTo(card.mas_left).offset(16)
-    make.right.mas_equalTo(card.mas_right).offset(-16)
-    make.bottom.mas_equalTo(card.mas_bottom).offset(-16)
-    make.height.mas_equalTo(44)
-}
-
-// 5) safeArea 示例（iOS/tvOS 11+）
-if #available(iOS 11.0, tvOS 11.0, *) {
-    card.mas_updateConstraints { make in
-        make.top.mas_equalTo(view.mas_safeArea.mas_top).offset(24)
-    }
-}
-
-// 6) update 示例：动画里改 top
-DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-    UIView.animate(withDuration: 0.25) {
-        self.card.mas_updateConstraints { make in
-            make.top.mas_equalToSuperview().offset(60)
+private lazy var card: UIView = { [unowned self] in
+    UIView()
+        .byBackgroundColor(.secondarySystemBackground) // 设置背景色
+        .byCornerRadius(12) // 设置圆角
+        .byClipsToBounds(true) // 裁剪圆角
+        .byAddTo(self.view) { make in // 加入父视图并部署约束
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(200)
         }
-        self.view.layoutIfNeeded()
-    }
-}
-// MARK: - 水平 / 垂直 均分排布
-private lazy var btnArr = [fundsBtn, recordsBtn, rulesBtn, resultsBtn] as [JobsButton]
-btnArr.addDistributeTo(
-    btnBgView.byVisible(true),                 // ✅ 把 btnBgView 显示出来，并作为承载容器
-    model: SnapDistributeModel(
-        axis: .horizontal,                     // ✅ 分布方向：horizontal=横向一排，vertical=纵向一列
-        fixedItemLength: nil,                  // ✅ 固定 item 宽/高（沿 axis 的长度）
-                                               //    nil = 不固定，改为“均分”（宽度/高度相等）
-                                               //    horizontal -&gt; 固定宽度
-                                               //    vertical   -&gt; 固定高度
-        leadSpacing: 12.w,                     // ✅ 头部间距（第一个 item 到容器边的距离）
-                                               //    horizontal -&gt; 左边距
-                                               //    vertical   -&gt; 上边距
-        tailSpacing: 12.w,                     // ✅ 尾部间距（最后一个 item 到容器边的距离）
-                                               //    horizontal -&gt; 右边距
-                                               //    vertical   -&gt; 下边距
-        makeContainerConstraints: false,       // ✅ 是否顺便给“容器本身”补约束（一般不需要）
-                                               //    true  -&gt; 这个 distribute 方法会额外对容器加 top/bottom/crossSize 等约束
-                                               //    false -&gt; 只给 items 加约束（推荐，容器约束由外部负责）
-        top: 12.h,                             // ✅ 交叉方向上边距
-                                               //    horizontal -&gt; item 的 top inset
-                                               //    vertical   -&gt; 无意义（通常用 left/right）
-        bottom: 12.h,                          // ✅ 交叉方向下边距
-                                               //    horizontal -&gt; item 的 bottom inset
-                                               //    vertical   -&gt; 无意义（通常用 left/right）
-        left: nil,                             // ✅ 交叉方向左边距
-                                               //    vertical -&gt; item 的 left inset
-                                               //    horizontal -&gt; 通常不用（横向用 top/bottom）
-        right: nil,                            // ✅ 交叉方向右边距
-                                               //    vertical -&gt; item 的 right inset
-                                               //    horizontal -&gt; 通常不用（横向用 top/bottom）
-        crossSize: nil                         // ✅ 交叉方向固定尺寸
-                                               //    horizontal -&gt; 固定 item 高度 height
-                                               //    vertical   -&gt; 固定 item 宽度 width
-                                               //    nil -&gt; 不固定，交叉方向用 top/bottom 或 left/right 拉伸
+}()
+
+private lazy var avatar: UIImageView = { [unowned self] in
+    UIImageView()
+        .byImage(&quot;avatar_placeholder&quot;.img) // 设置图片
+        .byContentMode(.scaleAspectFill) // 设置填充模式
+        .byCornerRadius(24) // 设置圆角
+        .byClipsToBounds(true) // 裁剪圆角
+        .byAddTo(self.card) { make in // 加入父视图并部署约束
+            make.left.top.equalToSuperview().offset(16)
+            make.size.equalTo(CGSize(width: 48, height: 48))
+        }
+}()
+
+private lazy var titleLab: UILabel = { [unowned self] in
+    UILabel()
+        .byText(&quot;标题&quot;) // 设置文本
+        .byFont(.boldSystemFont(ofSize: 16)) // 设置字体
+        .byTextColor(.label) // 设置文字颜色
+        .byNumberOfLines(1) // 设置行数
+        .byAddTo(self.card) { make in // 加入父视图并部署约束
+            make.left.equalTo(self.avatar.snp.right).offset(12)
+            make.centerY.equalTo(self.avatar)
+            make.right.lessThanOrEqualToSuperview().offset(-16)
+        }
+}()
+
+private lazy var actionBtn: UIButton = { [unowned self] in
+    UIButton(type: .custom)
+        .byTitle(&quot;确认&quot;) // 设置标题
+        .byTitleColor(.white) // 设置标题颜色
+        .byTitleFont(.boldSystemFont(ofSize: 16)) // 设置标题字体
+        .byBackgroundColor(.systemBlue) // 设置背景色
+        .byCornerRadius(8) // 设置圆角
+        .onTap { btn in // 绑定点按事件
+            btn.isSelected.toggle()
+        }
+        .byAddTo(self.card) { make in // 加入父视图并部署约束
+            make.left.right.bottom.equalToSuperview().inset(16)
+            make.height.equalTo(44)
+        }
+}()
+
+private lazy var btnArr: [JobsButton] = [fundsBtn, recordsBtn, rulesBtn, resultsBtn]
+
+func layoutButtons() {
+    btnArr.addDistributeTo(
+        btnBgView.byVisible(true), // 显示并作为承载容器
+        model: SnapDistributeModel(
+            axis: .horizontal, // 设置横向均分
+            fixedItemLength: nil, // 使用均分长度
+            leadSpacing: 12.w, // 设置头部间距
+            tailSpacing: 12.w, // 设置尾部间距
+            makeContainerConstraints: false, // 不额外约束容器
+            top: 12.h, // 设置顶部边距
+            bottom: 12.h, // 设置底部边距
+            left: nil, // 不设置左侧边距
+            right: nil, // 不设置右侧边距
+            crossSize: nil // 不固定交叉轴尺寸
+        )
     )
-)</string>
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>CF732DD5-FAD8-4C2F-9E94-8B4BC7E87E19</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -109,7 +91,7 @@ btnArr.addDistributeTo(
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@Snapkit</string>
 	<key>IDECodeSnippetUserSnippet</key>

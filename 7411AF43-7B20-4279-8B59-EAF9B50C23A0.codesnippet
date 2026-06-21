@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>im</string>
@@ -9,7 +8,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#import "&lt;#Name#&gt;.h"</string>
+	<string>#import &quot;&lt;#Name#&gt;.h&quot;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7411AF43-7B20-4279-8B59-EAF9B50C23A0</string>
 	<key>IDECodeSnippetLanguage</key>

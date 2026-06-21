@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@UITextView</string>
@@ -22,38 +21,38 @@
                 .byEditable(NO) // 禁止编辑。必须 editable = NO 才能点击链接跳转
                 /// 修改textView超链接的文字颜色
                 /// UITextView 默认会对 NSLinkAttributeName 使用蓝色和下划线，如果不设置 linkTextAttributes 会覆盖你自定义的颜色。
-                .byLinkTextAttributes(self.makeLinkTextAttributes)
-                .byAttributedText(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray *_Nullable data) {
+                .byLinkTextAttributes(self.makeLinkTextAttributes) // 设置 Link Text Attributes
+                .byAttributedText(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray *_Nullable data) { // 设置富文本
                     data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
                         @jobs_strongify(self)
-                        data1.font = UIFontWeightBoldSize(JobsWidth(14));
-                        data1.textCor = @"#6B6B6B".cor;
-                        data1.targetString = @"Please read our".tr.uppercaseString.add(JobsSpace);
+                        data1.byFont(UIFontWeightBoldSize(JobsWidth(14))); // 设置字体
+                        data1.textCor = @&quot;#6B6B6B&quot;.cor;
+                        data1.targetString = @&quot;Please read our&quot;.tr.uppercaseString.add(JobsSpace);
                         data1.paragraphStyle = self.defaultParagraphStyle;
                     }))
-                    .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
+                    .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) { // 追加元素
                         @jobs_strongify(self)
-                        data1.font = UIFontWeightBoldSize(JobsWidth(14));
-                        data1.textCor = JobsCor(@"#FFCC00");
-                        data1.targetString = @"Pesponsible Game".tr.uppercaseString;
-                        data1.underlineCor = @"#FFCC00".cor;
+                        data1.byFont(UIFontWeightBoldSize(JobsWidth(14))); // 设置字体
+                        data1.textCor = JobsCor(@&quot;#FFCC00&quot;);
+                        data1.targetString = @&quot;Pesponsible Game&quot;.tr.uppercaseString;
+                        data1.underlineCor = @&quot;#FFCC00&quot;.cor;
                         data1.underlineStyle = NSUnderlineStyleSingle;
                         data1.paragraphStyle = self.defaultParagraphStyle;
-                        data1.urlStr = @"myapp://responsible_gaming";/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
+                        data1.urlStr = @&quot;myapp://responsible_gaming&quot;;/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
                     }))
-                    .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
+                    .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) { // 追加元素
                         @jobs_strongify(self)
-                        data1.font = UIFontWeightBoldSize(JobsWidth(14));
-                        data1.textCor = JobsCor(@"#6B6B6B");;
-                        data1.targetString = JobsSpace.add(@"carefully:".tr.uppercaseString);
+                        data1.byFont(UIFontWeightBoldSize(JobsWidth(14))); // 设置字体
+                        data1.textCor = JobsCor(@&quot;#6B6B6B&quot;);;
+                        data1.targetString = JobsSpace.add(@&quot;carefully:&quot;.tr.uppercaseString);
                         data1.paragraphStyle = self.defaultParagraphStyle;
                     }));
                 })))
-                .byDelegate(self)
-                .byScrollEnabled(NO)
-                .byBgColor(JobsClearColor)
-                .addOn(self.bgImageView)
-                .byAdd(^(MASConstraintMaker *make) {
+                .byDelegate(self) // 设置代理
+                .byScrollEnabled(NO) // 设置 Scroll Enabled
+                .byBgColor(JobsClearColor) // 设置背景色
+                .addOn(self.bgImageView) // 加入父视图
+                .byAdd(^(MASConstraintMaker *make) { // 部署约束
                     @jobs_strongify(self)
                     /// TODO
                 });

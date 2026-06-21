@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@UICollectionViewHeaderAndFooterView</string>
@@ -9,7 +8,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#import "MSPromotionIncentiveCVHeaderFooterView.h"
+	<string>#import &quot;MSPromotionIncentiveCVHeaderFooterView.h&quot;
 
 @interface MSPromotionIncentiveCVHeaderFooterView ()
 /// UI
@@ -37,7 +36,7 @@ Prop_strong()UILabel *titleLab;
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
     // [self richElementsInViewWithModel:model];
     self.viewModel = model ? : UIViewModel.new;
-    self.backgroundColor = self.viewModel.bgCor;
+    self.byBgColor(self.viewModel.bgCor); // 设置背景色
     self.titleLab.alpha = 1;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -51,8 +50,8 @@ Prop_strong()UILabel *titleLab;
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_weakify(self)
             label.byTextCor(RGBA_COLOR(51, 51, 51, 1))
-                .byFont(UIFontWeightBoldSize(16))
-                .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                .byFont(UIFontWeightBoldSize(16)) // 设置字体
+                .setMasonryBy(^(MASConstraintMaker *_Nonnull make){ // 配置链式能力
                     @jobs_strongify(self)
                     make.height.mas_equalTo(JobsWidth(18));
                     make.left.equalTo(self).offset(JobsWidth(16));
@@ -61,7 +60,7 @@ Prop_strong()UILabel *titleLab;
         });
     }
     _titleLab.byText(self.viewModel.textModel.text)
-        .makeLabelByShowingType(UILabelShowingType_03);
+        .makeLabelByShowingType(UILabelShowingType_03); // 配置链式能力
     return _titleLab;
 }
 
@@ -71,7 +70,7 @@ Prop_strong()UILabel *titleLab;
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>OC@UICollectionViewHeaderAndFooterView</string>
 	<key>IDECodeSnippetUserSnippet</key>

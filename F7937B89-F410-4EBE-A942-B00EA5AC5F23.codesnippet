@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@YTKNetwork</string>
@@ -12,10 +11,10 @@
 	<string>#pragma mark —— DDNetworking网络请求
 -(void)getBankcardBanklist:(jobsByIDBlock _Nullable)block{
     NSDictionary *parameters = @{
-        @"address":@"",// 开户地址
-        @"bankAccount":@"",// 银行账号
-        @"bankId":@"",// 银行卡id
-        @"realName":@"",// 持卡人姓名
+        @&quot;address&quot;:@&quot;&quot;,// 开户地址
+        @&quot;bankAccount&quot;:@&quot;&quot;,// 银行账号
+        @&quot;bankId&quot;:@&quot;&quot;,// 银行卡id
+        @&quot;realName&quot;:@&quot;&quot;,// 持卡人姓名
     };
     RequestTool *config = RequestTool.new;
     config.languageType = self.currentLanguageType;
@@ -38,21 +37,21 @@
         GetCustomerContactApi *api = GetCustomerContactApi.initByParameters(nil);
         if ([api loadCacheWithError:nil]) {
             NSDictionary *json = api.responseJSONObject;
-            NSLog(@"json = %@", json);
+            NSLog(@&quot;json = %@&quot;, json);
             // show cached data
         }
 
-        api.animatingText = JobsInternationalization(@"正在加载");
+        api.animatingText = JobsInternationalization(@&quot;正在加载&quot;);
         api.animatingView = self.view;
 
         [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
             /// 以下是我们需要的值
             JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
             if(responseModel.code == HTTPResponseCodeSuccess){
-                NSLog(@"update ui");
+                NSLog(@&quot;update ui&quot;);
             }
         } failure:^(YTKBaseRequest *request) {
-            NSLog(@"failed");
+            NSLog(@&quot;failed&quot;);
         }];
     };
 }
@@ -66,14 +65,14 @@
         
         YTKBatchRequest *batchRequest = [YTKBatchRequest.alloc initWithRequestArray:@[a, b, c, d]];
         [batchRequest startWithCompletionBlockWithSuccess:^(YTKBatchRequest *batchRequest) {
-            NSLog(@"succeed");
+            NSLog(@&quot;succeed&quot;);
             NSArray *requests = batchRequest.requestArray;
             GetImageApi *a = (GetImageApi *)requests[0];
             GetImageApi *b = (GetImageApi *)requests[1];
             GetImageApi *c = (GetImageApi *)requests[2];
             GetUserInfoApi *user = (GetUserInfoApi *)requests[3];
             ///deal with requests result ...
-            NSLog(@"%@, %@, %@, %@", a, b, c, user);
+            NSLog(@&quot;%@, %@, %@, %@&quot;, a, b, c, user);
             
             /// 以下是我们需要的值
             a.responseObject;
@@ -82,7 +81,7 @@
             user.responseObject;
             
         } failure:^(YTKBatchRequest *batchRequest) {
-            NSLog(@"failed");
+            NSLog(@&quot;failed&quot;);
         }];
     };
 }
@@ -99,21 +98,21 @@
             
             RegisterApi *result = (RegisterApi *)baseRequest;
             /// 在链式请求中，下一个请求的参数来源于上一个请求的结果
-            GetUserInfoApi *api = GetUserInfoApi.initByParameters(@{@"KKK":result.userId});
+            GetUserInfoApi *api = GetUserInfoApi.initByParameters(@{@&quot;KKK&quot;:result.userId});
             [chainRequest addRequest:api callback:nil];
         }];
-        chainReq.delegate = self;
+        chainReq.byDelegate(self); // 设置代理
         [chainReq start];// start to send request
     };
 }
 #pragma mark —— YTKChainRequestDelegate
 -(void)chainRequestFinished:(YTKChainRequest *)chainRequest{
-    NSLog(@"all requests are done");
+    NSLog(@&quot;all requests are done&quot;);
 }
 
 -(void)chainRequestFailed:(YTKChainRequest *)chainRequest
         failedBaseRequest:(YTKBaseRequest*)request{
-    NSLog(@"some one of request is failed");
+    NSLog(@&quot;some one of request is failed&quot;);
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>F7937B89-F410-4EBE-A942-B00EA5AC5F23</string>

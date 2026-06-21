@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@UIVC</string>
@@ -9,80 +8,68 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>- (void)dealloc{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
-    NSLog(@"%@",JobsLocalFunc);
-}
+	<string>@implementation DemoVC
 
--(void)loadView{
-    [super loadView];
-    
-    if ([self.requestParams isKindOfClass:UIViewModel.class]) {
-        self.viewModel = (UIViewModel *)self.requestParams;
-        if(self.viewModel.pushOrPresent != ComingStyle_Unknown){
-            self.pushOrPresent = self.viewModel.pushOrPresent;
-        }
-    }
-    self.setupNavigationBarHidden = YES;
-    
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
-    self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"消息详情页");
-    self.viewModel.textModel.font = UIFontWeightRegularSize(18);
-
-    // 使用原则：底图有 + 底色有 = 优先使用底图数据
-    // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");/// self.gk_navBackgroundImage 和 self.bgImageView
-    self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.bgImage = JobsIMG(@"新首页的底图");
-    self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);/// self.gk_navBackgroundColor 和 self.view.backgroundColor
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
-}
-
-- (void)viewDidLoad {
+-(void)viewDidLoad{
     [super viewDidLoad];
-    
-    self.view.backgroundColor = JobsRandomColor;
-    self.setGKNav(nil);
-    self.setGKNavBackBtn(nil);
-    self.gk_navRightBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
-    self.gk_navLeftBarButtonItem = [UIBarButtonItem.alloc initWithCustomView:self.aboutBtn];
-    self.gk_navigationBar.jobsVisible = NO;
-//    [self.bgImageView removeFromSuperview];
+    self.view
+        .byBgColor(UIColor.systemBackgroundColor) // 设置背景色
+        .byUserInteractionEnabled(YES); // 开启交互
+    [self configNav];
+    [self configSubviews];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-//    [self updateStatusBarCor:JobsOrangeColor];/// 在具体子类实现，不要写在父类
+-(void)configNav{
+    self.gk_navTitle = @&quot;Demo&quot;;
+    self.gk_navTitleColor = UIColor.labelColor;
+    self.gk_navTitleFont = [UIFont boldSystemFontOfSize:17];
 }
 
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    NSLog(@"");
+-(void)configSubviews{
+    self.titleLab.byHidden(NO); // 显示标题
+    self.submitBtn.byHidden(NO); // 显示按钮
 }
 
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    NSLog(@"");
+-(UILabel *)titleLab{
+    if (!_titleLab) {
+        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            label
+                .byText(@&quot;标题&quot;) // 设置文本
+                .byFont([UIFont boldSystemFontOfSize:16]) // 设置字体
+                .byTextCor(UIColor.labelColor) // 设置文字颜色
+                .byTextAlignment(NSTextAlignmentCenter) // 设置对齐方式
+                .byBgColor(UIColor.clearColor) // 设置背景色
+                .addOn(self.view) // 加入父视图
+                .byAdd(^(MASConstraintMaker *make) { // 部署约束
+                    make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(JobsWidth(16));
+                    make.left.right.equalTo(self.view).inset(JobsWidth(16));
+                    make.height.mas_equalTo(JobsWidth(24));
+                });
+        });
+    }return _titleLab;
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+-(UIButton *)submitBtn{
+    if (!_submitBtn) {
+        _submitBtn = jobsMakeButton(^(__kindof UIButton * _Nullable button) {
+            button
+                .byTitle(@&quot;确认&quot;) // 设置标题
+                .byTitleCor(UIColor.whiteColor) // 设置标题颜色
+                .byTitleFont([UIFont boldSystemFontOfSize:16]) // 设置标题字体
+                .byBgColor(UIColor.systemBlueColor) // 设置背景色
+                .byCornerRadius(JobsWidth(10)) // 设置圆角
+                .addOn(self.view) // 加入父视图
+                .byAdd(^(MASConstraintMaker *make) { // 部署约束
+                    make.left.right.equalTo(self.view).inset(JobsWidth(16));
+                    make.height.mas_equalTo(JobsWidth(48));
+                    make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-JobsWidth(16));
+                });
+        });
+    }return _submitBtn;
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-//    [self restoreStatusBarCor];
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-}
-
--(void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event{
-    
-}
-#pragma mark —— lazyLoad</string>
+@end
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7DAC1E49-9A31-4A3F-999A-454F36794AA8</string>
 	<key>IDECodeSnippetLanguage</key>

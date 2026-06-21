@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@UIScrollViewDelegate</string>
@@ -12,30 +11,30 @@
 	<string>#pragma mark —— UIScrollViewDelegate
 /// 滚动视图移动时回调
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"视图移动 x: %f", scrollView.contentOffset.x);
+    NSLog(@&quot;视图移动 x: %f&quot;, scrollView.contentOffset.x);
 }
 /// 滚动视图结束拖动时回调
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                  willDecelerate:(BOOL)decelerate{
-    NSLog(@"视图结束拖动");
+    NSLog(@&quot;视图结束拖动&quot;);
 }
 /// 滚动视图即将开始拖动时回调
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    NSLog(@"滚动视图即将开始拖动");
+    NSLog(@&quot;滚动视图即将开始拖动&quot;);
 }
 /// 滚动视图结束拖动时回调
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset{
-    NSLog(@"滚动视图结束拖动");
+    NSLog(@&quot;滚动视图结束拖动&quot;);
 }
 /// 视图即将减速时调用
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    NSLog(@"视图即将减速");
+    NSLog(@&quot;视图即将减速&quot;);
 }
 /// 视图已经结束减速时回调
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    NSLog(@"视图已经结束减速");
+    NSLog(@&quot;视图已经结束减速&quot;);
 }
 
 https://juejin.cn/post/6844904163210428423</string>

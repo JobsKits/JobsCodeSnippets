@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>JobsTimer</string>
@@ -16,20 +15,20 @@
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
             timer.byTimerType(JobsTimerTypeNSTimer)
             .byTimerStyle(TimerStyle_anticlockwise) // 倒计时模式
-            .byTimeInterval(1)
-            .byTimeSecIntervalSinceDate(0)
-            .byQueue(dispatch_get_main_queue())
-            .byTimerState(JobsTimerStateIdle)
-            .byStartTime(10)
-            .byTime(0)
-            .byOnTick(^(CGFloat time){
+            .byTimeInterval(1) // 设置 Time Interval
+            .byTimeSecIntervalSinceDate(0) // 设置 Time Sec Interval Since Date
+            .byQueue(dispatch_get_main_queue()) // 设置 Queue
+            .byTimerState(JobsTimerStateIdle) // 设置 Timer State
+            .byStartTime(10) // 设置 Start Time
+            .byTime(0) // 设置 Time
+            .byOnTick(^(CGFloat time){ // 设置 On Tick
                 @jobs_strongify(self)
-                JobsLog(@"正在倒计时...");
+                JobsLog(@&quot;正在倒计时...&quot;);
                 if (self.objBlock) self.objBlock(timer);
             })
-            .byOnFinish(^(JobsTimer *_Nullable timer){
+            .byOnFinish(^(JobsTimer *_Nullable timer){ // 设置 On Finish
                 @jobs_strongify(self)
-                JobsLog(@"倒计时结束...");
+                JobsLog(@&quot;倒计时结束...&quot;);
                 if (self.objBlock) self.objBlock(timer);
             });
 

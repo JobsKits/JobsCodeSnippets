@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@RichText</string>
@@ -17,9 +16,9 @@
         _attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray &lt;JobsRichTextConfig *&gt;*_Nullable data) {
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
-                data1.font = UIFontWeightRegularSize(JobsWidth(12));
+                data1.byFont(UIFontWeightRegularSize(JobsWidth(12))); // 设置字体
                 data1.textCor = JobsBlueColor;
-                data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
+                data1.targetString = JobsInternationalization(@&quot;编译器自动管理内存地址&quot;).add(@&quot;\n&quot;);
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
                     data2.alignment = NSTextAlignmentJustified;
@@ -32,17 +31,17 @@
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
-                data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
+                data1.byFont(UIFontWeightSemiboldSize(JobsWidth(13))); // 设置字体
                 data1.textCor = JobsWhiteColor;
-                data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
+                data1.targetString = JobsInternationalization(@&quot;让程序员更加专注于&quot;).add(@&quot;\n&quot;);
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = self.defaultParagraphStyle;
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
-                data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
+                data1.byFont(UIFontWeightUltraLightSize(JobsWidth(14))); // 设置字体
                 data1.textCor = JobsGreenColor;
-                data1.targetString = JobsInternationalization(@"APP的业务。");
+                data1.targetString = JobsInternationalization(@&quot;APP的业务。&quot;);
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = self.defaultParagraphStyle;
             }));

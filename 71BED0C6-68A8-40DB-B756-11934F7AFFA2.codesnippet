@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@JXCategoryView.style</string>
@@ -9,82 +8,52 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>
-&lt;
-JXCategoryTitleViewDataSource
-,JXCategoryViewDelegate
-,JXPagerViewDelegate
-&gt;
-
-// @interface BaiShaETProjCollectionHeaderView : UICollectionHeaderFooterView
+	<string>&lt; JXCategoryTitleViewDataSource, JXCategoryViewDelegate, JXPagerViewDelegate &gt;
 
 /// UI
-Prop_strong()JXCategoryTitleView *categoryView;/// 文字
+Prop_strong()JXCategoryTitleView *categoryView;
 Prop_strong()JXPagerView *pagerView;
 Prop_strong()BaiShaETProjCollectionHeaderView *collectionHeaderView;
 /// Data
 Prop_strong()NSMutableArray &lt;__kindof UIViewController *&gt;*childVCMutArr;
 
-#pragma mark - JXPagingViewDelegate
-- (UIView *)tableHeaderViewInPagerView:(JXPagerView *)pagerView {
+#pragma mark - JXPagerViewDelegate
+-(UIView *)tableHeaderViewInPagerView:(JXPagerView *)pagerView {
     return self.collectionHeaderView;
 }
-/**
-    页面朝上走 crollView.contentOffset.y 为正值
-    页面朝下走 crollView.contentOffset.y 为负值
-    初始态是0
- */
-- (void)pagerView:(JXPagerView *)pagerView
-mainTableViewDidScroll:(UIScrollView *)scrollView{
-    [self.collectionHeaderView scrollViewDidScroll:scrollView.contentOffset.y];
+
+-(NSUInteger)tableHeaderViewHeightInPagerView:(JXPagerView *)pagerView {
+    return JobsNavigationBarAndStatusBarHeight(nil) + [BaiShaETProjCollectionHeaderView viewSizeWithModel:nil].height;
 }
-/// 
-- (NSUInteger)tableHeaderViewHeightInPagerView:(JXPagerView *)pagerView {
-    return JobsStatusBarHeight()
-//    + self.gk_navigationBar.height
-    + JobsNavigationBarAndStatusBarHeight(nil)
-    + [BaiShaETProjCollectionHeaderView viewSizeWithModel:nil].height;
-}
-/// JXCategoryTitleView *categoryView 的高度
-- (NSUInteger)heightForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
+
+-(NSUInteger)heightForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
     return listContainerViewDefaultOffset;
 }
 
-- (UIView *)viewForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
+-(UIView *)viewForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
     return self.categoryView;
 }
 
-- (NSInteger)numberOfListsInPagerView:(JXPagerView *)pagerView {
+-(NSInteger)numberOfListsInPagerView:(JXPagerView *)pagerView {
     return self.titleMutArr.count;
 }
 
-- (id&lt;JXPagerViewListViewDelegate&gt;)pagerView:(JXPagerView *)pagerView
-                             initListAtIndex:(NSInteger)index {
+-(id&lt;JXPagerViewListViewDelegate&gt;)pagerView:(JXPagerView *)pagerView initListAtIndex:(NSInteger)index {
     return self.childVCMutArr[index];
 }
-#pragma mark —— lazyLoad
+
+#pragma mark - lazyLoad
 -(JXPagerView *)pagerView{
     if (!_pagerView) {
         _pagerView = [JXPagerView.alloc initWithDelegate:self];
-        [self.view addSubview:_pagerView];
-        _pagerView.frame = CGRectMake(0,
-                                      JobsNavigationBarAndStatusBarHeight(nil) + self.getTopLineLabSize.height,
-                                      JobsMainScreen_WIDTH(),
-                                      JobsMainScreen_HEIGHT());
-        _pagerView.pinSectionHeaderVerticalOffset = JobsWidth(0);/// 额外的偏移量
+        _pagerView
+            .addOn(self.view) // 加入父视图
+            .byAdd(^(MASConstraintMaker *make) { // 部署约束
+                make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(self.getTopLineLabSize.height);
+                make.left.right.bottom.equalTo(self.view);
+            });
+        _pagerView.pinSectionHeaderVerticalOffset = JobsWidth(0);
     }return _pagerView;
-}
-
--(BaiShaETProjCollectionHeaderView *)collectionHeaderView{
-    if (!_collectionHeaderView) {
-        _collectionHeaderView = BaiShaETProjCollectionHeaderView.new;
-        _collectionHeaderView.frame = CGRectMake(0,
-                                                 JobsNavigationBarAndStatusBarHeight(nil),
-                                                 [BaiShaETProjCollectionHeaderView viewSizeWithModel:nil].width,
-                                                 [BaiShaETProjCollectionHeaderView viewSizeWithModel:nil].height);
-        _collectionHeaderView.isZoom = YES;
-        [_collectionHeaderView richElementsInViewWithModel:nil];
-    }return _collectionHeaderView;
 }
 
 -(JXCategoryTitleView *)categoryView{
@@ -92,135 +61,40 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
         @jobs_weakify(self)
         _categoryView = jobsMakeCategoryTitleView(^(JXCategoryTitleView * _Nullable view) {
             @jobs_strongify(self)
-            view.backgroundColor = JobsClearColor;
-            view.titleSelectedColor = JobsWhiteColor;
-            view.titleColor = JobsWhiteColor;
-            view.titleFont = UIFontWeightRegularSize(JobsWidth(18));
-            view.titleSelectedFont = UIFontWeightRegularSize(JobsWidth(28));
-            view.delegate = self;
-            view.titles = jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) {
-                arr.add(JobsInternationalization(@"ALL"))
-                    .add(JobsInternationalization(@"NEWCOMER"))
-                    .add(JobsInternationalization(@"DAILY"))
-                    .add(JobsInternationalization(@"LIMITED"))
-                    .add(JobsInternationalization(@"OFFER"));
-            });
-            view.titleColorGradientEnabled = YES;
-            /// 跟随的指示器
-            view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
-                    view.indicatorColor = HEXCOLOR(0xFFEABA);
-                    view.indicatorHeight = JobsWidth(4);
-                    view.indicatorWidthIncrement = JobsWidth(10);
-                    view.verticalMargin = 0;
-                }));
-            });
-            view.defaultSelectedIndex = 1;// 默认从第二个开始显示
-            view.cellSpacing = JobsWidth(-20);
-            /// 关联cotentScrollView，关联之后才可以互相联动！！！
-            view.contentScrollView = self.listContainerView.scrollView;
-            /// BackgroundView 椭圆形
-            view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
-                    view.indicatorHeight = JobsWidth(30);
-                    view.indicatorWidth = JobsWidth(76);
-                    view.indicatorColor = HEXCOLOR(0xFFEABA);
-                    view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
-                }));
-            });self.view.addSubview(view);
-            [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
-                make.left.right.equalTo(self.view);
-                make.height.mas_equalTo(listContainerViewDefaultOffset);
-            }];[self.view layoutIfNeeded];
+            view
+                .byTitleSelectedColor(JobsWhiteColor) // 设置选中标题颜色
+                .byTitleColor(JobsWhiteColor) // 设置普通标题颜色
+                .byTitleFont(UIFontWeightRegularSize(JobsWidth(18))) // 设置普通标题字体
+                .byTitleSelectedFont(UIFontWeightRegularSize(JobsWidth(28))) // 设置选中标题字体
+                .byTitles(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) { // 设置标题数组
+                    arr.add(JobsInternationalization(@&quot;ALL&quot;))
+                        .add(JobsInternationalization(@&quot;NEWCOMER&quot;)) // 追加元素
+                        .add(JobsInternationalization(@&quot;DAILY&quot;)) // 追加元素
+                        .add(JobsInternationalization(@&quot;LIMITED&quot;)) // 追加元素
+                        .add(JobsInternationalization(@&quot;OFFER&quot;)); // 追加元素
+                }))
+                .byTitleColorGradientEnabled(YES) // 开启标题颜色渐变
+                .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) { // 设置指示器
+                    arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable line) {
+                        line.indicatorColor = HEXCOLOR(0xFFEABA);
+                        line.indicatorHeight = JobsWidth(4);
+                        line.indicatorWidthIncrement = JobsWidth(10);
+                        line.verticalMargin = 0;
+                    }));
+                }))
+                .byDefaultSelectedIndex(1) // 设置默认选中索引
+                .byCellSpacing(JobsWidth(-20)) // 设置 cell 间距
+                .byContentScrollView(self.listContainerView.scrollView) // 关联内容滚动视图
+                .byBgColor(JobsClearColor) // 设置背景色
+                .addOn(self.view) // 加入父视图
+                .byAdd(^(MASConstraintMaker *make) { // 部署约束
+                    make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
+                    make.left.right.equalTo(self.view);
+                    make.height.mas_equalTo(listContainerViewDefaultOffset);
+                });
         });
-
     }return _categoryView;
 }
-
--(NSMutableArray&lt;NSString *&gt; *)titleMutArr{
-    if (!_titleMutArr) {
-        _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-            for (int i = 0; i &lt;= 5; i++) {
-                arr.add(JobsInternationalization(@"Lv").add([NSString stringWithFormat:@"%d",i]));
-            }
-        });
-    }return _titleMutArr;
-}
-
--(NSMutableArray&lt;UIViewController *&gt; *)childVCMutArr{
-    if (!_childVCMutArr) {
-        @jobs_weakify(self)
-        _childVCMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-            @jobs_strongify(self)
-            for (NSString *str in self.titleMutArr) {
-                BaiShaETProjVIPSubVC *vipSubVC = BaiShaETProjVIPSubVC.new;
-                vipSubVC.jobsTag = [self.titleMutArr indexOfObject:str];
-                self.childVCMutArr.add(vipSubVC);
-            }
-        });
-    }return _childVCMutArr;
-}
-
-/**
- 
- 用JXPagerView管理的区别：
- 
- 1、注册协议JXPagerViewDelegate、舍弃协议JXCategoryListContainerViewDelegate
-    1.1、舍弃 : - (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView;
-    1.2、舍弃： - (id&lt;JXCategoryListContentViewDelegate&gt;)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index;
-    1.3、舍弃： - (void)categoryView:(JXCategoryBaseView *)categoryView didClickSelectedItemAtIndex:(NSInteger)index ;
-    1.4、舍弃： - (void)categoryView:(JXCategoryBaseView *)categoryView didSelectedItemAtIndex:(NSInteger)index ;
-    1.5、舍弃： - (void)categoryView:(JXCategoryBaseView *)categoryView didScrollSelectedItemAtIndex:(NSInteger)index;
-    1.6、舍弃： - (void)categoryView:(JXCategoryBaseView *)categoryView
-            scrollingFromLeftIndex:(NSInteger)leftIndex
-                   toRightIndex:(NSInteger)rightIndex
-                         ratio:(CGFloat)ratio ;
- 2、舍弃属性类 JXCategoryListContainerView
-    2.1、舍弃 @property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController@property(nonatomic,strong)
-    2.1 、舍弃
-         -(JXCategoryListContainerView *)listContainerView{
-             if (!_listContainerView) {
-                 _listContainerView = [JXCategoryListContainerView.alloc initWithType:JXCategoryListContainerType_CollectionView
-                                                                             delegate:self];
-                 _listContainerView.defaultSelectedIndex = 1;// 默认从第二个开始显示
-                 [self.view addSubview:_listContainerView];
-                 [_listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-         //            make.edges.equalTo(self.view);
-                     make.top.equalTo(self.topLineLab.mas_bottom).offset(listContainerViewDefaultOffset);
-                     make.left.right.bottom.equalTo(self.view);
-
-                 }];
-                 [self.view layoutIfNeeded];
-         //        /// ❤️在需要的地方写❤️
-         //        NSNumber *currentIndex = [self.listContainerView valueForKey:@"currentIndex"];
-         //        NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
-
-             }return _listContainerView;
-         }
- 3、JXCategoryTitleView 舍弃部分属性：
-    3.1、舍弃：_categoryView.contentScrollView = self.listContainerView.scrollView;/// 关联cotentScrollView，关联之后才可以互相联动！！！
-    3.2、在 JXPagerView 模式下 ,不用设置JXCategoryTitleView的height、size、frame。而是在JXPagingViewDelegate代理方法里面设置
- 
- 4、_categoryView新增属性：_categoryView.listContainer = (id&lt;JXCategoryViewListContainer&gt;)self.pagerView.listContainerView;
- 5、全局新增属性：@property(nonatomic,strong)JXPagerView *pagerView;
- 6、新增JXPagingViewDelegate代理协议的实现
-     6.1、- (UIView *)tableHeaderViewInPagerView:(JXPagerView *)pagerView;
-     6.2、- (void)pagerView:(JXPagerView *)pagerView
-        mainTableViewDidScroll:(UIScrollView *)scrollView;
-     6.3、- (NSUInteger)tableHeaderViewHeightInPagerView:(JXPagerView *)pagerView ;
-     6.4、- (NSUInteger)heightForPinSectionHeaderInPagerView:(JXPagerView *)pagerView;/// JXCategoryTitleView *categoryView 的高度
-     6.5、- (UIView *)viewForPinSectionHeaderInPagerView:(JXPagerView *)pagerView;
-     6.6、- (NSInteger)numberOfListsInPagerView:(JXPagerView *)pagerView;
-     6.7、- (id&lt;JXPagerViewListViewDelegate&gt;)pagerView:(JXPagerView *)pagerView
-                                  initListAtIndex:(NSInteger)index;
- 7、各个子VC要遵循代理协议JXPagerViewListViewDelegate，并实现相关方法
-    7.1、 - (UIView *)listView;
-    7.2、 - (UIScrollView *)listScrollView;
-    7.3、 - (void)listViewDidScrollCallback:(void (^)(UIScrollView *scrollView))callback;
-    7.4、或者直接导入类：#import "UIViewController+JXPagerViewListViewDelegate.h"
- 
- */
 </string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>71BED0C6-68A8-40DB-B756-11934F7AFFA2</string>

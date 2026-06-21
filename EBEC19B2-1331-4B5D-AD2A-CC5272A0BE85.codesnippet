@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@UIView</string>
@@ -28,7 +27,7 @@ static dispatch_once_t static_tipsView01OnceToken;
 #pragma mark —— SysMethod
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = JobsWhiteColor;
+        self.byBgColor(JobsWhiteColor); // 设置背景色
     }return self;
 }
 
@@ -40,7 +39,7 @@ static dispatch_once_t static_tipsView01OnceToken;
                                     id _Nullable arg) {
             @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
-            NSLog(@"通知传递过来的 = %@",notification.object);
+            NSLog(@&quot;通知传递过来的 = %@&quot;,notification.object);
         }];
     }return self;
 }
@@ -59,7 +58,7 @@ static dispatch_once_t static_tipsView01OnceToken;
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.backgroundColor = JobsWhiteColor;
+        self.byBgColor(JobsWhiteColor); // 设置背景色
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -101,11 +100,11 @@ static dispatch_once_t static_tipsView01OnceToken;
     if(!_phoneView){
         @jobs_weakify(self)
         _phoneView = FMLoginByPhoneView
-            .JobsRichViewByModel(nil)
-            .JobsBlock1(^(id _Nullable data) {
+            .JobsRichViewByModel(nil) // 配置链式能力
+            .JobsBlock1(^(id _Nullable data) { // 配置链式能力
 
             }).addOn(self.view)
-            .byAdd(^(MASConstraintMaker *make) {
+            .byAdd(^(MASConstraintMaker *make) { // 部署约束
                 @jobs_strongify(self)
                 /// TODO
             })
@@ -115,9 +114,9 @@ static dispatch_once_t static_tipsView01OnceToken;
 -(FMLoginByUsrNameView *)loginByUsrNameView{
     if(!_loginByUsrNameView){
         _loginByUsrNameView = FMLoginByUsrNameView
-            .BySize(FMLoginByUsrNameView.viewSizeByModel(nil))
-            .JobsRichViewByModel2(nil)
-            .JobsBlock1(^(id  _Nullable data) {
+            .BySize(FMLoginByUsrNameView.viewSizeByModel(nil)) // 配置链式能力
+            .JobsRichViewByModel2(nil) // 配置链式能力
+            .JobsBlock1(^(id  _Nullable data) { // 配置链式能力
                 
             });
     }return _loginByUsrNameView;
@@ -127,24 +126,24 @@ static dispatch_once_t static_tipsView01OnceToken;
     if(!_statusBtn){
         @jobs_weakify(self)
         _statusBtn = BaseButton.jobsInit()
-            .bgColorBy(JobsClearColor)
-            .jobsResetBtnTitleCor(JobsCor(@"#F53F3F"))
-            .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(14)))
-            .jobsResetBtnTitle(JobsInternationalization(@"Unverified"))
-            .onClickBy(^(UIButton *x){
+            .bgColorBy(JobsClearColor) // 设置背景色
+            .jobsResetBtnTitleCor(JobsCor(@&quot;#F53F3F&quot;)) // 设置标题颜色
+            .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(14))) // 设置标题字体
+            .jobsResetBtnTitle(JobsInternationalization(@&quot;Unverified&quot;)) // 设置标题
+            .onClickBy(^(UIButton *x){ // 绑定事件
                 @jobs_strongify(self)
                 self.getCurrentViewController.comingToPushVC(FMForgotPwdVC.new);
             })
-            .onLongPressGestureBy(^(id data){
-                JobsLog(@"");
+            .onLongPressGestureBy(^(id data){ // 绑定事件
+                JobsLog(@&quot;&quot;);
             })
-            .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-                data.layerCor = JobsCor(@"#F53F3F");
+            .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 设置图层
+                data.layerCor = JobsCor(@&quot;#F53F3F&quot;);
                 data.jobsWidth = 1;
                 data.cornerRadiusValue = JobsWidth(32 / 2);
             }))
-            .addOn(self.view)
-            .byAdd(^(MASConstraintMaker *make) {
+            .addOn(self.view) // 加入父视图
+            .byAdd(^(MASConstraintMaker *make) { // 部署约束
                 @jobs_strongify(self)
                 /// TODO
             });

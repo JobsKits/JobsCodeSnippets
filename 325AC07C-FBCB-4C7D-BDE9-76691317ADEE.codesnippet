@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@UICollectionView</string>
@@ -53,7 +52,7 @@ Prop_copy()NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
         @jobs_strongify(self)
         BaiShaETProjCountdownCVCell *cell = [BaiShaETProjCountdownCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
         cell.JobsRichViewByModel2(self.dataMutArr[indexPath.section])
-            .JobsBlock1(^(id _Nullable data) {
+            .JobsBlock1(^(id _Nullable data) { // 配置链式能力
              
             });
         return cell;
@@ -61,7 +60,7 @@ Prop_copy()NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
         @jobs_strongify(self)
         BaiShaETProjOrderDetailsCVCell *cell = [BaiShaETProjOrderDetailsCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
         cell.JobsRichViewByModel2(self.dataMutArr[indexPath.section])
-            .JobsBlock1(^(id _Nullable data) {
+            .JobsBlock1(^(id _Nullable data) { // 配置链式能力
              
             });
         return cell;
@@ -86,7 +85,7 @@ Prop_copy()NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
         if (indexPath.section == self.cvcellMutArr.count - 1) {
             return [collectionView UICollectionElementKindSectionFooterClass:BaiShaETProjVIPSubCVFooterView.class
                                                                 forIndexPath:indexPath].JobsRichViewByModel2(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"查看VIP規則");
+                viewModel.textModel.byText(JobsInternationalization(@&quot;查看VIP規則&quot;)); // 设置文本
             }));
         }else ReturnBaseCollectionReusableHeaderView
     }else{
@@ -99,35 +98,35 @@ Prop_copy()NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
 /// 允许选中时，高亮
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@&quot;%s&quot;, __FUNCTION__);
     return YES;
 }
 /// 高亮完成后回调
 -(void)collectionView:(UICollectionView *)collectionView
 didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@&quot;%s&quot;, __FUNCTION__);
 }
 /// 由高亮转成非高亮完成时的回调
 -(void)collectionView:(UICollectionView *)collectionView
 didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@&quot;%s&quot;, __FUNCTION__);
 }
 /// 设置是否允许选中
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@&quot;%s&quot;, __FUNCTION__);
     return YES;
 }
 /// 设置是否允许取消选中
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@&quot;%s&quot;, __FUNCTION__);
     return YES;
 }
 /// 选中操作
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@&quot;%s&quot;, __FUNCTION__);
     /**
      滚动到指定位置
      _collectionView.contentOffset = CGPointMake(0,-100);
@@ -137,7 +136,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 /// 取消选中操作
 -(void)collectionView:(UICollectionView *)collectionView
 didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@&quot;%s&quot;, __FUNCTION__);
 }
 #pragma mark —— UICollectionViewDelegateFlowLayout
 /// header 大小
@@ -201,50 +200,51 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
         @jobs_weakify(self)
-        _collectionView = self.addSubview(BaseCollectionView
-                                          .initByLayout(self.horizontalLayout)
-                                          .registerCollectionViewClass()
-                                          .registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@"")
-                                          .registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@"")
-                                          .registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"")
-                                          .byEdgeInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+        _collectionView = BaseCollectionView
+                                          .initByLayout(self.horizontalLayout) // 配置链式能力
+                                          .registerCollectionViewClass() // 配置链式能力
+                                          .registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@&quot;&quot;) // 配置链式能力
+                                          .registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@&quot;&quot;) // 配置链式能力
+                                          .registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@&quot;&quot;) // 配置链式能力
+                                          .byEdgeInsets(UIEdgeInsetsMake(0, 0, 0, 0)) // 设置 Edge Insets
                                           /// 普通的MJRefreshHeader（触发事件）（二选一）
-                                          .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                                          .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{ // 设置 MJRefresh Header
                                               @jobs_strongify(self)
                                               /// TODO
                                               NSObject.feedbackGenerator(nil);/// 震动反馈
                                               self-&gt;_collectionView.endRefreshing(YES);
                                           }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
                                           /// MJRefreshHeader的拓展：下拉刷新Lottie动画（二选一）
-                                          .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
+                                          .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) { // 设置 MJRefresh Header
                                               
                                           })))
                                           /// 普通的MJRefreshFooter（触发事件）
-                                          .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                                          .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{ // 设置 MJRefresh Footer
                                               @jobs_strongify(self)
                                               /// TODO
                                               NSObject.feedbackGenerator(nil);/// 震动反馈
                                               self-&gt;_collectionView.endRefreshing(YES);
                                           }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
                                           .byBounces(NO)///设置为NO，使得collectionView只能上拉，不能下拉
-                                          .showsVerticalScrollIndicatorBy(NO)
-                                          .showsHorizontalScrollIndicatorBy(NO)
+                                          .showsVerticalScrollIndicatorBy(NO) // 配置链式能力
+                                          .showsHorizontalScrollIndicatorBy(NO) // 配置链式能力
                                           /// 无数据占位：用默认的图文占位表达（二选一）
-                                          .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                                              data.title = JobsInternationalization(@"NO BANK CARD FOUND");
-                                              data.titleCor = JobsWhiteColor;
-                                              data.titleFont = bayonRegular(JobsWidth(30));
-                                              data.normalImage = JobsIMG(@"用户默认头像");
+                                          .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) { // 配置链式能力
+                                              data.byTitle(JobsInternationalization(@&quot;NO BANK CARD FOUND&quot;)) // 设置标题
+                                                  .byTitleCor(JobsWhiteColor) // 设置标题颜色
+                                                  .byTitleFont(bayonRegular(JobsWidth(30))) // 设置标题字体
+                                                  .byNormalImage(JobsIMG(@&quot;用户默认头像&quot;)); // 设置普通图片
                                           }))
                                           /// 无数据占位：用自定义的视图表达（二选一）
-                                          .showEmptyViewBy(FMMaintenanceView
-                                                           .BySize(FMMaintenanceView.viewSizeByModel(nil))
-                                                           .JobsRichViewByModel2(nil)
-                                                           .JobsBlock1(^(id  _Nullable data) {
+                                          .showEmptyViewBy(FMMaintenanceView // 配置链式能力
+                                                           .BySize(FMMaintenanceView.viewSizeByModel(nil)) // 配置链式能力
+                                                           .JobsRichViewByModel2(nil) // 配置链式能力
+                                                           .JobsBlock1(^(id  _Nullable data) { // 配置链式能力
                                                                
                                                            }))
                                           )
-        .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                                           .addOn(self) // 加入父视图
+                                           .byAdd(^(MASConstraintMaker *make) { // 部署约束
             @jobs_strongify(self)
             make.centerX.equalTo(self);
             make.top.equalTo(self.jobsTextField.mas_bottom).offset(JobsWidth(5));
@@ -257,7 +257,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             [_collectionView xzm_addNormalHeaderWithTarget:self
                                                     action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                                         id _Nullable arg) {
-                NSLog(@"SSSS加载新的数据，参数: %@", arg);
+                NSLog(@&quot;SSSS加载新的数据，参数: %@&quot;, arg);
                 @jobs_strongify(self)
                 /// 在需要结束刷新的时候调用（只能调用一次）
                 /// _collectionView.endRefreshing();
@@ -267,7 +267,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             [_collectionView xzm_addNormalFooterWithTarget:self
                                                     action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                                         id _Nullable arg) {
-                NSLog(@"SSSS加载新的数据，参数: %@", arg);
+                NSLog(@&quot;SSSS加载新的数据，参数: %@&quot;, arg);
                 @jobs_strongify(self)
                 /// 在需要结束刷新的时候调用（只能调用一次）
                 /// _collectionView.endRefreshing();

@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -15,202 +14,202 @@ pickerView.byPresent(in: self.view)
 /// 文本：单列（学历）
 private lazy var textSinglePicker: BRStringPicker = { [unowned self] in
     BRStringPicker()
-        .byDataSource(["大专以下".tr, "大专".tr, "本科".tr, "硕士".tr, "博士".tr, "博士后".tr])
-        .bySelectedIndex(2)
-        .byTheme { theme in
+        .byDataSource([&quot;大专以下&quot;.tr, &quot;大专&quot;.tr, &quot;本科&quot;.tr, &quot;硕士&quot;.tr, &quot;博士&quot;.tr, &quot;博士后&quot;.tr]) // 设置数据源
+        .bySelectedIndex(2) // 设置 Selected Index
+        .byTheme { theme in // 设置 Theme
             theme
-                .byPanelBackgroundColor(.yellow)
-                .byToolbarBackgroundColor(.systemCyan)
-                .byTitleColor(.white)
-                .byButtonColor(.systemRed)
-                .byMaskColor(.black.withAlphaComponent(0.55))
-                .byPickerTextColor(.red)
-                .byPickerSelectedTextColor(.blue)
-                .byPickerFont(.systemFont(ofSize: 20))
-                .byAutoSelect(false)
+                .byPanelBackgroundColor(.yellow) // 设置 Panel Background Color
+                .byToolbarBackgroundColor(.systemCyan) // 设置 Toolbar Background Color
+                .byTitleColor(.white) // 设置标题颜色
+                .byButtonColor(.systemRed) // 设置 Button Color
+                .byMaskColor(.black.withAlphaComponent(0.55)) // 设置 Mask Color
+                .byPickerTextColor(.red) // 设置 Picker Text Color
+                .byPickerSelectedTextColor(.blue) // 设置 Picker Selected Text Color
+                .byPickerFont(.systemFont(ofSize: 20)) // 设置 Picker Font
+                .byAutoSelect(false) // 设置 Auto Select
         }
-        .byToolbar { cfg in
-            cfg.byTitle("学历".tr)
-                .byCancelText("取消")
-                .byConfirmText("完成")
+        .byToolbar { cfg in // 设置 Toolbar
+            cfg.byTitle(&quot;学历&quot;.tr)
+                .byCancelText(&quot;取消&quot;) // 设置 Cancel Text
+                .byConfirmText(&quot;完成&quot;) // 设置 Confirm Text
         }
-        .byAnimation(.spring)
-        .byResult { value in
-            ("单列：\(value)".tr).toast
+        .byAnimation(.spring) // 设置 Animation
+        .byResult { value in // 设置 Result
+            (&quot;单列：\(value)&quot;.tr).toast
         }
 }()
 /// 文本：多列（尺码/颜色）
 private lazy var textMultiPicker: BRMultiColumnPicker = { [unowned self] in
     BRMultiColumnPicker()
-        .byColumns([
-            ["S".tr, "M".tr, "L".tr, "XL"],
-            ["黑".tr, "白".tr, "蓝".tr, "粉".tr]
+        .byColumns([ // 设置 Columns
+            [&quot;S&quot;.tr, &quot;M&quot;.tr, &quot;L&quot;.tr, &quot;XL&quot;],
+            [&quot;黑&quot;.tr, &quot;白&quot;.tr, &quot;蓝&quot;.tr, &quot;粉&quot;.tr]
         ])
-        .bySelectedRows([1, 2])
-        .byTheme { theme in
+        .bySelectedRows([1, 2]) // 设置 Selected Rows
+        .byTheme { theme in // 设置 Theme
             theme.byAutoSelect(false)
         }
-        .byToolbar { cfg in
-            cfg.byTitle("尺码/颜色".tr)
-                .byCancelText("取消")
-                .byConfirmText("完成")
+        .byToolbar { cfg in // 设置 Toolbar
+            cfg.byTitle(&quot;尺码/颜色&quot;.tr)
+                .byCancelText(&quot;取消&quot;) // 设置 Cancel Text
+                .byConfirmText(&quot;完成&quot;) // 设置 Confirm Text
         }
-        .byAnimation(.slide)
-        .byResult { values in
-            ("多列：\(values.joined(separator: " / "))（index=?）").toast
+        .byAnimation(.slide) // 设置 Animation
+        .byResult { values in // 设置 Result
+            (&quot;多列：\(values.joined(separator: &quot; / &quot;))（index=?）&quot;).toast
         }
 }()
 /// 文本：三级联动（省/市/区）
 private lazy var textCascadePicker: BRAreaPicker = { [unowned self] in
     BRAreaPicker()
-        .byDataSource([
-            .init(name: "浙江省".tr, children: [
-                .init(name: "杭州市".tr, children: [
-                    .init(name: "西湖区".tr),
-                    .init(name: "滨江区".tr),
-                    .init(name: "拱墅区".tr)
+        .byDataSource([ // 设置数据源
+            .init(name: &quot;浙江省&quot;.tr, children: [ // 配置链式能力
+                .init(name: &quot;杭州市&quot;.tr, children: [ // 配置链式能力
+                    .init(name: &quot;西湖区&quot;.tr), // 配置链式能力
+                    .init(name: &quot;滨江区&quot;.tr), // 配置链式能力
+                    .init(name: &quot;拱墅区&quot;.tr) // 配置链式能力
                 ]),
-                .init(name: "宁波市".tr, children: [
-                    .init(name: "鄞州区".tr),
-                    .init(name: "海曙区".tr)
+                .init(name: &quot;宁波市&quot;.tr, children: [ // 配置链式能力
+                    .init(name: &quot;鄞州区&quot;.tr), // 配置链式能力
+                    .init(name: &quot;海曙区&quot;.tr) // 配置链式能力
                 ])
             ]),
-            .init(name: "江苏省".tr, children: [
-                .init(name: "南京市".tr, children: [
-                    .init(name: "玄武区".tr),
-                    .init(name: "鼓楼区".tr)
+            .init(name: &quot;江苏省&quot;.tr, children: [ // 配置链式能力
+                .init(name: &quot;南京市&quot;.tr, children: [ // 配置链式能力
+                    .init(name: &quot;玄武区&quot;.tr), // 配置链式能力
+                    .init(name: &quot;鼓楼区&quot;.tr) // 配置链式能力
                 ])
             ])
         ])
-        .bySelect(.init(province: "浙江省".tr, city: "杭州市".tr, district: "滨江区".tr))
-        .byTheme { theme in
+        .bySelect(.init(province: &quot;浙江省&quot;.tr, city: &quot;杭州市&quot;.tr, district: &quot;滨江区&quot;.tr)) // 设置 Select
+        .byTheme { theme in // 设置 Theme
             theme.byAutoSelect(true)   // 对应你原来 cascade isAutoSelect = true
         }
-        .byToolbar { cfg in
-            cfg.byTitle("选择地区".tr)
-                .byCancelText("取消")
-                .byConfirmText("完成")
+        .byToolbar { cfg in // 设置 Toolbar
+            cfg.byTitle(&quot;选择地区&quot;.tr)
+                .byCancelText(&quot;取消&quot;) // 设置 Cancel Text
+                .byConfirmText(&quot;完成&quot;) // 设置 Confirm Text
         }
-        .byAnimation(.spring)
-        .byResult { sel in
-            let text = [sel.province, sel.city, sel.district].compactMap { $0 }.joined(separator: " / ")
-            ("联动：\(text)").toast
+        .byAnimation(.spring) // 设置 Animation
+        .byResult { sel in // 设置 Result
+            let text = [sel.province, sel.city, sel.district].compactMap { $0 }.joined(separator: &quot; / &quot;)
+            (&quot;联动：\(text)&quot;).toast
         }
 }()
 /// 日期：系统 Date（年月日）
 private lazy var dateSysDatePicker: BRSystemDatePicker = { [unowned self] in
     BRSystemDatePicker()
-        .byTitle("出生日".tr)
-        .bySelectDate(Date())
-        .byMinDate(Calendar.current.date(byAdding: .year, value: -80, to: Date()))
-        .byMaxDate(Date())
-        .byMinuteInterval(1)
-        .byTheme { theme in
+        .byTitle(&quot;出生日&quot;.tr) // 设置标题
+        .bySelectDate(Date()) // 设置 Select Date
+        .byMinDate(Calendar.current.date(byAdding: .year, value: -80, to: Date())) // 设置 Min Date
+        .byMaxDate(Date()) // 设置 Max Date
+        .byMinuteInterval(1) // 设置 Minute Interval
+        .byTheme { theme in // 设置 Theme
             theme.byAutoSelect(false)
         }
-        .byToolbar { cfg in
-            cfg.byTitle("出生日".tr).byCancelText("取消").byConfirmText("完成")
+        .byToolbar { cfg in // 设置 Toolbar
+            cfg.byTitle(&quot;出生日&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;)
         }
-        .byResult { [weak self] dt in
+        .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
-            ("系统 Date：\(fmt(dt, "yyyy-MM-dd"))").toast
+            (&quot;系统 Date：\(fmt(dt, &quot;yyyy-MM-dd&quot;))&quot;).toast
         }
 }()
 /// 日期：系统 Date &amp; Time
 private lazy var dateSysDateTimePicker: BRSystemDateTimePicker = { [unowned self] in
     BRSystemDateTimePicker()
-        .byTitle("开会时间".tr)
-        .bySelectDate(Date())
-        .byMinuteInterval(5)
-        .byToolbar { $0.byTitle("开会时间".tr).byCancelText("取消").byConfirmText("完成") }
-        .byResult { [weak self] dt in
+        .byTitle(&quot;开会时间&quot;.tr) // 设置标题
+        .bySelectDate(Date()) // 设置 Select Date
+        .byMinuteInterval(5) // 设置 Minute Interval
+        .byToolbar { $0.byTitle(&quot;开会时间&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;) } // 设置 Toolbar
+        .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
-            ("系统 Date&amp;Time：\(fmt(dt, "yyyy-MM-dd HH:mm"))").toast
+            (&quot;系统 Date&amp;Time：\(fmt(dt, &quot;yyyy-MM-dd HH:mm&quot;))&quot;).toast
         }
 }()
 /// 日期：系统 Time（12h）
 private lazy var dateSysTimePicker: BRSystemTimePicker = { [unowned self] in
     BRSystemTimePicker()
-        .byTitle("提醒时间".tr)
-        .bySelectDate(Date())
-        .byUse12HourClock(true)
-        .byMinuteInterval(10)
-        .byToolbar { $0.byTitle("提醒时间".tr).byCancelText("取消").byConfirmText("完成") }
-        .byResult { [weak self] dt in
+        .byTitle(&quot;提醒时间&quot;.tr) // 设置标题
+        .bySelectDate(Date()) // 设置 Select Date
+        .byUse12HourClock(true) // 设置 Use12 Hour Clock
+        .byMinuteInterval(10) // 设置 Minute Interval
+        .byToolbar { $0.byTitle(&quot;提醒时间&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;) } // 设置 Toolbar
+        .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
-            ("系统 Time：\(fmt(dt, "HH:mm"))").toast
+            (&quot;系统 Time：\(fmt(dt, &quot;HH:mm&quot;))&quot;).toast
         }
 }()
 /// 日期：系统 CountDownTimer
 private lazy var dateSysCountPicker: BRSystemCountDownPicker = { [unowned self] in
     BRSystemCountDownPicker()
-        .byTitle("倒计时".tr)
-        .bySelectDate(Date())
-        .byToolbar { $0.byTitle("倒计时".tr).byCancelText("取消").byConfirmText("完成") }
-        .byResult { [weak self] dt in
+        .byTitle(&quot;倒计时&quot;.tr) // 设置标题
+        .bySelectDate(Date()) // 设置 Select Date
+        .byToolbar { $0.byTitle(&quot;倒计时&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;) } // 设置 Toolbar
+        .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
-            ("系统 CountDownTimer：\(fmt(dt, "HH:mm"))").toast
+            (&quot;系统 CountDownTimer：\(fmt(dt, &quot;HH:mm&quot;))&quot;).toast
         }
 }()
 /// 日期：自定义 YMD（年月日）
 private lazy var dateYMDPicker: BRDatePicker = { [unowned self] in
     BRDatePicker()
-        .byMode(.ymd)
-        .bySelectDate(Date())
-        .byToolbar { $0.byTitle("生日（YMD）".tr).byCancelText("取消").byConfirmText("完成") }
-        .byTheme { theme in
+        .byMode(.ymd) // 设置 Mode
+        .bySelectDate(Date()) // 设置 Select Date
+        .byToolbar { $0.byTitle(&quot;生日（YMD）&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;) } // 设置 Toolbar
+        .byTheme { theme in // 设置 Theme
             theme.byAutoSelect(false)
         }
-        .byResult { [weak self] dt in
+        .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
-            ("自定义 YMD：\(fmt(dt, "yyyy-MM-dd"))").toast
+            (&quot;自定义 YMD：\(fmt(dt, &quot;yyyy-MM-dd&quot;))&quot;).toast
         }
 }()
 /// 日期：自定义 YM（年月）
 private lazy var dateYMPicker: BRDatePicker = { [unowned self] in
     BRDatePicker()
-        .byMode(.ym)
-        .bySelectDate(Date())
-        .byToolbar { $0.byTitle("账期（月度）".tr).byCancelText("取消").byConfirmText("完成") }
-        .byTheme { $0.byAutoSelect(false) }
-        .byResult { [weak self] dt in
+        .byMode(.ym) // 设置 Mode
+        .bySelectDate(Date()) // 设置 Select Date
+        .byToolbar { $0.byTitle(&quot;账期（月度）&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;) } // 设置 Toolbar
+        .byTheme { $0.byAutoSelect(false) } // 设置 Theme
+        .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
-            ("自定义 YM：\(fmt(dt, "yyyy-MM"))").toast
+            (&quot;自定义 YM：\(fmt(dt, &quot;yyyy-MM&quot;))&quot;).toast
         }
 }()
 /// 日期：自定义 Y（年）
 private lazy var dateYPicker: BRDatePicker = { [unowned self] in
     BRDatePicker()
-        .byMode(.y)
-        .bySelectDate(Date())
-        .byToolbar { $0.byTitle("年份".tr).byCancelText("取消").byConfirmText("完成") }
-        .byTheme { $0.byAutoSelect(false) }
-        .byResult { [weak self] dt in
+        .byMode(.y) // 设置 Mode
+        .bySelectDate(Date()) // 设置 Select Date
+        .byToolbar { $0.byTitle(&quot;年份&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;) } // 设置 Toolbar
+        .byTheme { $0.byAutoSelect(false) } // 设置 Theme
+        .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
-            ("自定义 Y：\(fmt(dt, "yyyy"))").toast
+            (&quot;自定义 Y：\(fmt(dt, &quot;yyyy&quot;))&quot;).toast
         }
 }()
 /// 日期：自定义 MD（月日）
 private lazy var dateMDPicker: BRMonthDayPicker = { [unowned self] in
     BRMonthDayPicker()
-        .bySelectDate(Date())
-        .byToolbar { $0.byTitle("纪念日（月/日）".tr).byCancelText("取消").byConfirmText("完成") }
-        .byTheme { $0.byAutoSelect(false) }
-        .byResult { [weak self] dt in
+        .bySelectDate(Date()) // 设置 Select Date
+        .byToolbar { $0.byTitle(&quot;纪念日（月/日）&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;) } // 设置 Toolbar
+        .byTheme { $0.byAutoSelect(false) } // 设置 Theme
+        .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
-            ("自定义 MD：\(fmt(dt, "MM-dd"))").toast
+            (&quot;自定义 MD：\(fmt(dt, &quot;MM-dd&quot;))&quot;).toast
         }
 }()
 /// 日期：自定义 HM（时:分，步进 = 5）
 private lazy var dateHMPicker: BRHourMinutePicker = { [unowned self] in
     BRHourMinutePicker()
-        .byMinuteInterval(5)
-        .bySelectDate(Date())
-        .byToolbar { $0.byTitle("提醒（时:分）".tr).byCancelText("取消").byConfirmText("完成") }
-        .byTheme { $0.byAutoSelect(false) }
-        .byResult { [weak self] dt in
+        .byMinuteInterval(5) // 设置 Minute Interval
+        .bySelectDate(Date()) // 设置 Select Date
+        .byToolbar { $0.byTitle(&quot;提醒（时:分）&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;) } // 设置 Toolbar
+        .byTheme { $0.byAutoSelect(false) } // 设置 Theme
+        .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
-            ("自定义 HM：\(fmt(dt, "HH:mm"))").toast
+            (&quot;自定义 HM：\(fmt(dt, &quot;HH:mm&quot;))&quot;).toast
         }
 }()</string>
 	<key>IDECodeSnippetIdentifier</key>

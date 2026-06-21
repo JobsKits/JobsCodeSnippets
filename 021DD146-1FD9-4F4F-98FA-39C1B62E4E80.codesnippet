@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -15,41 +14,41 @@ private let defaultStart: Double = 1234567890
 /// 数字动效按钮@主标题（普通文本）
 private lazy var btn_1: UIButton = {
     UIButton()
-        .byLockBackgroundColor(.clear)
-        .byTitle("\(Int(defaultStart))", for: .normal)
-        .byTitleColor(.white, for: .normal)
-        .byTitleFont(.DINPro.Bold(14.fz))
-        .byImage("钱".img, for: .normal)
+        .byLockBackgroundColor(.clear) // 设置 Lock Background Color
+        .byTitle(&quot;\(Int(defaultStart))&quot;) // 设置标题
+        .byTitleColor(.white) // 设置标题颜色
+        .byTitleFont(.DINPro.Bold(14.fz)) // 设置标题字体
+        .byImage(&quot;钱&quot;.img) // 设置图片
         .byImagePlacement(.right ,padding: 5.w)        // 通用（向下兼容）
         /// 数字动效按钮@关键配置
-        .byAnimationTitleConfig({ cfg in
+        .byAnimationTitleConfig({ cfg in // 设置 Animation Title Config
             cfg.byDuration(10) // 动画的作用时间
                 .byFps(60) //
-                .byTitleColor(.white, for: .normal)
-                .byTitleFont(.DINPro.Bold(14.fz))
-                .byStartValue("\(Int(0))") // 如果这个地方没有配置，则从按钮的主标题取值
-                .byEndValue("\(Int(1000))") // 如果这个地方没有配置，则从按钮的主标题取值
+                .byTitleColor(.white) // 设置标题颜色
+                .byTitleFont(.DINPro.Bold(14.fz)) // 设置标题字体
+                .byStartValue(&quot;\(Int(0))&quot;) // 如果这个地方没有配置，则从按钮的主标题取值
+                .byEndValue(&quot;\(Int(1000))&quot;) // 如果这个地方没有配置，则从按钮的主标题取值
                 .byShowsDecimals(true)// 是否展示小数（默认不展示）
-                .bySeparate(",")// 分隔符是 , 不写也行
+                .bySeparate(&quot;,&quot;)// 分隔符是 , 不写也行
                 .byDecimals(2)// 保留2位小数（默认）
-                .byTitleDecimalsCor(.red)
-                .byTitleDecimalsFont(.DINPro.Bold(12.fz))
+                .byTitleDecimalsCor(.red) // 设置 Title Decimals Cor
+                .byTitleDecimalsFont(.DINPro.Bold(12.fz)) // 设置 Title Decimals Font
         })
-        .onTap { [weak self] sender in
+        .onTap { [weak self] sender in // 绑定点按事件
             guard let self else { return }
             /// 启动动效@回调倒计时行为：进行中（多次）
             sender.byStartAnim { m in
-                print("title:", m.title ?? "nil",
-                      "sub:", m.subTitle ?? "nil",
-                      "seconds:", m.seconds)
+                print(&quot;title:&quot;, m.title ?? &quot;nil&quot;,
+                      &quot;sub:&quot;, m.subTitle ?? &quot;nil&quot;,
+                      &quot;seconds:&quot;, m.seconds)
             }
             /// 启动动效@回调倒计时行为：结束（一次）
-            .byEndAnim {
-                "动画结束".tr.toast
+            .byEndAnim { // 设置 End Anim
+                &quot;动画结束&quot;.tr.toast
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -58,15 +57,15 @@ private lazy var btn_1: UIButton = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
@@ -77,74 +76,74 @@ private lazy var btn_1: UIButton = {
 private lazy var btn_2: UIButton = {
     UIButton.sys()
         // 初始展示：你原来的 rich title 仍然可以保留（首次显示用）
-        .byRichTitle(JobsRichText.make([
-            JobsRichRun(.text("¥99")).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
-            JobsRichRun(.text(" /月")).font(.systemFont(ofSize: 16)).color(.white)
+        .byRichTitle(JobsRichText.make([ // 设置 Rich Title
+            JobsRichRun(.text(&quot;¥99&quot;)).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
+            JobsRichRun(.text(&quot; /月&quot;)).font(.systemFont(ofSize: 16)).color(.white)
         ]))
-        .byTitleColor(.white, for: .normal)
-        .byImage("star.fill".sysImg, for: .normal)
-        .byImagePlacement(.leading, padding: 8)
-        .byBackgroundColor(.systemGreen)
+        .byTitleColor(.white) // 设置标题颜色
+        .byImage(&quot;star.fill&quot;.sysImg) // 设置图片
+        .byImagePlacement(.leading, padding: 8) // 设置 Image Placement
+        .byBackgroundColor(.systemGreen) // 设置背景色
         /// 数字动效按钮@关键配置➤主标题富文本Builder
-        .byAnimationTitleConfig { cfg in
+        .byAnimationTitleConfig { cfg in // 设置 Animation Title Config
             cfg.byDuration(10)
-                .byFps(60)
-                .byStartValue("\(Int(0))")
-                .byEndValue("\(Int(1000))")
-                .byShowsDecimals(true)
-                .bySeparate(",")
-                .byDecimals(2)
+                .byFps(60) // 设置 Fps
+                .byStartValue(&quot;\(Int(0))&quot;) // 设置 Start Value
+                .byEndValue(&quot;\(Int(1000))&quot;) // 设置 End Value
+                .byShowsDecimals(true) // 设置 Shows Decimals
+                .bySeparate(&quot;,&quot;) // 设置 Separate
+                .byDecimals(2) // 设置 Decimals
                 // 如果仍然希望 plain/fallback 的字体颜色也一致，可以保留
-                .byTitleColor(.white, for: .normal)
-                .byTitleFont(.DINPro.Bold(14.fz))
-                .byTitleDecimalsCor(.red)
-                .byTitleDecimalsFont(.DINPro.Bold(12.fz))
+                .byTitleColor(.white) // 设置标题颜色
+                .byTitleFont(.DINPro.Bold(14.fz)) // 设置标题字体
+                .byTitleDecimalsCor(.red) // 设置 Title Decimals Cor
+                .byTitleDecimalsFont(.DINPro.Bold(12.fz)) // 设置 Title Decimals Font
                 // 主标题整体富文本（¥ + 数字 + /月）
-                .byTitleAttributedBuilder { text, decimalsRange, _ in
-                    // full: "¥1,234.56 /月"
-                    let full = "¥\(text) /月"
+                .byTitleAttributedBuilder { text, decimalsRange, _ in // 设置 Title Attributed Builder
+                    // full: &quot;¥1,234.56 /月&quot;
+                    let full = &quot;¥\(text) /月&quot;
                     let attr = NSMutableAttributedString(string: full)
                     // 数字段（含 ¥）：红色 18 semibold
-                    let numberRange = NSRange(location: 0, length: 1 + (text as NSString).length) // "¥" + text
+                    let numberRange = NSRange(location: 0, length: 1 + (text as NSString).length) // &quot;¥&quot; + text
                     attr.addAttributes([
-                        .font: UIFont.systemFont(ofSize: 18, weight: .semibold),
-                        .foregroundColor: UIColor.systemRed
+                        .font: UIFont.systemFont(ofSize: 18, weight: .semibold), // 配置链式能力
+                        .foregroundColor: UIColor.systemRed // 配置链式能力
                     ], range: numberRange)
                     // 后缀段：白色 16
                     let suffixStart = numberRange.length
                     let suffixRange = NSRange(location: suffixStart, length: (full as NSString).length - suffixStart)
                     attr.addAttributes([
-                        .font: UIFont.systemFont(ofSize: 16),
-                        .foregroundColor: UIColor.white
+                        .font: UIFont.systemFont(ofSize: 16), // 配置链式能力
+                        .foregroundColor: UIColor.white // 配置链式能力
                     ], range: suffixRange)
                     // 小数段（如果存在）：DINPro 12 + 红色（只改小数部分，不影响整数）
                     if let dr = decimalsRange {
-                        // decimalsRange 是在 text 里的 range，要平移到 full 里（前面多了一个 "¥"）
+                        // decimalsRange 是在 text 里的 range，要平移到 full 里（前面多了一个 &quot;¥&quot;）
                         let shifted = NSRange(location: 1 + dr.location, length: dr.length)
                         attr.addAttributes([
-                            .font: UIFont.DINPro.Bold(12.fz),
-                            .foregroundColor: UIColor.red
+                            .font: UIFont.DINPro.Bold(12.fz), // 配置链式能力
+                            .foregroundColor: UIColor.red // 配置链式能力
                         ], range: shifted)
                     };return attr
                 }
         }
-        .onTap { [weak self] sender in
+        .onTap { [weak self] sender in // 绑定点按事件
             guard let self else { return }
 
             // 你这里读 tf 的 start/end 只是业务参数；真正动画起终值由 config 的 startValue/endValue 控制
             // 如果你想“按输入框变更动画起终值”，需要在点击时重新调用 byAnimationTitleConfig 覆盖 start/end
             // 这里先按你原逻辑保留回调即可
             sender.byStartAnim { m in
-                print("title:", m.title ?? "nil",
-                      "sub:", m.subTitle ?? "nil",
-                      "seconds:", m.seconds)
+                print(&quot;title:&quot;, m.title ?? &quot;nil&quot;,
+                      &quot;sub:&quot;, m.subTitle ?? &quot;nil&quot;,
+                      &quot;seconds:&quot;, m.seconds)
             }
-            .byEndAnim {
-                "动画结束".tr.toast
+            .byEndAnim { // 设置 End Anim
+                &quot;动画结束&quot;.tr.toast
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -153,15 +152,15 @@ private lazy var btn_2: UIButton = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
@@ -171,42 +170,42 @@ private lazy var btn_2: UIButton = {
 /// 数字动效按钮@副标题（普通文本）
 private lazy var btn_3: UIButton = {
     UIButton.sys()
-        .byTitle("会员价格", for: .normal)
-        .byTitleColor(.white, for: .normal)
-        .byTitleFont(.systemFont(ofSize: 16, weight: .medium))
-        .bySubTitle("原价 ¥199 /月", for: .normal)
-        .bySubTitleColor(.white.withAlphaComponent(0.85), for: .normal)
-        .bySubTitleFont(.systemFont(ofSize: 13))
-        .byBackgroundColor("#2F2F2F".cor)
+        .byTitle(&quot;会员价格&quot;) // 设置标题
+        .byTitleColor(.white) // 设置标题颜色
+        .byTitleFont(.systemFont(ofSize: 16, weight: .medium)) // 设置标题字体
+        .bySubTitle(&quot;原价 ¥199 /月&quot;) // 设置副标题
+        .bySubTitleColor(.white.withAlphaComponent(0.85)) // 设置副标题颜色
+        .bySubTitleFont(.systemFont(ofSize: 13)) // 设置 Sub Title Font
+        .byBackgroundColor(&quot;#2F2F2F&quot;.cor) // 设置背景色
         /// 数字动效按钮@关键配置
-        .byAnimationSubTitleConfig({ cfg in
+        .byAnimationSubTitleConfig({ cfg in // 设置 Animation Sub Title Config
             cfg.byDuration(10) // 动画的作用时间
                 .byFps(60) //
-                .bySubTitleColor(.blue)
-                .bySubTitleFont(.DINPro.Bold(14.fz))
-                .byStartValue("\(Double(tf1Start.text ?? "") ?? 99)") // 如果这个地方没有配置，则从按钮的主标题取值
-                .byEndValue("\(Double(tf1End.text ?? "") ?? 199)") // 如果这个地方没有配置，则从按钮的主标题取值
+                .bySubTitleColor(.blue) // 设置副标题颜色
+                .bySubTitleFont(.DINPro.Bold(14.fz)) // 设置 Sub Title Font
+                .byStartValue(&quot;\(Double(tf1Start.text ?? &quot;&quot;) ?? 99)&quot;) // 如果这个地方没有配置，则从按钮的主标题取值
+                .byEndValue(&quot;\(Double(tf1End.text ?? &quot;&quot;) ?? 199)&quot;) // 如果这个地方没有配置，则从按钮的主标题取值
                 .byShowsDecimals(true)// 是否展示小数（默认不展示）
-                .bySeparate(",")// 分隔符是 , 不写也行
+                .bySeparate(&quot;,&quot;)// 分隔符是 , 不写也行
                 .byDecimals(2)// 保留2位小数（默认）
-                .bySubTitleDecimalsCor(.red)
-                .bySubTitleDecimalsFont(.DINPro.Bold(12.fz))
+                .bySubTitleDecimalsCor(.red) // 设置 Sub Title Decimals Cor
+                .bySubTitleDecimalsFont(.DINPro.Bold(12.fz)) // 设置 Sub Title Decimals Font
         })
-        .onTap { [weak self] sender in
+        .onTap { [weak self] sender in // 绑定点按事件
             guard let self else { return }
             /// 启动动效@回调倒计时行为：进行中（多次）
             sender.byStartAnim { m in
-                print("title:", m.title ?? "nil",
-                      "sub:", m.subTitle ?? "nil",
-                      "seconds:", m.seconds)
+                print(&quot;title:&quot;, m.title ?? &quot;nil&quot;,
+                      &quot;sub:&quot;, m.subTitle ?? &quot;nil&quot;,
+                      &quot;seconds:&quot;, m.seconds)
             }
             /// 启动动效@回调倒计时行为：结束（一次）
-            .byEndAnim {
-                "动画结束".tr.toast
+            .byEndAnim { // 设置 End Anim
+                &quot;动画结束&quot;.tr.toast
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -215,15 +214,15 @@ private lazy var btn_3: UIButton = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
@@ -233,71 +232,71 @@ private lazy var btn_3: UIButton = {
 /// 数字动效按钮@副标题（富文本）
 private lazy var btn_4: UIButton = {
     UIButton.sys()
-        .byTitle("限时折扣", for: .normal)
-        .byTitleColor(.white, for: .normal)
-        .byTitleFont(.systemFont(ofSize: 16, weight: .medium))
+        .byTitle(&quot;限时折扣&quot;) // 设置标题
+        .byTitleColor(.white) // 设置标题颜色
+        .byTitleFont(.systemFont(ofSize: 16, weight: .medium)) // 设置标题字体
         // 初始展示：先给一个普通副标题（首次显示用）
-        .bySubTitle("倒计时 199 秒", for: .normal)
-        .bySubTitleColor(.white.withAlphaComponent(0.85), for: .normal)
-        .bySubTitleFont(.systemFont(ofSize: 13))
-        .byImage("clock".sysImg, for: .normal)
-        .byImagePlacement(.leading, padding: 8)
-        .byBackgroundColor(.systemPurple)
-        .byCornerRadius(10)
+        .bySubTitle(&quot;倒计时 199 秒&quot;) // 设置副标题
+        .bySubTitleColor(.white.withAlphaComponent(0.85)) // 设置副标题颜色
+        .bySubTitleFont(.systemFont(ofSize: 13)) // 设置 Sub Title Font
+        .byImage(&quot;clock&quot;.sysImg) // 设置图片
+        .byImagePlacement(.leading, padding: 8) // 设置 Image Placement
+        .byBackgroundColor(.systemPurple) // 设置背景色
+        .byCornerRadius(10) // 设置圆角
         /// 数字动效按钮@关键配置➤副标题富文本Builder
-        .byAnimationSubTitleConfig { cfg in
+        .byAnimationSubTitleConfig { cfg in // 设置 Animation Sub Title Config
             cfg.byDuration(10)
-                .byFps(60)
+                .byFps(60) // 设置 Fps
 
                 // 这里的 start/end 才是副标题动画的数值来源
-                .byStartValue("199")
-                .byEndValue("9")
+                .byStartValue(&quot;199&quot;) // 设置 Start Value
+                .byEndValue(&quot;9&quot;) // 设置 End Value
 
                 // 倒计时一般不需要小数，这里关掉
-                .byShowsDecimals(false)
+                .byShowsDecimals(false) // 设置 Shows Decimals
 
                 // 可选：给副标题的基础样式（非 builder 场景兜底）
-                .bySubTitleColor(.white.withAlphaComponent(0.85), for: .normal)
-                .bySubTitleFont(.systemFont(ofSize: 13))
+                .bySubTitleColor(.white.withAlphaComponent(0.85)) // 设置副标题颜色
+                .bySubTitleFont(.systemFont(ofSize: 13)) // 设置 Sub Title Font
 
-                // ✅ 副标题整体富文本： "倒计时 199 秒"
-                .bySubTitleAttributedBuilder { text, _, _ in
-                    let prefix = "倒计时 "
-                    let suffix = " 秒"
+                // ✅ 副标题整体富文本： &quot;倒计时 199 秒&quot;
+                .bySubTitleAttributedBuilder { text, _, _ in // 设置 Sub Title Attributed Builder
+                    let prefix = &quot;倒计时 &quot;
+                    let suffix = &quot; 秒&quot;
                     let full = prefix + text + suffix
                     let attr = NSMutableAttributedString(string: full)
 
                     // 全段默认（灰白 13）
                     attr.addAttributes([
-                        .font: UIFont.systemFont(ofSize: 13),
-                        .foregroundColor: UIColor.white.withAlphaComponent(0.85)
+                        .font: UIFont.systemFont(ofSize: 13), // 配置链式能力
+                        .foregroundColor: UIColor.white.withAlphaComponent(0.85) // 配置链式能力
                     ], range: NSRange(location: 0, length: (full as NSString).length))
 
                     // 数字段强调（白色 13 medium，或你想要的高亮色）
                     let numberRange = NSRange(location: (prefix as NSString).length,
                                               length: (text as NSString).length)
                     attr.addAttributes([
-                        .font: UIFont.systemFont(ofSize: 13, weight: .semibold),
-                        .foregroundColor: UIColor.white
+                        .font: UIFont.systemFont(ofSize: 13, weight: .semibold), // 配置链式能力
+                        .foregroundColor: UIColor.white // 配置链式能力
                     ], range: numberRange)
 
                     return attr
                 }
         }
 
-        .onTap { [weak self] sender in
+        .onTap { [weak self] sender in // 绑定点按事件
             guard let self else { return }
             sender.byStartAnim { m in
-                print("title:", m.title ?? "nil",
-                      "sub:", m.subTitle ?? "nil",
-                      "seconds:", m.seconds)
+                print(&quot;title:&quot;, m.title ?? &quot;nil&quot;,
+                      &quot;sub:&quot;, m.subTitle ?? &quot;nil&quot;,
+                      &quot;seconds:&quot;, m.seconds)
             }
-            .byEndAnim {
-                "动画结束".tr.toast
+            .byEndAnim { // 设置 End Anim
+                &quot;动画结束&quot;.tr.toast
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -306,15 +305,15 @@ private lazy var btn_4: UIButton = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)

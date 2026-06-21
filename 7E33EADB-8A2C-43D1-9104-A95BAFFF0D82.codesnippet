@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>ImageView</string>
@@ -14,26 +13,26 @@
 /// UIImageView@字符串本地图
 private lazy var localImgView: UIImageView = {
     UIImageView()
-        .byImage("Ani".img)
-        .byContentMode(.scaleAspectFill)
-        .byClipsToBounds()
-        .addTapAction { [weak self] (iv: UIImageView) in
-            toastBy("单击图片：\(iv)")
+        .byImage(&quot;Ani&quot;.img) // 设置图片
+        .byContentMode(.scaleAspectFill) // 设置填充模式
+        .byClipsToBounds() // 设置裁剪
+        .addTapAction { [weak self] (iv: UIImageView) in // 配置链式能力
+            toastBy(&quot;单击图片：\(iv)&quot;)
          }
-        .addLongPressAction(minimumPressDuration: 0.8,
+        .addLongPressAction(minimumPressDuration: 0.8, // 配置链式能力
                             allowableMovement: 12,
                             numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
-                toastBy("长按开始 on \(iv)")
+                toastBy(&quot;长按开始 on \(iv)&quot;)
             case .ended, .cancelled, .failed:
-                toastBy("长按结束 on \(iv)")
+                toastBy(&quot;长按结束 on \(iv)&quot;)
             default:
                 break
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -42,54 +41,54 @@ private lazy var localImgView: UIImageView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
+        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderWidth(0.5) // 设置边框宽度
+        .byMasksToBounds(YES) // 设置图层裁剪
+        .byClipsToBounds(YES) // 设置裁剪
         /// 切角@平面四个角全切
-        .byCornerRadius(8.h)
+        .byCornerRadius(8.h) // 设置圆角
         /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
-        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
 }()
 /// UIImageView字符串网络图@Kingfisher
 private lazy var asyncImgView: UIImageView = {
     UIImageView()
-        .byAsyncImageKF("https://picsum.photos/200/300", fallback: "唐老鸭".img)
-        .byContentMode(.scaleAspectFill)
-        .byClipsToBounds()
-        .addTapAction { [weak self] (iv: UIImageView) in
-            toastBy("单击图片：\(iv)")
+        .byAsyncImageKF(&quot;https://picsum.photos/200/300&quot;, fallback: &quot;唐老鸭&quot;.img)
+        .byContentMode(.scaleAspectFill) // 设置填充模式
+        .byClipsToBounds() // 设置裁剪
+        .addTapAction { [weak self] (iv: UIImageView) in // 配置链式能力
+            toastBy(&quot;单击图片：\(iv)&quot;)
          }
-        .addLongPressAction(minimumPressDuration: 0.8,
+        .addLongPressAction(minimumPressDuration: 0.8, // 配置链式能力
                             allowableMovement: 12,
                             numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
-                toastBy("长按开始 on \(iv)")
+                toastBy(&quot;长按开始 on \(iv)&quot;)
             case .ended, .cancelled, .failed:
-                toastBy("长按结束 on \(iv)")
+                toastBy(&quot;长按结束 on \(iv)&quot;)
             default:
                 break
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -98,54 +97,54 @@ private lazy var asyncImgView: UIImageView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
+        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderWidth(0.5) // 设置边框宽度
+        .byMasksToBounds(YES) // 设置图层裁剪
+        .byClipsToBounds(YES) // 设置裁剪
         /// 切角@平面四个角全切
-        .byCornerRadius(8.h)
+        .byCornerRadius(8.h) // 设置圆角
         /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
-        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
 }()
 /// UIImageView字符串网络图@SDWebImage
 private lazy var asyncImgViewSD: UIImageView = {
     UIImageView()
-        .byAsyncImageSD("https://picsum.photos/400/300", fallback: "唐老鸭".img)
-        .byContentMode(.scaleAspectFill)
-        .byClipsToBounds()
-        .addTapAction { [weak self] (iv: UIImageView) in
-            toastBy("单击图片：\(iv)")
+        .byAsyncImageSD(&quot;https://picsum.photos/400/300&quot;, fallback: &quot;唐老鸭&quot;.img)
+        .byContentMode(.scaleAspectFill) // 设置填充模式
+        .byClipsToBounds() // 设置裁剪
+        .addTapAction { [weak self] (iv: UIImageView) in // 配置链式能力
+            toastBy(&quot;单击图片：\(iv)&quot;)
          }
-        .addLongPressAction(minimumPressDuration: 0.8,
+        .addLongPressAction(minimumPressDuration: 0.8, // 配置链式能力
                             allowableMovement: 12,
                             numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
-                toastBy("长按开始 on \(iv)")
+                toastBy(&quot;长按开始 on \(iv)&quot;)
             case .ended, .cancelled, .failed:
-                toastBy("长按结束 on \(iv)")
+                toastBy(&quot;长按结束 on \(iv)&quot;)
             default:
                 break
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -154,54 +153,54 @@ private lazy var asyncImgViewSD: UIImageView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
+        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderWidth(0.5) // 设置边框宽度
+        .byMasksToBounds(YES) // 设置图层裁剪
+        .byClipsToBounds(YES) // 设置裁剪
         /// 切角@平面四个角全切
-        .byCornerRadius(8.h)
+        .byCornerRadius(8.h) // 设置圆角
         /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
-        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
 }()
 /// UIImageView网络图（失败兜底图）@Kingfisher
 private lazy var wrapperImgView: UIImageView = {
     UIImageView()
-        .byContentMode(.scaleAspectFill)
-        .byClipsToBounds()
-        .kf_setImage(from: "https://picsum.photos/200", placeholder: "Ani".img)
-        .addTapAction { [weak self] (iv: UIImageView) in
-            toastBy("单击图片：\(iv)")
+        .byContentMode(.scaleAspectFill) // 设置填充模式
+        .byClipsToBounds() // 设置裁剪
+        .kf_setImage(from: &quot;https://picsum.photos/200&quot;, placeholder: &quot;Ani&quot;.img)
+        .addTapAction { [weak self] (iv: UIImageView) in // 配置链式能力
+            toastBy(&quot;单击图片：\(iv)&quot;)
          }
-        .addLongPressAction(minimumPressDuration: 0.8,
+        .addLongPressAction(minimumPressDuration: 0.8, // 配置链式能力
                             allowableMovement: 12,
                             numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
-                toastBy("长按开始 on \(iv)")
+                toastBy(&quot;长按开始 on \(iv)&quot;)
             case .ended, .cancelled, .failed:
-                toastBy("长按结束 on \(iv)")
+                toastBy(&quot;长按结束 on \(iv)&quot;)
             default:
                 break
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -210,54 +209,54 @@ private lazy var wrapperImgView: UIImageView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
+        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderWidth(0.5) // 设置边框宽度
+        .byMasksToBounds(YES) // 设置图层裁剪
+        .byClipsToBounds(YES) // 设置裁剪
         /// 切角@平面四个角全切
-        .byCornerRadius(8.h)
+        .byCornerRadius(8.h) // 设置圆角
         /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
-        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
 }()
 /// UIImageView网络图（失败兜底图）@SDWebImage
 private lazy var wrapperImgViewSD: UIImageView = {
     UIImageView()
-        .byContentMode(.scaleAspectFill)
-        .byClipsToBounds()
-        .sd_setImage(from: "https://picsum.photos/200", placeholder: "Ani".img)
-        .addTapAction { [weak self] (iv: UIImageView) in
-            toastBy("单击图片：\(iv)")
+        .byContentMode(.scaleAspectFill) // 设置填充模式
+        .byClipsToBounds() // 设置裁剪
+        .sd_setImage(from: &quot;https://picsum.photos/200&quot;, placeholder: &quot;Ani&quot;.img)
+        .addTapAction { [weak self] (iv: UIImageView) in // 配置链式能力
+            toastBy(&quot;单击图片：\(iv)&quot;)
          }
-        .addLongPressAction(minimumPressDuration: 0.8,
+        .addLongPressAction(minimumPressDuration: 0.8, // 配置链式能力
                             allowableMovement: 12,
                             numberOfTouchesRequired: 1) { gr in
             switch gr.state {
             case .began:
-                toastBy("长按开始 on \(iv)")
+                toastBy(&quot;长按开始 on \(iv)&quot;)
             case .ended, .cancelled, .failed:
-                toastBy("长按结束 on \(iv)")
+                toastBy(&quot;长按结束 on \(iv)&quot;)
             default:
                 break
             }
         }
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -266,37 +265,37 @@ private lazy var wrapperImgViewSD: UIImageView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan)
-        .byBorderWidth(0.5)
-        .byMasksToBounds(YES)
-        .byClipsToBounds(YES)
+        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderWidth(0.5) // 设置边框宽度
+        .byMasksToBounds(YES) // 设置图层裁剪
+        .byClipsToBounds(YES) // 设置裁剪
         /// 切角@平面四个角全切
-        .byCornerRadius(8.h)
+        .byCornerRadius(8.h) // 设置圆角
         /// 切角@切固定角，iOS11及其以后可用。需要再配合layer.cornerRadius以生效
-        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
-        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4)
+        .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
 }()
 /// UIImageView本地gif（失败兜底图）@SDWebImage
 private lazy var imageView: UIImageView = {
     UIImageView()
-        .bySDLocalGIF(Bundle.main.url(forResource: "mine_prize_icon", withExtension: "gif"))
+        .bySDLocalGIF(Bundle.main.url(forResource: &quot;mine_prize_icon&quot;, withExtension: &quot;gif&quot;)) // 设置 SDLocal GIF
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -305,15 +304,15 @@ private lazy var imageView: UIImageView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
@@ -323,9 +322,9 @@ private lazy var imageView: UIImageView = {
 /// UIImageView本地gif（失败兜底图）@Kingfisher
 private lazy var imageView: UIImageView = {
     UIImageView()
-        .byKfLocalGIF(Bundle.main.url(forResource: "mine_prize_icon", withExtension: "gif"))
+        .byKfLocalGIF(Bundle.main.url(forResource: &quot;mine_prize_icon&quot;, withExtension: &quot;gif&quot;)) // 设置 Kf Local GIF
         /// 加载到目标视图上，并第一次配置新约束
-        .byAddTo(view) {[unowned self] make in
+        .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
                 make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
                 make.left.right.bottom.equalToSuperview()
@@ -334,15 +333,15 @@ private lazy var imageView: UIImageView = {
             }
          }
         ///（并未加载到目标视图上）第一次部署新约束
-        .byMakeConstraints { [unowned self] make in
+        .byMakeConstraints { [unowned self] make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
         /// 只修改某一条约束，其余约束不动
-        .byUpdateConstraints { [unowned self] make in
+        .byUpdateConstraints { [unowned self] make in // 更新约束
             make.top.equalToSuperview().inset(8.h)
         }
         /// 清除以前的全部的旧约束，用目前最新的
-        .byRemakeConstraints { [unowned self] make in
+        .byRemakeConstraints { [unowned self] make in // 重建约束
             make.top.equalTo(wrapperImgView.snp.bottom).offset(20.h)
             make.left.equalTo(scrollView.frameLayoutGuide.snp.left).offset(20.w)
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
@@ -356,7 +355,7 @@ private lazy var imageView: UIImageView = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string/>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UIImageView</string>
 	<key>IDECodeSnippetUserSnippet</key>
