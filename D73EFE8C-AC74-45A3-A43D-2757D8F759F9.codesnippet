@@ -239,13 +239,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 .byShowsVerticalScrollIndicator(NO) // 设置纵向滚动条
                 .byShowsHorizontalScrollIndicator(NO) // 设置横向滚动条
                 .byScrollEnabled(YES) // 设置 Scroll Enabled
+                .byFoldable(&lt;#BOOL#&gt;) // 设置 UITableView 折叠能力
+                .byContentInsetAdjustmentBehavior(UIScrollViewContentInsetAdjustmentNever) // 禁止自动调整 contentInset
                 .byBgCor(JobsClearColor); // 设置背景色
-
-            if(@available(iOS 11.0, *)) {
-                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            }else{
-                SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
-            }
 //            {/// 设置tabAnimated相关属性
 //                // 可以不进行手动初始化，将使用默认属性
 //                tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class

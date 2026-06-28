@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@Btn</string>
@@ -14,24 +15,30 @@
         @jobs_weakify(self)
         _usrNameBtn = UIButton.jobsInit()
             .byBgColor(JobsWhiteColor) // 设置背景色
-            .byTitle(@&quot;APPLY NOW&quot;.tr) // 设置标题
+            .byTitle(@"APPLY NOW".tr) // 设置标题
             .byTitleCor(JobsWhiteColor) // 设置标题颜色
+            .normalStateTitleColorBy(JobsWhiteColor) // 设置普通状态标题颜色
+            .highlightedStateTitleColorBy(JobsWhiteColor) // 设置高亮状态标题颜色
+            .selectedStateTitleColorBy(JobsWhiteColor) // 设置选中状态标题颜色
+            .disabledStateTitleColorBy(JobsWhiteColor) // 设置禁用状态标题颜色
+            .titleColorForStateBy(JobsWhiteColor, UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
+            .byTintColor(JobsWhiteColor) // 设置 tint 色
             .byTitleFont(UIFontWeightBoldSize(JobsWidth(12))) // 设置标题字体
-            .byImage(@&quot;APPLY NOW&quot;.img) // 设置图片
-            .byBackgroundImage(@&quot;APPLY NOW&quot;.img) // 设置背景图
+            .byImage(@"APPLY NOW".img) // 设置图片
+            .byBackgroundImage(@"APPLY NOW".img) // 设置背景图
             .byImagePlacement(NSDirectionalRectEdgeLeading) // 设置图文方向
             .byImagePadding(1) // 设置图文间距
             .onClickBy(^(UIButton *x){ // 绑定点按事件
-                JobsLog(@&quot;普通的点击事件&quot;);
+                JobsLog(@"普通的点击事件");
             })
             .onClickAppendBy(^(UIButton *x){ // 追加点按事件
-                JobsLog(@&quot;追加的点击事件&quot;);
+                JobsLog(@"追加的点击事件");
             })
             .onLongPressGestureBy(^(id data){ // 绑定长按事件
-                JobsLog(@&quot;普通的长按事件&quot;);
+                JobsLog(@"普通的长按事件");
             })
             .onLongPressGestureAppendBy(^(id data){ // 追加长按事件
-                JobsLog(@&quot;追加的长按事件&quot;);
+                JobsLog(@"追加的长按事件");
             })
             .addOn(self.view) // 加入父视图
             .byAdd(^(MASConstraintMaker *make) { // 部署约束
@@ -40,31 +47,30 @@
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(180), JobsWidth(44)));
             });
         _usrNameBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-    }return _usrNameBtn;
+    };return _usrNameBtn;
 }
-
 /// 普通文本按钮
 -(BaseButton *)registerBtn{
     if(!_registerBtn){
         @jobs_weakify(self)
         _registerBtn = BaseButton.initByTextModel(jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
             data
-                .byText(JobsInternationalization(@&quot;REGISTER&quot;)) // 设置文本
-                .byTextCor(JobsCor(@&quot;#C90000&quot;)) // 设置文本颜色
+                .byText(JobsInternationalization(@"REGISTER")) // 设置文本
+                .byTextCor(JobsCor(@"#C90000")) // 设置文本颜色
                 .byFont(bayonRegular(JobsWidth(15))); // 设置字体
         }))
         .byBgColor(JobsWhiteColor) // 设置背景色
         .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 设置图层
             data
-                .byLayerCor(JobsCor(@&quot;#C90000&quot;)) // 设置边框颜色
+                .byLayerCor(JobsCor(@"#C90000")) // 设置边框颜色
                 .byJobsWidth(1) // 设置边框宽度
                 .byCornerRadiusValue(JobsWidth(8)); // 设置圆角
         }))
         .onClickBy(^(UIButton *x){ // 绑定点按事件
-            JobsLog(@&quot;点击注册&quot;);
+            JobsLog(@"点击注册");
         })
         .onLongPressGestureBy(^(id data){ // 绑定长按事件
-            JobsLog(@&quot;长按注册&quot;);
+            JobsLog(@"长按注册");
         })
         .addOn(self.view) // 加入父视图
         .byAdd(^(MASConstraintMaker *make) { // 部署约束
@@ -73,9 +79,8 @@
             make.height.mas_equalTo(JobsWidth(44));
             make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-JobsWidth(16));
         });
-    }return _registerBtn;
+    };return _registerBtn;
 }
-
 /// 倒计时按钮
 -(UIButton *)countdownBtn{
     if (!_countdownBtn) {
@@ -84,8 +89,14 @@
             @jobs_strongify(self)
             btn
                 .byBgColor(HEXCOLOR(0xAE8330)) // 设置背景色
-                .byTitle(JobsInternationalization(@&quot;获取验证码&quot;)) // 设置标题
+                .byTitle(JobsInternationalization(@"获取验证码")) // 设置标题
                 .byTitleCor(JobsWhiteColor) // 设置标题颜色
+                .normalStateTitleColorBy(JobsWhiteColor) // 设置普通状态标题颜色
+                .highlightedStateTitleColorBy(JobsWhiteColor) // 设置高亮状态标题颜色
+                .selectedStateTitleColorBy(JobsWhiteColor) // 设置选中状态标题颜色
+                .disabledStateTitleColorBy(JobsWhiteColor) // 设置禁用状态标题颜色
+                .titleColorForStateBy(JobsWhiteColor, UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
+                .byTintColor(JobsWhiteColor) // 设置 tint 色
                 .byTitleFont(UIFontWeightRegularSize(24)) // 设置标题字体
                 .byTimerType(JobsTimerTypeGCD) // 设置计时器类型
                 .byTimerStyle(TimerStyle_anticlockwise) // 设置倒计时模式
@@ -93,10 +104,10 @@
                 .byTimeInterval(1) // 设置时间间隔
                 .byClickWhenTimerCycle(YES) // 计时期间禁止点击
                 .byOnTick(^(CGFloat time){ // 设置倒计时回调
-                    btn.byTitle([NSString stringWithFormat:@&quot;%f&quot;,ceil(time)].add(JobsSpace).add(@&quot;秒&quot;));
+                    btn.byTitle([NSString stringWithFormat:@"%f",ceil(time)].add(JobsSpace).add(@"秒"));
                 })
                 .byOnFinish(^(JobsTimer *_Nullable timer){ // 设置完成回调
-                    JobsLog(@&quot;倒计时完成&quot;);
+                    JobsLog(@"倒计时完成");
                 })
                 .onClickBy(^(UIButton *x){ // 绑定点按事件
                     x.startTimer();
@@ -109,7 +120,7 @@
                     make.width.mas_equalTo(JobsWidth(180));
                 });
         });
-    }return _countdownBtn;
+    };return _countdownBtn;
 }
 </string>
 	<key>IDECodeSnippetIdentifier</key>

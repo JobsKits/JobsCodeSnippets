@@ -28,7 +28,7 @@ static dispatch_once_t static_tipsView01OnceToken;
 -(instancetype)init{
     if (self = [super init]) {
         self.byBgColor(JobsWhiteColor); // 设置背景色
-    }return self;
+    };return self;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
@@ -41,7 +41,7 @@ static dispatch_once_t static_tipsView01OnceToken;
             NSNotification *notification = (NSNotification *)arg;
             NSLog(@&quot;通知传递过来的 = %@&quot;,notification.object);
         }];
-    }return self;
+    };return self;
 }
 
 -(void)drawRect:(CGRect)rect{
@@ -59,7 +59,7 @@ static dispatch_once_t static_tipsView01OnceToken;
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
         self.byBgColor(JobsWhiteColor); // 设置背景色
-    }return self;
+    };return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel{
@@ -108,7 +108,7 @@ static dispatch_once_t static_tipsView01OnceToken;
                 @jobs_strongify(self)
                 /// TODO
             })
-    }return _phoneView;
+    };return _phoneView;
 }
 
 -(FMLoginByUsrNameView *)loginByUsrNameView{
@@ -119,7 +119,7 @@ static dispatch_once_t static_tipsView01OnceToken;
             .JobsBlock1(^(id  _Nullable data) { // 配置链式能力
                 
             });
-    }return _loginByUsrNameView;
+    };return _loginByUsrNameView;
 }
 
 -(UIButton *)statusBtn{
@@ -128,6 +128,12 @@ static dispatch_once_t static_tipsView01OnceToken;
         _statusBtn = BaseButton.jobsInit()
             .bgColorBy(JobsClearColor) // 设置背景色
             .jobsResetBtnTitleCor(JobsCor(@&quot;#F53F3F&quot;)) // 设置标题颜色
+            .normalStateTitleColorBy(JobsCor(@&quot;#F53F3F&quot;)) // 设置普通状态标题颜色
+            .highlightedStateTitleColorBy(JobsCor(@&quot;#F53F3F&quot;)) // 设置高亮状态标题颜色
+            .selectedStateTitleColorBy(JobsCor(@&quot;#F53F3F&quot;)) // 设置选中状态标题颜色
+            .disabledStateTitleColorBy(JobsCor(@&quot;#F53F3F&quot;)) // 设置禁用状态标题颜色
+            .titleColorForStateBy(JobsCor(@&quot;#F53F3F&quot;), UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
+            .byTintColor(JobsCor(@&quot;#F53F3F&quot;)) // 设置 tint 色
             .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(14))) // 设置标题字体
             .jobsResetBtnTitle(JobsInternationalization(@&quot;Unverified&quot;)) // 设置标题
             .onClickBy(^(UIButton *x){ // 绑定事件
@@ -147,7 +153,7 @@ static dispatch_once_t static_tipsView01OnceToken;
                 @jobs_strongify(self)
                 /// TODO
             });
-    }return _statusBtn;
+    };return _statusBtn;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>EBEC19B2-1331-4B5D-AD2A-CC5272A0BE85</string>
