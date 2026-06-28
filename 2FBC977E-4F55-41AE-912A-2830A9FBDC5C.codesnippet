@@ -31,6 +31,12 @@ _submitBtn = jobsMakeButton(^(__kindof UIButton * _Nullable button) {
     button
         .byTitle(@&quot;确认&quot;) // 设置标题
         .byTitleCor(UIColor.whiteColor) // 设置标题颜色
+        .normalStateTitleColorBy(UIColor.whiteColor) // 设置普通状态标题颜色
+        .highlightedStateTitleColorBy(UIColor.whiteColor) // 设置高亮状态标题颜色
+        .selectedStateTitleColorBy(UIColor.whiteColor) // 设置选中状态标题颜色
+        .disabledStateTitleColorBy(UIColor.whiteColor) // 设置禁用状态标题颜色
+        .titleColorForStateBy(UIColor.whiteColor, UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
+        .byTintColor(UIColor.whiteColor) // 设置 tint 色
         .byTitleFont([UIFont boldSystemFontOfSize:16]) // 设置标题字体
         .byImage(JobsIMG(@&quot;icon_submit&quot;)) // 设置图片
         .byBgColor(UIColor.systemBlueColor) // 设置背景色

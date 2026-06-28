@@ -20,6 +20,12 @@ NSArray &lt;VideoTagModel *&gt;*tagArr = [VideoTagModel mj_objectArrayWithKeyVal
 UIButton.jobsInit()
     .byTitle(tagModel.name) // 设置标题
     .byTitleCor(UIColor.labelColor) // 设置标题颜色
+    .normalStateTitleColorBy(UIColor.labelColor) // 设置普通状态标题颜色
+    .highlightedStateTitleColorBy(UIColor.labelColor) // 设置高亮状态标题颜色
+    .selectedStateTitleColorBy(UIColor.labelColor) // 设置选中状态标题颜色
+    .disabledStateTitleColorBy(UIColor.labelColor) // 设置禁用状态标题颜色
+    .titleColorForStateBy(UIColor.labelColor, UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
+    .byTintColor(UIColor.labelColor) // 设置 tint 色
     .byTitleFont([UIFont systemFontOfSize:14]) // 设置标题字体
     .byBgColor(UIColor.secondarySystemBackgroundColor) // 设置背景色
     .byCornerRadius(JobsWidth(8)) // 设置圆角

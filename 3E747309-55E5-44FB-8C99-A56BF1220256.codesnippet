@@ -17,6 +17,12 @@
             .byBgColor(JobsWhiteColor) // 设置背景色
             .byTitle(@"APPLY NOW".tr) // 设置标题
             .byTitleCor(JobsWhiteColor) // 设置标题颜色
+            .normalStateTitleColorBy(JobsWhiteColor) // 设置普通状态标题颜色
+            .highlightedStateTitleColorBy(JobsWhiteColor) // 设置高亮状态标题颜色
+            .selectedStateTitleColorBy(JobsWhiteColor) // 设置选中状态标题颜色
+            .disabledStateTitleColorBy(JobsWhiteColor) // 设置禁用状态标题颜色
+            .titleColorForStateBy(JobsWhiteColor, UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
+            .byTintColor(JobsWhiteColor) // 设置 tint 色
             .byTitleFont(UIFontWeightBoldSize(JobsWidth(12))) // 设置标题字体
             .byImage(@"APPLY NOW".img) // 设置图片
             .byBackgroundImage(@"APPLY NOW".img) // 设置背景图
@@ -41,7 +47,7 @@
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(180), JobsWidth(44)));
             });
         _usrNameBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-    }return _usrNameBtn;
+    };return _usrNameBtn;
 }
 /// 普通文本按钮
 -(BaseButton *)registerBtn{
@@ -73,7 +79,7 @@
             make.height.mas_equalTo(JobsWidth(44));
             make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-JobsWidth(16));
         });
-    }return _registerBtn;
+    };return _registerBtn;
 }
 /// 倒计时按钮
 -(UIButton *)countdownBtn{
@@ -85,6 +91,12 @@
                 .byBgColor(HEXCOLOR(0xAE8330)) // 设置背景色
                 .byTitle(JobsInternationalization(@"获取验证码")) // 设置标题
                 .byTitleCor(JobsWhiteColor) // 设置标题颜色
+                .normalStateTitleColorBy(JobsWhiteColor) // 设置普通状态标题颜色
+                .highlightedStateTitleColorBy(JobsWhiteColor) // 设置高亮状态标题颜色
+                .selectedStateTitleColorBy(JobsWhiteColor) // 设置选中状态标题颜色
+                .disabledStateTitleColorBy(JobsWhiteColor) // 设置禁用状态标题颜色
+                .titleColorForStateBy(JobsWhiteColor, UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
+                .byTintColor(JobsWhiteColor) // 设置 tint 色
                 .byTitleFont(UIFontWeightRegularSize(24)) // 设置标题字体
                 .byTimerType(JobsTimerTypeGCD) // 设置计时器类型
                 .byTimerStyle(TimerStyle_anticlockwise) // 设置倒计时模式
@@ -108,7 +120,7 @@
                     make.width.mas_equalTo(JobsWidth(180));
                 });
         });
-    }return _countdownBtn;
+    };return _countdownBtn;
 }
 </string>
 	<key>IDECodeSnippetIdentifier</key>
