@@ -21,7 +21,7 @@
 > 复制👇🏻下面代码到空白文件，并重命名后缀名为`.command`
 
 ```shell
-#!/bin/zsh
+# shell: zsh
 #set -x  # 启用调试模式
 # 打印 "Jobs" logo
 jobs_logo() {
