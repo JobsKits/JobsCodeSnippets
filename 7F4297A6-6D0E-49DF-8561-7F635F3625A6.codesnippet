@@ -21,12 +21,12 @@
                 data1.targetString = JobsInternationalization(@&quot;编译器自动管理内存地址&quot;).add(@&quot;\n&quot;);
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
-                    data2.alignment = NSTextAlignmentJustified;
-                    data2.paragraphSpacing = 0;//段距，取值 float
-                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
-                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-                    data2.lineSpacing = 0;//行距，取值 float
+                    data2.byAlignment(NSTextAlignmentJustified)
+                         .byParagraphSpacing(0) // 段距，取值 float
+                         .byParagraphSpacingBefore(0) // 段首空间，取值 float
+                         .byFirstLineHeadIndent(0.0) // 首行缩进，取值 float
+                         .byHeadIndent(0.0) // 整体缩进(首行除外)，取值 float
+                         .byLineSpacing(0); // 行距，取值 float
                 });
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
