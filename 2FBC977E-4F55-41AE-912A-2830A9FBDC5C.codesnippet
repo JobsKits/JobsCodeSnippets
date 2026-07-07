@@ -18,6 +18,10 @@ _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
         .byTextCor(UIColor.labelColor) // 设置文字颜色
         .byTextAlignment(NSTextAlignmentCenter) // 设置对齐方式
         .byNumberOfLines(1) // 设置行数
+        .byLineBreakMode(NSLineBreakByTruncatingTail) // 设置截断方式
+        .byAdjustsFontForContentSizeCategory(YES) // 跟随系统字体
+        .byAdjustsFontSizeToFitWidth(YES) // 宽度不足时缩放
+        .byMinimumScaleFactor(0.75f) // 最小缩放比例
         .byBgColor(UIColor.clearColor) // 设置背景色
         .byCornerRadius(JobsWidth(8)) // 设置圆角
         .byClipsToBounds(YES) // 裁剪圆角
