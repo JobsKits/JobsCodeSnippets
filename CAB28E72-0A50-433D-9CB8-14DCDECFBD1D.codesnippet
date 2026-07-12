@@ -8,11 +8,12 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import JobsBy3rdTools
+	<string>import JobsSwiftBaseDefines
+import JobsBy3rdTools
 
 UIView().byDialogBoxContent { dialogBoxView in
     UITextView()
-        .byBackgroundColor(.clear) // 设置背景色
+        .byBackgroundColor(JobsCor.clear) // 设置背景色
         .byText( // 设置文本
             &quot;1.电话、QQ、微信号、乱码、全数字皆、不雅字眼、辱骂 词汇带、负面情绪字眼、标点符号皆会审核失败&quot;
                 .add(&quot;\n&quot;) // 追加元素
@@ -20,8 +21,8 @@ UIView().byDialogBoxContent { dialogBoxView in
                 .add(&quot;\n&quot;) // 追加元素
                 .add(&quot;3. 昵称30日内仅能更改一次&quot;) // 追加元素
         )
-        .byTextColor(.white) // 设置文字颜色
-        .byFont(.systemFont(ofSize: 16)) // 设置字体
+        .byTextColor(JobsCor.white) // 设置文字颜色
+        .byFont(JobsFont.systemFont(ofSize: 16)) // 设置字体
         .byEditable(NO) // 设置可编辑
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束

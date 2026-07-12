@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@Btn</string>
@@ -9,22 +10,24 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
+import JobsSwiftBaseDefines
 
 private lazy var exampleButton: UIButton = {
-    UIButton.sys()
+    let b = UIButton.sys()
+    b
         /// 锁死标题颜色：任何 state 都保持同一种颜色，不跟 tint / 系统态自动变化
-        .byLockTitleColor(.red) // 设置 Lock Title Color
+        .byLockTitleColor(JobsCor.red) // 设置 Lock Title Color
         /// 图片吃 tint，但 tint 锁死为某个颜色
-        .byLockTintColor(.red) // 设置 Lock Tint Color
+        .byLockTintColor(JobsCor.red) // 设置 Lock Tint Color
         /// 只锁 Background（背景色不随状态变）
-        .byLockBackgroundColor(.red) // 设置 Lock Background Color
+        .byLockBackgroundColor(JobsCor.red) // 设置 Lock Background Color
         /// 只锁 Border（边框色不随状态变，iOS 15+）
-        .byLockBorderColor(.red) // 设置 Lock Border Color
+        .byLockBorderColor(JobsCor.red) // 设置 Lock Border Color
         /// 背景色@按照不同的状态
-        .byBackgroundColor(.systemGreen) // 设置背景色
-        .byBackgroundColor(&quot;#2F2F2F&quot;.cor, for: .disabled) // 对应按钮不可点击的状态
+        .byBackgroundColor(JobsCor.systemGreen) // 设置背景色
+        .byBackgroundColor("#2F2F2F".cor, for: .disabled) // 对应按钮不可点击的状态
         /// 背景图片
-        .byBackgroundImage(&quot;背景图片&quot;.img) // 设置背景图
+        .byBackgroundImage("背景图片".img) // 设置背景图
         /// 字体颜色渐变@只处理主标题（titleLabel）
         .byGradientMainTitle(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .leftToRight) // 设置 Gradient Main Title
         /// 字体颜色渐变@只副标题渐变
@@ -32,33 +35,33 @@ private lazy var exampleButton: UIButton = {
         /// 字体颜色渐变@主副一致
         .byGradientTitlesSame(colors: [UIColor(r: 221, g: 221, b: 221), UIColor(r: 127, g: 126, b: 126)], direction: .leftToRight) // 设置 Gradient Titles Same
         /// 普通字符串@设置主标题
-        .byTitle(&quot;显示&quot;) // 设置标题
-        .byTitle(&quot;隐藏&quot;, for: .selected) // 设置标题
+        .byTitle("显示") // 设置标题
+        .byTitle("隐藏", for: .selected) // 设置标题
         /// 字体颜色@按照不同的状态
-        .byTitleColor(&quot;#2F2F2F&quot;.cor) // 设置标题颜色
-        .byTitleColor(&quot;#BBBBBB&quot;.cor, for: .disabled) // 对应按钮不可点击的状态
-        .byTitleFont(.systemFont(ofSize: 16, weight: .medium)) // 设置标题字体
+        .byTitleColor("#2F2F2F".cor) // 设置标题颜色
+        .byTitleColor("#BBBBBB".cor, for: .disabled) // 对应按钮不可点击的状态
+        .byTitleFont(JobsFont.systemFont(ofSize: 16, weight: .medium)) // 设置标题字体
         /// 普通字符串@设置副标题
-        .bySubTitle(&quot;显示&quot;) // 设置副标题
-        .bySubTitle(&quot;隐藏&quot;, for: .selected) // 设置副标题
-        .bySubTitleColor(.systemBlue) // 设置副标题颜色
-        .bySubTitleColor(.systemRed, for: .selected) // 设置副标题颜色
-        .bySubTitleFont(.systemFont(ofSize: 16, weight: .medium)) // 设置 Sub Title Font
+        .bySubTitle("显示") // 设置副标题
+        .bySubTitle("隐藏", for: .selected) // 设置副标题
+        .bySubTitleColor(JobsCor.systemBlue) // 设置副标题颜色
+        .bySubTitleColor(JobsCor.systemRed, for: .selected) // 设置副标题颜色
+        .bySubTitleFont(JobsFont.systemFont(ofSize: 16, weight: .medium)) // 设置 Sub Title Font
         /// 富文本字@设置主标题
         .byRichTitle(JobsRichText.make([ // 设置 Rich Title
-            JobsRichRun(.text(&quot;¥99&quot;)).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
-            JobsRichRun(.text(&quot; /月&quot;)).font(.systemFont(ofSize: 16)).color(.white)
+            JobsRichRun(.text("¥99")).font(JobsFont.systemFont(ofSize: 18, weight: .semibold)).color(JobsCor.systemRed),
+            JobsRichRun(.text(" /月")).font(JobsFont.systemFont(ofSize: 16)).color(JobsCor.white)
         ]))
          /// 富文本字@设置副标题
         .byRichSubTitle(JobsRichText.make([ // 设置 Rich Sub Title
-            JobsRichRun(.text(&quot;原价 &quot;)).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8)),
-            JobsRichRun(.text(&quot;¥199&quot;)).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow)
+            JobsRichRun(.text("原价 ")).font(JobsFont.systemFont(ofSize: 12)).color(JobsCor.white.withAlphaComponent(0.8)),
+            JobsRichRun(.text("¥199")).font(JobsFont.systemFont(ofSize: 12, weight: .medium)).color(JobsCor.systemYellow)
         ]))
         /// 主标题和副标题之间的距离（兼容 iOS12+）
         .byTitlePadding(4.h) // 设置 Title Padding
         /// 按钮图片@图文关系
-        .byImage(&quot;eye.slash&quot;.sysImg)                // 未选中图标
-        .byImage(&quot;eye&quot;.sysImg, for: .selected)                    // 选中图标
+        .byImage("eye.slash".sysImg)                // 未选中图标
+        .byImage("eye".sysImg, for: .selected)                    // 选中图标
         /// iOS15专用@清除偏移
         .byClearConfigurationBackground()  // 设置 Clear Configuration Background
         /// 按钮@图文位置关系
@@ -69,29 +72,29 @@ private lazy var exampleButton: UIButton = {
         /// 按钮图文内边距@iOS12（与上文互斥）
         .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
         /// 点击@播放声音
-        .byTapSound(&quot;Sound.wav&quot;)     // 设置 Tap Sound
+        .byTapSound("Sound.wav")     // 设置 Tap Sound
         /// 普通@点按事件触发
         .onTap { [weak self] sender in // 绑定点按事件
             guard let self else { return }
-            sender.isSelected.toggle()
+            sender.byToggleSelected()
             // 文字与图标自动切换
-            self.passwordTF.isSecureTextEntry.toggle()
+            self.passwordTF.byToggleSecureTextEntry()
             self.passwordTF.togglePasswordVisibility()
-            print(&quot;👁 当前状态：\(sender.isSelected ? &quot;隐藏密码&quot; : &quot;显示密码&quot;)&quot;)
+            print("👁 当前状态：\(sender.jobs_effectiveState == .selected ? "隐藏密码" : "显示密码")")
         }
         /// 追加@点按事件触发
         .onTapAppend{ sender in // 追加点按事件
-            print(&quot;追加的点按事件&quot;)
+            print("追加的点按事件")
         }
         /// 右上角提示文案@小红点
         .byCornerDot(diameter: 10, offset: .init(horizontal: -4, vertical: 4))// 红点
         /// 右上角提示文案@文字
-        .byCornerBadgeText(&quot;NEW&quot;) { cfg in // 设置 Corner Badge Text
+        .byCornerBadgeText("NEW") { cfg in // 设置 Corner Badge Text
             cfg.byOffset(.init(horizontal: -6, vertical: 6))
                 .byInset(.init(top: 2, left: 6, bottom: 2, right: 6)) // 设置 Inset
-                .byBackgroundColor(.systemRed) // 设置背景色
-                .byFont(.systemFont(ofSize: 11, weight: .bold)) // 设置字体
-                .byShadow(color: UIColor.black.withAlphaComponent(0.25), // 设置 Shadow
+                .byBackgroundColor(JobsCor.systemRed) // 设置背景色
+                .byFont(JobsFont.systemFont(ofSize: 11, weight: .bold)) // 设置字体
+                .byShadow(color: JobsCor.black.withAlphaComponent(0.25), // 设置 Shadow
                           radius: 2,
                           opacity: 0.6,
                           offset: .init(width: 0, height: 1))
@@ -99,16 +102,16 @@ private lazy var exampleButton: UIButton = {
         /// 普通@长按事件触发
         .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
              if gr.state == .began {
-                 btn.alpha = 0.6
-                 print(&quot;长按开始 on \(btn)&quot;)
+                 btn.byAlpha(0.6)
+                 print("长按开始 on \(btn)")
              } else if gr.state == .ended || gr.state == .cancelled {
-                 btn.alpha = 1.0
-                 print(&quot;长按结束&quot;)
+                 btn.byAlpha(1.0)
+                 print("长按结束")
              }
          }
         /// 追加@长按事件触发
         .onLongPressAppend(minimumPressDuration: 0.8) { btn, gr in // 追加长按事件
-            print(&quot;追加的长按事件&quot;)
+            print("追加的长按事件")
         }
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
@@ -134,7 +137,7 @@ private lazy var exampleButton: UIButton = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -147,20 +150,22 @@ private lazy var exampleButton: UIButton = {
         /// UIButtonConfiguration
         if #available(iOS 15.0, *) {
             b.byConfiguration { c in
-                c.byTitle(&quot;背景图：Base64 / URL&quot;)
-                    .byBaseForegroundCor(.white) // 设置 Base Foreground Cor
+                c.byTitle("背景图：Base64 / URL")
+                    .byBaseForegroundCor(JobsCor.white) // 设置 Base Foreground Cor
                     .byContentInsets(.init(top: 16, leading: 16, bottom: 16, trailing: 16)) // 设置 Content Insets
                     .byCornerStyle(.large) // 设置 Corner Style
                     .byImagePlacement(.trailing) // 设置 Image Placement
                     .byImagePadding(8) // 设置 Image Padding
             }
         } else {
-            b.byTitle(&quot;背景图：Base64 / URL&quot;)
-                .byTitleColor(.white) // 设置标题颜色
+            b.byTitle("背景图：Base64 / URL")
+                .byTitleColor(JobsCor.white) // 设置标题颜色
                 .byContentEdgeInsets(.init(top: 16, left: 16, bottom: 16, right: 16)) // 设置内容边距
-                .byBackgroundColor(.systemBlue) // 设置背景色
+                .byBackgroundColor(JobsCor.systemBlue) // 设置背景色
         }
+    return b
 }()
+
 </string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>48398B56-1484-4104-B035-CEC720396169</string>
@@ -169,7 +174,7 @@ private lazy var exampleButton: UIButton = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@按钮（系统）❤️</string>
 	<key>IDECodeSnippetUserSnippet</key>

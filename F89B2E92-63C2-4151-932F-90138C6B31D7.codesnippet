@@ -1,21 +1,23 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
+import JobsSwiftBaseDefines
 
 private lazy var valueLabel: UILabel = {
     UILabel()
         .byTextAlignment(.center) // 设置文字对齐
-        .byFont(.systemFont(ofSize: 52, weight: .bold)) // 设置字体
-        .byTextColor(.label) // 设置文字颜色
-        .byText(&quot;\(Int(defaultStart))&quot;) // 设置文本
+        .byFont(JobsFont.systemFont(ofSize: 52, weight: .bold)) // 设置字体
+        .byTextColor(JobsCor.label) // 设置文字颜色
+        .byText("\(Int(defaultStart))") // 设置文本
         .byNumberOfLines(1) // 设置行数
         .byAnimatedTextNumber(duration: 0.9, minimumInterval: 1.0 / 60.0) // 设置 Animated Text Number
         .byStopAnimatedTextNumber() // 设置 Stop Animated Text Number
@@ -26,7 +28,7 @@ private lazy var valueLabel: UILabel = {
             minimumInterval: 1.0 / 60.0,
             completion: nil
         )
-        .byStartAnimatedTextNumber(&quot;3&quot;) // 设置 Start Animated Text Number
+        .byStartAnimatedTextNumber("3") // 设置 Start Animated Text Number
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
@@ -51,7 +53,7 @@ private lazy var valueLabel: UILabel = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -61,7 +63,8 @@ private lazy var valueLabel: UILabel = {
         .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
         .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
-}()</string>
+}()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>F89B2E92-63C2-4151-932F-90138C6B31D7</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -69,7 +72,7 @@ private lazy var valueLabel: UILabel = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@动效数字标签</string>
 	<key>IDECodeSnippetUserSnippet</key>

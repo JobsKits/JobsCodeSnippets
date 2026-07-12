@@ -35,9 +35,9 @@ Prop_strong()UILabel *titleLab;
 /// 由具体的子类进行覆写
 -(void)richElementsInViewWithModel:(UIViewModel *_Nullable)model{
     // [self richElementsInViewWithModel:model];
-    self.viewModel = model ? : UIViewModel.new;
+    self.viewModel = model ? : jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {});
     self.byBgColor(self.viewModel.bgCor); // 设置背景色
-    self.titleLab.alpha = 1;
+    self.titleLab.byAlpha(1);
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(CGSize)collectionReusableViewSizeWithModel:(UIViewModel *_Nullable)model{
@@ -51,12 +51,13 @@ Prop_strong()UILabel *titleLab;
             @jobs_weakify(self)
             label.byTextCor(RGBA_COLOR(51, 51, 51, 1))
                 .byFont(UIFontWeightBoldSize(16)) // 设置字体
-                .setMasonryBy(^(MASConstraintMaker *_Nonnull make){ // 配置链式能力
+                .addOn(self) // 加入父视图
+                .byAdd(^(MASConstraintMaker *_Nonnull make){ // 部署约束
                     @jobs_strongify(self)
                     make.height.mas_equalTo(JobsWidth(18));
                     make.left.equalTo(self).offset(JobsWidth(16));
                     make.top.equalTo(self).offset(JobsWidth(5));
-                }).on();
+                });
         });
     }
     _titleLab.byText(self.viewModel.textModel.text)

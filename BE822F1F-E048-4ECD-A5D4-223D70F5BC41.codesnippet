@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>TableView</string>
@@ -37,7 +38,7 @@ private lazy var tableView: UITableView = {
         .byTableHeaderView( // 设置表头
             UIView()
                 .byHeight(65) // 设置 Height
-                .byBackgroundColor(.clear) // 设置背景色
+                .byBackgroundColor(JobsCor.clear) // 设置背景色
         )
         // 非正式协议闭包化
         .byTarget(self) // 设置目标对象
@@ -46,27 +47,27 @@ private lazy var tableView: UITableView = {
             self.rows ?? 0
         }
         .cellForRowAt { _, tv, indexPath in // 配置 table cell
-            let c = tv.dequeueReusableCell(withIdentifier: &quot;cell&quot;) ??
-                    UITableViewCell(style: .default, reuseIdentifier: &quot;cell&quot;)
+            let c = tv.dequeueReusableCell(withIdentifier: "cell") ??
+                    UITableViewCell(style: .default, reuseIdentifier: "cell")
             var cfg = c.defaultContentConfiguration()
-            cfg.byText(&quot;Row \(indexPath.row)&quot;) // 设置文本
+            cfg.byText("Row \(indexPath.row)") // 设置文本
             c.contentConfiguration = cfg
             return c
         }
         .didSelectRowAt { _, tv, indexPath in // 设置行选中事件
             tv.deselectRow(at: indexPath, animated: true)
-            print(&quot;点选逻辑&quot;)
+            print("点选逻辑")
         }
         // 无数据@空态按钮
         .byEmptyButtonProvider { [unowned self] in // 设置 Empty Button Provider
-            UIButton(type: .system)
-                .byTitle(&quot;暂无数据&quot;) // 设置标题
-                .bySubTitle(&quot;点我填充示例数据&quot;) // 设置副标题
-                .byImage(&quot;tray&quot;.sysImg) // 设置图片
+            UIButton.sys()
+                .byTitle("暂无数据") // 设置标题
+                .bySubTitle("点我填充示例数据") // 设置副标题
+                .byImage("tray".sysImg) // 设置图片
                 .byImagePlacement(.top) // 设置 Image Placement
                 .onTap { [weak self] _ in // 绑定点按事件
                     guard let self else { return }
-                    self.items = (1...10).map { &quot;Row \($0)&quot; }
+                    self.items = (1...10).map { "Row \($0)" }
                     self.tableView.reloadData()   // ✅ reload 后会自动评估空态，无需你再手动调用
                 }
                 // 可选：不满意默认居中 -&gt; 自定义布局
@@ -82,7 +83,7 @@ private lazy var tableView: UITableView = {
         .byEmptyViewProvider { [unowned self] in // 设置 Empty View Provider
             JobsEmptyView()
                 .byOnTapRetry { [weak self] in // 设置 On Tap Retry
-                    &quot;hello&quot;.tr.toast
+                    "hello".tr.toast
                 }
         }
         .byEmptyViewLayout { emptyView, make, host in // 设置 Empty View Layout
@@ -138,7 +139,7 @@ private lazy var tableView: UITableView = {
         }
 //        .showRefreshHeaderInfo(NO)   // 竖向Header + 横向Left
 //        .showRefreshFooterInfo(YES)  // 竖向Footer + 横向Right
-        .setLeftLottie(.custom(.init(animationName: &quot;9squares_AlBoardman&quot;))) // 配置链式能力
+        .setLeftLottie(.custom(.init(animationName: "9squares_AlBoardman"))) // 配置链式能力
         .setRightLottie(.inherit)     // 继承全局（没有全局就回退菊花）
         // 左侧拉：比如“上一页/回退”
         .configSideRefresh(with: JobsDefaultLeftRefresher(), // 配置链式能力
@@ -167,11 +168,11 @@ private lazy var tableView: UITableView = {
                self.tableView.switchSideRefresh(.right, to: .normal)
            }
        }
-      .setHeaderLottie(.custom(.init(animationName: &quot;LottieLogo1&quot;))) // 配置链式能力
+      .setHeaderLottie(.custom(.init(animationName: "LottieLogo1"))) // 配置链式能力
       .setFooterLottie(.disabled) // 强制 footer 回退菊花（即使全局配置了）
       .enableRefreshHaptics(true) // 开启震动反馈
-      .setRefreshSound(&quot;Sound.wav&quot;) // 配置链式能力
-      .byBorderColor(.cyan) // 设置边框颜色
+      .setRefreshSound("Sound.wav") // 配置链式能力
+      .byBorderColor(JobsCor.cyan) // 设置边框颜色
       .byBorderWidth(0.5) // 设置边框宽度
       .byMasksToBounds(YES) // 设置图层裁剪
       .byClipsToBounds(YES) // 设置裁剪
@@ -190,7 +191,7 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
             .byDequeueReusableCell(withType: UITableViewCell.self, for: indexPath) // 设置 Dequeue Reusable Cell
             .byData(data[indexPath.row]) // 设置 Data
             .byText(Row(rawValue: indexPath.row)?.title) // 设置文本
-            .bySecondaryText(&quot;Section \(indexPath.section) · Row \(indexPath.row)&quot;) // 设置 Secondary Text
+            .bySecondaryText("Section \(indexPath.section) · Row \(indexPath.row)") // 设置 Secondary Text
             .byAccessoryType(.disclosureIndicator) // 设置 Accessory Type
             .onResult { _ in // 绑定事件
                 
@@ -215,7 +216,8 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
         case .float:  JobsLiveFloatPlayer.shared.showRemoteLive()
         }
     }
-}</string>
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>BE822F1F-E048-4ECD-A5D4-223D70F5BC41</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -223,7 +225,7 @@ extension BMPlayerDemoVC : UITableViewDataSource,UITableViewDelegate{
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UITableView</string>
 	<key>IDECodeSnippetUserSnippet</key>

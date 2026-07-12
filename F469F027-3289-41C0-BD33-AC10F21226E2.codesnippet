@@ -8,7 +8,8 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import JobsByUIKit
+	<string>import JobsSwiftBaseDefines
+import JobsByUIKit
 
 // MARK: 设置富文本@UILabel
 UILabel().richTextBy(runs, paragraphStyle: ps)
@@ -16,13 +17,13 @@ UILabel().richTextBy(runs, paragraphStyle: ps)
 UIButton.sys()
     /// 富文本字@设置按钮主标题
     .byRichTitle(JobsRichText.make([ // 设置 Rich Title
-        JobsRichRun(.text(&quot;¥99&quot;)).font(.systemFont(ofSize: 18, weight: .semibold)).color(.systemRed),
-        JobsRichRun(.text(&quot; /月&quot;)).font(.systemFont(ofSize: 16)).color(.white)
+        JobsRichRun(.text(&quot;¥99&quot;)).font(JobsFont.systemFont(ofSize: 18, weight: .semibold)).color(JobsCor.systemRed),
+        JobsRichRun(.text(&quot; /月&quot;)).font(JobsFont.systemFont(ofSize: 16)).color(JobsCor.white)
     ]))
      /// 富文本字@设置按钮副标题
     .byRichSubTitle(JobsRichText.make([ // 设置 Rich Sub Title
-        JobsRichRun(.text(&quot;原价 &quot;)).font(.systemFont(ofSize: 12)).color(.white.withAlphaComponent(0.8)),
-        JobsRichRun(.text(&quot;¥199&quot;)).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow)
+        JobsRichRun(.text(&quot;原价 &quot;)).font(JobsFont.systemFont(ofSize: 12)).color(JobsCor.white.withAlphaComponent(0.8)),
+        JobsRichRun(.text(&quot;¥199&quot;)).font(JobsFont.systemFont(ofSize: 12, weight: .medium)).color(JobsCor.systemYellow)
     ]))
 // MARK: 设置富文本@UITextView
 UITextView().richTextBy(runs, paragraphStyle: ps)
@@ -30,18 +31,18 @@ UITextView()
         .byAttributedText(NSMutableAttributedString( // 设置富文本
             string: &quot;🔗 默认蓝色链接（系统样式）：&quot;,
             attributes: [
-                .font: UIFont.systemFont(ofSize: 15), // 配置链式能力
-                .foregroundColor: UIColor.secondaryLabel // 配置链式能力
+                .font: JobsFont.systemFont(ofSize: 15), // 配置链式能力
+                .foregroundColor: JobsCor.secondaryLabel // 配置链式能力
             ])
             .byAdd(NSAttributedString( // 部署约束
                 string: &quot; Apple 官网&quot;,
                 attributes: [
                     .link: URL(string: &quot;https://www.apple.com&quot;)!,
-                    .font: UIFont.boldSystemFont(ofSize: 16) // 配置链式能力
+                    .font: JobsFont.boldSystemFont(ofSize: 16) // 配置链式能力
                 ]))
             .byAdd(NSAttributedString( // 部署约束
                 string: &quot;\n客服电话：400-123-4567&quot;,
-                attributes: [.font: UIFont.systemFont(ofSize: 15)]
+                attributes: [.font: JobsFont.systemFont(ofSize: 15)]
             )))
         /// 富文本字@点击事件
         .linkTap // 配置链式能力
@@ -65,17 +66,17 @@ let ps = jobsMakeParagraphStyle {
 // 富文本配置数组
 let runs: [JobsRichRun] = [
     JobsRichRun(.text(&quot;欢迎使用 &quot;))
-        .font(.systemFont(ofSize: 18)) // 配置链式能力
-        .color(.secondaryLabel), // 配置链式能力
+        .font(JobsFont.systemFont(ofSize: 18)) // 配置链式能力
+        .color(JobsCor.secondaryLabel), // 配置链式能力
 
     JobsRichRun(.text(&quot;JobsRichText &quot;))
-        .font(.boldSystemFont(ofSize: 18)) // 配置链式能力
-        .color(.systemBlue) // 配置链式能力
-        .underline(.single, color: .systemBlue), // 配置链式能力
+        .font(JobsFont.boldSystemFont(ofSize: 18)) // 配置链式能力
+        .color(JobsCor.systemBlue) // 配置链式能力
+        .underline(.single, color: JobsCor.systemBlue), // 配置链式能力
 
     JobsRichRun(.text(&quot;封装示例&quot;))
-        .font(.systemFont(ofSize: 18)) // 配置链式能力
-        .strike(.single, color: .systemRed) // 配置链式能力
+        .font(JobsFont.systemFont(ofSize: 18)) // 配置链式能力
+        .strike(.single, color: JobsCor.systemRed) // 配置链式能力
 ]
 // MARK: 设置富文本@超链接
 let ps = jobsMakeParagraphStyle {
@@ -85,12 +86,12 @@ let ps = jobsMakeParagraphStyle {
 
 let runs: [JobsRichRun] = [
     JobsRichRun(.text(&quot;如需帮助，请联系 &quot;))
-        .font(.systemFont(ofSize: 15)) // 配置链式能力
-        .color(.secondaryLabel), // 配置链式能力
+        .font(JobsFont.systemFont(ofSize: 15)) // 配置链式能力
+        .color(JobsCor.secondaryLabel), // 配置链式能力
 
     JobsRichRun(.text(&quot;专属客服&quot;))
-        .font(.systemFont(ofSize: 15)) // 配置链式能力
-        .color(.systemBlue) // 配置链式能力
+        .font(JobsFont.systemFont(ofSize: 15)) // 配置链式能力
+        .color(JobsCor.systemBlue) // 配置链式能力
         .link(&quot;click://customer&quot;)
 ]
 // MARK: 设置富文本@图
@@ -108,8 +109,8 @@ let ps = jobsMakeParagraphStyle {
 let runs: [JobsRichRun] = [
     JobsRichRun(.attachment(att, CGSize(width: 16, height: 16))),
     JobsRichRun(.text(&quot;  附件说明&quot;))
-        .font(.systemFont(ofSize: 15)) // 配置链式能力
-        .color(.secondaryLabel) // 配置链式能力
+        .font(JobsFont.systemFont(ofSize: 15)) // 配置链式能力
+        .color(JobsCor.secondaryLabel) // 配置链式能力
 ]
 // MARK: 利用代理设置富文本@点击事件
 extension RichTextDemoVC: UITextViewDelegate {

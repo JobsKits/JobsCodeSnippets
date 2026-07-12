@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>TextField</string>
@@ -9,13 +10,14 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
+import JobsSwiftBaseDefines
 
 /// 邮箱输入框
 private lazy var emailTF: UITextField = {
     UITextField()
-        .byPlaceholder(&quot;请输入邮箱（去空格 / 最长 8）&quot;) // 设置占位文字
-        .byFont(.systemFont(ofSize: 16)) // 设置字体
-        .byTextColor(.label) // 设置文字颜色
+        .byPlaceholder("请输入邮箱（去空格 / 最长 8）") // 设置占位文字
+        .byFont(JobsFont.systemFont(ofSize: 16)) // 设置字体
+        .byTextColor(JobsCor.label) // 设置文字颜色
         .byKeyboardType(.emailAddress) // 设置键盘类型
         .byReturnKeyType(.next) // 设置返回键
         .byClearButtonMode(.whileEditing) // 设置清除按钮
@@ -28,12 +30,12 @@ private lazy var emailTF: UITextField = {
                     UIButton.sys()
                         .bySize(CGSizeMake(20, 20)) // 设置 Size
                         /// 背景图片
-                        .byBackgroundImage(&quot;删除&quot;.img) // 设置背景图
+                        .byBackgroundImage("删除".img) // 设置背景图
                         /// 普通@点按事件触发
                         .onTap { [weak self] sender in // 绑定点按事件
                             guard let self else { return }
-                            sender.isSelected.toggle()
-                            titleTF.byText(&quot;&quot;) // 清空文本
+                            sender.byToggleSelected()
+                            titleTF.byText("") // 清空文本
                         }
                 )
         )
@@ -45,13 +47,13 @@ private lazy var emailTF: UITextField = {
         })
         /// 输入框由不活跃状态 ➤ 活跃状态 只调用一次
         .byBeginEditing { value in // 绑定开始编辑
-            print(&quot;✍️ email begin:&quot;, value)
+            print("✍️ email begin:", value)
         }
         /// 效果@等于父系方法UIControl.byAddAction.editingChanged，只不过比父系方法先调用
         .byOnInput(limit: 8) { [weak self] char, value, mode, isLimited ,text ,tf in // 设置 On Input
-            // text 就是当前 UITextField.text（保证不是 nil，空就是 &quot;&quot;）
+            // text 就是当前 UITextField.text（保证不是 nil，空就是 ""）
             // value 仍然是“本次变更后的值”（由监听器计算出来的 new）
-            // char：删除/回车时为 &quot;&quot;
+            // char：删除/回车时为 ""
             // mode：space/delete/return/normal
             // isLimited：是否设置了限制（limit != nil）
             guard let self else { return }
@@ -60,11 +62,11 @@ private lazy var emailTF: UITextField = {
                 self.emailTF.byText(trimmed) // 回填文本
             }
             let current = self.emailTF.text ?? trimmed
-            let ok = current.count &gt;= 3 &amp;&amp; current.contains(&quot;@&quot;)
-            print(&quot;📧 char=&apos;\(char)&apos; value=&apos;\(current)&apos; mode=\(mode) limited=\(isLimited) ok=\(ok)&quot;)
+            let ok = current.count &gt;= 3 &amp;&amp; current.contains("@")
+            print("📧 char='\(char)' value='\(current)' mode=\(mode) limited=\(isLimited) ok=\(ok)")
         }
         .byEndEditing { value in // 绑定结束编辑
-            print(&quot;✅ email end:&quot;, value)
+            print("✅ email end:", value)
         }
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
@@ -90,7 +92,7 @@ private lazy var emailTF: UITextField = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -104,9 +106,9 @@ private lazy var emailTF: UITextField = {
 /// 密码输入框
 private lazy var passwordTF: UITextField = {
     UITextField()
-        .byPlaceholder(&quot;请输入密码（最长 5）&quot;) // 设置占位文字
-        .byFont(.systemFont(ofSize: 16)) // 设置字体
-        .byTextColor(.label) // 设置文字颜色
+        .byPlaceholder("请输入密码（最长 5）") // 设置占位文字
+        .byFont(JobsFont.systemFont(ofSize: 16)) // 设置字体
+        .byTextColor(JobsCor.label) // 设置文字颜色
         .byKeyboardType(.default) // 设置键盘类型
         .byReturnKeyType(.done) // 设置返回键
         .byClearButtonMode(.whileEditing) // 设置清除按钮
@@ -114,7 +116,7 @@ private lazy var passwordTF: UITextField = {
         .bySecureTextEntry(true) // 设置密文输入
         .byLeftView(UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 1))) // 设置 Left View
         .byLeftViewMode(.always) // 设置 Left View Mode
-        .byRightView(UIImageView().bySize(CGSizeMake(22, 22)).byImage(&quot;删除&quot;.img)) // 设置 Right View
+        .byRightView(UIImageView().bySize(CGSizeMake(22, 22)).byImage("删除".img)) // 设置 Right View
         .byRightViewMode(.whileEditing) // 设置 Right View Mode
         /// 父系方法@UIControl.byAddAction
         .byAddAction(for: .editingChanged, { [weak self] tf in // 设置 Add Action
@@ -123,21 +125,21 @@ private lazy var passwordTF: UITextField = {
         })
         /// 输入框由不活跃状态 ➤ 活跃状态 只调用一次
         .byBeginEditing { value in // 绑定开始编辑
-            print(&quot;✍️ password begin:&quot;, value)
+            print("✍️ password begin:", value)
         }
         /// 效果@等于父系方法UIControl.byAddAction.editingChanged，只不过比父系方法先调用
         .byOnInput(limit: 8) { [weak self] char, value, mode, isLimited ,text ,tf in // 设置 On Input
-            // text 就是当前 UITextField.text（保证不是 nil，空就是 &quot;&quot;）
+            // text 就是当前 UITextField.text（保证不是 nil，空就是 ""）
             // value 仍然是“本次变更后的值”（由监听器计算出来的 new）
-            // char：删除/回车时为 &quot;&quot;
+            // char：删除/回车时为 ""
             // mode：space/delete/return/normal
             // isLimited：是否设置了限制（limit != nil）
             guard let self else { return }
             let current = self.passwordTF.text ?? value
-            print(&quot;🔐 char=&apos;\(char)&apos; value=&apos;\(current)&apos; mode=\(mode) limited=\(isLimited)&quot;)
+            print("🔐 char='\(char)' value='\(current)' mode=\(mode) limited=\(isLimited)")
         }
         .byEndEditing { value in // 绑定结束编辑
-            print(&quot;✅ password end:&quot;, value)
+            print("✅ password end:", value)
         }
         .byAddTo(view) { [unowned self] make in // 加入父视图并部署约束
             make.top.equalTo(emailTF.snp.bottom).offset(16)
@@ -147,7 +149,7 @@ private lazy var passwordTF: UITextField = {
         .byMakeConstraints { make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -167,7 +169,8 @@ if #available(iOS 18.0, *) {
     tf.byMathExpressionCompletionType(.default)
       .byWritingToolsBehavior(.default) // 设置 Writing Tools Behavior
       .byAllowedWritingToolsResultOptions([]) // 设置 Allowed Writing Tools Result Options
-}</string>
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>BEF262DA-F24D-4888-B9FE-F6695F44A42D</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -175,7 +178,7 @@ if #available(iOS 18.0, *) {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@输入框</string>
 	<key>IDECodeSnippetUserSnippet</key>

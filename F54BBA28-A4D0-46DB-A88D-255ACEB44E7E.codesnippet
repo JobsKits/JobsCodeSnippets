@@ -8,31 +8,20 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/// 示例代码：设置长按手势和点击手势 
-Prop_strong()UILongPressGestureRecognizer *longPressGR;/// 长按手势
-Prop_strong()UITapGestureRecognizer *tapGR;/// 点击手势
-Prop_strong()UISwipeGestureRecognizer *swipeGR;/// 轻扫手势
-Prop_strong()UIPanGestureRecognizer *panGR;/// 平移手势
-Prop_strong()UIPinchGestureRecognizer *pinchGR;/// 捏合（缩放）手势
-Prop_strong()UIRotationGestureRecognizer *rotationGR;/// 旋转手势
-Prop_strong()UIScreenEdgePanGestureRecognizer *screenEdgePanGR;/// 屏幕边缘平移
+	<string>/// 示例代码：使用 UIView+Gesture DSL 设置长按手势和点击手势
 {
-    _collectionView.numberOfTouchesRequired = 1;
-    _collectionView.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
-    _collectionView.minimumPressDuration = 0.1;
-    _collectionView.numberOfTouchesRequired = 1;
-    _collectionView.allowableMovement = 1;
-    _collectionView.byUserInteractionEnabled(YES); // 开启交互
-    _collectionView.target = self;
-    _collectionView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^(id _Nullable target, UILongPressGestureRecognizer *_Nullable arg) {
-        NSLog(@&quot;&quot;);
-    }];
-    _collectionView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
-    
-    _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^(id _Nullable target, UITapGestureRecognizer *_Nullable arg) {
-        NSLog(@&quot;&quot;);
-    }];
-    _collectionView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+    _collectionView
+        .byNumberOfTouchesRequired(1)
+        .byNumberOfTapsRequired(1)
+        .byMinimumPressDuration(0.1)
+        .byAllowableMovement(1)
+        .byUserInteractionEnabled(YES) // 开启交互
+        .addLongPressGR(^(__kindof UILongPressGestureRecognizer * _Nullable gesture) {
+            JobsLog(@&quot;长按手势被触发&quot;);
+        })
+        .addTapGR(^(__kindof UITapGestureRecognizer * _Nullable gesture) {
+            JobsLog(@&quot;单击手势被触发&quot;);
+        });
 }
 
 </string>

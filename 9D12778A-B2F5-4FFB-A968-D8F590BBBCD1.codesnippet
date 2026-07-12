@@ -1,19 +1,22 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>private lazy var valueLabel: UILabel = {
+	<string>import JobsSwiftBaseDefines
+
+private lazy var valueLabel: UILabel = {
     UILabel()
         .byTextAlignment(.center) // 设置文字对齐
-        .byFont(.systemFont(ofSize: 52, weight: .bold)) // 设置字体
-        .byTextColor(.label) // 设置文字颜色
-        .byText(&quot;\(Int(defaultStart))&quot;) // 设置文本
+        .byFont(JobsFont.systemFont(ofSize: 52, weight: .bold)) // 设置字体
+        .byTextColor(JobsCor.label) // 设置文字颜色
+        .byText("\(Int(defaultStart))") // 设置文本
         .byNumberOfLines(1) // 设置行数
         /// 配置@数字动效
         .byAnimatedTextNumber(duration: 0.9, minimumInterval: 1.0 / 60.0) // 设置 Animated Text Number
@@ -41,7 +44,7 @@
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -63,6 +66,7 @@ self.valueLabel
         completion: nil
     )
     .byStartAnimatedTextNumber(endText) // 设置 Start Animated Text Number
+
 </string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>9D12778A-B2F5-4FFB-A968-D8F590BBBCD1</string>
@@ -71,7 +75,7 @@ self.valueLabel
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UILabel</string>
 	<key>IDECodeSnippetUserSnippet</key>

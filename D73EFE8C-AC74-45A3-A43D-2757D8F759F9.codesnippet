@@ -207,10 +207,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                         .makeLabelByShowingType(UILabelShowingType_03); // 配置链式能力
                 })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
                 .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) { // 配置链式能力
-                    data.title = @&quot;NO MESSAGES FOUND&quot;.tr;
-                    data.titleCor = JobsWhiteColor;
-                    data.titleFont = bayonRegular(JobsWidth(30));
-                    data.normalImage = @&quot;小狮子&quot;.img;
+                    data
+                        .byTitle(@&quot;NO MESSAGES FOUND&quot;.tr)
+                        .byTitleCor(JobsWhiteColor)
+                        .byTitleFont(bayonRegular(JobsWidth(30)))
+                        .byNormalImage(@&quot;小狮子&quot;.img);
                 }))
                 /// 普通的MJRefreshHeader（触发事件）@二选一
                 .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{ // 设置 MJRefresh Header

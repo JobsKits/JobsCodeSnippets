@@ -82,13 +82,13 @@ static dispatch_once_t static_tipsView01OnceToken;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(311), JobsWidth(363));
     };
 }
 
--(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+-(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     @jobs_weakify(self)
     return ^CGSize(id _Nullable data){
         @jobs_strongify(self)
@@ -126,16 +126,11 @@ static dispatch_once_t static_tipsView01OnceToken;
     if(!_statusBtn){
         @jobs_weakify(self)
         _statusBtn = BaseButton.jobsInit()
-            .bgColorBy(JobsClearColor) // 设置背景色
-            .jobsResetBtnTitleCor(JobsCor(@&quot;#F53F3F&quot;)) // 设置标题颜色
-            .normalStateTitleColorBy(JobsCor(@&quot;#F53F3F&quot;)) // 设置普通状态标题颜色
-            .highlightedStateTitleColorBy(JobsCor(@&quot;#F53F3F&quot;)) // 设置高亮状态标题颜色
-            .selectedStateTitleColorBy(JobsCor(@&quot;#F53F3F&quot;)) // 设置选中状态标题颜色
-            .disabledStateTitleColorBy(JobsCor(@&quot;#F53F3F&quot;)) // 设置禁用状态标题颜色
-            .titleColorForStateBy(JobsCor(@&quot;#F53F3F&quot;), UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
+            .jobsResetBtnBgCor(JobsClearColor) // 兼容新旧管线：设置背景色
+            .jobsResetBtnTitle(JobsInternationalization(@&quot;Unverified&quot;)) // 兼容新旧管线：设置标题
+            .jobsResetBtnTitleCor(JobsCor(@&quot;#F53F3F&quot;)) // 兼容新旧管线：设置标题颜色
+            .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(14))) // 兼容新旧管线：设置标题字体
             .byTintColor(JobsCor(@&quot;#F53F3F&quot;)) // 设置 tint 色
-            .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(14))) // 设置标题字体
-            .jobsResetBtnTitle(JobsInternationalization(@&quot;Unverified&quot;)) // 设置标题
             .onClickBy(^(UIButton *x){ // 绑定事件
                 @jobs_strongify(self)
                 self.getCurrentViewController.comingToPushVC(FMForgotPwdVC.new);
@@ -143,10 +138,11 @@ static dispatch_once_t static_tipsView01OnceToken;
             .onLongPressGestureBy(^(id data){ // 绑定事件
                 JobsLog(@&quot;&quot;);
             })
-            .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 设置图层
-                data.layerCor = JobsCor(@&quot;#F53F3F&quot;);
-                data.jobsWidth = 1;
-                data.cornerRadiusValue = JobsWidth(32 / 2);
+            .jobsResetBtnLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 兼容新旧管线：设置图层
+                data
+                    .byLayerCor(JobsCor(@&quot;#F53F3F&quot;))
+                    .byJobsWidth(1)
+                    .byCornerRadiusValue(JobsWidth(32 / 2));
             }))
             .addOn(self.view) // 加入父视图
             .byAdd(^(MASConstraintMaker *make) { // 部署约束

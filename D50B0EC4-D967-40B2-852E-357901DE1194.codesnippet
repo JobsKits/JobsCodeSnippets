@@ -8,7 +8,9 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import BRPickerViewSwift
+	<string>import JobsSwiftBaseDefines
+import BRPickerViewSwift
+
 /// 显示
 pickerView.byPresent(in: self.view)
 /// 文本：单列（学历）
@@ -18,14 +20,14 @@ private lazy var textSinglePicker: BRStringPicker = { [unowned self] in
         .bySelectedIndex(2) // 设置 Selected Index
         .byTheme { theme in // 设置 Theme
             theme
-                .byPanelBackgroundColor(.yellow) // 设置 Panel Background Color
-                .byToolbarBackgroundColor(.systemCyan) // 设置 Toolbar Background Color
-                .byTitleColor(.white) // 设置标题颜色
-                .byButtonColor(.systemRed) // 设置 Button Color
-                .byMaskColor(.black.withAlphaComponent(0.55)) // 设置 Mask Color
-                .byPickerTextColor(.red) // 设置 Picker Text Color
-                .byPickerSelectedTextColor(.blue) // 设置 Picker Selected Text Color
-                .byPickerFont(.systemFont(ofSize: 20)) // 设置 Picker Font
+                .byPanelBackgroundColor(JobsCor.yellow) // 设置 Panel Background Color
+                .byToolbarBackgroundColor(JobsCor.systemCyan) // 设置 Toolbar Background Color
+                .byTitleColor(JobsCor.white) // 设置标题颜色
+                .byButtonColor(JobsCor.systemRed) // 设置 Button Color
+                .byMaskColor(JobsCor.black.withAlphaComponent(0.55)) // 设置 Mask Color
+                .byPickerTextColor(JobsCor.red) // 设置 Picker Text Color
+                .byPickerSelectedTextColor(JobsCor.blue) // 设置 Picker Selected Text Color
+                .byPickerFont(JobsFont.systemFont(ofSize: 20)) // 设置 Picker Font
                 .byAutoSelect(false) // 设置 Auto Select
         }
         .byToolbar { cfg in // 设置 Toolbar

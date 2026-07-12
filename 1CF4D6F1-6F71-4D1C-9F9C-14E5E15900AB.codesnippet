@@ -24,9 +24,10 @@
                 .byPlaceholderFont(pingFangHKRegular(JobsWidth(14))); // 设置占位字体
         })
         .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 设置图层
-            data.layerCor = JobsCor(@&quot;#DEDEDE&quot;);
-            data.jobsWidth = 1;
-            data.cornerRadiusValue = JobsWidth(32 / 2);
+            data
+                .byLayerCor(JobsCor(@&quot;#DEDEDE&quot;))
+                .byJobsWidth(1)
+                .byCornerRadiusValue(JobsWidth(32 / 2));
         }))
         .addOn(self.scrollView) // 加入父视图
         .byAdd(^(MASConstraintMaker *make) { // 部署约束

@@ -43,17 +43,18 @@
                 })
                 .byBgColor(HEXCOLOR(0xFFFFFF)) // 设置背景色
                 .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) { // 设置图层
-                    model.jobsWidth = .05f;
-                    model.layerCor = JobsBlueColor;
-                    model.cornerRadiusValue = JobsWidth(8);
+                    model
+                        .byJobsWidth(.05f)
+                        .byLayerCor(JobsBlueColor)
+                        .byCornerRadiusValue(JobsWidth(8));
             }));
         });
         /// 不能写在 jobsMakeZYTextField 里面，否则会崩溃
         [[_textField.rac_textSignal filter:^BOOL(NSString *_Nullable value) {
             @jobs_strongify(self)
             if (isValue(self.textField.text)) {
-                self.cancelBtn.alpha = 1;
-                self.textField.width = TextFieldWidth - (self.cancelBtn.sizer.width + JobsWidth(5));
+                self.cancelBtn.byAlpha(1);
+                self.textField.byWidth(TextFieldWidth - (self.cancelBtn.sizer.width + JobsWidth(5)));
             }return isValue(value);
         }] subscribeNext:^(NSString * _Nullable x) {
             @jobs_strongify(self)

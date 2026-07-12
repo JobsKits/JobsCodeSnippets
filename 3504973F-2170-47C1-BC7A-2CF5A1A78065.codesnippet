@@ -204,7 +204,7 @@ Prop_strong()JXCategoryDotView *categoryView;/// 右上角带红点
 
 - (void)categoryView:(JXCategoryBaseView *)categoryView
 didSelectedItemAtIndex:(NSInteger)index {
-    self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
+    self.navigationController.interactivePopGestureRecognizer.byEnabled(index == 0);
     //点击以后红点消除
     if ([self.dotStatesMutArr[index] boolValue]) {
         self.dotStatesMutArr[index] = @(NO);

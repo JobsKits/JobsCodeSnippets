@@ -16,34 +16,37 @@
         _attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray &lt;JobsRichTextConfig *&gt;*_Nullable data) {
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
-                data1.byFont(UIFontWeightRegularSize(JobsWidth(12))); // 设置字体
-                data1.textCor = JobsBlueColor;
-                data1.targetString = JobsInternationalization(@&quot;编译器自动管理内存地址&quot;).add(@&quot;\n&quot;);
-                data1.textBgCor = JobsBrownColor;
-                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
-                    data2.byAlignment(NSTextAlignmentJustified)
-                         .byParagraphSpacing(0) // 段距，取值 float
-                         .byParagraphSpacingBefore(0) // 段首空间，取值 float
-                         .byFirstLineHeadIndent(0.0) // 首行缩进，取值 float
-                         .byHeadIndent(0.0) // 整体缩进(首行除外)，取值 float
-                         .byLineSpacing(0); // 行距，取值 float
-                });
+                data1
+                    .byFont(UIFontWeightRegularSize(JobsWidth(12))) // 设置字体
+                    .byTextCor(JobsBlueColor)
+                    .byTargetString(JobsInternationalization(@&quot;编译器自动管理内存地址&quot;).add(@&quot;\n&quot;))
+                    .byTextBgCor(JobsBrownColor)
+                    .byParagraphStyle(jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
+                        data2.byAlignment(NSTextAlignmentJustified)
+                             .byParagraphSpacing(0) // 段距，取值 float
+                             .byParagraphSpacingBefore(0) // 段首空间，取值 float
+                             .byFirstLineHeadIndent(0.0) // 首行缩进，取值 float
+                             .byHeadIndent(0.0) // 整体缩进(首行除外)，取值 float
+                             .byLineSpacing(0); // 行距，取值 float
+                    }));
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
-                data1.byFont(UIFontWeightSemiboldSize(JobsWidth(13))); // 设置字体
-                data1.textCor = JobsWhiteColor;
-                data1.targetString = JobsInternationalization(@&quot;让程序员更加专注于&quot;).add(@&quot;\n&quot;);
-                data1.textBgCor = JobsBrownColor;
-                data1.paragraphStyle = self.defaultParagraphStyle;
+                data1
+                    .byFont(UIFontWeightSemiboldSize(JobsWidth(13))) // 设置字体
+                    .byTextCor(JobsWhiteColor)
+                    .byTargetString(JobsInternationalization(@&quot;让程序员更加专注于&quot;).add(@&quot;\n&quot;))
+                    .byTextBgCor(JobsBrownColor)
+                    .byParagraphStyle(self.defaultParagraphStyle);
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
-                data1.byFont(UIFontWeightUltraLightSize(JobsWidth(14))); // 设置字体
-                data1.textCor = JobsGreenColor;
-                data1.targetString = JobsInternationalization(@&quot;APP的业务。&quot;);
-                data1.textBgCor = JobsBrownColor;
-                data1.paragraphStyle = self.defaultParagraphStyle;
+                data1
+                    .byFont(UIFontWeightUltraLightSize(JobsWidth(14))) // 设置字体
+                    .byTextCor(JobsGreenColor)
+                    .byTargetString(JobsInternationalization(@&quot;APP的业务。&quot;))
+                    .byTextBgCor(JobsBrownColor)
+                    .byParagraphStyle(self.defaultParagraphStyle);
             }));
         }));
     }return _attributedText;

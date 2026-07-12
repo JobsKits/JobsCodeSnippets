@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Snapkit</string>
@@ -8,12 +9,13 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import SnapKit
+	<string>import JobsSwiftBaseDefines
+import SnapKit
 import JobsByUIKit
 
 private lazy var card: UIView = { [unowned self] in
     UIView()
-        .byBackgroundColor(.secondarySystemBackground) // 设置背景色
+        .byBackgroundColor(JobsCor.secondarySystemBackground) // 设置背景色
         .byCornerRadius(12) // 设置圆角
         .byClipsToBounds(true) // 裁剪圆角
         .byAddTo(self.view) { make in // 加入父视图并部署约束
@@ -25,7 +27,7 @@ private lazy var card: UIView = { [unowned self] in
 
 private lazy var avatar: UIImageView = { [unowned self] in
     UIImageView()
-        .byImage(&quot;avatar_placeholder&quot;.img) // 设置图片
+        .byImage("avatar_placeholder".img) // 设置图片
         .byContentMode(.scaleAspectFill) // 设置填充模式
         .byCornerRadius(24) // 设置圆角
         .byClipsToBounds(true) // 裁剪圆角
@@ -37,9 +39,9 @@ private lazy var avatar: UIImageView = { [unowned self] in
 
 private lazy var titleLab: UILabel = { [unowned self] in
     UILabel()
-        .byText(&quot;标题&quot;) // 设置文本
-        .byFont(.boldSystemFont(ofSize: 16)) // 设置字体
-        .byTextColor(.label) // 设置文字颜色
+        .byText("标题") // 设置文本
+        .byFont(JobsFont.boldSystemFont(ofSize: 16)) // 设置字体
+        .byTextColor(JobsCor.label) // 设置文字颜色
         .byNumberOfLines(1) // 设置行数
         .byAddTo(self.card) { make in // 加入父视图并部署约束
             make.left.equalTo(self.avatar.snp.right).offset(12)
@@ -49,14 +51,14 @@ private lazy var titleLab: UILabel = { [unowned self] in
 }()
 
 private lazy var actionBtn: UIButton = { [unowned self] in
-    UIButton(type: .custom)
-        .byTitle(&quot;确认&quot;) // 设置标题
-        .byTitleColor(.white) // 设置标题颜色
-        .byTitleFont(.boldSystemFont(ofSize: 16)) // 设置标题字体
-        .byBackgroundColor(.systemBlue) // 设置背景色
+    UIButton.custom()
+        .byTitle("确认") // 设置标题
+        .byTitleColor(JobsCor.white) // 设置标题颜色
+        .byTitleFont(JobsFont.boldSystemFont(ofSize: 16)) // 设置标题字体
+        .byBackgroundColor(JobsCor.systemBlue) // 设置背景色
         .byCornerRadius(8) // 设置圆角
         .onTap { btn in // 绑定点按事件
-            btn.isSelected.toggle()
+            btn.byToggleSelected()
         }
         .byAddTo(self.card) { make in // 加入父视图并部署约束
             make.left.right.bottom.equalToSuperview().inset(16)
@@ -83,6 +85,7 @@ func layoutButtons() {
         )
     )
 }
+
 </string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>CF732DD5-FAD8-4C2F-9E94-8B4BC7E87E19</string>
@@ -91,7 +94,7 @@ func layoutButtons() {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@Snapkit</string>
 	<key>IDECodeSnippetUserSnippet</key>

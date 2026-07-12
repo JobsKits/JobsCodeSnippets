@@ -22,7 +22,7 @@
 -(void)configNav{
     self.gk_navTitle = @&quot;Demo&quot;;
     self.gk_navTitleColor = UIColor.labelColor;
-    self.gk_navTitleFont = [UIFont boldSystemFontOfSize:17];
+    self.gk_navTitleFont = UIFontBoldSystemFontOfSize(17);
 }
 
 -(void)configSubviews{
@@ -35,7 +35,7 @@
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             label
                 .byText(@&quot;标题&quot;) // 设置文本
-                .byFont([UIFont boldSystemFontOfSize:16]) // 设置字体
+                .byFont(UIFontBoldSystemFontOfSize(16)) // 设置字体
                 .byTextCor(UIColor.labelColor) // 设置文字颜色
                 .byTextAlignment(NSTextAlignmentCenter) // 设置对齐方式
                 .byNumberOfLines(1) // 设置行数
@@ -58,17 +58,12 @@
     if (!_submitBtn) {
         _submitBtn = jobsMakeButton(^(__kindof UIButton * _Nullable button) {
             button
-                .byTitle(@&quot;确认&quot;) // 设置标题
-                .byTitleCor(UIColor.whiteColor) // 设置标题颜色
-                .normalStateTitleColorBy(UIColor.whiteColor) // 设置普通状态标题颜色
-                .highlightedStateTitleColorBy(UIColor.whiteColor) // 设置高亮状态标题颜色
-                .selectedStateTitleColorBy(UIColor.whiteColor) // 设置选中状态标题颜色
-                .disabledStateTitleColorBy(UIColor.whiteColor) // 设置禁用状态标题颜色
-                .titleColorForStateBy(UIColor.whiteColor, UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
+                .jobsResetBtnTitle(@&quot;确认&quot;) // 兼容新旧管线：设置标题
+                .jobsResetBtnTitleCor(UIColor.whiteColor) // 兼容新旧管线：设置标题颜色
+                .jobsResetBtnTitleFont(UIFontBoldSystemFontOfSize(16)) // 兼容新旧管线：设置标题字体
+                .jobsResetBtnBgCor(UIColor.systemBlueColor) // 兼容新旧管线：设置背景色
+                .jobsResetBtnCornerRadiusValue(JobsWidth(10)) // 兼容新旧管线：设置圆角
                 .byTintColor(UIColor.whiteColor) // 设置 tint 色
-                .byTitleFont([UIFont boldSystemFontOfSize:16]) // 设置标题字体
-                .byBgColor(UIColor.systemBlueColor) // 设置背景色
-                .byCornerRadius(JobsWidth(10)) // 设置圆角
                 .addOn(self.view) // 加入父视图
                 .byAdd(^(MASConstraintMaker *make) { // 部署约束
                     make.left.right.equalTo(self.view).inset(JobsWidth(16));

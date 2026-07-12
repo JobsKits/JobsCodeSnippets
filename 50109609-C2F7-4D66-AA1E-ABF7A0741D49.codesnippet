@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>AlertController</string>
@@ -8,97 +9,99 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import JobsByUIKit
+	<string>import JobsSwiftBaseDefines
+import JobsByUIKit
 
 // MARK: 最简单的 Alert：主/副标题 + 取消_确定@按钮行为监听 + 中间弹出 + 点击空白区域不可取消
 private lazy var simpleAlert: UIAlertController = {
     UIAlertController
-        .makeAlert(&quot;提示&quot;, &quot;这是一条简单提示&quot;) // 配置链式能力
+        .makeAlert("提示", "这是一条简单提示") // 配置链式能力
         .byAddCancel { [weak self] _ in // 设置 Add Cancel
             guard let self else { return }
-            print(&quot;Cancel&quot;)
+            print("Cancel")
             // TODO: 这里写你的取消逻辑
         }
         .byAddOK { [weak self] _ in // 设置 Add OK
             guard let self else { return }
-            print(&quot;OK&quot;)
+            print("OK")
             // TODO: 这里写你的确认逻辑
         }
 }()
 // MARK: 最简单的 Alert：主/副标题 + 取消_确定@按钮行为监听 + 中间弹出 + 点击空白区域不可取消
 private lazy var simpleAlert: UIAlertController = {
     UIAlertController
-        .makeAlert(&quot;重命名&quot;, &quot;请输入新的名称&quot;) // 配置链式能力
-//        .bySDBgImageView(&quot;https://picsum.photos/800/600&quot;,
-//                         image: &quot;唐老鸭&quot;.img,
+        .makeAlert("重命名", "请输入新的名称") // 配置链式能力
+//        .bySDBgImageView("https://picsum.photos/800/600",
+//                         image: "唐老鸭".img,
 //                         hideSystemBackdrop: true)
-//        .byKFBgImageView(&quot;https://picsum.photos/800/600&quot;,
-//                         image: &quot;唐老鸭&quot;.img,
+//        .byKFBgImageView("https://picsum.photos/800/600",
+//                         image: "唐老鸭".img,
 //                         hideSystemBackdrop: true)
-        .byBgImage(&quot;唐老鸭&quot;.img)                      // 本地图背景（同步阶段，无动画）
-        .byCardBorder(width: 1, color: .systemBlue)   // 外层卡片描边
-        .byAddTextField(placeholder: &quot;新名称&quot;, // 设置 Add Text Field
+        .byBgImage("唐老鸭".img)                      // 本地图背景（同步阶段，无动画）
+        .byCardBorder(width: 1, color: JobsCor.systemBlue)   // 外层卡片描边
+        .byAddTextField(placeholder: "新名称", // 设置 Add Text Field
                         borderWidth: nil,             // ← 不给 tf 自身描边
                         borderColor: nil,
                         cornerRadius: 8) { alert, tf, input, oldText, isDeleting in
-            let ok = alert.actions.first { $0.title == &quot;确定&quot; }
-            ok?.isEnabled = !(tf.text ?? &quot;&quot;).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            let ok = alert.actions.first { $0.title == "确定" }
+            ok?.byEnabled(!(tf.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         }
         .byTextFieldOuterBorder(at: 0, // 设置 Text Field Outer Border
                                 width: 1,
-                                color: .systemBlue,
+                                color: JobsCor.systemBlue,
                                 cornerRadius: 10,
                                 insets: .init(top: 6, left: 12, bottom: 6, right: 12)) // ← 给灰色容器描边
         .byAddCancel { _ in                          // ✅ 一个回调（只给 action）
-            print(&quot;Cancel tapped&quot;)
+            print("Cancel tapped")
         }
         .byAddOK{ alert, _ in                 // 需要 alert + action 的回调
-            let name = alert.textField(at: 0)?.text ?? &quot;&quot;
-            print(&quot;new name =&quot;, name)
+            let name = alert.textField(at: 0)?.text ?? ""
+            print("new name =", name)
         }
-        .byTintColor(.systemBlue) // 设置 tint 色
+        .byTintColor(JobsCor.systemBlue) // 设置 tint 色
         .byPresent(self) // 设置 Present
 }()
 // MARK: 主标题 + 相机_相册_取消@按钮行为监听 + 屏幕底部弹出 + 点击空白区域可取消
 private lazy var simpleAlert: UIAlertController = {
     UIAlertController
-        .makeActionSheet(&quot;选择来源&quot;, nil) // 配置链式能力
-        .byAddAction(title: &quot;相机&quot;) { _ in // 设置 Add Action
-            print(&quot;camera&quot;)
+        .makeActionSheet("选择来源", nil) // 配置链式能力
+        .byAddAction(title: "相机") { _ in // 设置 Add Action
+            print("camera")
         }
-        .byAddAction(title: &quot;相册&quot;) { _ in // 设置 Add Action
-            print(&quot;photos&quot;)
+        .byAddAction(title: "相册") { _ in // 设置 Add Action
+            print("photos")
         }
         .byAddCancel { _ in // 设置 Add Cancel
-            print(&quot;Cancel tapped&quot;)
+            print("Cancel tapped")
         }
         .byPresent(self) // 设置 Present
 }()
 // MARK: 主标题 + 删除_取消@按钮行为监听 + 从按钮自身位置（锚点）弹出 + 点击空白区域可取消
 private lazy var simpleAlert: UIAlertController = {
     UIAlertController
-        .makeActionSheet(&quot;操作&quot;, nil) // 配置链式能力
-        .byAddDestructive(&quot;删除&quot;) { _ in // 设置 Add Destructive
-            print(&quot;delete&quot;)
+        .makeActionSheet("操作", nil) // 配置链式能力
+        .byAddDestructive("删除") { _ in // 设置 Add Destructive
+            print("delete")
         }
         .byAddCancel { _ in // 设置 Add Cancel
-            print(&quot;Cancel tapped&quot;)
+            print("Cancel tapped")
         }
         .byPresent(self, anchor: .view(sender, sender.bounds)) // 指定锚点
 }()
 // MARK:  主标题 + 垂直排列3个按钮 + 从屏幕中间弹出
 private lazy var simpleAlert: UIAlertController = {
     UIAlertController
-        .makeActionSheet(&quot;请选择&quot;.tr, nil) // 配置链式能力
-        .byAddAction(title: &quot;相册&quot;.tr) { [weak self] _ in // 设置 Add Action
+        .makeActionSheet("请选择".tr, nil) // 配置链式能力
+        .byAddAction(title: "相册".tr) { [weak self] _ in // 设置 Add Action
             self?.pushTZImagePickerController()
         }
-        .byAddAction(title: &quot;照相&quot;.tr) { [weak self] _ in // 设置 Add Action
+        .byAddAction(title: "照相".tr) { [weak self] _ in // 设置 Add Action
             self?.takePhoto()
         }
-        .byAddCancel(&quot;取消&quot;.tr) // 设置 Add Cancel
+        .byAddCancel("取消".tr) // 设置 Add Cancel
         .byPresent(self, anchor: .center, animated: true) // 设置 Present
 }()
+
 
 </string>
 	<key>IDECodeSnippetIdentifier</key>
@@ -108,7 +111,7 @@ private lazy var simpleAlert: UIAlertController = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UIAlertController</string>
 	<key>IDECodeSnippetUserSnippet</key>

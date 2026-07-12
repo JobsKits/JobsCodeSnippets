@@ -1,14 +1,17 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import JobsMarqueeView
+	<string>import JobsSwiftBaseDefines
+import JobsMarqueeView
+
 // MARK: - 1. 向上连续滚动
 private lazy var upContinuousMarquee: JobsMarqueeView = { [unowned self] in
     JobsMarqueeView()
@@ -18,78 +21,78 @@ private lazy var upContinuousMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fitContent)   // 典型公告跑马灯
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemYellow.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向上连续 · 公告 1&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 1&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;megaphone.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemYellow.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向上连续 · 公告 1") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 1") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("megaphone.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向上连续 · 公告 1 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向上连续 · 公告 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemYellow.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向上连续 · 公告 2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 2&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;megaphone.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemYellow.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向上连续 · 公告 2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 2") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("megaphone.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向上连续 · 公告 2 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向上连续 · 公告 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemYellow.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向上连续 · 公告 3&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 3&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;megaphone.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemYellow.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向上连续 · 公告 3") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 3") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("megaphone.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向上连续 · 公告 3 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向上连续 · 公告 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -128,78 +131,78 @@ private lazy var downContinuousMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fitContent) // 设置 Item Size Mode
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemGreen.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向下连续 · 公告 1&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 1&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.down.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemGreen.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向下连续 · 公告 1") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 1") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.down.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向下连续 · 公告 1 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向下连续 · 公告 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemGreen.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向下连续 · 公告 2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 2&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.down.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemGreen.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向下连续 · 公告 2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 2") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.down.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向下连续 · 公告 2 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向下连续 · 公告 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemGreen.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向下连续 · 公告 3&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 3&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.down.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemGreen.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向下连续 · 公告 3") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 3") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.down.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向下连续 · 公告 3 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向下连续 · 公告 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -238,78 +241,78 @@ private lazy var leftContinuousMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fitContent) // 设置 Item Size Mode
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemOrange.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向左连续 · 公告 1&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 1&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.left.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemOrange.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向左连续 · 公告 1") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 1") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.left.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向左连续 · 公告 1 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向左连续 · 公告 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemOrange.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向左连续 · 公告 2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 2&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.left.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemOrange.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向左连续 · 公告 2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 2") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.left.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向左连续 · 公告 2 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向左连续 · 公告 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemOrange.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向左连续 · 公告 3&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 3&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.left.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemOrange.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向左连续 · 公告 3") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 3") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.left.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向左连续 · 公告 3 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向左连续 · 公告 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -348,78 +351,78 @@ private lazy var rightContinuousMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fitContent) // 设置 Item Size Mode
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemPink.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向右连续 · 公告 1&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 1&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.right.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemPink.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向右连续 · 公告 1") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 1") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.right.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向右连续 · 公告 1 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向右连续 · 公告 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemPink.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向右连续 · 公告 2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 2&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.right.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemPink.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向右连续 · 公告 2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 2") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.right.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向右连续 · 公告 2 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向右连续 · 公告 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemPink.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向右连续 · 公告 3&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;更多内容 3&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.right.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemPink.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向右连续 · 公告 3") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("更多内容 3") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.right.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向右连续 · 公告 3 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向右连续 · 公告 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -458,78 +461,78 @@ private lazy var upFrequencyMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fillBounds)   // 每页 1 行
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemBlue.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向上间隔 · 公告 1&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;每 1 秒翻页&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.up.square.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemBlue.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向上间隔 · 公告 1") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("每 1 秒翻页") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.up.square.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向上间隔 · 公告 1 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向上间隔 · 公告 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemBlue.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向上间隔 · 公告 2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;每 1 秒翻页&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.up.square.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemBlue.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向上间隔 · 公告 2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("每 1 秒翻页") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.up.square.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向上间隔 · 公告 2 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向上间隔 · 公告 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemBlue.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向上间隔 · 公告 3&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;每 1 秒翻页&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.up.square.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemBlue.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向上间隔 · 公告 3") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("每 1 秒翻页") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.up.square.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向上间隔 · 公告 3 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向上间隔 · 公告 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -568,78 +571,78 @@ private lazy var downFrequencyMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fillBounds) // 设置 Item Size Mode
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemTeal.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向下间隔 · 公告 1&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;每 1 秒翻页&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.down.square.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemTeal.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向下间隔 · 公告 1") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("每 1 秒翻页") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.down.square.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向下间隔 · 公告 1 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向下间隔 · 公告 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemTeal.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向下间隔 · 公告 2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;每 1 秒翻页&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.down.square.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemTeal.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向下间隔 · 公告 2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("每 1 秒翻页") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.down.square.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向下间隔 · 公告 2 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向下间隔 · 公告 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemTeal.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向下间隔 · 公告 3&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;每 1 秒翻页&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;arrow.down.square.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemTeal.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向下间隔 · 公告 3") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("每 1 秒翻页") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("arrow.down.square.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 6, bottom: 0, right: -6)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向下间隔 · 公告 3 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向下间隔 · 公告 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -678,78 +681,78 @@ private lazy var leftFrequencyMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fillBounds)   // 轮播图：一页一个按钮
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemPurple.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向左间隔 · Banner 1&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;轮播图左滑&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;rectangle.portrait.on.rectangle.portrait&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemPurple.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向左间隔 · Banner 1") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("轮播图左滑") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("rectangle.portrait.on.rectangle.portrait".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向左间隔 · Banner 1 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向左间隔 · Banner 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemPurple.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向左间隔 · Banner 2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;轮播图左滑&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;rectangle.portrait.on.rectangle.portrait&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemPurple.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向左间隔 · Banner 2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("轮播图左滑") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("rectangle.portrait.on.rectangle.portrait".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向左间隔 · Banner 2 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向左间隔 · Banner 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemPurple.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向左间隔 · Banner 3&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;轮播图左滑&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;rectangle.portrait.on.rectangle.portrait&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemPurple.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向左间隔 · Banner 3") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("轮播图左滑") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("rectangle.portrait.on.rectangle.portrait".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向左间隔 · Banner 3 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向左间隔 · Banner 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -788,78 +791,78 @@ private lazy var rightFrequencyMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fillBounds) // 设置 Item Size Mode
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemIndigo.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向右间隔 · Banner 1&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;轮播图右滑&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;rectangle.portrait.on.rectangle.portrait&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemIndigo.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向右间隔 · Banner 1") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("轮播图右滑") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("rectangle.portrait.on.rectangle.portrait".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向右间隔 · Banner 1 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向右间隔 · Banner 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemIndigo.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向右间隔 · Banner 2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;轮播图右滑&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;rectangle.portrait.on.rectangle.portrait&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemIndigo.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向右间隔 · Banner 2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("轮播图右滑") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("rectangle.portrait.on.rectangle.portrait".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向右间隔 · Banner 2 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向右间隔 · Banner 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemIndigo.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;向右间隔 · Banner 3&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;轮播图右滑&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;rectangle.portrait.on.rectangle.portrait&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemIndigo.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("向右间隔 · Banner 3") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("轮播图右滑") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("rectangle.portrait.on.rectangle.portrait".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔔 向右间隔 · Banner 3 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔔 向右间隔 · Banner 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -898,28 +901,28 @@ private lazy var oneButtonMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fillBounds)   // 视图宽度 == 按钮宽度，内部会复制到至少 3 个
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemRed.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;极端 · 只有 1 个按钮&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;测试少量数据源&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;1.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemRed.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("极端 · 只有 1 个按钮") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("测试少量数据源") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("1.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 极端 1 个按钮 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔴 极端 1 个按钮 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -958,44 +961,44 @@ private lazy var twoButtonsMarquee: JobsMarqueeView = { [unowned self] in
         .byItemSizeMode(.fillBounds) // 设置 Item Size Mode
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBackgroundColor(.systemRed.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;极端 · 按钮 1/2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;测试 2 个按钮&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;2.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemRed.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("极端 · 按钮 1/2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("测试 2 个按钮") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("2.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 极端 2 个按钮 · 1 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔴 极端 2 个按钮 · 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 },
             UIButton.sys()
-                .byBackgroundColor(.systemRed.withAlphaComponent(0.2)) // 设置背景色
-                .byTitle(&quot;极端 · 按钮 2/2&quot;) // 设置标题
-                .byTitleColor(.label) // 设置标题颜色
-                .byTitleFont(.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
-                .bySubTitle(&quot;测试 2 个按钮&quot;) // 设置副标题
-                .bySubTitleColor(.secondaryLabel) // 设置副标题颜色
-                .bySubTitleFont(.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
-                .byImage(&quot;2.circle.fill&quot;.sysImg) // 设置图片
+                .byBackgroundColor(JobsCor.systemRed.withAlphaComponent(0.2)) // 设置背景色
+                .byTitle("极端 · 按钮 2/2") // 设置标题
+                .byTitleColor(JobsCor.label) // 设置标题颜色
+                .byTitleFont(JobsFont.systemFont(ofSize: 14, weight: .medium)) // 设置标题字体
+                .bySubTitle("测试 2 个按钮") // 设置副标题
+                .bySubTitleColor(JobsCor.secondaryLabel) // 设置副标题颜色
+                .bySubTitleFont(JobsFont.systemFont(ofSize: 11, weight: .regular)) // 设置 Sub Title Font
+                .byImage("2.circle.fill".sysImg) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
                 .byTitleEdgeInsets(UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)) // 设置标题边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 极端 2 个按钮 · 2 tapped, selected=\(sender.isSelected)&quot;)
+                    print("🔴 极端 2 个按钮 · 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
                     sender.title?.toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -1035,54 +1038,54 @@ private lazy var localImageButtonsMarquee: JobsMarqueeView = {  [unowned self] i
         .byManualScrollEnabled(true)   // ✅ 开启手动拖拽
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byImage(&quot;唐老鸭&quot;.img) // 设置图片
+                .byImage("唐老鸭".img) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 极端 本地图 · 唐老鸭 tapped, selected=\(sender.isSelected)&quot;)
-                    &quot;点击了唐老鸭&quot;.toast
+                    print("🔴 极端 本地图 · 唐老鸭 tapped, selected=\(sender.jobs_effectiveState == .selected)")
+                    "点击了唐老鸭".toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byImage(&quot;米老鼠&quot;.img) // 设置图片
+                .byImage("米老鼠".img) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 极端 本地图 · 米老鼠 tapped, selected=\(sender.isSelected)&quot;)
-                    &quot;点击了米老鼠&quot;.toast
+                    print("🔴 极端 本地图 · 米老鼠 tapped, selected=\(sender.jobs_effectiveState == .selected)")
+                    "点击了米老鼠".toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byImage(&quot;迪斯尼&quot;.img) // 设置图片
+                .byImage("迪斯尼".img) // 设置图片
                 .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)) // 设置内容边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 极端 本地图 · 迪斯尼 tapped, selected=\(sender.isSelected)&quot;)
-                    &quot;点击了迪斯尼&quot;.toast
+                    print("🔴 极端 本地图 · 迪斯尼 tapped, selected=\(sender.jobs_effectiveState == .selected)")
+                    "点击了迪斯尼".toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -1117,10 +1120,10 @@ private lazy var localImageButtonsMarquee: JobsMarqueeView = {  [unowned self] i
             v.pageControlPosition = .rightBottom
             v.isPageControlEnabled = true
             v.pageControl.jobs_setIndicatorImageURLs(
-                normalURL: URL(string: &quot;https://picsum.photos/seed/dot_normal/18/18&quot;),
-                currentURL: URL(string: &quot;https://picsum.photos/seed/dot_current/18/18&quot;),
-                fallbackNormal: &quot;circle&quot;.sysImg,
-                fallbackCurrent: &quot;circle.fill&quot;.sysImg
+                normalURL: URL(string: "https://picsum.photos/seed/dot_normal/18/18"),
+                currentURL: URL(string: "https://picsum.photos/seed/dot_current/18/18"),
+                fallbackNormal: "circle".sysImg,
+                fallbackCurrent: "circle.fill".sysImg
             )
         }
 }()
@@ -1134,69 +1137,69 @@ private lazy var sdWebImageButtonsMarquee: JobsMarqueeView = { [unowned self] in
         .byManualScrollEnabled(true)   // ✅ 开启手动拖拽
         .byDataSourceButtons([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byBorderColor(UIColor.systemGray3) // 设置边框颜色
-                .byTitle(&quot;我是UIButton主标题@SDWebImage&quot;) // 设置标题
-                .bySubTitle(&quot;我是UIButton副标题@SDWebImage&quot;) // 设置副标题
-                .sd_imageURL(&quot;https://picsum.photos/&quot; + ScreenWidth().toString(0) + &quot;/&quot; + self.marqueeHeight.toString(0))
+                .byBorderColor(JobsCor.systemGray3) // 设置边框颜色
+                .byTitle("我是UIButton主标题@SDWebImage") // 设置标题
+                .bySubTitle("我是UIButton副标题@SDWebImage") // 设置副标题
+                .sd_imageURL("https://picsum.photos/" + ScreenWidth().toString(0) + "/" + self.marqueeHeight.toString(0))
                 .sd_placeholderImage(nil) // 配置链式能力
                 .sd_options([.retryFailed, .highPriority, .scaleDownLargeImages]) // 配置链式能力
                 .sd_bgNormalLoad()// 之前是配置项，这里才是真正决定渲染背景图/前景图
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 SDWebImage@背景图 1 tapped, selected=\(sender.isSelected)&quot;)
-                    &quot;点击了SDWebImage@背景图&quot;.toast
+                    print("🔴 SDWebImage@背景图 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
+                    "点击了SDWebImage@背景图".toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBorderColor(UIColor.systemGray3) // 设置边框颜色
-                .byTitle(&quot;我是UIButton主标题@SDWebImage&quot;) // 设置标题
-                .bySubTitle(&quot;我是UIButton副标题@SDWebImage&quot;) // 设置副标题
-                .sd_imageURL(&quot;https://picsum.photos/&quot; + ScreenWidth().toString(0) + &quot;/&quot; + self.marqueeHeight.toString(0))
+                .byBorderColor(JobsCor.systemGray3) // 设置边框颜色
+                .byTitle("我是UIButton主标题@SDWebImage") // 设置标题
+                .bySubTitle("我是UIButton副标题@SDWebImage") // 设置副标题
+                .sd_imageURL("https://picsum.photos/" + ScreenWidth().toString(0) + "/" + self.marqueeHeight.toString(0))
                 .sd_placeholderImage(nil) // 配置链式能力
                 .sd_options([.retryFailed, .highPriority, .scaleDownLargeImages]) // 配置链式能力
                 .sd_bgNormalLoad()// 之前是配置项，这里才是真正决定渲染背景图/前景图
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 SDWebImage@背景图 2 tapped, selected=\(sender.isSelected)&quot;)
-                    &quot;点击了SDWebImage@背景图&quot;.toast
+                    print("🔴 SDWebImage@背景图 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
+                    "点击了SDWebImage@背景图".toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byBorderColor(UIColor.systemGray3) // 设置边框颜色
-                .byTitle(&quot;我是UIButton主标题@SDWebImage&quot;) // 设置标题
-                .bySubTitle(&quot;我是UIButton副标题@SDWebImage&quot;) // 设置副标题
-                .sd_imageURL(&quot;https://picsum.photos/&quot; + ScreenWidth().toString(0) + &quot;/&quot; + self.marqueeHeight.toString(0))
+                .byBorderColor(JobsCor.systemGray3) // 设置边框颜色
+                .byTitle("我是UIButton主标题@SDWebImage") // 设置标题
+                .bySubTitle("我是UIButton副标题@SDWebImage") // 设置副标题
+                .sd_imageURL("https://picsum.photos/" + ScreenWidth().toString(0) + "/" + self.marqueeHeight.toString(0))
                 .sd_placeholderImage(nil) // 配置链式能力
                 .sd_options([.retryFailed, .highPriority, .scaleDownLargeImages]) // 配置链式能力
                 .sd_bgNormalLoad()// 之前是配置项，这里才是真正决定渲染背景图/前景图
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 SDWebImage@背景图 3 tapped, selected=\(sender.isSelected)&quot;)
-                    &quot;点击了SDWebImage@背景图&quot;.toast
+                    print("🔴 SDWebImage@背景图 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
+                    "点击了SDWebImage@背景图".toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 }
         ])
@@ -1231,10 +1234,10 @@ private lazy var sdWebImageButtonsMarquee: JobsMarqueeView = { [unowned self] in
             v.pageControlPosition = .rightBottom
             v.isPageControlEnabled = true
             v.pageControl.jobs_setIndicatorImageURLs(
-                normalURL: URL(string: &quot;https://picsum.photos/seed/dot_normal/18/18&quot;),
-                currentURL: URL(string: &quot;https://picsum.photos/seed/dot_current/18/18&quot;),
-                fallbackNormal: &quot;circle&quot;.sysImg,
-                fallbackCurrent: &quot;circle.fill&quot;.sysImg
+                normalURL: URL(string: "https://picsum.photos/seed/dot_normal/18/18"),
+                currentURL: URL(string: "https://picsum.photos/seed/dot_current/18/18"),
+                fallbackNormal: "circle".sysImg,
+                fallbackCurrent: "circle.fill".sysImg
             )
         }
 }()
@@ -1248,10 +1251,10 @@ private lazy var kingfisherImageButtonsMarquee: JobsMarqueeView = { [unowned sel
         .byManualScrollEnabled(true)   // ✅ 开启手动拖拽
         .byDataSourceButtons ([ // 设置 Data Source Buttons
             UIButton.sys()
-                .byTitle(&quot;我是UIButton主标题@Kingfisher&quot;).byTitleColor(.red) // 设置标题
-                .bySubTitle(&quot;我是UIButton副标题@Kingfisher&quot;).bySubTitleColor(.yellow) // 设置副标题
-                .kf_imageURL(&quot;https://picsum.photos/&quot; + ScreenWidth().toString(0) + &quot;/&quot; + self.marqueeHeight.toString(0))
-                .kf_placeholderImage(&quot;唐老鸭&quot;.img) // 配置链式能力
+                .byTitle("我是UIButton主标题@Kingfisher").byTitleColor(JobsCor.red) // 设置标题
+                .bySubTitle("我是UIButton副标题@Kingfisher").bySubTitleColor(JobsCor.yellow) // 设置副标题
+                .kf_imageURL("https://picsum.photos/" + ScreenWidth().toString(0) + "/" + self.marqueeHeight.toString(0))
+                .kf_placeholderImage("唐老鸭".img) // 配置链式能力
                 .kf_options([ // 配置链式能力
                     .processor(DownsamplingImageProcessor(size: CGSize(width: 500, height: 200))), // 配置链式能力
                     .scaleFactor(UIScreen.main.scale), // 配置链式能力
@@ -1260,25 +1263,25 @@ private lazy var kingfisherImageButtonsMarquee: JobsMarqueeView = { [unowned sel
                     .retryStrategy(DelayRetryStrategy(maxRetryCount: 2, retryInterval: .seconds(1))) // 配置链式能力
                 ])
                 .kf_bgNormalLoad()// 之前是配置项，这里才是真正决定渲染背景图/前景图
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 Kingfisher@背景图 1 tapped, selected=\(sender.isSelected)&quot;)
-                    &quot;点击了Kingfisher@背景图&quot;.toast
+                    print("🔴 Kingfisher@背景图 1 tapped, selected=\(sender.jobs_effectiveState == .selected)")
+                    "点击了Kingfisher@背景图".toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byTitle(&quot;我是UIButton主标题@Kingfisher&quot;).byTitleColor(.red) // 设置标题
-                .bySubTitle(&quot;我是UIButton副标题@Kingfisher&quot;).bySubTitleColor(.yellow) // 设置副标题
-                .kf_imageURL(&quot;https://picsum.photos/&quot; + ScreenWidth().toString(0) + &quot;/&quot; + self.marqueeHeight.toString(0))
-                .kf_placeholderImage(&quot;唐老鸭&quot;.img) // 配置链式能力
+                .byTitle("我是UIButton主标题@Kingfisher").byTitleColor(JobsCor.red) // 设置标题
+                .bySubTitle("我是UIButton副标题@Kingfisher").bySubTitleColor(JobsCor.yellow) // 设置副标题
+                .kf_imageURL("https://picsum.photos/" + ScreenWidth().toString(0) + "/" + self.marqueeHeight.toString(0))
+                .kf_placeholderImage("唐老鸭".img) // 配置链式能力
                 .kf_options([ // 配置链式能力
                     .processor(DownsamplingImageProcessor(size: CGSize(width: 500, height: 200))), // 配置链式能力
                     .scaleFactor(UIScreen.main.scale), // 配置链式能力
@@ -1287,25 +1290,25 @@ private lazy var kingfisherImageButtonsMarquee: JobsMarqueeView = { [unowned sel
                     .retryStrategy(DelayRetryStrategy(maxRetryCount: 2, retryInterval: .seconds(1))) // 配置链式能力
                 ])
                 .kf_bgNormalLoad()// 之前是配置项，这里才是真正决定渲染背景图/前景图
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 Kingfisher@背景图 2 tapped, selected=\(sender.isSelected)&quot;)
-                    &quot;点击了Kingfisher@背景图&quot;.toast
+                    print("🔴 Kingfisher@背景图 2 tapped, selected=\(sender.jobs_effectiveState == .selected)")
+                    "点击了Kingfisher@背景图".toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
             UIButton.sys()
-                .byTitle(&quot;我是UIButton主标题@Kingfisher&quot;).byTitleColor(.red) // 设置标题
-                .bySubTitle(&quot;我是UIButton副标题@Kingfisher&quot;).bySubTitleColor(.yellow) // 设置副标题
-                .kf_imageURL(&quot;https://picsum.photos/&quot; + ScreenWidth().toString(0) + &quot;/&quot; + self.marqueeHeight.toString(0))
-                .kf_placeholderImage(&quot;唐老鸭&quot;.img) // 配置链式能力
+                .byTitle("我是UIButton主标题@Kingfisher").byTitleColor(JobsCor.red) // 设置标题
+                .bySubTitle("我是UIButton副标题@Kingfisher").bySubTitleColor(JobsCor.yellow) // 设置副标题
+                .kf_imageURL("https://picsum.photos/" + ScreenWidth().toString(0) + "/" + self.marqueeHeight.toString(0))
+                .kf_placeholderImage("唐老鸭".img) // 配置链式能力
                 .kf_options([ // 配置链式能力
                     .processor(DownsamplingImageProcessor(size: CGSize(width: 500, height: 200))), // 配置链式能力
                     .scaleFactor(UIScreen.main.scale), // 配置链式能力
@@ -1314,18 +1317,18 @@ private lazy var kingfisherImageButtonsMarquee: JobsMarqueeView = { [unowned sel
                     .retryStrategy(DelayRetryStrategy(maxRetryCount: 2, retryInterval: .seconds(1))) // 配置链式能力
                 ])
                 .kf_bgNormalLoad()// 之前是配置项，这里才是真正决定渲染背景图/前景图
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
                 .onTap { sender in // 绑定点按事件
-                    print(&quot;🔴 Kingfisher@背景图 3 tapped, selected=\(sender.isSelected)&quot;)
-                    &quot;点击了Kingfisher@背景图&quot;.toast
+                    print("🔴 Kingfisher@背景图 3 tapped, selected=\(sender.jobs_effectiveState == .selected)")
+                    "点击了Kingfisher@背景图".toast
                 }
                 .onLongPress(minimumPressDuration: 0.8) { btn, gr in // 绑定长按事件
                     if gr.state == .began {
-                        btn.alpha = 0.6
-                        print(&quot;长按开始 on \(btn)&quot;)
+                        btn.byAlpha(0.6)
+                        print("长按开始 on \(btn)")
                     } else if gr.state == .ended || gr.state == .cancelled {
-                        btn.alpha = 1.0
-                        print(&quot;长按结束&quot;)
+                        btn.byAlpha(1.0)
+                        print("长按结束")
                     }
                 },
         ])
@@ -1360,13 +1363,14 @@ private lazy var kingfisherImageButtonsMarquee: JobsMarqueeView = { [unowned sel
             v.pageControlPosition = .rightBottom
             v.isPageControlEnabled = true
             v.pageControl.jobs_setIndicatorImageURLs(
-                normalURL: URL(string: &quot;https://picsum.photos/seed/dot_normal/18/18&quot;),
-                currentURL: URL(string: &quot;https://picsum.photos/seed/dot_current/18/18&quot;),
-                fallbackNormal: &quot;circle&quot;.sysImg,
-                fallbackCurrent: &quot;circle.fill&quot;.sysImg
+                normalURL: URL(string: "https://picsum.photos/seed/dot_normal/18/18"),
+                currentURL: URL(string: "https://picsum.photos/seed/dot_current/18/18"),
+                fallbackNormal: "circle".sysImg,
+                fallbackCurrent: "circle.fill".sysImg
             )
         }
-}()</string>
+}()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>20A302DA-7815-479A-91D9-3E6F95E3195F</string>
 	<key>IDECodeSnippetLanguage</key>

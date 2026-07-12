@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>CollectionView</string>
@@ -9,6 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
+import JobsSwiftBaseDefines
 
 private lazy var collectionView: UICollectionView = {
     UICollectionView(frame: .zero,collectionViewLayout:UICollectionViewFlowLayout()
@@ -52,14 +54,14 @@ private lazy var collectionView: UICollectionView = {
         }
         .didSelectItemAt({ obj, cv, idx in // 设置 item 选中事件
             cv.deselectItem(at: idx, animated: true)
-            print(&quot;点选逻辑&quot;)
+            print("点选逻辑")
         })
         // 空态按钮
         .byEmptyButtonProvider { [unowned self] in // 设置 Empty Button Provider
             UIButton.sys()
-               .byTitle(&quot;暂无数据&quot;) // 设置标题
-               .bySubTitle(&quot;点我填充示例数据&quot;) // 设置副标题
-               .byImage(&quot;tray&quot;.sysImg) // 设置图片
+               .byTitle("暂无数据") // 设置标题
+               .bySubTitle("点我填充示例数据") // 设置副标题
+               .byImage("tray".sysImg) // 设置图片
                .byImagePlacement(.top) // 设置 Image Placement
                .onTap { [weak self] _ in // 绑定点按事件
                    guard let self else { return }
@@ -78,7 +80,7 @@ private lazy var collectionView: UICollectionView = {
         .byEmptyViewProvider { [unowned self] in // 设置 Empty View Provider
             JobsEmptyView()
                 .byOnTapRetry { [weak self] in // 设置 On Tap Retry
-                    &quot;hello&quot;.tr.toast
+                    "hello".tr.toast
                 }
         }
         .byEmptyViewLayout { emptyView, make, host in // 设置 Empty View Layout
@@ -114,10 +116,10 @@ private lazy var collectionView: UICollectionView = {
         }
 //        .showRefreshHeaderInfo(NO)   // 竖向Header + 横向Left
 //        .showRefreshFooterInfo(YES)  // 竖向Footer + 横向Right
-        .setLeftLottie(.custom(.init(animationName: &quot;9squares_AlBoardman&quot;))) // 配置链式能力
+        .setLeftLottie(.custom(.init(animationName: "9squares_AlBoardman"))) // 配置链式能力
         .setRightLottie(.inherit)     // 继承全局（没有全局就回退菊花）
         .enableRefreshHaptics(true) // 配置链式能力
-        .setRefreshSound(&quot;Sound.wav&quot;)  // 配置链式能力
+        .setRefreshSound("Sound.wav")  // 配置链式能力
         // 下拉刷新
         .byRefreshHeader(component: JobsDefaultHeader(), // 设置 Refresh Header
                          container: self,
@@ -172,10 +174,10 @@ private lazy var collectionView: UICollectionView = {
                self.collectionView.switchSideRefresh(.right, to: .normal)
            }
        }
-      .setHeaderLottie(.custom(.init(animationName: &quot;LottieLogo1&quot;))) // 配置链式能力
+      .setHeaderLottie(.custom(.init(animationName: "LottieLogo1"))) // 配置链式能力
       .setFooterLottie(.disabled) // 强制 footer 回退菊花（即使全局配置了）
-      .setRefreshSound(&quot;Sound.wav&quot;) // 配置链式能力
-      .byBorderColor(.cyan) // 设置边框颜色
+      .setRefreshSound("Sound.wav") // 配置链式能力
+      .byBorderColor(JobsCor.cyan) // 设置边框颜色
       .byBorderWidth(0.5) // 设置边框宽度
       .byMasksToBounds(YES) // 设置图层裁剪
       .byClipsToBounds(YES) // 设置裁剪
@@ -185,7 +187,8 @@ private lazy var collectionView: UICollectionView = {
       .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
       /// 切角@切固定角，兼容旧版本iOS系统
       .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
-}()</string>
+}()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>44743799-8160-44B4-8483-768B40B72C00</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -193,7 +196,7 @@ private lazy var collectionView: UICollectionView = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@UICollectionView</string>
 	<key>IDECodeSnippetUserSnippet</key>

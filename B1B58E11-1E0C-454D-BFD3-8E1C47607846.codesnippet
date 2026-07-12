@@ -1,18 +1,21 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/// 是否正在倒计时这个状态除了本页使用以外，也要防止App闪退，所以需要实时记录在UserDefaults
+	<string>import JobsSwiftBaseDefines
+
+/// 是否正在倒计时这个状态除了本页使用以外，也要防止App闪退，所以需要实时记录在UserDefaults
 /// 倒计时剩余的时间，也需要用UserDefaults进行存取，防止App闪退
 /// 只有倒计时正在进行中的状态时，有剩余的时间（数据来源：UserDefaults存取，如果为0，则用默认值）
-private let countdownTimeKey = &quot;com.BSports.countdownTimeKey&quot;
-private let isCountdownTimeKey = &quot;com.BSports.isCountdownTimeKey&quot;
+private let countdownTimeKey = "com.BSports.countdownTimeKey"
+private let isCountdownTimeKey = "com.BSports.isCountdownTimeKey"
 
 private let defaultCountdownTime = 15 * 60
 /// 为真则正在跑计时器
@@ -54,7 +57,7 @@ private lazy var countdownButton: UIButton = {
             isCountdownTime = YES
         }
         .onCountdownFinish { [unowned self] _, kind in // 绑定事件
-            print(&quot;✅ [\(kind.displayName)] 倒计时完成&quot;)
+            print("✅ [\(kind.displayName)] 倒计时完成")
             isCountdownTime = NO
         }
         /// 加载到目标视图上，并第一次配置新约束
@@ -98,18 +101,16 @@ private func countDown () {
 // MARK: 方案 2
 import JobsCountdownButton
 private lazy var countdownButton: UIButton = {
-    UIButton()
+    UIButton.custom()
         /// 倒计时按钮核心配置
         .byCountdown { cfg in // 设置 Countdown
             cfg.mode = .down(from: 12)
             cfg.clickableWhileRunning = true
             cfg.onTapWhileRunning = { btn, _ in
-                &quot;运行中被点击！&quot;.toast
+                "运行中被点击！".toast
             }
             cfg.renderConfiguration = { sec, base in
-                var c = base
-                c.title = &quot;可点 \(sec)s&quot;
-                return c
+                return base.byTitle("可点 \(sec)s")
             }
         }
         /// 把「点击按钮」和「启动倒计时」自动绑定起来
@@ -155,7 +156,7 @@ private lazy var countdownButton: UIButton = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -165,7 +166,9 @@ private lazy var countdownButton: UIButton = {
         .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
         .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
-}()</string>
+}()
+
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>B1B58E11-1E0C-454D-BFD3-8E1C47607846</string>
 	<key>IDECodeSnippetLanguage</key>

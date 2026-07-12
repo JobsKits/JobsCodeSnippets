@@ -8,7 +8,8 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import JobsByUIKit
+	<string>import JobsSwiftBaseDefines
+import JobsByUIKit
 
 public final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell {
     /// ViewDataProtocol
@@ -38,7 +39,7 @@ final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell,
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // MARK: - Base appearance
         // 建议：cell 背景透明，让 tableView 背景作为“间距露出来的底色”
-        backgroundColor = .clear
+        backgroundColor = JobsCor.clear
         contentView.byBackgroundColor(&quot;#f9dcba&quot;.cor)
         // MARK: - Selected background（避免选中态露底）
         let sbg = UIView()

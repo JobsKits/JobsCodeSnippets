@@ -1,25 +1,26 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
-    <key>IDECodeSnippetCompletionScopes</key>
-    <array>
-        <string>All</string>
-    </array>
-    <key>IDECodeSnippetIdentifier</key>
-    <string>E6EE7286-A534-4557-B1A4-91EFD13998EB</string>
-    <key>IDECodeSnippetVersion</key>
-    <integer>2</integer>
-    <key>IDECodeSnippetContents</key>
-    <string>/// Jobs Swift DSL 快速 UI 全配置：按行删减
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsSwiftDSLUI</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import JobsSwiftBaseDefines
+
+/// Jobs Swift DSL 快速 UI 全配置：按行删减
 private lazy var titleLabel: UILabel = { [unowned self] in
     UILabel()
-        .byText { &quot;标题&quot; } // 设置文本
-        .byFont { .boldSystemFont(ofSize: 16) } // 设置字体
-        .byTextColor { .label } // 设置文字颜色
+        .byText { "标题" } // 设置文本
+        .byFont { JobsFont.boldSystemFont(ofSize: 16) } // 设置字体
+        .byTextColor { JobsCor.label } // 设置文字颜色
         .byTextAlignment { .center } // 设置对齐方式
         .byNumberOfLines { 1 } // 设置行数
         .byLineBreakMode { .byTruncatingTail } // 设置截断方式
-        .byBgCor { .clear } // 设置背景色
+        .byBgCor { JobsCor.clear } // 设置背景色
         .byCornerRadius(8) // 设置圆角
         .byMasksToBounds(true) // 裁剪圆角
         .byAddTo(view) { make in // 加入父视图并部署约束
@@ -31,18 +32,18 @@ private lazy var titleLabel: UILabel = { [unowned self] in
 
 private lazy var submitButton: UIButton = { [unowned self] in
     UIButton.sys()
-        .byTitle(&quot;确认&quot;) // 设置标题
-        .byTitleColor(.white) // 设置标题颜色
-        .byTitleFont(.boldSystemFont(ofSize: 16)) // 设置标题字体
-        .byImage(&quot;checkmark.circle&quot;.sysImg) // 设置图片
+        .byTitle("确认") // 设置标题
+        .byTitleColor(JobsCor.white) // 设置标题颜色
+        .byTitleFont(JobsFont.boldSystemFont(ofSize: 16)) // 设置标题字体
+        .byImage("checkmark.circle".sysImg) // 设置图片
         .byImagePlacement(.leading, padding: 6) // 设置图文位置
         .byContentEdgeInsets(UIEdgeInsets(top: 8, left: 14, bottom: 8, right: 14)) // 设置内容内边距
-        .byBackgroundColor(.systemBlue) // 设置背景色
+        .byBackgroundColor(JobsCor.systemBlue) // 设置背景色
         .byCornerRadius(10) // 设置圆角
         .byMasksToBounds(true) // 裁剪圆角
         .onTap { [weak self] sender in // 设置点按事件
             guard let self else { return }
-            sender.isSelected.toggle()
+            sender.byToggleSelected()
         }
         .byAddTo(view) { make in // 加入父视图并部署约束
             make.left.right.equalToSuperview().inset(16)
@@ -53,16 +54,16 @@ private lazy var submitButton: UIButton = { [unowned self] in
 
 private lazy var nameTextField: UITextField = { [unowned self] in
     UITextField()
-        .byText(&quot;&quot;) // 设置文本
-        .byTextColor(.label) // 设置文字颜色
-        .byFont(.systemFont(ofSize: 15)) // 设置字体
+        .byText("") // 设置文本
+        .byTextColor(JobsCor.label) // 设置文字颜色
+        .byFont(JobsFont.systemFont(ofSize: 15)) // 设置字体
         .byTextAlignment(.left) // 设置对齐方式
-        .byPlaceholder(&quot;请输入名称&quot;) // 设置占位文字
-        .byPlaceholderColor(.secondaryLabel) // 设置占位颜色
+        .byPlaceholder("请输入名称") // 设置占位文字
+        .byPlaceholderColor(JobsCor.secondaryLabel) // 设置占位颜色
         .byKeyboardType(.default) // 设置键盘类型
         .byClearButtonMode(.whileEditing) // 设置清除按钮
         .byDelegate(self) // 设置代理
-        .byBackgroundColor(.secondarySystemBackground) // 设置背景色
+        .byBackgroundColor(JobsCor.secondarySystemBackground) // 设置背景色
         .byCornerRadius(8) // 设置圆角
         .byAddTo(view) { make in // 加入父视图并部署约束
             make.top.equalTo(titleLabel.snp.bottom).offset(12)
@@ -70,16 +71,19 @@ private lazy var nameTextField: UITextField = { [unowned self] in
             make.height.equalTo(44)
         }
 }()
+
 </string>
-    <key>IDECodeSnippetCompletionPrefix</key>
-    <string>JobsSwiftDSLUI</string>
-    <key>IDECodeSnippetLanguage</key>
-    <string>Xcode.SourceCodeLanguage.Swift</string>
-    <key>IDECodeSnippetTitle</key>
-    <string>Swift@DSL快速UI全配置</string>
-    <key>IDECodeSnippetUserSnippet</key>
-    <true/>
-    <key>IDECodeSnippetSummary</key>
-    <string>Jobs Swift DSL UI 快速配置模板：UILabel / UIButton / UITextField</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E6EE7286-A534-4557-B1A4-91EFD13998EB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Jobs Swift DSL UI 快速配置模板：UILabel / UIButton / UITextField</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@DSL快速UI全配置</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
 </dict>
 </plist>

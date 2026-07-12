@@ -25,27 +25,30 @@
                 .byAttributedText(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray *_Nullable data) { // 设置富文本
                     data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
                         @jobs_strongify(self)
-                        data1.byFont(UIFontWeightBoldSize(JobsWidth(14))); // 设置字体
-                        data1.textCor = @&quot;#6B6B6B&quot;.cor;
-                        data1.targetString = @&quot;Please read our&quot;.tr.uppercaseString.add(JobsSpace);
-                        data1.paragraphStyle = self.defaultParagraphStyle;
+                        data1
+                            .byFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置字体
+                            .byTextCor(@&quot;#6B6B6B&quot;.cor)
+                            .byTargetString(@&quot;Please read our&quot;.tr.uppercaseString.add(JobsSpace))
+                            .byParagraphStyle(self.defaultParagraphStyle);
                     }))
                     .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) { // 追加元素
                         @jobs_strongify(self)
-                        data1.byFont(UIFontWeightBoldSize(JobsWidth(14))); // 设置字体
-                        data1.textCor = JobsCor(@&quot;#FFCC00&quot;);
-                        data1.targetString = @&quot;Pesponsible Game&quot;.tr.uppercaseString;
-                        data1.underlineCor = @&quot;#FFCC00&quot;.cor;
-                        data1.underlineStyle = NSUnderlineStyleSingle;
-                        data1.paragraphStyle = self.defaultParagraphStyle;
-                        data1.urlStr = @&quot;myapp://responsible_gaming&quot;;/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
+                        data1
+                            .byFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置字体
+                            .byTextCor(JobsCor(@&quot;#FFCC00&quot;))
+                            .byTargetString(@&quot;Pesponsible Game&quot;.tr.uppercaseString)
+                            .byUnderlineCor(@&quot;#FFCC00&quot;.cor)
+                            .byUnderlineStyle(NSUnderlineStyleSingle)
+                            .byParagraphStyle(self.defaultParagraphStyle)
+                            .byUrlStr(@&quot;myapp://responsible_gaming&quot;);/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
                     }))
                     .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) { // 追加元素
                         @jobs_strongify(self)
-                        data1.byFont(UIFontWeightBoldSize(JobsWidth(14))); // 设置字体
-                        data1.textCor = JobsCor(@&quot;#6B6B6B&quot;);;
-                        data1.targetString = JobsSpace.add(@&quot;carefully:&quot;.tr.uppercaseString);
-                        data1.paragraphStyle = self.defaultParagraphStyle;
+                        data1
+                            .byFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置字体
+                            .byTextCor(JobsCor(@&quot;#6B6B6B&quot;))
+                            .byTargetString(JobsSpace.add(@&quot;carefully:&quot;.tr.uppercaseString))
+                            .byParagraphStyle(self.defaultParagraphStyle);
                     }));
                 })))
                 .byDelegate(self) // 设置代理

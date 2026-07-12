@@ -13,9 +13,10 @@
         @jobs_weakify(self)
         _textField_birthDay = makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
             @jobs_strongify(self)
-            data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
-            data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
-            data.byLeftViewByOutLineOffset(JobsWidth(4))
+            data
+                .byLayoutSubviewsRectCorner(UIRectCornerAllCorners)
+                .byLayoutSubviewsRectCornerSize(CGSizeMake(JobsWidth(8), JobsWidth(8)))
+                .byLeftViewByOutLineOffset(JobsWidth(4))
                 .byLeftViewByTextFieldOffset(JobsWidth(4)) // 设置 Left View By Text Field Offset
                 .byRightViewByTextFieldOffset(JobsWidth(4)) // 设置 Right View By Text Field Offset
                 .byRightViewByOutLineOffset(JobsWidth(14)) // 设置 Right View By Out Line Offset
@@ -55,9 +56,10 @@
                 .bySecureTextEntry(NO); // 设置密文输入
         })
         .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 设置图层
-            data.layerCor = @&quot;#BBBBBB&quot;.cor;
-            data.jobsWidth = 1;
-            data.cornerRadiusValue = JobsWidth(8);
+            data
+                .byLayerCor(@&quot;#BBBBBB&quot;.cor)
+                .byJobsWidth(1)
+                .byCornerRadiusValue(JobsWidth(8));
         }))
         .addOn(self.scrollView) // 加入父视图
         .byAdd(^(MASConstraintMaker *make) { // 部署约束
