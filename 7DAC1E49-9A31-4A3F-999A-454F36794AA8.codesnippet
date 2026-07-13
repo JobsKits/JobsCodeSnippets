@@ -20,9 +20,10 @@
 }
 
 -(void)configNav{
-    self.gk_navTitle = @&quot;Demo&quot;;
-    self.gk_navTitleColor = UIColor.labelColor;
-    self.gk_navTitleFont = UIFontBoldSystemFontOfSize(17);
+    self
+        .byGKNavTitle(@&quot;Demo&quot;)
+        .byGKNavTitleColor(UIColor.labelColor)
+        .byGKNavTitleFont(UIFontBoldSystemFontOfSize(17));
 }
 
 -(void)configSubviews{
