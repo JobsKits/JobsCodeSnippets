@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Jobs@CoreMotionSwift</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string><![CDATA[let motionManager = CMMotionManager.make()
+    .byAccelerometerUpdateInterval(1.0 / 30.0) // 加速度计更新频率
+    .byGyroUpdateInterval(1.0 / 30.0) // 陀螺仪更新频率
+    .byMagnetometerUpdateInterval(1.0 / 30.0) // 磁力计更新频率
+    .byDeviceMotionUpdateInterval(1.0 / 30.0) // 设备姿态更新频率
+    .byShowsDeviceMovementDisplay(true) // 显示系统校准提示
+    .byStartGyroUpdates(to: .main) { data, error in
+        guard error == nil, let rate = data?.rotationRate else { return }
+        print("gyro x=\(rate.x) y=\(rate.y) z=\(rate.z)")
+    }
+
+/// 按需启用其余推送式监听
+// motionManager.byStartAccelerometerUpdates(to: .main, withHandler: <#CMAccelerometerHandler#>)
+// motionManager.byStartMagnetometerUpdates(to: .main, withHandler: <#CMMagnetometerHandler#>)
+// motionManager.byStartDeviceMotionUpdates(using: .xArbitraryZVertical, to: .main, withHandler: <#CMDeviceMotionHandler#>)
+
+/// 页面退出或对象销毁前统一停止
+// motionManager.byStopAllUpdates()]]></string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8B4B9D3E-1F70-4D81-A012-D1BAB4E22412</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>CoreMotion 加速度计、陀螺仪、磁力计与设备姿态的一链式配置。</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Jobs CoreMotion DSL（Swift）</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
