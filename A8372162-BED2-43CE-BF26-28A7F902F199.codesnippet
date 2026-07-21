@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string/>
+	<string>JobsTimerUsage</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -11,19 +11,26 @@
 	<string>import JobsSwiftTimer
 
 private var timer: JobsTimer?
+
 func makeTimer() {
-    let t = JobsTimer(kind: kind, config: config) { [weak self] in
-     guard let self else { return }
-     guard self.state == .running else { return }
-     guard let start = self.startDate else { return }
-        jobsRunOnMain {
-            /// TODO
+    let config = JobsSwiftTimerConfig(
+        interval: 1,
+        repeats: true,
+        tolerance: 0.1,
+        queue: .main,
+        pauseInBackground: true,
+        autoManageAppState: true
+    )
+
+    let newTimer = JobsTimer(kind: .gcd, config: config) { [weak self] in
+        Task { @MainActor in
+            self?.handleTimerTick()
         }
     }
 
     timer?.stop()
-    timer = t
-    t.start()
+    timer = newTimer
+    newTimer.start()
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>A8372162-BED2-43CE-BF26-28A7F902F199</string>
@@ -32,7 +39,7 @@ func makeTimer() {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>JobsSwiftTimerProtocol</string>
+	<string>JobsSwiftTimer 的安全替换、手动暂停保护与应用活跃态用法</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@⏰定时器的封装使用</string>
 	<key>IDECodeSnippetUserSnippet</key>

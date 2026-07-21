@@ -10,33 +10,28 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsSwiftTimer
 
-private var timer: JobsTimerProtocol?
-// DisplayLink 更适合这种“持续增长”的视觉
-timer?.stop()
-timer = nil
+private var timer: JobsTimer?
 
-let interval = max(0.000_001, tickInterval)
+func startDisplayTimer() {
+    let config = JobsSwiftTimerConfig(
+        interval: max(0.000_001, tickInterval),
+        repeats: true,
+        tolerance: 0,
+        queue: .main,
+        runLoop: .main,
+        runLoopMode: .common,
+        pauseInBackground: true,
+        autoManageAppState: true
+    )
 
-let cfg = JobsTimerConfig(
-    interval: interval,
-    repeats: true,
-    tolerance: 0,
-    queue: .main,
-    runLoop: .main,
-    runLoopMode: .common,
-    pauseInBackground: true,
-    autoManageAppState: true
-)
-// ✅ 新版：直接 new JobsTimer（不再用 JobsTimerFactory.make）
-let t = JobsTimer(kind: .displayLink, config: cfg) { [weak self] in
-    // ✅ Swift 6：timer handler 是 @Sendable；UI/Layer 更新必须回 MainActor
-    Task { @MainActor in
-        self?.tickOnce()
+    timer?.stop()
+    timer = JobsTimer(kind: .displayLink, config: config) { [weak self] in
+        Task { @MainActor in
+            self?.tickOnce()
+        }
     }
-}
-
-timer = t
-t.start()</string>
+    timer?.start()
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>C126CEA9-F9C5-4FC1-9D47-2E57013C7665</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -44,9 +39,9 @@ t.start()</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>基础模块</string>
+	<string>按 interval 节流并支持应用活跃态治理的 JobsTimer DisplayLink 用法</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Swift@JobsTImer</string>
+	<string>Swift@JobsTimer</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

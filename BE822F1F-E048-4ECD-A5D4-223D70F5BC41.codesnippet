@@ -93,6 +93,12 @@ private lazy var tableView: UITableView = {
             make.trailing.lessThanOrEqualTo(host).inset(16)
             make.width.lessThanOrEqualTo(host).multipliedBy(0.9)
         }
+        .setHeaderRefreshFeedback( // Header 独立配置震动和声音
+            JobsRefreshFeedback(
+                enablesHaptics: true,
+                soundFileName: "Sound.wav"
+            )
+        )
         // 下拉刷新 Header
         .byRefreshHeader(component: JobsDefaultHeader(), // 设置 Refresh Header
                          container: self,

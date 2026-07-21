@@ -14,28 +14,26 @@
         @jobs_weakify(self)
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
             timer.byTimerType(JobsTimerTypeNSTimer)
-            .byTimerStyle(TimerStyle_anticlockwise) // 倒计时模式
-            .byTimeInterval(1) // 设置 Time Interval
-            .byTimeSecIntervalSinceDate(0) // 设置 Time Sec Interval Since Date
-            .byQueue(dispatch_get_main_queue()) // 设置 Queue
-            .byTimerState(JobsTimerStateIdle) // 设置 Timer State
-            .byStartTime(10) // 设置 Start Time
-            .byTime(0) // 设置 Time
-            .byOnTick(^(CGFloat time){ // 设置 On Tick
+            .byTimerStyle(TimerStyle_anticlockwise)
+            .byTimeInterval(1)
+            .byTimeSecIntervalSinceDate(0)
+            .byQueue(dispatch_get_main_queue())
+            .byTimerState(JobsTimerStateIdle)
+            .byStartTime(10)
+            .byPauseInBackground(YES)
+            .byAutoManageAppState(YES)
+            .byOnTick(^(CGFloat time){
                 @jobs_strongify(self)
                 JobsLog(@&quot;正在倒计时...&quot;);
                 if (self.objBlock) self.objBlock(timer);
             })
-            .byOnFinish(^(JobsTimer *_Nullable timer){ // 设置 On Finish
+            .byOnFinish(^(JobsTimer *_Nullable timer){
                 @jobs_strongify(self)
                 JobsLog(@&quot;倒计时结束...&quot;);
                 if (self.objBlock) self.objBlock(timer);
             });
-
-            timer.accumulatedElapsed       = 0;
-            timer.lastStartDate            = nil;
         });
-    }return _timer;
+    };return _timer;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>D7CB8105-E75C-4089-B8D0-F9869824794B</string>
@@ -44,7 +42,7 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>对系统的定时器进行二次封装，对定时器状态（开始/暂停/重启/停止/）提取到协议层，对外统一调用</string>
+	<string>JobsTimer 倒计时、应用活跃态治理和统一生命周期用法</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>OC@JobsTimer</string>
 	<key>IDECodeSnippetUserSnippet</key>

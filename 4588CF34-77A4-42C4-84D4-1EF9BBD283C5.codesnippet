@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsScrollingLabel</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import JobsByUIKit
+import JobsScrollingLabel
+import JobsSwiftBaseDefines
+
+private lazy var scrollingLabel: UILabel = {
+    UILabel()
+        .byText("这里写需要完整展示的单行长文案")
+        .byNumberOfLines(1)
+        .byFont(JobsFont.systemFont(ofSize: 16, weight: .semibold))
+        .byTextColor(JobsCor.label)
+        .byAddTo(view) { [unowned self] make in
+            if view.jobs_hasVisibleTopBar() {
+                make.top.equalTo(self.gk_navigationBar.snp.bottom).offset(10)
+            } else {
+                make.top.equalToSuperview().offset(10)
+            }
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo(44)
+        }
+        /// 连续跑马灯
+        .byTextScroll(.continuous(
+            speed: 36,
+            spacing: 40,
+            startDelay: 0.8
+        ))
+        /// 左右往返时改用：
+        /// .byTextScroll(.pingPong(speed: 28, startDelay: 0.8, edgePause: 0.8))
+        .byStartTextScroll()
+}()
+
+/// 文案、富文本、字体、颜色或约束尺寸变化后重建 CoreText 排版
+scrollingLabel
+    .byText("新的长文案")
+    .byReloadTextScroll()
+
+/// 页面生命周期
+scrollingLabel.byPauseTextScroll()
+scrollingLabel.byResumeTextScroll()
+scrollingLabel.byStopTextScroll()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4588CF34-77A4-42C4-84D4-1EF9BBD283C5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>CoreText + JobsSwiftTimer 驱动 UILabel 长文本连续或往返滚动</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@UILabel文字滚动</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

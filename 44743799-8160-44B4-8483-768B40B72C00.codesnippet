@@ -118,8 +118,12 @@ private lazy var collectionView: UICollectionView = {
 //        .showRefreshFooterInfo(YES)  // 竖向Footer + 横向Right
         .setLeftLottie(.custom(.init(animationName: "9squares_AlBoardman"))) // 配置链式能力
         .setRightLottie(.inherit)     // 继承全局（没有全局就回退菊花）
-        .enableRefreshHaptics(true) // 配置链式能力
-        .setRefreshSound("Sound.wav")  // 配置链式能力
+        .setHeaderRefreshFeedback( // Header 独立配置震动和声音
+            JobsRefreshFeedback(
+                enablesHaptics: true,
+                soundFileName: "Sound.wav"
+            )
+        )
         // 下拉刷新
         .byRefreshHeader(component: JobsDefaultHeader(), // 设置 Refresh Header
                          container: self,

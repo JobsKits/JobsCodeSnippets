@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsTimerMgr</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/// startImmediately 会在启动后同步当前应用活跃态
+NSString *identifier = @&quot;page.timer&quot;;
+
+JobsTimerMgr.shared
+.byUpsertTimer(identifier,
+               JobsTimerTypeNSTimer,
+               JobsTimerBackgroundPolicyPauseAndResume,
+               YES,
+               ^(JobsTimer * _Nullable timer) {
+    timer.byTimerStyle(TimerStyle_anticlockwise)
+    .byTimeInterval(1)
+    .byStartTime(10)
+    .byQueue(dispatch_get_main_queue());
+}, nil)
+.byOnTick(identifier, ^(CGFloat time) {
+    JobsLog(@&quot;timer = %f&quot;, time);
+})
+.byOnFinishVoid(identifier, ^{
+    JobsLog(@&quot;timer finished&quot;);
+});</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>48AFFC21-E397-4D09-86B7-F8ABFA69913B</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>JobsTimerMgr 的 DSL 注册、回调与应用活跃态策略</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@JobsTimerMgr</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

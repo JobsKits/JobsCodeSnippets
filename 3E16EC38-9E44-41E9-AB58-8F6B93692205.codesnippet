@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsTimerMgr</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import JobsSwiftTimer
+import JobsSwiftTimerMgr
+
+private let timerIdentifier = "page.timer"
+
+func startManagedTimer() {
+    let config = JobsSwiftTimerConfig(
+        interval: 1,
+        repeats: true,
+        queue: .main,
+        runLoop: .main,
+        runLoopMode: .common
+    )
+
+    do {
+        let timer = try JobsSwiftTimerMgr.shared.create(
+            kind: .foundation,
+            identifier: timerIdentifier,
+            config: config,
+            dedupPolicy: .replace,
+            backgroundPolicy: .pauseAndResume
+        ) { [weak self] in
+            Task { @MainActor in
+                self?.handleTimerTick()
+            }
+        }
+        // 受管句柄会同步 Manager 的手动暂停与应用活跃态策略
+        timer.start()
+    } catch {
+        assertionFailure(error.localizedDescription)
+    }
+}
+
+func stopManagedTimer() {
+    JobsSwiftTimerMgr.shared.stopAndRemove(identifier: timerIdentifier)
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3E16EC38-9E44-41E9-AB58-8F6B93692205</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>JobsSwiftTimerMgr 的原子替换、受管句柄、应用活跃态策略与清理</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@JobsTimerMgr</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
