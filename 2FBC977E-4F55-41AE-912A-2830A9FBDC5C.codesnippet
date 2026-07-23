@@ -41,8 +41,18 @@ _submitBtn = jobsMakeButton(^(__kindof UIButton * _Nullable button) {
         .jobsResetBtnCornerRadiusValue(JobsWidth(10)) // 兼容新旧管线：设置圆角
         .byTintColor(UIColor.whiteColor) // 设置 tint 色
         .byClipsToBounds(YES) // 裁剪圆角
+        /// 按钮事件推荐使用 Block 点语法；byAddTarget 仅作 Target-Action 兼容入口保留
         .onClickBy(^(UIButton *sender) { // 绑定点按事件
             sender.bySelected(!sender.selected);
+        })
+        .onClickAppendBy(^(UIButton *sender) { // 追加点按事件
+            JobsLog(@&quot;追加的点按事件&quot;);
+        })
+        .onLongPressGestureBy(^(UIButton *sender) { // 绑定长按事件
+            JobsLog(@&quot;普通的长按事件&quot;);
+        })
+        .onLongPressGestureAppendBy(^(UIButton *sender) { // 追加长按事件
+            JobsLog(@&quot;追加的长按事件&quot;);
         })
         .addOn(self.view) // 加入父视图
         .byAdd(^(MASConstraintMaker *make) { // 部署约束

@@ -39,6 +39,7 @@ make.left.equalTo(contentView.superview!.snp.centerX)
 
 jobsSetupGKNav(title: "Lottie 动画")
 
+/// 类名以 DemoVC 结尾的页面会自动在右上角补全全局主题切换按钮
 jobsSetupGKNav(
     title: "Demo 列表",
     leftButton:UIButton.sys()
@@ -74,19 +75,6 @@ jobsSetupGKNav(
             print("追加的长按事件")
         },
     rightButtons: [
-        UIButton.sys()
-            /// 按钮图片@图文关系
-            .byImage("moon.circle.fill".sysImg) // 设置图片
-            .byImage("moon.circle.fill".sysImg, for: .selected) // 设置图片
-            /// 事件触发@点按
-            .onTap { sender in // 绑定点按事件
-                sender.byToggleSelected()
-                guard let ws = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                      let win = ws.windows.first else { return }
-                win.overrideUserInterfaceStyle =
-                    (win.overrideUserInterfaceStyle == .dark) ? .light : .dark
-                print("🌓 主题已切换 -&gt; \(win.overrideUserInterfaceStyle == .dark ? "Dark" : "Light")")
-            },
         UIButton.sys()
             /// 按钮图片@图文关系
             .byImage("globe".sysImg) // 设置图片
