@@ -20,6 +20,7 @@
 }
 
 -(void)configNav{
+    /// Demo 根列表导航流及类名包含 Demo 的页面会自动注入全局主题切换按钮；页面颜色必须使用语义色响应主题
     self
         .byGKNavTitle(@&quot;Demo&quot;)
         .byGKNavTitleColor(UIColor.labelColor)

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>jobsOCWebSocket</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#import &lt;JobsOCWebSocket/JobsOCWebSocket.h&gt;
+
+@interface &lt;#ClassName#&gt; () &lt;JobsOCWebSocketClientDelegate&gt;
+
+@property(nonatomic, strong)JobsOCWebSocketClient *webSocketClient;
+
+@end
+
+-(void)connectWebSocket{
+    NSURL *URL = [NSURL URLWithString:@"&lt;#wss://example.com/socket#&gt;"];
+    self.webSocketClient = [[JobsOCWebSocketClient alloc] initWithURL:URL];
+    self.webSocketClient.delegate = self;
+    [self.webSocketClient connect];
+}
+
+-(void)webSocketClient:(JobsOCWebSocketClient *)client
+        didChangeState:(JobsOCWebSocketState)state
+                 error:(nullable NSError *)error{
+    NSLog(@"WebSocket state: %ld, error: %@",(long)state,error);
+}
+
+-(void)webSocketClient:(JobsOCWebSocketClient *)client
+        didReceiveText:(NSString *)text{
+    NSLog(@"← %@",text);
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B83FA73D-1918-4957-BE0E-36D0BDCE7ED4</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>JobsOCWebSocket 连接、状态和收包模板</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@JobsOCWebSocket</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

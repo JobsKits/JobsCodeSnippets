@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsImageRotation</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>JobsImageRotator *imageRotator =
+    [[JobsImageRotator alloc] initWithTargetView:imageView
+                                      direction:JobsImageRotationDirectionCounterclockwise
+                                       interval:JobsImageRotationDefaultInterval];
+[imageRotator start];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>695EFEAE-CB5D-47E4-B069-0B5761E134FF</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>JobsImageRotation 方向、默认 Timer 间隔和启动方式</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@JobsImageRotation</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

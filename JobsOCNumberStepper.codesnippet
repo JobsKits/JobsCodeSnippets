@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>jobsOCNumberStepper</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#import &lt;JobsOCNumberStepper/JobsOCNumberStepperHeader.h&gt;
+
+JobsOCNumberStepper *numberStepper = JobsOCNumberStepper.new;
+[numberStepper configureWithValue:4
+                     minimumValue:@4
+                     maximumValue:@8
+                         stepValue:1];
+numberStepper.onJobsChange(^(__kindof UIControl * _Nullable control) {
+    JobsOCNumberStepper *stepper = (JobsOCNumberStepper *)control;
+    JobsLog(@"当前值：%ld",(long)stepper.value);
+});</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>322EC231-B4DB-4711-B8C6-A9B160088D17</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>减号、整数输入框和加号组成的可选边界步进控件</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@JobsOCNumberStepper</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
