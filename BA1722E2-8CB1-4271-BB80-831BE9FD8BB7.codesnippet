@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<dict>
+    <key>IDECodeSnippetCompletionScopes</key>
+    <array>
+        <string>All</string>
+    </array>
+    <key>IDECodeSnippetIdentifier</key>
+    <string>BA1722E2-8CB1-4271-BB80-831BE9FD8BB7</string>
+    <key>IDECodeSnippetVersion</key>
+    <integer>2</integer>
+    <key>IDECodeSnippetContents</key>
+    <string>/// JobsOCExcel：列模型、行模型与 Office 式冻结 0...N 列
+NSArray&lt;JobsOCExcelColumn *&gt; *columns = @[
+    [JobsOCExcelColumn columnWithTitle:@&quot;城市&quot; width:104],
+    [JobsOCExcelColumn columnWithTitle:@&quot;一月&quot; width:112],
+    [JobsOCExcelColumn columnWithTitle:@&quot;二月&quot; width:112]
+];
+NSArray&lt;JobsOCExcelRow *&gt; *rows = @[
+    [JobsOCExcelRow rowWithValues:@[@&quot;深圳&quot;, @&quot;128&quot;, @&quot;146&quot;]],
+    [JobsOCExcelRow rowWithValues:@[@&quot;上海&quot;, @&quot;116&quot;, @&quot;134&quot;]]
+];
+[self.excelView configureWithColumns:columns
+                                rows:rows
+                 freezeThroughColumn:0
+                               style:nil];
+</string>
+    <key>IDECodeSnippetCompletionPrefix</key>
+    <string>JobsOCExcel</string>
+    <key>IDECodeSnippetLanguage</key>
+    <string>Xcode.SourceCodeLanguage.Objective-C</string>
+    <key>IDECodeSnippetTitle</key>
+    <string>OC@JobsOCExcel</string>
+    <key>IDECodeSnippetUserSnippet</key>
+    <true/>
+    <key>IDECodeSnippetSummary</key>
+    <string>JobsOCExcel 列、行与冻结列配置</string>
+</dict>
+</plist>

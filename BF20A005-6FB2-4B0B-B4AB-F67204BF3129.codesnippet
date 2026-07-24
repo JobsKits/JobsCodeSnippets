@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<dict>
+    <key>IDECodeSnippetCompletionScopes</key>
+    <array>
+        <string>All</string>
+    </array>
+    <key>IDECodeSnippetIdentifier</key>
+    <string>BF20A005-6FB2-4B0B-B4AB-F67204BF3129</string>
+    <key>IDECodeSnippetVersion</key>
+    <integer>2</integer>
+    <key>IDECodeSnippetContents</key>
+    <string>/// JobsOCRefresher：挂载 Header、切换状态并原位热替换动画
+JobsOCRefreshConfig *config = JobsOCRefreshConfig.defaultHeaderConfig;
+config.showsText = NO;
+config.animator = [[JobsTodayNewsRefreshView alloc]
+                   initWithConfig:JobsTodayNewsRefreshConfig.config];
+@jobs_weakify(self)
+[self.scrollView jobs_byRefreshHeaderWithConfig:config action:^{
+    @jobs_strongify(self)
+    [self.scrollView jobs_switchRefreshAt:JobsOCRefreshPositionHeader
+                                  toState:JobsOCRefreshStateIdle];
+}];
+[self.scrollView jobs_replaceRefreshAnimator:
+    [[JobsDouyinRefreshView alloc] initWithConfig:JobsDouyinRefreshConfig.config]
+                                      atPosition:JobsOCRefreshPositionHeader];
+</string>
+    <key>IDECodeSnippetCompletionPrefix</key>
+    <string>JobsOCRefresher</string>
+    <key>IDECodeSnippetLanguage</key>
+    <string>Xcode.SourceCodeLanguage.Objective-C</string>
+    <key>IDECodeSnippetTitle</key>
+    <string>OC@JobsOCRefresher</string>
+    <key>IDECodeSnippetUserSnippet</key>
+    <true/>
+    <key>IDECodeSnippetSummary</key>
+    <string>JobsOCRefresher 状态机、Header 挂载与 JobsFuseAnimation 热替换</string>
+</dict>
+</plist>

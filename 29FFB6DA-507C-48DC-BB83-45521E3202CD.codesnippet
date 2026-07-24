@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<dict>
+    <key>IDECodeSnippetCompletionScopes</key>
+    <array>
+        <string>All</string>
+    </array>
+    <key>IDECodeSnippetIdentifier</key>
+    <string>29FFB6DA-507C-48DC-BB83-45521E3202CD</string>
+    <key>IDECodeSnippetVersion</key>
+    <integer>2</integer>
+    <key>IDECodeSnippetContents</key>
+    <string>/// JobsOCSplash：远程视频完整缓存后播放，未命中时立即使用本地视频
+[JobsOCSplashMediaCache.shared resumePendingVideoPreloads];
+JobsOCSplashConfiguration *configuration =
+    [JobsOCSplashConfiguration remoteVideo:[NSURL URLWithString:@&quot;https://example.com/splash.mp4&quot;]
+                        fallbackLocalVideo:@&quot;welcome_video&quot;
+                              fileExtension:@&quot;mp4&quot;
+                                     bundle:nil];
+configuration
+    .byCountdownSeconds(@8)
+    .bySkipButtonVisible(YES)
+    .byTapAction(JobsOCSplashAction.none)
+    .byShakeAction(JobsOCSplashAction.none);
+[JobsOCSplashPresenter showOver:self configuration:configuration];
+</string>
+    <key>IDECodeSnippetCompletionPrefix</key>
+    <string>JobsOCSplash</string>
+    <key>IDECodeSnippetLanguage</key>
+    <string>Xcode.SourceCodeLanguage.Objective-C</string>
+    <key>IDECodeSnippetTitle</key>
+    <string>OC@JobsOCSplash</string>
+    <key>IDECodeSnippetUserSnippet</key>
+    <true/>
+    <key>IDECodeSnippetSummary</key>
+    <string>JobsOCSplash 远程视频、本地兜底、预加载恢复与交互配置</string>
+</dict>
+</plist>
