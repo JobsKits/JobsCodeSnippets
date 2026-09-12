@@ -12,7 +12,7 @@
 
 /// 邮箱输入框
 private lazy var emailTF: UITextField = {
-    UITextField()
+    UITextField.jobsMake { _ in }
         .byPlaceholder(&quot;请输入邮箱（去空格 / 最长 8）&quot;) // 设置占位文字
         .byFont(.systemFont(ofSize: 16)) // 设置字体
         .byTextColor(.label) // 设置文字颜色
@@ -103,7 +103,7 @@ private lazy var emailTF: UITextField = {
 }()
 /// 密码输入框
 private lazy var passwordTF: UITextField = {
-    UITextField()
+    UITextField.jobsMake { _ in }
         .byPlaceholder(&quot;请输入密码（最长 5）&quot;) // 设置占位文字
         .byFont(.systemFont(ofSize: 16)) // 设置字体
         .byTextColor(.label) // 设置文字颜色
@@ -114,7 +114,7 @@ private lazy var passwordTF: UITextField = {
         .bySecureTextEntry(true) // 设置密文输入
         .byLeftView(UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 1))) // 设置 Left View
         .byLeftViewMode(.always) // 设置 Left View Mode
-        .byRightView(UIImageView().bySize(CGSizeMake(22, 22)).byImage(&quot;删除&quot;.img)) // 设置 Right View
+        .byRightView(UIImageView.jobsMake { _ in }.bySize(CGSizeMake(22, 22)).byImage(&quot;删除&quot;.img)) // 设置 Right View
         .byRightViewMode(.whileEditing) // 设置 Right View Mode
         /// 父系方法@UIControl.byAddAction
         .byAddAction(for: .editingChanged, { [weak self] tf in // 设置 Add Action

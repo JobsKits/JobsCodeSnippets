@@ -12,7 +12,7 @@
 import JobsByUIKit
 
 private lazy var card: UIView = { [unowned self] in
-    UIView()
+    UIView.jobsMake { _ in }
         .byBackgroundColor(.secondarySystemBackground) // 设置背景色
         .byCornerRadius(12) // 设置圆角
         .byClipsToBounds(true) // 裁剪圆角
@@ -24,7 +24,7 @@ private lazy var card: UIView = { [unowned self] in
 }()
 
 private lazy var avatar: UIImageView = { [unowned self] in
-    UIImageView()
+    UIImageView.jobsMake { _ in }
         .byImage(&quot;avatar_placeholder&quot;.img) // 设置图片
         .byContentMode(.scaleAspectFill) // 设置填充模式
         .byCornerRadius(24) // 设置圆角
@@ -36,7 +36,7 @@ private lazy var avatar: UIImageView = { [unowned self] in
 }()
 
 private lazy var titleLab: UILabel = { [unowned self] in
-    UILabel()
+    UILabel.jobsMake { _ in }
         .byText(&quot;标题&quot;) // 设置文本
         .byFont(.boldSystemFont(ofSize: 16)) // 设置字体
         .byTextColor(.label) // 设置文字颜色

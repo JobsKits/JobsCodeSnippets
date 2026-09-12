@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Jobs@FixedABIBlock</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#if __has_include(&lt;JobsBlock/JobsBlock.h&gt;)
+#import &lt;JobsBlock/JobsBlock.h&gt;
+#else
+#import "JobsBlock.h"
+#endif
+
+#if __has_include(&lt;JobsOCDefs/JobsDefines.h&gt;)
+#import &lt;JobsOCDefs/JobsDefines.h&gt;
+#else
+#import "JobsDefines.h"
+#endif
+
+-(void)&lt;#fixedSelector#&gt;:(id _Nullable)value{
+    jobsByIDBlock action = ((jobsByIDBlock (*)(__typeof__(self), SEL))JobsBlockInstanceMethodIMP(&lt;#DefiningClass#&gt;.class, @selector(&lt;#jobsBlockFacade#&gt;)))(self, @selector(&lt;#jobsBlockFacade#&gt;));
+    if (action) action(value);
+}
+
+-(jobsByIDBlock _Nonnull)&lt;#jobsBlockFacade#&gt;{
+    @jobs_weakify(self)
+    return ^(id _Nullable value) {
+        @jobs_strongify(self)
+        if (!self) return;
+        &lt;#OriginalMethodBody#&gt;
+    };
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>ACAE2E46-1543-4F83-94A9-4A7341D211BF</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>保留系统 / 协议 / selector 固定 ABI，trampoline 绑定定义类 IMP，把功能内核迁入 Jobs Block 门面。</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@固定ABI方法Block门面</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

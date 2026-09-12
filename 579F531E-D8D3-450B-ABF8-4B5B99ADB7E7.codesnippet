@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Jobs@Iconfont</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#import &lt;JobsIconfont/JobsIconfontHeader.h&gt;
+
+/// 远程图片：业务只传语义资源；框架立即给占位图、自动缓存并处理错误兜底
+[self.iconView byJobsIconfontAsset:JobsIconfontRemoteAssetLogo
+                        targetSize:CGSizeMake(JobsWidth(96), JobsWidth(96))
+                      forceRefresh:NO
+                        completion:^(JobsIconfontLoadResult *result) {
+    switch (result.stage) {
+        case JobsIconfontLoadStagePlaceholder:
+            JobsLog(@"已显示本地占位图");
+            break;
+        case JobsIconfontLoadStageSuccess:
+            JobsLog(@"%@｜%@", result.loaderName, result.isCacheHit ? @"缓存命中" : @"网络返回");
+            break;
+        case JobsIconfontLoadStageFailure:
+            JobsLog(@"远程加载失败，继续显示框架兜底图：%@", result.error);
+            break;
+    }
+}];
+
+/// 图标字体：业务不接触字体名和 Unicode
+[self.glyphLabel byJobsIconfontGlyph:JobsIconfontGlyphVerified
+                                size:JobsWidth(28)
+                               color:JobsBlueColor];
+
+/// 普通文字字体：框架内部通过 CoreText 动态注册
+self.titleLabel.byText(@"阿里妈妈·智造字");
+[self.titleLabel byJobsIconfontTextSize:JobsWidth(32)];
+
+/// 输出 UIImage，适用于导航项、列表图标和按钮
+UIImage *glyphImage = [JobsIconfontManager.shared iconImageForGlyph:JobsIconfontGlyphComponent
+                                                               size:CGSizeMake(JobsWidth(32), JobsWidth(32))
+                                                              color:JobsBlueColor];
+
+/// UIButton 图标
+[self.iconButton byJobsIconfontGlyph:JobsIconfontGlyphNext
+                           imageSize:CGSizeMake(JobsWidth(24), JobsWidth(24))
+                               color:JobsBlueColor
+                            forState:UIControlStateNormal];
+
+/// 复用单元格回收时取消旧任务
+[self.iconView byCancelJobsIconfontLoad];
+
+/// 清理内存与磁盘缓存后回到主线程
+[JobsIconfontManager.shared clearImageCache:^{
+    JobsLog(@"JobsIconfont 图片缓存已清理");
+}];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>579F531E-D8D3-450B-ABF8-4B5B99ADB7E7</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>JobsIconfont 远程图片、占位兜底、缓存、图标字体与文字字体完整用法</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@JobsIconfont 全功能封装❤️</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

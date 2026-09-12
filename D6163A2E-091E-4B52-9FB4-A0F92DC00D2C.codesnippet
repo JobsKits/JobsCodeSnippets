@@ -11,7 +11,7 @@
 	<string>import JobsByUIKit
 
 private lazy var tv1: UITextView = {
-    UITextView()
+    UITextView.jobsMake { _ in }
         .byFont(.systemFont(ofSize: 16)) // 设置字体
         .byKeyboardType(.default) // 设置键盘类型
         .byEditable(true) // 设置可编辑
@@ -77,7 +77,7 @@ private lazy var tv1: UITextView = {
     }()
 
 private lazy var tvRed: UITextView = {
-    UITextView()
+    UITextView.jobsMake { _ in }
         .byAttributedText(NSMutableAttributedString( // 设置富文本
             string: &quot;🔴 自定义红色链接：&quot;,
             attributes: [.font: UIFont.systemFont(ofSize: 15),

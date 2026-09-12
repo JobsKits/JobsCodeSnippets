@@ -11,7 +11,7 @@
 	<string>import JobsByUIKit
 
 // MARK: 设置富文本@UILabel
-UILabel().richTextBy(runs, paragraphStyle: ps)
+UILabel.jobsMake { _ in }.richTextBy(runs, paragraphStyle: ps)
 // MARK: 设置富文本@UIButton
 UIButton.sys()
     /// 富文本字@设置按钮主标题
@@ -25,8 +25,8 @@ UIButton.sys()
         JobsRichRun(.text(&quot;¥199&quot;)).font(.systemFont(ofSize: 12, weight: .medium)).color(.systemYellow)
     ]))
 // MARK: 设置富文本@UITextView
-UITextView().richTextBy(runs, paragraphStyle: ps)
-UITextView()
+UITextView.jobsMake { _ in }.richTextBy(runs, paragraphStyle: ps)
+UITextView.jobsMake { _ in }
         .byAttributedText(NSMutableAttributedString( // 设置富文本
             string: &quot;🔗 默认蓝色链接（系统样式）：&quot;,
             attributes: [
@@ -54,7 +54,7 @@ UITextView()
         })
         .disposed(by: disposeBag) // 配置链式能力
 // MARK: 设置富文本@UITextField
-UITextField().richTextBy(runs, paragraphStyle: ps)
+UITextField.jobsMake { _ in }.richTextBy(runs, paragraphStyle: ps)
 
 // MARK: 设置富文本@下划线
 // 段落样式

@@ -12,7 +12,7 @@
     <key>IDECodeSnippetContents</key>
     <string>/// Jobs Swift DSL 快速 UI 全配置：按行删减
 private lazy var titleLabel: UILabel = { [unowned self] in
-    UILabel()
+    UILabel.jobsMake { _ in }
         .byText { &quot;标题&quot; } // 设置文本
         .byFont { .boldSystemFont(ofSize: 16) } // 设置字体
         .byTextColor { .label } // 设置文字颜色
@@ -52,7 +52,7 @@ private lazy var submitButton: UIButton = { [unowned self] in
 }()
 
 private lazy var nameTextField: UITextField = { [unowned self] in
-    UITextField()
+    UITextField.jobsMake { _ in }
         .byText(&quot;&quot;) // 设置文本
         .byTextColor(.label) // 设置文字颜色
         .byFont(.systemFont(ofSize: 15)) // 设置字体

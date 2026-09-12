@@ -41,7 +41,7 @@ final class &lt;#UITableViewCell的子类名#&gt;: UITableViewCell,
         backgroundColor = .clear
         contentView.byBackgroundColor(&quot;#f9dcba&quot;.cor)
         // MARK: - Selected background（避免选中态露底）
-        let sbg = UIView()
+        let sbg = UIView.jobsMake { _ in }
         sbg.byBackgroundColor(&quot;#f9dcba&quot;.cor)
         selectedBackgroundView = sbg
     }

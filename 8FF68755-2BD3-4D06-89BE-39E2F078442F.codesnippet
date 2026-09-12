@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Jobs@FunctionalBlock</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#if __has_include(&lt;JobsBlock/JobsBlock.h&gt;)
+#import &lt;JobsBlock/JobsBlock.h&gt;
+#else
+#import "JobsBlock.h"
+#endif
+
+#if __has_include(&lt;JobsOCDefs/JobsDefines.h&gt;)
+#import &lt;JobsOCDefs/JobsDefines.h&gt;
+#else
+#import "JobsDefines.h"
+#endif
+
+-(&lt;#JobsBlockType#&gt; _Nonnull)&lt;#methodName#&gt;{
+    @jobs_weakify(self)
+    return ^(&lt;#void_or_ParameterType _Nullable value#&gt;) {
+        @jobs_strongify(self)
+        if (!self) return;
+        &lt;#OriginalMethodBody#&gt;
+    };
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8FF68755-2BD3-4D06-89BE-39E2F078442F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Jobs OC 0 / 1 入参功能方法 Block 化模板；Block typedef 统一取自 JobsBlock。</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@0或1入参功能方法Block化</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

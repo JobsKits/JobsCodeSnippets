@@ -10,8 +10,8 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsBy3rdTools
 
-UIView().byDialogBoxContent { dialogBoxView in
-    UITextView()
+UIView.jobsMake { _ in }.byDialogBoxContent { dialogBoxView in
+    UITextView.jobsMake { _ in }
         .byBackgroundColor(.clear) // 设置背景色
         .byText( // 设置文本
             &quot;1.电话、QQ、微信号、乱码、全数字皆、不雅字眼、辱骂 词汇带、负面情绪字眼、标点符号皆会审核失败&quot;

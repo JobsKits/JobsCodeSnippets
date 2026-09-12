@@ -12,7 +12,7 @@
 // MARK: - UIImageView
 /// UIImageView@字符串本地图
 private lazy var localImgView: UIImageView = {
-    UIImageView()
+    UIImageView.jobsMake { _ in }
         .byImage(&quot;Ani&quot;.img) // 设置图片
         .byContentMode(.scaleAspectFill) // 设置填充模式
         .byClipsToBounds() // 设置裁剪
@@ -68,7 +68,7 @@ private lazy var localImgView: UIImageView = {
 }()
 /// UIImageView字符串网络图@Kingfisher
 private lazy var asyncImgView: UIImageView = {
-    UIImageView()
+    UIImageView.jobsMake { _ in }
         .byAsyncImageKF(&quot;https://picsum.photos/200/300&quot;, fallback: &quot;唐老鸭&quot;.img)
         .byContentMode(.scaleAspectFill) // 设置填充模式
         .byClipsToBounds() // 设置裁剪
@@ -124,7 +124,7 @@ private lazy var asyncImgView: UIImageView = {
 }()
 /// UIImageView字符串网络图@SDWebImage
 private lazy var asyncImgViewSD: UIImageView = {
-    UIImageView()
+    UIImageView.jobsMake { _ in }
         .byAsyncImageSD(&quot;https://picsum.photos/400/300&quot;, fallback: &quot;唐老鸭&quot;.img)
         .byContentMode(.scaleAspectFill) // 设置填充模式
         .byClipsToBounds() // 设置裁剪
@@ -180,7 +180,7 @@ private lazy var asyncImgViewSD: UIImageView = {
 }()
 /// UIImageView网络图（失败兜底图）@Kingfisher
 private lazy var wrapperImgView: UIImageView = {
-    UIImageView()
+    UIImageView.jobsMake { _ in }
         .byContentMode(.scaleAspectFill) // 设置填充模式
         .byClipsToBounds() // 设置裁剪
         .kf_setImage(from: &quot;https://picsum.photos/200&quot;, placeholder: &quot;Ani&quot;.img)
@@ -236,7 +236,7 @@ private lazy var wrapperImgView: UIImageView = {
 }()
 /// UIImageView网络图（失败兜底图）@SDWebImage
 private lazy var wrapperImgViewSD: UIImageView = {
-    UIImageView()
+    UIImageView.jobsMake { _ in }
         .byContentMode(.scaleAspectFill) // 设置填充模式
         .byClipsToBounds() // 设置裁剪
         .sd_setImage(from: &quot;https://picsum.photos/200&quot;, placeholder: &quot;Ani&quot;.img)
@@ -292,7 +292,7 @@ private lazy var wrapperImgViewSD: UIImageView = {
 }()
 /// UIImageView本地gif（失败兜底图）@SDWebImage
 private lazy var imageView: UIImageView = {
-    UIImageView()
+    UIImageView.jobsMake { _ in }
         .bySDLocalGIF(Bundle.main.url(forResource: &quot;mine_prize_icon&quot;, withExtension: &quot;gif&quot;)) // 设置 SDLocal GIF
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
@@ -321,7 +321,7 @@ private lazy var imageView: UIImageView = {
 }()
 /// UIImageView本地gif（失败兜底图）@Kingfisher
 private lazy var imageView: UIImageView = {
-    UIImageView()
+    UIImageView.jobsMake { _ in }
         .byKfLocalGIF(Bundle.main.url(forResource: &quot;mine_prize_icon&quot;, withExtension: &quot;gif&quot;)) // 设置 Kf Local GIF
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
