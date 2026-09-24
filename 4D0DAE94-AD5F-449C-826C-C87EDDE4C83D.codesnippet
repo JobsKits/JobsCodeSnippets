@@ -29,7 +29,7 @@
                             .byFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置字体
                             .byTextCor(@&quot;#6B6B6B&quot;.cor)
                             .byTargetString(@&quot;Please read our&quot;.tr.uppercaseString.add(JobsSpace))
-                            .byParagraphStyle(self.defaultParagraphStyle);
+                            .byParagraphStyle(self.jobsDefaultParagraphStyle());
                     }))
                     .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) { // 追加元素
                         @jobs_strongify(self)
@@ -39,7 +39,7 @@
                             .byTargetString(@&quot;Pesponsible Game&quot;.tr.uppercaseString)
                             .byUnderlineCor(@&quot;#FFCC00&quot;.cor)
                             .byUnderlineStyle(NSUnderlineStyleSingle)
-                            .byParagraphStyle(self.defaultParagraphStyle)
+                            .byParagraphStyle(self.jobsDefaultParagraphStyle())
                             .byUrlStr(@&quot;myapp://responsible_gaming&quot;);/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
                     }))
                     .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) { // 追加元素
@@ -48,7 +48,7 @@
                             .byFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置字体
                             .byTextCor(JobsCor(@&quot;#6B6B6B&quot;))
                             .byTargetString(JobsSpace.add(@&quot;carefully:&quot;.tr.uppercaseString))
-                            .byParagraphStyle(self.defaultParagraphStyle);
+                            .byParagraphStyle(self.jobsDefaultParagraphStyle());
                     }));
                 })))
                 .byDelegate(self) // 设置代理

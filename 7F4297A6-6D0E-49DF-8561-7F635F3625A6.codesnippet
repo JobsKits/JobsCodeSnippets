@@ -37,7 +37,7 @@
                     .byTextCor(JobsWhiteColor)
                     .byTargetString(JobsInternationalization(@&quot;让程序员更加专注于&quot;).add(@&quot;\n&quot;))
                     .byTextBgCor(JobsBrownColor)
-                    .byParagraphStyle(self.defaultParagraphStyle);
+                    .byParagraphStyle(self.jobsDefaultParagraphStyle());
             }));
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
@@ -46,7 +46,7 @@
                     .byTextCor(JobsGreenColor)
                     .byTargetString(JobsInternationalization(@&quot;APP的业务。&quot;))
                     .byTextBgCor(JobsBrownColor)
-                    .byParagraphStyle(self.defaultParagraphStyle);
+                    .byParagraphStyle(self.jobsDefaultParagraphStyle());
             }));
         }));
     }return _attributedText;
