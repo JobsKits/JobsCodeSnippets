@@ -12,6 +12,8 @@
 import JobsSwiftTimerMgr
 
 private let timerIdentifier = "page.timer"
+private let timerScopeIdentifier = "page.scope"
+private var managedTimer: JobsSwiftTimerProtocol?
 
 func startManagedTimer() {
     let config = JobsSwiftTimerConfig(
@@ -28,12 +30,15 @@ func startManagedTimer() {
             identifier: timerIdentifier,
             config: config,
             dedupPolicy: .replace,
-            backgroundPolicy: .pauseAndResume
+            backgroundPolicy: .pauseAndResume,
+            scopeIdentifier: timerScopeIdentifier
         ) { [weak self] in
             Task { @MainActor in
                 self?.handleTimerTick()
             }
         }
+        // 受管句柄会同步 Manager 的手动暂停与应用活跃态策略
+        managedTimer = timer
         timer.start()
     } catch {
         assertionFailure(error.localizedDescription)
@@ -41,7 +46,24 @@ func startManagedTimer() {
 }
 
 func stopManagedTimer() {
-    JobsSwiftTimerMgr.shared.stopAndRemove(identifier: timerIdentifier)
+    guard let managedTimer else { return }
+    self.managedTimer = nil
+    JobsSwiftTimerMgr.shared.stopAndRemove(
+        identifier: timerIdentifier,
+        expectedTimer: managedTimer
+    )
+}
+
+func pauseManagedTimerScope() {
+    JobsSwiftTimerMgr.shared.pause(scopeIdentifier: timerScopeIdentifier)
+}
+
+func resumeManagedTimerScope() {
+    JobsSwiftTimerMgr.shared.resume(scopeIdentifier: timerScopeIdentifier)
+}
+
+func destroyManagedTimerScope() {
+    JobsSwiftTimerMgr.shared.stopAndRemove(scopeIdentifier: timerScopeIdentifier)
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3E16EC38-9E44-41E9-AB58-8F6B93692205</string>
@@ -50,7 +72,7 @@ func stopManagedTimer() {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>JobsSwiftTimerMgr 的原子替换、前后台策略与清理</string>
+	<string>JobsSwiftTimerMgr 的实例安全取消、Scope 生命周期与应用活跃态策略</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@JobsTimerMgr</string>
 	<key>IDECodeSnippetUserSnippet</key>

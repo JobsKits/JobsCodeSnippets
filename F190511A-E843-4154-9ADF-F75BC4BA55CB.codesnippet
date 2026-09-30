@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>BaseWebView</string>
@@ -8,17 +9,18 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import JobsByUIKit
+	<string>import JobsSwiftBaseDefines
+import JobsByUIKit
 
 private lazy var web: BaseWebView = { [unowned self] in
     BaseWebView()
-        .byBackgroundColor(.clear) // 设置背景色
+        .byBackgroundColor(JobsCor.clear) // 设置背景色
         .byAllowedHosts([])                  // 不限域
         .byOpenBlankInPlace(true) // 设置新窗口打开方式
         .byDisableSelectionAndCallout(false) // 设置选择菜单
         .byUserAgentSuffixProvider { _ in // 设置 UA 后缀
             // 按请求动态追加 UA 后缀；nil = 使用系统默认 UA。
-            // 需要区分页面时在此 return &quot;YourApp/1.0&quot;
+            // 需要区分页面时在此 return "YourApp/1.0"
             return nil
         }
 //        .byNormalizeMToWWW(false)               // ❗️关闭 m→www
@@ -27,7 +29,7 @@ private lazy var web: BaseWebView = { [unowned self] in
 //        .byInjectRedirectSanitizerJS(false)     // 可关，避免干涉 H5 自己跳转
         /// URL 重写策略（默认不重写；这里保持关闭）
         .byURLRewriter { _ in // 设置 URLRewriter
-            // 例如要做 http→https 升级：检测 url.scheme == &quot;http&quot; 再返回新 URL
+            // 例如要做 http→https 升级：检测 url.scheme == "http" 再返回新 URL
             // 现在返回 nil 表示不改写
             return nil
         }
@@ -39,24 +41,24 @@ private lazy var web: BaseWebView = { [unowned self] in
         .byNavBarEnabled(true) // 设置 Nav Bar Enabled
         .byNavBarStyle { s in // 设置 Nav Bar Style
             s.byHairlineHidden(false)
-             .byBackgroundColor(.systemBackground) // 设置背景色
+             .byBackgroundColor(JobsCor.systemBackground) // 设置背景色
              .byTitleAlignmentCenter(true) // 设置 Title Alignment Center
         }
         /// 自定义返回键（想隐藏就：.byNavBarBackButtonProvider { nil }）
         .byNavBarBackButtonProvider { // 设置 Nav Bar Back Button Provider
-            UIButton(type: .system)
-                .byBackgroundColor(.clear) // 设置背景色
-                .byImage(UIImage(systemName: &quot;chevron.left&quot;)) // 设置图片
-                .byTitle(&quot;返回&quot;) // 设置标题
-                .byTitleFont(.systemFont(ofSize: 16, weight: .medium)) // 设置标题字体
-                .byTitleColor(.label) // 设置标题颜色
+            UIButton.sys()
+                .byBackgroundColor(JobsCor.clear) // 设置背景色
+                .byImage(UIImage(systemName: "chevron.left")) // 设置图片
+                .byTitle("返回") // 设置标题
+                .byTitleFont(JobsFont.systemFont(ofSize: 16, weight: .medium)) // 设置标题字体
+                .byTitleColor(JobsCor.label) // 设置标题颜色
                 .byContentEdgeInsets(.init(top: 6, left: 10, bottom: 6, right: 10)) // 设置内容边距
-                .byTapSound(&quot;Sound.wav&quot;) // 设置 Tap Sound
+                .byTapSound("Sound.wav") // 设置 Tap Sound
         }
         /// 返回行为：优先后退，否则关闭当前控制器
         .byNavBarOnBack { [weak self] in // 设置 Nav Bar On Back
             guard let self else { return }
-            closeByResult(&quot;&quot;)
+            closeByResult("")
         }
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
@@ -83,48 +85,49 @@ private lazy var web: BaseWebView = { [unowned self] in
             make.height.equalTo(180.h)
         }
         /// 以下是依据前端暴露的自定义方法进行的JS交互
-        .registerMobileAction(&quot;navigateToHome&quot;) {  [weak self] body, reply in // 配置链式能力
+        .registerMobileAction("navigateToHome") {  [weak self] body, reply in // 配置链式能力
             /// 跳转到首页
-            self!.closeByResult(&quot;&quot;)
+            self!.closeByResult("")
             reply(nil)
         }
-        .registerMobileAction(&quot;getToken&quot;) {  [weak self] body, reply in // 配置链式能力
+        .registerMobileAction("getToken") {  [weak self] body, reply in // 配置链式能力
 
             reply(nil)
         }
-        .registerMobileAction(&quot;navigateToSecurityCenter&quot;) {  [weak self] body, reply in // 配置链式能力
+        .registerMobileAction("navigateToSecurityCenter") {  [weak self] body, reply in // 配置链式能力
             /// 跳转福利中心
             reply(nil)
         }
-        .registerMobileAction(&quot;navigateToLogin&quot;) {  [weak self] body, reply in // 配置链式能力
+        .registerMobileAction("navigateToLogin") {  [weak self] body, reply in // 配置链式能力
             /// 跳转到登录页
             reply(nil)
         }
-        .registerMobileAction(&quot;navigateToDeposit&quot;) {  [weak self] body, reply in // 配置链式能力
+        .registerMobileAction("navigateToDeposit") {  [weak self] body, reply in // 配置链式能力
             /// 跳转到充值页
             reply(nil)
         }
-        .registerMobileAction(&quot;closeWebView&quot;) {  [weak self] body, reply in // 配置链式能力
+        .registerMobileAction("closeWebView") {  [weak self] body, reply in // 配置链式能力
             /// 关闭WebView
             reply(nil)
         }
-        .registerMobileAction(&quot;showToast&quot;) {  [weak self] body, reply in // 配置链式能力
+        .registerMobileAction("showToast") {  [weak self] body, reply in // 配置链式能力
             /// 显示Toast
             JobsToast.show(
-                text: body.stringValue(for: &quot;message&quot;) ?? &quot;&quot;,
+                text: body.stringValue(for: "message") ?? "",
                 config: JobsToast.Config()
-                    .byBackgroundColor(.systemGreen.withAlphaComponent(0.9)) // 设置背景色
+                    .byBackgroundColor(JobsCor.systemGreen.withAlphaComponent(0.9)) // 设置背景色
                     .byCornerRadius(12) // 设置圆角
             )
             reply(nil)
         }
-}()</string>
+}()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>F190511A-E843-4154-9ADF-F75BC4BA55CB</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@BaseWebView</string>
 	<key>IDECodeSnippetUserSnippet</key>

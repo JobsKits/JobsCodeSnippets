@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Jobs@GKNavTitle.MainSubtitle</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string><![CDATA[#if __has_include(<GKCustomNavigationBarExtra/GKCustomNavigationBarExtra.h>)
+#import <GKCustomNavigationBarExtra/GKCustomNavigationBarExtra.h>
+#else
+#import "GKCustomNavigationBarExtra.h"
+#endif
+
+self.gk_navTitleViewBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+    data
+        .byTextModel(jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
+            textModel
+                .byText(@"<#主标题#>")
+                .byTextCor(JobsLabelColor)
+                .byFont(UIFontWeightSemiboldSize(15));
+        }))
+        .bySubTextModel(jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
+            textModel
+                .byText(@"<#副标题#>")
+                .byTextCor(JobsSecondaryLabelColor)
+                .byFont(UIFontWeightRegularSize(11));
+        }));
+}));
+
+self.gk_navMainTitleLab
+    .byAdjustsFontSizeToFitWidth(YES)
+    .byMinimumScaleFactor(0.72f)
+    .byLineBreakMode(NSLineBreakByClipping);
+self.gk_navSubTitleLab
+    .byAdjustsFontSizeToFitWidth(YES)
+    .byMinimumScaleFactor(0.72f)
+    .byLineBreakMode(NSLineBreakByClipping);
+]]></string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>497423CB-D245-4776-BA2D-72642FCCD926</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>GKNavigationBar 主标题 / 副标题 titleView 的 Jobs DSL 全暴露写法。</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@GKNavigationBar主标题和副标题</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

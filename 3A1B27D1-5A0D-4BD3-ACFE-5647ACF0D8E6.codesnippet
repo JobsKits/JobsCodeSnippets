@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>WKWebView</string>
@@ -10,6 +11,7 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import WebKit
 import JobsByUIKit
+import JobsSwiftBaseDefines
 
 private lazy var webView: WKWebView = {
     WKWebView(frame: .zero, configuration: WKWebViewConfiguration()
@@ -44,7 +46,7 @@ private lazy var webView: WKWebView = {
         make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
         make.height.equalTo(180.h)
     }
-    .byBorderColor(.cyan) // 设置边框颜色
+    .byBorderColor(JobsCor.cyan) // 设置边框颜色
     .byBorderWidth(0.5) // 设置边框宽度
     .byMasksToBounds(YES) // 设置图层裁剪
     .byClipsToBounds(YES) // 设置裁剪
@@ -54,7 +56,8 @@ private lazy var webView: WKWebView = {
     .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
     /// 切角@切固定角，兼容旧版本iOS系统
     .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
-}()</string>
+}()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3A1B27D1-5A0D-4BD3-ACFE-5647ACF0D8E6</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -62,7 +65,7 @@ private lazy var webView: WKWebView = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@WKWebView</string>
 	<key>IDECodeSnippetUserSnippet</key>

@@ -3,30 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Jobs@FunctionalBlock</string>
+	<string>JobsImageRotation</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>-(&lt;#JobsBlockType#&gt; _Nonnull)&lt;#methodName#&gt;{
-    @jobs_weakify(self)
-    return ^(&lt;#void_or_ParameterType _Nullable value#&gt;) {
-        @jobs_strongify(self)
-        if (!self) return;
-        &lt;#OriginalMethodBody#&gt;
-    };
-}</string>
+	<string>let imageRotator = JobsImageRotator(
+    targetView: imageView,
+    direction: .counterclockwise,
+    interval: JobsImageRotator.defaultInterval
+)
+imageRotator.start()
+
+let clockIcon = JobsClockIconView(
+    direction: .counterclockwise,
+    interval: JobsClockIconView.defaultInterval
+)
+clockIcon.start()</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>8FF68755-2BD3-4D06-89BE-39E2F078442F</string>
+	<string>D3D70ABF-8910-4C9E-A021-64A833227AA4</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Jobs OC 0 / 1 入参功能方法 Block 化模板；JobsBlock 与 JobsDefines 双通道必须预先放在对应头文件。</string>
+	<string>JobsImageRotation 通用旋转与动态时钟图标的方向、Timer 间隔和生命周期</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>OC@0或1入参功能方法Block化</string>
+	<string>Swift@JobsImageRotation</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

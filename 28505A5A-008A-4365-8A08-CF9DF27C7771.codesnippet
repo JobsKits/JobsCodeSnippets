@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsSwiftGraphicCaptchaFiveGroups</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import JobsSwiftGraphicCaptcha
+
+let captchaView = JobsSwiftGraphicCaptchaView()
+/// 五类独立字符池：英文大写、英文小写、阿拉伯数字、简体汉字、繁体汉字
+/// 可切换 twoMixedConfig / threeMixedConfig / fourMixedConfig / fullMixedConfig
+captchaView.config = .fourMixedConfig
+captchaView.refreshCaptcha()
+
+/// 自定义精确组合示例：英文大写 + 简体汉字 + 繁体汉字
+captchaView.config = JobsSwiftGraphicCaptchaConfig(
+    length: 4,
+    caseSensitive: true,
+    characterUnits: [.uppercaseLetter, .simplifiedChinese, .traditionalChinese],
+    mixedGroupCount: 3
+)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>28505A5A-008A-4365-8A08-CF9DF27C7771</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Swift 图形验证码五类字符池及两两、三三、四四、全部混合配置</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@图形验证码五类组合</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

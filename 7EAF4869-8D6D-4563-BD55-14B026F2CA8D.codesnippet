@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsOCGraphicCaptchaFiveGroups</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#if __has_include(&lt;JobsOCGraphicCaptcha/JobsOCGraphicCaptchaHeader.h&gt;)
+#import &lt;JobsOCGraphicCaptcha/JobsOCGraphicCaptchaHeader.h&gt;
+#else
+#import "JobsOCGraphicCaptchaHeader.h"
+#endif
+
+JobsOCGraphicCaptchaView *captchaView = JobsOCGraphicCaptchaView.new;
+/// 五类独立字符池：英文大写、英文小写、阿拉伯数字、简体汉字、繁体汉字
+/// 可切换 twoMixedConfig / threeMixedConfig / fourMixedConfig / fullMixedConfig
+captchaView.config = JobsOCGraphicCaptchaConfig.fourMixedConfig;
+[captchaView refreshCaptcha];
+
+/// 自定义精确组合示例：英文大写 + 简体汉字 + 繁体汉字
+JobsOCGraphicCaptchaConfig *config = JobsOCGraphicCaptchaConfig.defaultConfig;
+config.length = 4;
+config.caseSensitive = YES;
+config.characterUnits = JobsOCGraphicCaptchaCharacterUnitUppercaseLetter |
+                        JobsOCGraphicCaptchaCharacterUnitSimplifiedChinese |
+                        JobsOCGraphicCaptchaCharacterUnitTraditionalChinese;
+config.mixedGroupCount = 3;
+captchaView.config = config;</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7EAF4869-8D6D-4563-BD55-14B026F2CA8D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>OC 图形验证码五类字符池及两两、三三、四四、全部混合配置</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@图形验证码五类组合</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

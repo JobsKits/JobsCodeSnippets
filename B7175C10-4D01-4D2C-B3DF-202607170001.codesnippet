@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsOCUILabelScrolling</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#if __has_include(&lt;JobsOCUILabelScrolling/JobsOCUILabelScrolling.h&gt;)
+#import &lt;JobsOCUILabelScrolling/JobsOCUILabelScrolling.h&gt;
+#else
+#import "JobsOCUILabelScrolling.h"
+#endif
+
+JobsLabelScrollConfiguration *configuration = JobsLabelScrollConfiguration.continuousConfiguration;
+configuration.speed = 36;
+configuration.spacing = 40;
+/// 连续跑马灯；只有排版宽度真实超过 UILabel.bounds 时才会启动
+[label byTextScroll:configuration];
+[label byStartTextScroll];
+
+/// 左右往返也遵守同一溢出判断：JobsLabelScrollConfiguration.pingPongConfiguration
+/// 文案、富文本、字体、颜色或约束尺寸变化后：
+[label byReloadTextScroll];
+
+/// 页面生命周期：
+[label byPauseTextScroll];
+[label byResumeTextScroll];
+[label byStopTextScroll];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B7175C10-4D01-4D2C-B3DF-202607170001</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>CoreText + JobsTimer 仅在 UILabel 文案真实溢出时连续或往返滚动</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@UILabel文字滚动</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

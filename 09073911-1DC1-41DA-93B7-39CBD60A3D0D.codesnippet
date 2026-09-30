@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>ProgressBar</string>
@@ -9,20 +10,21 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsProgressBar
+import JobsSwiftBaseDefines
 
 /// 自定义进度条
 private lazy var progressView: JobsProgressBar = {
     JobsProgressBar()
         .byDirection(.leftToRight) // 设置 Direction
         .byValueMode(.countDown)           // 初始：显示为 100→0
-        .byTrackColor(.systemGray5)        // 你外层灰条在父视图，这里清空即可
+        .byTrackColor(JobsCor.systemGray5)        // 你外层灰条在父视图，这里清空即可
         .byTrackHorizontalInset(0)         // ✅ 不要内部留边
         .byTrackVerticalInset(0)           // ✅ 不要内部留边
         .byTrackThickness(nil)             // ✅ 厚度 = JobsProgressBar.height（也就是父视图高度）
         .byAutoHideLabel(true)             // ✅ 小高度自动隐藏 label（12 高会隐藏）
         .byLabelMinVisibleHeight(18) // 设置 Label Min Visible Height
-        .byLabelBackgroundColor(.secondarySystemBackground) // 设置 Label Background Color
-        .byLabelFont(.monospacedDigitSystemFont(ofSize: 12, weight: .medium)) // 设置 Label Font
+        .byLabelBackgroundColor(JobsCor.secondarySystemBackground) // 设置 Label Background Color
+        .byLabelFont(JobsFont.monospacedDigitSystemFont(ofSize: 12, weight: .medium)) // 设置 Label Font
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
             if view.jobs_hasVisibleTopBar() {
@@ -47,7 +49,7 @@ private lazy var progressView: JobsProgressBar = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -57,13 +59,14 @@ private lazy var progressView: JobsProgressBar = {
         .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
         .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
-}()</string>
+}()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>09073911-1DC1-41DA-93B7-39CBD60A3D0D</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@自定义进度条</string>
 	<key>IDECodeSnippetUserSnippet</key>

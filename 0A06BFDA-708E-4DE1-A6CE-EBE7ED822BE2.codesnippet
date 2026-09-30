@@ -17,23 +17,20 @@
 VideoTagModel *tagModel = [VideoTagModel mj_objectWithKeyValues:data];
 NSArray &lt;VideoTagModel *&gt;*tagArr = [VideoTagModel mj_objectArrayWithKeyValuesArray:model.data];
 
-UIButton.jobsInit()
-    .byTitle(tagModel.name) // 设置标题
-    .byTitleCor(UIColor.labelColor) // 设置标题颜色
-    .normalStateTitleColorBy(UIColor.labelColor) // 设置普通状态标题颜色
-    .highlightedStateTitleColorBy(UIColor.labelColor) // 设置高亮状态标题颜色
-    .selectedStateTitleColorBy(UIColor.labelColor) // 设置选中状态标题颜色
-    .disabledStateTitleColorBy(UIColor.labelColor) // 设置禁用状态标题颜色
-    .titleColorForStateBy(UIColor.labelColor, UIControlStateSelected | UIControlStateHighlighted) // 设置组合状态标题颜色
-    .byTintColor(UIColor.labelColor) // 设置 tint 色
-    .byTitleFont([UIFont systemFontOfSize:14]) // 设置标题字体
-    .byBgColor(UIColor.secondarySystemBackgroundColor) // 设置背景色
-    .byCornerRadius(JobsWidth(8)) // 设置圆角
-    .addOn(self.view) // 加入父视图
-    .byAdd(^(MASConstraintMaker *make) { // 部署约束
-        make.left.right.equalTo(self.view).inset(JobsWidth(16));
-        make.height.mas_equalTo(JobsWidth(44));
-    });
+jobsMakeButton(^(__kindof UIButton * _Nullable button) {
+    button
+        .jobsResetBtnTitle(tagModel.name) // 兼容新旧管线：设置标题
+        .jobsResetBtnTitleCor(UIColor.labelColor) // 兼容新旧管线：设置标题颜色
+        .jobsResetBtnTitleFont(UIFontSystemFontOfSize(14)) // 兼容新旧管线：设置标题字体
+        .jobsResetBtnBgCor(UIColor.secondarySystemBackgroundColor) // 兼容新旧管线：设置背景色
+        .jobsResetBtnCornerRadiusValue(JobsWidth(8)) // 兼容新旧管线：设置圆角
+        .byTintColor(UIColor.labelColor) // 设置 tint 色
+        .addOn(self.view) // 加入父视图
+        .byAdd(^(MASConstraintMaker *make) { // 部署约束
+            make.left.right.equalTo(self.view).inset(JobsWidth(16));
+            make.height.mas_equalTo(JobsWidth(44));
+        });
+});
 </string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>0A06BFDA-708E-4DE1-A6CE-EBE7ED822BE2</string>

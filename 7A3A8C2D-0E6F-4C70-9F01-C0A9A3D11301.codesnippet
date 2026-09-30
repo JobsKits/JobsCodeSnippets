@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Jobs@CoreMotionOC</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string><![CDATA[CMMotionManager *motionManager = CMMotionManager.byMotionManager()
+    .byAccelerometerUpdateInterval(1.0 / 30.0) // 加速度计更新频率
+    .byGyroUpdateInterval(1.0 / 30.0) // 陀螺仪更新频率
+    .byMagnetometerUpdateInterval(1.0 / 30.0) // 磁力计更新频率
+    .byDeviceMotionUpdateInterval(1.0 / 30.0) // 设备姿态更新频率
+    .byShowsDeviceMovementDisplay(YES) // 显示系统校准提示
+    .byStartGyroUpdatesToQueue(NSOperationQueue.mainQueue, ^(CMGyroData * _Nullable data, NSError * _Nullable error) {
+        if (error) return;
+        CMRotationRate rate = data.rotationRate;
+        JobsLog(@"gyro x=%f y=%f z=%f",rate.x,rate.y,rate.z);
+    });
+
+/// 按需启用其余推送式监听
+// motionManager.byStartAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue, <#CMAccelerometerHandler#>);
+// motionManager.byStartMagnetometerUpdatesToQueue(NSOperationQueue.mainQueue, <#CMMagnetometerHandler#>);
+// motionManager.byStartDeviceMotionUpdatesUsingReferenceFrameToQueue(CMAttitudeReferenceFrameXArbitraryZVertical, NSOperationQueue.mainQueue, <#CMDeviceMotionHandler#>);
+
+/// 页面退出或对象销毁前统一停止
+// motionManager.byStopAllUpdates();]]></string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7A3A8C2D-0E6F-4C70-9F01-C0A9A3D11301</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>CoreMotion 加速度计、陀螺仪、磁力计与设备姿态的一链式配置。</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Jobs CoreMotion DSL（Objective-C）</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

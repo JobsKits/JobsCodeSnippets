@@ -8,13 +8,13 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import JobsByUIKit
+	<string>import JobsSwiftBaseDefines
+import JobsByUIKit
 
 private lazy var barButtonItem: UIBarButtonItem = {
-    UIBarButtonItem()
-        .byTitle(&quot;完成&quot;) // 设置标题
-        .byTitleFont(.systemFont(ofSize: 15)) // 设置标题字体
-        .byTitleColor(.systemYellow) // 设置标题颜色
+    UIBarButtonItem.make(title: &quot;完成&quot;)
+        .byTitleFont(JobsFont.systemFont(ofSize: 15)) // 设置标题字体
+        .byTitleColor(JobsCor.systemYellow) // 设置标题颜色
         .byStyle(.done) // 设置样式
         .onTap { [weak self] _ in // 绑定点按事件
             guard let self = self else { return }   // ✅ 确保生命周期安全

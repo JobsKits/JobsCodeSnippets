@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>JobsButton</string>
@@ -9,48 +10,49 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsInheritance
+import JobsSwiftBaseDefines
 
 private lazy var btn1: JobsButton = {
     JobsButton()
         .byMode(.imageTopTextBottom) // 设置 Mode
         .byTitleLabel { lab in // 设置 Title Label
-            lab.byText(&quot;上图下文&quot;)
-                .byTextColor(.red) // 设置文字颜色
+            lab.byText("上图下文")
+                .byTextColor(JobsCor.red) // 设置文字颜色
         }
         .bySubTitleLabel { lab in // 设置 Sub Title Label
-            lab.byText(&quot;image -&gt; title -&gt; subtitle&quot;)
-                .byTextColor(.blue) // 设置文字颜色
+            lab.byText("image -&gt; title -&gt; subtitle")
+                .byTextColor(JobsCor.blue) // 设置文字颜色
         }
         // 前景图：内部 foregroundImageView（链式不丢 self）
         .byForegroundImageView { iv in // 设置 Foreground Image View
             iv.byContentMode(.scaleAspectFill)
                 .byClipsToBounds() // 设置裁剪
-                .kf_setImage(&quot;https://picsum.photos/200?random=111&quot;, placeholder: &quot;Ani&quot;.img)
+                .kf_setImage("https://picsum.photos/200?random=111", placeholder: "Ani".img)
         }
         // 背景图：JobsButton 自己是 UIImageView
         .byContentMode(.scaleAspectFill) // 设置填充模式
-        .kf_setImage(&quot;https://picsum.photos/600/200?random=11&quot;, placeholder: &quot;Ani&quot;.img)
+        .kf_setImage("https://picsum.photos/600/200?random=11", placeholder: "Ani".img)
         .byImageTitleSpacing(6) // 设置 Image Title Spacing
         .byTitleSubtitleSpacing(2) // 设置 Title Subtitle Spacing
         .byContentInsets(.zero) // 设置 Content Insets
         .byForegroundImageFixedSize(true) // 设置 Foreground Image Fixed Size
         .addTapActionAppend { _ in // 配置链式能力
-            print(&quot;btn1 tap #1&quot;)
-            &quot;点击了悬浮按钮：上图下文（tap #1）&quot;.toast
+            print("btn1 tap #1")
+            "点击了悬浮按钮：上图下文（tap #1）".toast
         }
         .addTapActionAppend { _ in // 配置链式能力
-            print(&quot;btn1 tap #2 (append)&quot;)
-            &quot;点击了悬浮按钮：上图下文（tap #2 叠加）&quot;.toast
+            print("btn1 tap #2 (append)")
+            "点击了悬浮按钮：上图下文（tap #2 叠加）".toast
         }
         .addLongPressActionAppend { gr in // 配置链式能力
             guard gr.state == .began else { return }
-            print(&quot;btn1 longPress #1 began&quot;)
-            &quot;长按了悬浮按钮：上图下文（longPress #1）&quot;.toast
+            print("btn1 longPress #1 began")
+            "长按了悬浮按钮：上图下文（longPress #1）".toast
         }
         .addLongPressActionAppend { gr in // 配置链式能力
             guard gr.state == .began else { return }
-            print(&quot;btn1 longPress #2 began (append)&quot;)
-            &quot;长按了悬浮按钮：上图下文（longPress #2 叠加）&quot;.toast
+            print("btn1 longPress #2 began (append)")
+            "长按了悬浮按钮：上图下文（longPress #2 叠加）".toast
         }
         /// 加载到目标视图上，并第一次配置新约束
         .byAddTo(view) {[unowned self] make in // 加入父视图并部署约束
@@ -76,7 +78,7 @@ private lazy var btn1: JobsButton = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -86,7 +88,8 @@ private lazy var btn1: JobsButton = {
         .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
         .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
-}()</string>
+}()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3371A8DD-CE6E-42CB-8466-D9D433F9789F</string>
 	<key>IDECodeSnippetLanguage</key>

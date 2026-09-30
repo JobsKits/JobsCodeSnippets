@@ -39,7 +39,7 @@ func makeTimer() {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>JobsSwiftTimer 的安全替换与生命周期用法</string>
+	<string>JobsSwiftTimer 的安全替换、手动暂停保护与应用活跃态用法</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@⏰定时器的封装使用</string>
 	<key>IDECodeSnippetUserSnippet</key>

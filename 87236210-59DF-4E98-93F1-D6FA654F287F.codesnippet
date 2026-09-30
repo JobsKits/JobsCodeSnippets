@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
 	<string>Jobs@BtnNetwork</string>
@@ -9,12 +10,13 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
+import JobsSwiftBaseDefines
 /// 按钮网络背景图@SDWebImage
 private lazy var btnBG: UIButton = {
     UIButton.sys()
-        .byTitle(&quot;我是主标题@SDWebImage&quot;) // 设置标题
-        .bySubTitle(&quot;我是副标题@SDWebImage&quot;) // 设置副标题
-        .sd_imageURL(&quot;https://picsum.photos/3000/2000&quot;)
+        .byTitle("我是主标题@SDWebImage") // 设置标题
+        .bySubTitle("我是副标题@SDWebImage") // 设置副标题
+        .sd_imageURL("https://picsum.photos/3000/2000")
         .sd_placeholderImage(nil) // 配置链式能力
         .sd_options([.scaleDownLargeImages, .retryFailed]) // 配置链式能力
         .sd_bgNormalLoad()// 之前是配置项，这里才是真正决定渲染背景图/前景图
@@ -28,7 +30,7 @@ private lazy var btnBG: UIButton = {
         .byMakeConstraints { make in // 部署约束
             make.width.height.equalTo(AD(76))
         }    
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -42,9 +44,9 @@ private lazy var btnBG: UIButton = {
 /// 按钮网络前景图@SDWebImage
 private lazy var btnImage: UIButton = {
     UIButton.sys()
-        .byTitle(&quot;我是主标题@SDWebImage&quot;) // 设置标题
-        .bySubTitle(&quot;我是副标题@SDWebImage&quot;) // 设置副标题
-        .sd_imageURL(&quot;https://picsum.photos/200&quot;)
+        .byTitle("我是主标题@SDWebImage") // 设置标题
+        .bySubTitle("我是副标题@SDWebImage") // 设置副标题
+        .sd_imageURL("https://picsum.photos/200")
         .sd_placeholderImage(nil) // 配置链式能力
         .sd_options([.retryFailed, .highPriority, .scaleDownLargeImages]) // 配置链式能力
         .sd_normalLoad()// 之前是配置项，这里才是真正决定渲染背景图/前景图
@@ -59,7 +61,7 @@ private lazy var btnImage: UIButton = {
             make.width.height.equalTo(AD(76))
         }
         .byCornerRadius(12.h) // 设置圆角
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -73,9 +75,9 @@ private lazy var btnImage: UIButton = {
 /// 按钮网络背景图@Kingfisher
 private lazy var btnBG_KF: UIButton = {
     UIButton.sys()
-        .byTitle(&quot;我是主标题@Kingfisher&quot;) // 设置标题
-        .bySubTitle(&quot;我是副标题@Kingfisher&quot;) // 设置副标题
-        .kf_imageURL(&quot;https://picsum.photos/300/200&quot;)
+        .byTitle("我是主标题@Kingfisher") // 设置标题
+        .bySubTitle("我是副标题@Kingfisher") // 设置副标题
+        .kf_imageURL("https://picsum.photos/300/200")
         .kf_placeholderImage(nil) // 配置链式能力
         .kf_options([ // 配置链式能力
             .processor(DownsamplingImageProcessor(size: CGSize(width: 500, height: 200))), // 配置链式能力
@@ -95,7 +97,7 @@ private lazy var btnBG_KF: UIButton = {
         .byMakeConstraints { make in // 部署约束
             make.width.height.equalTo(AD(76))
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -109,9 +111,9 @@ private lazy var btnBG_KF: UIButton = {
 /// 按钮网络前景图@Kingfisher
 private lazy var btnImage_KF: UIButton = {
     UIButton.sys()
-        .byTitle(&quot;我是主标题@Kingfisher&quot;) // 设置标题
-        .bySubTitle(&quot;我是副标题@Kingfisher&quot;) // 设置副标题
-        .kf_imageURL(&quot;https://picsum.photos/200&quot;)
+        .byTitle("我是主标题@Kingfisher") // 设置标题
+        .bySubTitle("我是副标题@Kingfisher") // 设置副标题
+        .kf_imageURL("https://picsum.photos/200")
         .kf_placeholderImage(nil) // 配置链式能力
         .kf_options([ // 配置链式能力
             .processor(DownsamplingImageProcessor(size: CGSize(width: 64, height: 64))), // 配置链式能力
@@ -145,7 +147,7 @@ private lazy var btnImage_KF: UIButton = {
             make.right.equalTo(scrollView.frameLayoutGuide.snp.right).inset(20.w)
             make.height.equalTo(180.h)
         }
-        .byBorderColor(.cyan) // 设置边框颜色
+        .byBorderColor(JobsCor.cyan) // 设置边框颜色
         .byBorderWidth(0.5) // 设置边框宽度
         .byMasksToBounds(YES) // 设置图层裁剪
         .byClipsToBounds(YES) // 设置裁剪
@@ -155,7 +157,8 @@ private lazy var btnImage_KF: UIButton = {
         .byMaskedCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner]) // 设置 Masked Corners
         /// 切角@切固定角，兼容旧版本iOS系统
         .byCornerRaduis(corner: [.bottomLeft, .bottomRight], raduis: 4) // 设置 Corner Raduis
-}()</string>
+}()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>87236210-59DF-4E98-93F1-D6FA654F287F</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -163,7 +166,7 @@ private lazy var btnImage_KF: UIButton = {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string/>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@按钮（网络图）❤️</string>
 	<key>IDECodeSnippetUserSnippet</key>

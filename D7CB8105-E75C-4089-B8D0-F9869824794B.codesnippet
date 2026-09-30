@@ -42,7 +42,7 @@
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>JobsTimer 倒计时、前后台治理和统一生命周期用法</string>
+	<string>JobsTimer 倒计时、应用活跃态治理和统一生命周期用法</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>OC@JobsTimer</string>
 	<key>IDECodeSnippetUserSnippet</key>

@@ -3,30 +3,31 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>Jobs@FunctionalBlock</string>
+	<string>jobsSwiftNumberStepper</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>-(&lt;#JobsBlockType#&gt; _Nonnull)&lt;#methodName#&gt;{
-    @jobs_weakify(self)
-    return ^(&lt;#void_or_ParameterType _Nullable value#&gt;) {
-        @jobs_strongify(self)
-        if (!self) return;
-        &lt;#OriginalMethodBody#&gt;
-    };
-}</string>
+	<string>import JobsSwiftNumberStepper
+
+private lazy var numberStepper: JobsSwiftNumberStepper = {
+    JobsSwiftNumberStepper()
+        .configure(value: 4, minimumValue: 4, maximumValue: 8)
+        .onJobsChange { (stepper: JobsSwiftNumberStepper) in
+            print("当前值：\(stepper.value)")
+        }
+}()</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>8FF68755-2BD3-4D06-89BE-39E2F078442F</string>
+	<string>7993CF93-0B6A-49DB-ACB4-678C00AA524C</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Jobs OC 0 / 1 入参功能方法 Block 化模板；JobsBlock 与 JobsDefines 双通道必须预先放在对应头文件。</string>
+	<string>减号、整数输入框和加号组成的可选边界步进控件</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>OC@0或1入参功能方法Block化</string>
+	<string>Swift@JobsSwiftNumberStepper</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

@@ -19,6 +19,7 @@ import JXSegmentedView
 import JobsByUIKit
 import JobsMarqueeView
 import JobsSwiftBaseDefines
+import JobsSwiftDSL
 
 final class BSportHomeListAllSubVC: UIViewController {
     
@@ -37,7 +38,7 @@ final class BSportHomeListAllSubVC: UIViewController {
     
     private lazy var listContainerView: JXSegmentedListContainerView = {
         JXSegmentedListContainerView(dataSource: self)
-            .byBackgroundColor(.clear) // 设置背景色
+            .byBackgroundColor(JobsCor.clear) // 设置背景色
             .byIndexChange() // 设置 Index Change
             .byDidIndexChanged { from, to in // 设置 Did Index Changed
                 &quot;切换完成：\(from) -&gt; \(to)&quot;.toast
@@ -71,7 +72,7 @@ final class BSportHomeListAllSubVC: UIViewController {
     private lazy var segmentedView: JXSegmentedView = {
         JXSegmentedView()
             .byDefaultSelectedIndex(0) // 设置 Default Selected Index
-            .byBackgroundColor(.clear) // 设置背景色
+            .byBackgroundColor(JobsCor.clear) // 设置背景色
             .byListContainer(listContainerView, defaultIndex: 0) // 设置 List Container
             .byDataSource(segmentedDataSource) // 设置数据源
             .byClickTransitionAnimationEnabled(false) // 设置 Click Transition Animation Enabled
@@ -116,7 +117,7 @@ final class BSportHomeListAllSubVC: UIViewController {
     /// 2️⃣ 视图加载完成（适合初始化数据、绑定、UI配置）
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.byBackgroundColor(UIColor(red: 245/255.0, green: 246/255.0, blue: 250/255.0, alpha: 1)) // 设置背景色
+        view.byBackgroundColor(UIColor(r: 245, g: 246, b: 250)) // 设置背景色
         segmentedView.byVisible(YES)
 
     }

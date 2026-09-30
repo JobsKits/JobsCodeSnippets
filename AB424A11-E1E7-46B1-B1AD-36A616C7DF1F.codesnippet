@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version='1.0'>
+<dict>
+    <key>IDECodeSnippetCompletionScopes</key>
+    <array>
+        <string>All</string>
+    </array>
+    <key>IDECodeSnippetIdentifier</key>
+    <string>AB424A11-E1E7-46B1-B1AD-36A616C7DF1F</string>
+    <key>IDECodeSnippetVersion</key>
+    <integer>2</integer>
+    <key>IDECodeSnippetContents</key>
+    <string>/// JobsScreenCapture：系统截屏观察、主动保存和敏感区域保护
+[self.screenshotObserver startWithHandler:^{
+    JobsLog(@&quot;检测到系统截屏&quot;);
+}];
+[self.screenshotCapturer captureAndSaveView:self.view.window ?: self.view
+                         afterScreenUpdates:YES
+                                  completion:^(NSError *error) {
+    if (error) {
+        JobsLog(@&quot;主动截屏失败：%@&quot;, error);
+    }
+}];
+self.protectionView.protectionEnabled = YES;
+</string>
+    <key>IDECodeSnippetCompletionPrefix</key>
+    <string>JobsScreenCapture</string>
+    <key>IDECodeSnippetLanguage</key>
+    <string>Xcode.SourceCodeLanguage.Objective-C</string>
+    <key>IDECodeSnippetTitle</key>
+    <string>OC@JobsScreenCapture</string>
+    <key>IDECodeSnippetUserSnippet</key>
+    <true/>
+    <key>IDECodeSnippetSummary</key>
+    <string>JobsScreenCapture 截屏观察、主动保存与敏感区域保护</string>
+</dict>
+</plist>

@@ -39,7 +39,7 @@ func startDisplayTimer() {
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>按 interval 节流的 JobsTimer DisplayLink 用法</string>
+	<string>按 interval 节流并支持应用活跃态治理的 JobsTimer DisplayLink 用法</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift@JobsTimer</string>
 	<key>IDECodeSnippetUserSnippet</key>

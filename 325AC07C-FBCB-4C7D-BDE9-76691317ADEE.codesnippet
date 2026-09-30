@@ -31,10 +31,11 @@ Prop_copy()NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
 }
 
 -(UICollectionViewFlowLayout *)makeLayout{
-    self.verticalLayout.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
-    self.verticalLayout.minimumLineSpacing = 10;  // 设置行间距
-    self.verticalLayout.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
-    self.verticalLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
+    self.verticalLayout
+        .byItemSize(CGSizeMake(100, 100)) // 设置单元格尺寸
+        .byMinimumLineSpacing(10) // 设置行间距
+        .byMinimumInteritemSpacing(10) // 设置单元格之间的间距
+        .bySectionInset(UIEdgeInsetsMake(20, 20, 20, 20)); // 设置 section 的内边距
     return self.verticalLayout;
 }
 #pragma mark —— UICollectionViewCell 部署策略
@@ -129,8 +130,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@&quot;%s&quot;, __FUNCTION__);
     /**
      滚动到指定位置
-     _collectionView.contentOffset = CGPointMake(0,-100);
-     [_collectionView setContentOffset:CGPointMake(0, -200) animated:YES];// 只有在viewDidAppear周期 或者 手动触发才有效
+     _collectionView.byContentOffset(CGPointMake(0,-100));
+     _collectionView.setContentOffsetByYES(CGPointMake(0, -200));// 只有在viewDidAppear周期 或者 手动触发才有效
      */
 }
 /// 取消选中操作

@@ -8,14 +8,17 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>NSString *identifier = @&quot;page.timer&quot;;
+	<string>/// startImmediately 会在启动后同步当前应用活跃态
+NSString *identifier = @&quot;page.timer&quot;;
+NSString *scopeIdentifier = @&quot;page.scope&quot;;
 
 JobsTimerMgr.shared
-.byUpsertTimer(identifier,
-               JobsTimerTypeNSTimer,
-               JobsTimerBackgroundPolicyPauseAndResume,
-               YES,
-               ^(JobsTimer * _Nullable timer) {
+.byUpsertScopedTimer(identifier,
+                     scopeIdentifier,
+                     JobsTimerTypeNSTimer,
+                     JobsTimerBackgroundPolicyPauseAndResume,
+                     YES,
+                     ^(JobsTimer * _Nullable timer) {
     timer.byTimerStyle(TimerStyle_anticlockwise)
     .byTimeInterval(1)
     .byStartTime(10)
@@ -26,7 +29,16 @@ JobsTimerMgr.shared
 })
 .byOnFinishVoid(identifier, ^{
     JobsLog(@&quot;timer finished&quot;);
-});</string>
+});
+
+JobsTimer *expectedTimer = [JobsTimerMgr.shared timerForIdentifier:identifier];
+/// Cell / Model 解绑：同时校验 ID 和实例
+[JobsTimerMgr.shared stopAndRemove:identifier
+                    expectedTimer:expectedTimer];
+/// 页面生命周期
+[JobsTimerMgr.shared pauseScope:scopeIdentifier];
+[JobsTimerMgr.shared resumeScope:scopeIdentifier];
+[JobsTimerMgr.shared stopAndRemoveScope:scopeIdentifier];</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>48AFFC21-E397-4D09-86B7-F8ABFA69913B</string>
 	<key>IDECodeSnippetLanguage</key>
@@ -34,7 +46,7 @@ JobsTimerMgr.shared
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>JobsTimerMgr 的 DSL 注册、回调与前后台策略</string>
+	<string>JobsTimerMgr 的实例安全取消、Scope 生命周期与应用活跃态策略</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>OC@JobsTimerMgr</string>
 	<key>IDECodeSnippetUserSnippet</key>
