@@ -10,11 +10,11 @@
 	<key>IDECodeSnippetContents</key>
 	<string>import JobsByUIKit
 
-UIView().addTapAction { [weak self] (iv: UIView) in
+UIView.jobsMake { _ in }.addTapAction { [weak self] (iv: UIView) in
     /// TODO
 }
 // MARK: - 点击 Tap
-UIView().jobs_addGesture(
+UIView.jobsMake { _ in }.jobs_addGesture(
     UITapGestureRecognizer
         .byConfig { gr in // 配置对象
             print(&quot;Tap 触发 on: \(String(describing: gr.view))&quot;)
@@ -26,7 +26,7 @@ UIView().jobs_addGesture(
         .byName(&quot;customTap&quot;) // 设置 Name
 )
 // MARK: - 长按 LongPress
-UIView().addGestureRecognizer(
+UIView.jobsMake { _ in }.addGestureRecognizer(
     UILongPressGestureRecognizer
         .byConfig { gr in // 配置对象
             if gr.state == .began {
@@ -40,7 +40,7 @@ UIView().addGestureRecognizer(
         .byTouches(1)                    // 单指
 )
 // MARK: - 拖拽 Pan
-UIView().jobs_addGesture(
+UIView.jobsMake { _ in }.jobs_addGesture(
     UIPanGestureRecognizer
         .byConfig { gr in // 配置对象
             let p = (gr as! UIPanGestureRecognizer).translation(in: gr.view)
@@ -55,7 +55,7 @@ UIView().jobs_addGesture(
         .byCancelsTouchesInView(true) // 设置 Cancels Touches In View
 )
 // MARK: - 轻扫 Swipe（单方向）
-UIView().jobs_addGesture(
+UIView.jobsMake { _ in }.jobs_addGesture(
     UISwipeGestureRecognizer
         .byConfig { _ in // 配置对象
             print(&quot;👉 右滑触发&quot;)
@@ -64,7 +64,7 @@ UIView().jobs_addGesture(
         .byTouches(1) // 设置 Touches
 )
 // MARK: - 轻扫 Swipe（多方向）
-let swipeContainer = UIView()
+let swipeContainer = UIView.jobsMake { _ in }
 swipeContainer.jobs_addGesture(
     UISwipeGestureRecognizer
         .byConfig { _ in print(&quot;← 左滑&quot;) } // 配置对象
@@ -86,7 +86,7 @@ swipeContainer.jobs_addGesture(
         .byDirection(.down) // 设置 Direction
 )
 // MARK: - 捏合 Pinch
-UIView().jobs_addGesture(
+UIView.jobsMake { _ in }.jobs_addGesture(
     UIPinchGestureRecognizer
         .byConfig { _ in } // 配置对象
         .byOnScaleChange { gr, scale in // 设置 On Scale Change
@@ -97,7 +97,7 @@ UIView().jobs_addGesture(
         .byScale(1.0) // 设置 Scale
 )
 // MARK: - 旋转 Rotate
-UIView().jobs_addGesture(
+UIView.jobsMake { _ in }.jobs_addGesture(
     UIRotationGestureRecognizer
         .byConfig { _ in } // 配置对象
         .byOnRotationChange { gr, r in // 设置 On Rotation Change
@@ -108,7 +108,7 @@ UIView().jobs_addGesture(
         .byRotation(0) // 设置 Rotation
 )
 // MARK: - 直接设置手势（已锚定视图）
-let views = UIView()
+let views = UIView.jobsMake { _ in }
     .addTapAction { gr in // 配置链式能力
         print(&quot;点击 \(gr.view!)&quot;)
     }

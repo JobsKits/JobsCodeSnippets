@@ -35,7 +35,7 @@ private lazy var tableView: UITableView = {
 //            containerTableView.scrollIndicatorInsets.byBottom(bottomInset)
 //        }
         .byTableHeaderView( // 设置表头
-            UIView()
+            UIView.jobsMake { _ in }
                 .byHeight(65) // 设置 Height
                 .byBackgroundColor(.clear) // 设置背景色
         )

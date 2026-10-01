@@ -167,6 +167,10 @@ main
 
 - **Xcode** 的 **Code Snippets** 文件存放于 `~/Library/Developer/Xcode/UserData/CodeSnippets` 目录
 
+  * OC 的 0 / 1 入参普通功能方法使用 `Jobs@FunctionalBlock`；系统 / 协议 / selector 等固定 ABI 入口使用 `Jobs@FixedABIBlock`，保留原 selector 的薄 trampoline 并把内核收入 `jobsXxx` Block 门面。
+
+  * 两个片段都通过双通道导入 `JobsBlock` 和 `JobsDefines.h`，实例 Block 统一使用 `@jobs_weakify(self)` / `@jobs_strongify(self)`。
+
   * 但是`CodeSnippets`目录默认是没有创建的；
 
   * 终端打开上一级文件。只要下载且安装部署了**Xcode**，那么路径一定存在
@@ -188,4 +192,3 @@ main
   * ![image-20240629115031438](./assets/image-20240629115031438.png)
 
 - 重启 **Xcode** 即可生效
-

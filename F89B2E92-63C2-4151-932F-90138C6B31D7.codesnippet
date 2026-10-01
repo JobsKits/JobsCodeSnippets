@@ -13,7 +13,7 @@
 import JobsSwiftBaseDefines
 
 private lazy var valueLabel: UILabel = {
-    UILabel()
+    UILabel.jobsMake { _ in }
         .byTextAlignment(.center) // 设置文字对齐
         .byFont(JobsFont.systemFont(ofSize: 52, weight: .bold)) // 设置字体
         .byTextColor(JobsCor.label) // 设置文字颜色
