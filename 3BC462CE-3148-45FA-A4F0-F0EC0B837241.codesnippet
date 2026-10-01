@@ -18,7 +18,7 @@
             @jobs_strongify(self)
             view
                 .byAutoScales(YES) // 自动缩放 PDF
-                .byDocument(PDFDocument.byURL([NSBundle.mainBundle URLForResource:@&quot;Terms of Use&quot; withExtension:@&quot;pdf&quot;])) // 设置 PDF 文档
+                .byDocument(PDFDocument.byURL([NSBundle.mainBundle URLForResource:@"Terms of Use" withExtension:@"pdf"])) // 设置 PDF 文档
                 .byDisplayMode(kPDFDisplaySinglePageContinuous) // 设置显示模式
                 .byDisplayDirection(kPDFDisplayDirectionVertical) // 设置滚动方向
                 .byBackgroundColor(UIColor.clearColor) // 设置背景色
@@ -29,7 +29,8 @@
                     make.size.mas_equalTo(CGSizeMake(JobsWidth(290), JobsWidth(300)));
                 });
         });
-    }return _pdfView;
+    }
+    return _pdfView;
 }
 </string>
 	<key>IDECodeSnippetIdentifier</key>

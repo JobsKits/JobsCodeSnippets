@@ -91,38 +91,40 @@ heightForFooterInSection:(NSInteger)section{
     return section ? [BaseTableViewHeaderFooterView heightForFooterInSection:nil] : JobsWidth(10);
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-/// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@&quot;&quot;);
+/// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@"");
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
                  viewForHeaderInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
         /// 什么不配置就是悬浮
         /// JobsHeaderFooterViewStyleNone 还是悬浮
         /// JobsHeaderViewStyle 不是悬浮
-        return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@&quot;&quot;)
+        return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@"")
             .byStyle(JobsHeaderViewStyle)/// 悬浮开关
             .bySection(section)/// 悬浮配置
             .JobsRichViewByModel2(self.titleDatas[section]) // 配置链式能力
             .JobsBlock1(^(id _Nullable data) { // 配置链式能力
                 
             });
-    }return nil;
+    }
+    return nil;
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-/// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@&quot;&quot;);
+/// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@"");
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
                  viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
         /// 什么不配置就是悬浮
         /// JobsHeaderFooterViewStyleNone 还是悬浮
         /// JobsHeaderViewStyle 不是悬浮
-        return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@&quot;&quot;)
+        return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@"")
             .byStyle(JobsHeaderViewStyle)/// 悬浮开关
             .bySection(section)/// 悬浮配置
             .JobsRichViewByModel2(self.titleDatas[section]) // 配置链式能力
             .JobsBlock1(^(id _Nullable data) { // 配置链式能力
                 
             });
-    }return nil;
+    }
+    return nil;
 }
 /**
  ❤️如果单独的对每一个row对应的UITableViewCell的边距有缩进则使用下列方法❤️
@@ -134,8 +136,8 @@ heightForFooterInSection:(NSInteger)section{
  
  // 在具体的子类去实现,分类调用异常
  -(void)setFrame:(CGRect)frame{
-     NSLog(@&quot;self.offsetXForEach = %f&quot;,self.offsetXForEach);
-     NSLog(@&quot;self.offsetYForEach = %f&quot;,self.offsetYForEach);
+     NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+     NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
      frame.origin.x += self.offsetXForEach;
      frame.origin.y += self.offsetYForEach;
      frame.size.height -= self.offsetYForEach * 2;
@@ -166,12 +168,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView hideSeparatorLineAtLast:indexPath
                                   cell:cell];
-    cell.img = JobsIMG(@&quot;向右的箭头（大）&quot;);
+    cell.img = JobsIMG(@"向右的箭头（大）");
     @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {
         @jobs_strongify(self)
         BaiShaETProjMembersTBVCell1 *cell = (BaiShaETProjMembersTBVCell1 *)data;
-        NSLog(@&quot;MMM - %ld&quot;,cell.index);
+        NSLog(@"MMM - %ld",cell.index);
     }];
     
     [cell cutFirstAndLastTableViewCellByBackgroundCor:HEXCOLOR(0xFFFFFF)
@@ -200,7 +202,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     /// TODO
                 })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
                 .byTableFooterView(jobsMakeLabel(^(__kindof UILabel *_Nullable label) { // 设置表尾
-                    label.byText(@&quot;- 没有更多的内容了 -&quot;.tr)
+                    label.byText(@"- 没有更多的内容了 -".tr)
                         .byFont(UIFontWeightRegularSize(12)) // 设置字体
                         .byTextAlignment(NSTextAlignmentCenter) // 设置文字对齐
                         .byTextCor(HEXCOLOR(0xB0B0B0)) // 设置文字颜色
@@ -208,10 +210,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
                 .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) { // 配置链式能力
                     data
-                        .byTitle(@&quot;NO MESSAGES FOUND&quot;.tr)
+                        .byTitle(@"NO MESSAGES FOUND".tr)
                         .byTitleCor(JobsWhiteColor)
                         .byTitleFont(bayonRegular(JobsWidth(30)))
-                        .byNormalImage(@&quot;小狮子&quot;.img);
+                        .byNormalImage(@"小狮子".img);
                 }))
                 /// 普通的MJRefreshHeader（触发事件）@二选一
                 .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{ // 设置 MJRefresh Header
@@ -255,7 +257,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 //              [tableView xzm_addNormalHeaderWithTarget:self
 //                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
 //                                                                                     id _Nullable arg) {
-//                  NSLog(@&quot;SSSS加载新的数据，参数: %@&quot;, arg);
+//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
 //                  @jobs_strongify(self)
 //                  /// 在需要结束刷新的时候调用（只能调用一次）
 //                  /// _tableView.endRefreshing();
@@ -265,7 +267,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 //              [tableView xzm_addNormalFooterWithTarget:self
 //                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
 //                                                                                     id _Nullable arg) {
-//                  NSLog(@&quot;SSSS加载新的数据，参数: %@&quot;, arg);
+//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
 //                  @jobs_strongify(self)
 //                  /// 在需要结束刷新的时候调用（只能调用一次）
 //                  /// _tableView.endRefreshing();
@@ -280,7 +282,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             make.left.right.bottom.equalTo(self.view);
             [self make:make topOffset:10];
         });
-    }return _tableView;
+    }
+    return _tableView;
 }
 
 -(NSMutableArray&lt;__kindof UITableViewCell *&gt; *)tbvCellMutArr{
@@ -290,13 +293,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             @jobs_strongify(self)
             arr.add(JobsBtnsStyleTBVCell.cellStyleValue1WithTableView(self.tableView));
         });
-    }return _tbvCellMutArr;
+    }
+    return _tbvCellMutArr;
 }
 
 -(NSMutableArray&lt;__kindof UIViewModel *&gt; *)dataMutArr{
     if (!_dataMutArr) {
         _dataMutArr = NSMutableArray.array;
-    }return _dataMutArr;
+    }
+    return _dataMutArr;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>D73EFE8C-AC74-45A3-A43D-2757D8F759F9</string>

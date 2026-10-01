@@ -27,27 +27,27 @@
                         @jobs_strongify(self)
                         data1
                             .byFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置字体
-                            .byTextCor(@&quot;#6B6B6B&quot;.cor)
-                            .byTargetString(@&quot;Please read our&quot;.tr.uppercaseString.add(JobsSpace))
+                            .byTextCor(@"#6B6B6B".cor)
+                            .byTargetString(@"Please read our".tr.uppercaseString.add(JobsSpace))
                             .byParagraphStyle(self.jobsDefaultParagraphStyle());
                     }))
                     .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) { // 追加元素
                         @jobs_strongify(self)
                         data1
                             .byFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置字体
-                            .byTextCor(JobsCor(@&quot;#FFCC00&quot;))
-                            .byTargetString(@&quot;Pesponsible Game&quot;.tr.uppercaseString)
-                            .byUnderlineCor(@&quot;#FFCC00&quot;.cor)
+                            .byTextCor(JobsCor(@"#FFCC00"))
+                            .byTargetString(@"Pesponsible Game".tr.uppercaseString)
+                            .byUnderlineCor(@"#FFCC00".cor)
                             .byUnderlineStyle(NSUnderlineStyleSingle)
                             .byParagraphStyle(self.jobsDefaultParagraphStyle())
-                            .byUrlStr(@&quot;myapp://responsible_gaming&quot;);/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
+                            .byUrlStr(@"myapp://responsible_gaming");/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
                     }))
                     .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) { // 追加元素
                         @jobs_strongify(self)
                         data1
                             .byFont(UIFontWeightBoldSize(JobsWidth(14))) // 设置字体
-                            .byTextCor(JobsCor(@&quot;#6B6B6B&quot;))
-                            .byTargetString(JobsSpace.add(@&quot;carefully:&quot;.tr.uppercaseString))
+                            .byTextCor(JobsCor(@"#6B6B6B"))
+                            .byTargetString(JobsSpace.add(@"carefully:".tr.uppercaseString))
                             .byParagraphStyle(self.jobsDefaultParagraphStyle());
                     }));
                 })))
@@ -60,7 +60,8 @@
                     /// TODO
                 });
         });
-    }return _textView;
+    }
+    return _textView;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>4D0DAE94-AD5F-449C-826C-C87EDDE4C83D</string>

@@ -55,7 +55,8 @@
                 });
         });
         _usrNameBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-    };return _usrNameBtn;
+    };
+    return _usrNameBtn;
 }
 /// 普通文本按钮
 -(BaseButton *)registerBtn{
@@ -87,7 +88,8 @@
             make.height.mas_equalTo(JobsWidth(44));
             make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-JobsWidth(16));
         });
-    };return _registerBtn;
+    };
+    return _registerBtn;
 }
 /// 倒计时按钮
 -(UIButton *)countdownBtn{
@@ -123,7 +125,8 @@
                     make.width.mas_equalTo(JobsWidth(180));
                 });
         });
-    };return _countdownBtn;
+    };
+    return _countdownBtn;
 }
 </string>
 	<key>IDECodeSnippetIdentifier</key>

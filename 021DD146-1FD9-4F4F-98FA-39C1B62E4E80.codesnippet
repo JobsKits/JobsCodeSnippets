@@ -126,7 +126,8 @@ private lazy var btn_2: UIButton = {
                             .font: UIFont.DINPro.Bold(12.fz), // 配置链式能力
                             .foregroundColor: JobsCor.red // 配置链式能力
                         ], range: shifted)
-                    };return attr
+                    }
+                    return attr
                 }
         }
         .onTap { [weak self] sender in // 绑定点按事件

@@ -22,7 +22,8 @@
                 self.popupParameter = nil;
             }];
         }];
-    }return _userHeaderDataView;
+    }
+    return _userHeaderDataView;
 }
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 /// 调取系统相机（没有兼容横屏）
@@ -34,7 +35,7 @@
 /// 完全意义上的调用系统的相机拍照功能
 self.invokeSysCamera();
 [self actionObjectBlock:^(id _Nullable data) {
-    NSLog(@&quot;&quot;);
+    NSLog(@"");
 }];
 /// 调取系统相册
 [self invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {

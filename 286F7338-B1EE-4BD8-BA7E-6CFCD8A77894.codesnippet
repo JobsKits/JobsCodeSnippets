@@ -13,7 +13,8 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
 
-    }return self;
+    }
+    return self;
 }
 
 -(void)layoutSubviews{
@@ -34,7 +35,7 @@
                              或者
     FMPromoCVCell *cell = (FMPromoCVCell *)[collectionView collectionViewCellClass:FMPromoCVCell.class forIndexPath:indexPath];
     if (!cell) {
-        collectionView.registerCollectionViewCellClass(FMPromoCVCell.class,@&quot;&quot;);
+        collectionView.registerCollectionViewCellClass(FMPromoCVCell.class,@"");
         cell = (FMPromoCVCell *)[collectionView collectionViewCellClass:FMPromoCVCell.class forIndexPath:indexPath];
     }
     // UICollectionViewCell 圆切角               

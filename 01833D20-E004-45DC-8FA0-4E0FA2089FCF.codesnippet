@@ -9,12 +9,13 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>相关类：
-#import &quot;NSObject+Extras.h&quot;
+#import "NSObject+Extras.h"
 /// 在初始化方法里面进行接入
 -(instancetype)init{
     if (self = [super init]) {
         [self registerKeyboard];
-    }return self;
+    }
+    return self;
 }
 
 -(void)registerKeyboard{
@@ -25,11 +26,11 @@
     /// 键盘弹起的时候的方法监听回调
     [self actionkeyboardUpNotificationBlock:^id(NSNotificationKeyboardModel *data) {
         @jobs_strongify(self)
-        NSLog(@&quot;userInfo = %@&quot;,data.userInfo);
-        NSLog(@&quot;beginFrame = %@&quot;,NSStringFromCGRect(data.beginFrame));
-        NSLog(@&quot;endFrame = %@&quot;,NSStringFromCGRect(data.endFrame));
-        NSLog(@&quot;keyboardOffsetY = %f&quot;,data.keyboardOffsetY);
-        NSLog(@&quot;notificationName = %@&quot;,data.notificationName);
+        NSLog(@"userInfo = %@",data.userInfo);
+        NSLog(@"beginFrame = %@",NSStringFromCGRect(data.beginFrame));
+        NSLog(@"endFrame = %@",NSStringFromCGRect(data.endFrame));
+        NSLog(@"keyboardOffsetY = %f",data.keyboardOffsetY);
+        NSLog(@"notificationName = %@",data.notificationName);
         
         // 键盘高度：data.keyboardOffsetY
         // view底的Y值：self.y + [MSPayView viewSizeWithModel:nil].height
@@ -51,7 +52,7 @@
     [self actionkeyboardDownNotificationBlock:^id(id data) {
         @jobs_strongify(self)
         self.y += gg;
-        NSLog(@&quot;ddd = %f&quot;,self.origin.y);
+        NSLog(@"ddd = %f",self.origin.y);
         return nil;
     }];
 }</string>

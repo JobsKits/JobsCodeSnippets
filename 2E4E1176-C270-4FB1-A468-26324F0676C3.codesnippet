@@ -8,7 +8,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#import &quot;MSPromotionIncentiveCVHeaderFooterView.h&quot;
+	<string>#import "MSPromotionIncentiveCVHeaderFooterView.h"
 
 @interface MSPromotionIncentiveCVHeaderFooterView ()
 /// UI
@@ -21,7 +21,8 @@ Prop_strong()UILabel *titleLab;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
-    }return self;
+    }
+    return self;
 }
 
 -(void)layoutSubviews{

@@ -15,10 +15,10 @@
         CGFloat TextFieldWidth = self.mj_w - JobsWidth(80);
         _textField = jobsMakeZYTextField(^(ZYTextField *_Nullable textField) {
             textField
-                .byPlaceholder(@&quot;请输入搜索内容&quot;.tr) // 设置占位文字
+                .byPlaceholder(@"请输入搜索内容".tr) // 设置占位文字
                 .byDelegate(self) // 设置代理
                 .byLeftView(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) { // 设置 Left View
-                    imageView.byImage(@&quot;放大镜&quot;.img);
+                    imageView.byImage(@"放大镜".img);
                 }))
                 .byTextCor(JobsPurpleColor) // 设置文字颜色
                 .byInputAccessoryView(JobsAdNoticeView // 设置 Input Accessory View
@@ -55,13 +55,15 @@
             if (isValue(self.textField.text)) {
                 self.cancelBtn.byAlpha(1);
                 self.textField.byWidth(TextFieldWidth - (self.cancelBtn.sizer.width + JobsWidth(5)));
-            }return isValue(value);
+            }
+            return isValue(value);
         }] subscribeNext:^(NSString * _Nullable x) {
             @jobs_strongify(self)
-            JobsLog(@&quot;输入的字符为 = %@&quot;,x);
+            JobsLog(@"输入的字符为 = %@",x);
             if (self.objBlock) self.objBlock(x);
         }];
-    }return _textField;
+    }
+    return _textField;
 }
 </string>
 	<key>IDECodeSnippetIdentifier</key>

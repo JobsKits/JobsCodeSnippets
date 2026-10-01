@@ -22,7 +22,7 @@
 -(void)configNav{
     /// 主题只重放已标记的背景 / 文字资源；右上角入口保持透明，其它动作收进下拉列表
     self
-        .byGKNavTitle(@&quot;Demo&quot;)
+        .byGKNavTitle(@"Demo")
         .byGKNavTitleColor(JobsLabelColor)
         .byGKNavTitleFont(UIFontWeightBoldSize(17));
 }
@@ -36,7 +36,7 @@
     if (!_titleLab) {
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             label
-                .byText(@&quot;标题&quot;) // 设置文本
+                .byText(@"标题") // 设置文本
                 .byFont(UIFontWeightBoldSize(16)) // 设置字体
                 .byTextCor(JobsLabelColor) // 自动登记主题文字 Key
                 .byTextAlignment(NSTextAlignmentCenter) // 设置对齐方式
@@ -53,14 +53,15 @@
                     make.height.mas_equalTo(JobsWidth(24));
                 });
         });
-    };return _titleLab;
+    };
+    return _titleLab;
 }
 
 -(UIButton *)submitBtn{
     if (!_submitBtn) {
         _submitBtn = jobsMakeButton(^(__kindof UIButton * _Nullable button) {
             button
-                .jobsResetBtnTitle(@&quot;确认&quot;) // 兼容新旧管线：设置标题
+                .jobsResetBtnTitle(@"确认") // 兼容新旧管线：设置标题
                 .jobsResetBtnTitleCor(JobsWhiteColor) // 兼容新旧管线：设置标题颜色
                 .jobsResetBtnTitleFont(UIFontWeightBoldSize(16)) // 兼容新旧管线：设置标题字体
                 .jobsResetBtnBgCor(JobsSystemBlueColor) // 兼容新旧管线：设置背景色
@@ -73,7 +74,8 @@
                     make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-JobsWidth(16));
                 });
         });
-    };return _submitBtn;
+    };
+    return _submitBtn;
 }
 
 @end

@@ -53,7 +53,8 @@ Prop_strong()NSMutableArray &lt;__kindof UIViewController *&gt;*childVCMutArr;
                 make.left.right.bottom.equalTo(self.view);
             });
         _pagerView.pinSectionHeaderVerticalOffset = JobsWidth(0);
-    }return _pagerView;
+    }
+    return _pagerView;
 }
 
 -(JXCategoryTitleView *)categoryView{
@@ -67,11 +68,11 @@ Prop_strong()NSMutableArray &lt;__kindof UIViewController *&gt;*childVCMutArr;
                 .byTitleFont(UIFontWeightRegularSize(JobsWidth(18))) // 设置普通标题字体
                 .byTitleSelectedFont(UIFontWeightRegularSize(JobsWidth(28))) // 设置选中标题字体
                 .byTitles(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) { // 设置标题数组
-                    arr.add(JobsInternationalization(@&quot;ALL&quot;))
-                        .add(JobsInternationalization(@&quot;NEWCOMER&quot;)) // 追加元素
-                        .add(JobsInternationalization(@&quot;DAILY&quot;)) // 追加元素
-                        .add(JobsInternationalization(@&quot;LIMITED&quot;)) // 追加元素
-                        .add(JobsInternationalization(@&quot;OFFER&quot;)); // 追加元素
+                    arr.add(JobsInternationalization(@"ALL"))
+                        .add(JobsInternationalization(@"NEWCOMER")) // 追加元素
+                        .add(JobsInternationalization(@"DAILY")) // 追加元素
+                        .add(JobsInternationalization(@"LIMITED")) // 追加元素
+                        .add(JobsInternationalization(@"OFFER")); // 追加元素
                 }))
                 .byTitleColorGradientEnabled(YES) // 开启标题颜色渐变
                 .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) { // 设置指示器
@@ -93,7 +94,8 @@ Prop_strong()NSMutableArray &lt;__kindof UIViewController *&gt;*childVCMutArr;
                     make.height.mas_equalTo(listContainerViewDefaultOffset);
                 });
         });
-    }return _categoryView;
+    }
+    return _categoryView;
 }
 </string>
 	<key>IDECodeSnippetIdentifier</key>

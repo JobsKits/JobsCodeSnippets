@@ -21,13 +21,15 @@ BaiShaETProjMembersBoardView.m
 -(instancetype)init{
     if (self = [super init]) {
         self.byBgColor(UIColor.whiteColor); // 设置背景色
-    }return self;
+    }
+    return self;
 }
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if(self == [super initWithReuseIdentifier:reuseIdentifier]){
 
-    }return self;
+    }
+    return self;
 }
 
 -(void)drawRect:(CGRect)rect{

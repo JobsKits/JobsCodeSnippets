@@ -16,16 +16,16 @@
                 .byClearButtonMode(UITextFieldViewModeNever) // 设置清除按钮
                 .byLeftViewMode(UITextFieldViewModeNever) // 设置 Left View Mode
                 .byRightViewMode(UITextFieldViewModeNever) // 设置 Right View Mode
-                .byText(@&quot;&quot;) // 设置文本
+                .byText(@"") // 设置文本
                 .byFont(pingFangHKRegular(JobsWidth(14))) // 设置字体
                 .byTextCor(JobsBlackColor) // 设置文字颜色
-                .byPlaceholder(@&quot;ID Type&quot;.tr) // 设置占位文字
+                .byPlaceholder(@"ID Type".tr) // 设置占位文字
                 .byPlaceholderColor(JobsGrayColor) // 设置占位颜色
                 .byPlaceholderFont(pingFangHKRegular(JobsWidth(14))); // 设置占位字体
         })
         .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 设置图层
             data
-                .byLayerCor(JobsCor(@&quot;#DEDEDE&quot;))
+                .byLayerCor(JobsCor(@"#DEDEDE"))
                 .byJobsWidth(1)
                 .byCornerRadiusValue(JobsWidth(32 / 2));
         }))
@@ -34,7 +34,8 @@
             @jobs_strongify(self)
             /// TODO
         });
-    }return _idTypeTextField;
+    }
+    return _idTypeTextField;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>1CF4D6F1-6F71-4D1C-9F9C-14E5E15900AB</string>

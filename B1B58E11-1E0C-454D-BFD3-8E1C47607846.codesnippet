@@ -95,7 +95,8 @@ private func countDown () {
                 guard let self else { return }
                 isCountdownTime = YES
                                 /// TODO
-            };return
+            }
+            return
     }
 }
 // MARK: 方案 2

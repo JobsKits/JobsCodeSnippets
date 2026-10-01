@@ -31,7 +31,8 @@ static dispatch_once_t static_tipsView01OnceToken;
 -(instancetype)init{
     if (self = [super init]) {
         self.byBgColor(JobsWhiteColor); // 设置背景色
-    };return self;
+    };
+    return self;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
@@ -42,9 +43,10 @@ static dispatch_once_t static_tipsView01OnceToken;
                                     id _Nullable arg) {
             @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
-            NSLog(@&quot;通知传递过来的 = %@&quot;,notification.object);
+            NSLog(@"通知传递过来的 = %@",notification.object);
         }];
-    };return self;
+    };
+    return self;
 }
 
 -(void)drawRect:(CGRect)rect{
@@ -62,7 +64,8 @@ static dispatch_once_t static_tipsView01OnceToken;
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
         self.byBgColor(JobsWhiteColor); // 设置背景色
-    };return self;
+    };
+    return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel{
@@ -111,7 +114,8 @@ static dispatch_once_t static_tipsView01OnceToken;
                 @jobs_strongify(self)
                 /// TODO
             })
-    };return _phoneView;
+    };
+    return _phoneView;
 }
 
 -(FMLoginByUsrNameView *)loginByUsrNameView{
@@ -122,7 +126,8 @@ static dispatch_once_t static_tipsView01OnceToken;
             .JobsBlock1(^(id  _Nullable data) { // 配置链式能力
                 
             });
-    };return _loginByUsrNameView;
+    };
+    return _loginByUsrNameView;
 }
 
 -(UIButton *)statusBtn{
@@ -130,20 +135,20 @@ static dispatch_once_t static_tipsView01OnceToken;
         @jobs_weakify(self)
         _statusBtn = BaseButton.jobsInit()
             .jobsResetBtnBgCor(JobsClearColor) // 兼容新旧管线：设置背景色
-            .jobsResetBtnTitle(JobsInternationalization(@&quot;Unverified&quot;)) // 兼容新旧管线：设置标题
-            .jobsResetBtnTitleCor(JobsCor(@&quot;#F53F3F&quot;)) // 兼容新旧管线：设置标题颜色
+            .jobsResetBtnTitle(JobsInternationalization(@"Unverified")) // 兼容新旧管线：设置标题
+            .jobsResetBtnTitleCor(JobsCor(@"#F53F3F")) // 兼容新旧管线：设置标题颜色
             .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(14))) // 兼容新旧管线：设置标题字体
-            .byTintColor(JobsCor(@&quot;#F53F3F&quot;)) // 设置 tint 色
+            .byTintColor(JobsCor(@"#F53F3F")) // 设置 tint 色
             .onClickBy(^(UIButton *x){ // 绑定事件
                 @jobs_strongify(self)
                 self.getCurrentViewController.comingToPushVC(FMForgotPwdVC.new);
             })
             .onLongPressGestureBy(^(id data){ // 绑定事件
-                JobsLog(@&quot;&quot;);
+                JobsLog(@"");
             })
             .jobsResetBtnLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) { // 兼容新旧管线：设置图层
                 data
-                    .byLayerCor(JobsCor(@&quot;#F53F3F&quot;))
+                    .byLayerCor(JobsCor(@"#F53F3F"))
                     .byJobsWidth(1)
                     .byCornerRadiusValue(JobsWidth(32 / 2));
             }))
@@ -152,7 +157,8 @@ static dispatch_once_t static_tipsView01OnceToken;
                 @jobs_strongify(self)
                 /// TODO
             });
-    };return _statusBtn;
+    };
+    return _statusBtn;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>EBEC19B2-1331-4B5D-AD2A-CC5272A0BE85</string>

@@ -19,7 +19,7 @@
                 data1
                     .byFont(UIFontWeightRegularSize(JobsWidth(12))) // 设置字体
                     .byTextCor(JobsBlueColor)
-                    .byTargetString(JobsInternationalization(@&quot;编译器自动管理内存地址&quot;).add(@&quot;\n&quot;))
+                    .byTargetString(JobsInternationalization(@"编译器自动管理内存地址").add(@"\n"))
                     .byTextBgCor(JobsBrownColor)
                     .byParagraphStyle(jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
                         data2.byAlignment(NSTextAlignmentJustified)
@@ -35,7 +35,7 @@
                 data1
                     .byFont(UIFontWeightSemiboldSize(JobsWidth(13))) // 设置字体
                     .byTextCor(JobsWhiteColor)
-                    .byTargetString(JobsInternationalization(@&quot;让程序员更加专注于&quot;).add(@&quot;\n&quot;))
+                    .byTargetString(JobsInternationalization(@"让程序员更加专注于").add(@"\n"))
                     .byTextBgCor(JobsBrownColor)
                     .byParagraphStyle(self.jobsDefaultParagraphStyle());
             }));
@@ -44,12 +44,13 @@
                 data1
                     .byFont(UIFontWeightUltraLightSize(JobsWidth(14))) // 设置字体
                     .byTextCor(JobsGreenColor)
-                    .byTargetString(JobsInternationalization(@&quot;APP的业务。&quot;))
+                    .byTargetString(JobsInternationalization(@"APP的业务。"))
                     .byTextBgCor(JobsBrownColor)
                     .byParagraphStyle(self.jobsDefaultParagraphStyle());
             }));
         }));
-    }return _attributedText;
+    }
+    return _attributedText;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7F4297A6-6D0E-49DF-8561-7F635F3625A6</string>

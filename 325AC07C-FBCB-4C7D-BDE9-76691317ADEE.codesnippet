@@ -86,7 +86,7 @@ Prop_copy()NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
         if (indexPath.section == self.cvcellMutArr.count - 1) {
             return [collectionView UICollectionElementKindSectionFooterClass:BaiShaETProjVIPSubCVFooterView.class
                                                                 forIndexPath:indexPath].JobsRichViewByModel2(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.byText(JobsInternationalization(@&quot;查看VIP規則&quot;)); // 设置文本
+                viewModel.textModel.byText(JobsInternationalization(@"查看VIP規則")); // 设置文本
             }));
         }else ReturnBaseCollectionReusableHeaderView
     }else{
@@ -99,35 +99,35 @@ Prop_copy()NSMutableArray &lt;UIViewModel *&gt;*dataMutArr;
 /// 允许选中时，高亮
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@&quot;%s&quot;, __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 高亮完成后回调
 -(void)collectionView:(UICollectionView *)collectionView
 didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@&quot;%s&quot;, __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
 }
 /// 由高亮转成非高亮完成时的回调
 -(void)collectionView:(UICollectionView *)collectionView
 didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@&quot;%s&quot;, __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
 }
 /// 设置是否允许选中
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@&quot;%s&quot;, __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 设置是否允许取消选中
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@&quot;%s&quot;, __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 选中操作
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@&quot;%s&quot;, __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
     /**
      滚动到指定位置
      _collectionView.byContentOffset(CGPointMake(0,-100));
@@ -137,7 +137,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 /// 取消选中操作
 -(void)collectionView:(UICollectionView *)collectionView
 didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@&quot;%s&quot;, __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
 }
 #pragma mark —— UICollectionViewDelegateFlowLayout
 /// header 大小
@@ -194,7 +194,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UICollectionViewFlowLayout *)layout{
     if (!_layout) {
         _layout = self.verticalLayout;
-    }return _layout;
+    }
+    return _layout;
 }
 /// BaseViewProtocol
 @synthesize collectionView = _collectionView;
@@ -204,9 +205,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _collectionView = BaseCollectionView
                                           .initByLayout(self.horizontalLayout) // 配置链式能力
                                           .registerCollectionViewClass() // 配置链式能力
-                                          .registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@&quot;&quot;) // 配置链式能力
-                                          .registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@&quot;&quot;) // 配置链式能力
-                                          .registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@&quot;&quot;) // 配置链式能力
+                                          .registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@"") // 配置链式能力
+                                          .registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@"") // 配置链式能力
+                                          .registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"") // 配置链式能力
                                           .byEdgeInsets(UIEdgeInsetsMake(0, 0, 0, 0)) // 设置 Edge Insets
                                           /// 普通的MJRefreshHeader（触发事件）（二选一）
                                           .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{ // 设置 MJRefresh Header
@@ -231,10 +232,10 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                                           .showsHorizontalScrollIndicatorBy(NO) // 配置链式能力
                                           /// 无数据占位：用默认的图文占位表达（二选一）
                                           .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) { // 配置链式能力
-                                              data.byTitle(JobsInternationalization(@&quot;NO BANK CARD FOUND&quot;)) // 设置标题
+                                              data.byTitle(JobsInternationalization(@"NO BANK CARD FOUND")) // 设置标题
                                                   .byTitleCor(JobsWhiteColor) // 设置标题颜色
                                                   .byTitleFont(bayonRegular(JobsWidth(30))) // 设置标题字体
-                                                  .byNormalImage(JobsIMG(@&quot;用户默认头像&quot;)); // 设置普通图片
+                                                  .byNormalImage(JobsIMG(@"用户默认头像")); // 设置普通图片
                                           }))
                                           /// 无数据占位：用自定义的视图表达（二选一）
                                           .showEmptyViewBy(FMMaintenanceView // 配置链式能力
@@ -258,7 +259,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             [_collectionView xzm_addNormalHeaderWithTarget:self
                                                     action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                                         id _Nullable arg) {
-                NSLog(@&quot;SSSS加载新的数据，参数: %@&quot;, arg);
+                NSLog(@"SSSS加载新的数据，参数: %@", arg);
                 @jobs_strongify(self)
                 /// 在需要结束刷新的时候调用（只能调用一次）
                 /// _collectionView.endRefreshing();
@@ -268,7 +269,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             [_collectionView xzm_addNormalFooterWithTarget:self
                                                     action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                                         id _Nullable arg) {
-                NSLog(@&quot;SSSS加载新的数据，参数: %@&quot;, arg);
+                NSLog(@"SSSS加载新的数据，参数: %@", arg);
                 @jobs_strongify(self)
                 /// 在需要结束刷新的时候调用（只能调用一次）
                 /// _collectionView.endRefreshing();
@@ -312,7 +313,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 ////            _collectionView.tabAnimated.animatedBackgroundColor = JobsRedColor;
 //            [_collectionView tab_startAnimation];   // 开启动画
 //        }
-    }return _collectionView;
+    }
+    return _collectionView;
 }
 
 -(NSMutableArray&lt;UIViewModel *&gt; *)dataMutArr{
@@ -320,7 +322,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray &lt;UIViewModel *&gt;* _Nullable data) {
             
         });
-    }return _dataMutArr;
+    }
+    return _dataMutArr;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>325AC07C-FBCB-4C7D-BDE9-76691317ADEE</string>

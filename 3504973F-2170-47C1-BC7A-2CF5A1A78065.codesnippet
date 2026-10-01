@@ -20,7 +20,7 @@
 #if __has_include(&lt;JXCategoryView/JXCategoryView.h&gt;)
 #import &lt;JXCategoryView/JXCategoryView.h&gt;
 #else
-#import &quot;JXCategoryView.h&quot;
+#import "JXCategoryView.h"
 #endif
 ```
 ## 图文结合
@@ -73,7 +73,8 @@ Prop_strong()JXCategoryTitleView *categoryView;/// 文字
              make.right.equalTo(self.cancelBtn.mas_left);
              make.height.mas_equalTo(self.mj_h - JobsWidth(15));
          })
-     }return _categoryView;
+     }
+     return _categoryView;
  }
 ============================== 方式二 ============================== 
 Prop_strong()JXCategoryImageView *categoryView;/// 纯图
@@ -82,36 +83,36 @@ Prop_strong()JXCategoryImageView *categoryView;/// 纯图
          @jobs_weakify(self)
          _categoryView = jobsMakeCategoryImageView(^(JXCategoryImageView * _Nullable view) {
              view.byImageNames(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) {
-                 arr.add(@&quot;彩票_已选择&quot;)
-                     .add(@&quot;电子_已选择&quot;) // 追加元素
-                     .add(@&quot;棋牌_已选择&quot;) // 追加元素
-                     .add(@&quot;全部游戏_已选择&quot;) // 追加元素
-                     .add(@&quot;体育_已选择&quot;) // 追加元素
-                     .add(@&quot;真人直播_已选择&quot;); // 追加元素
+                 arr.add(@"彩票_已选择")
+                     .add(@"电子_已选择") // 追加元素
+                     .add(@"棋牌_已选择") // 追加元素
+                     .add(@"全部游戏_已选择") // 追加元素
+                     .add(@"体育_已选择") // 追加元素
+                     .add(@"真人直播_已选择"); // 追加元素
              }))
              .bySelectedImageNames(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) { // 设置 Selected Image Names
-                 arr.add(@&quot;彩票_已选择&quot;)
-                     .add(@&quot;电子_已选择&quot;) // 追加元素
-                     .add(@&quot;棋牌_已选择&quot;) // 追加元素
-                     .add(@&quot;全部游戏_已选择&quot;) // 追加元素
-                     .add(@&quot;体育_已选择&quot;) // 追加元素
-                     .add(@&quot;真人直播_已选择&quot;); // 追加元素
+                 arr.add(@"彩票_已选择")
+                     .add(@"电子_已选择") // 追加元素
+                     .add(@"棋牌_已选择") // 追加元素
+                     .add(@"全部游戏_已选择") // 追加元素
+                     .add(@"体育_已选择") // 追加元素
+                     .add(@"真人直播_已选择"); // 追加元素
              }))
              .byImageInfoArray(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) { // 设置 Image Info Array
-                 arr.add(@&quot;彩票_已选择&quot;)
-                     .add(@&quot;电子_已选择&quot;) // 追加元素
-                     .add(@&quot;棋牌_已选择&quot;) // 追加元素
-                     .add(@&quot;全部游戏_已选择&quot;) // 追加元素
-                     .add(@&quot;体育_已选择&quot;) // 追加元素
-                     .add(@&quot;真人直播_已选择&quot;); // 追加元素
+                 arr.add(@"彩票_已选择")
+                     .add(@"电子_已选择") // 追加元素
+                     .add(@"棋牌_已选择") // 追加元素
+                     .add(@"全部游戏_已选择") // 追加元素
+                     .add(@"体育_已选择") // 追加元素
+                     .add(@"真人直播_已选择"); // 追加元素
              }))
              .bySelectedImageInfoArray(jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) { // 设置 Selected Image Info Array
-                 arr.add(@&quot;彩票_已选择&quot;)
-                     .add(@&quot;电子_已选择&quot;) // 追加元素
-                     .add(@&quot;棋牌_已选择&quot;) // 追加元素
-                     .add(@&quot;全部游戏_已选择&quot;) // 追加元素
-                     .add(@&quot;体育_已选择&quot;) // 追加元素
-                     .add(@&quot;真人直播_已选择&quot;); // 追加元素
+                 arr.add(@"彩票_已选择")
+                     .add(@"电子_已选择") // 追加元素
+                     .add(@"棋牌_已选择") // 追加元素
+                     .add(@"全部游戏_已选择") // 追加元素
+                     .add(@"体育_已选择") // 追加元素
+                     .add(@"真人直播_已选择"); // 追加元素
              }))
              .byImageSize(CGSizeMake(JobsWidth(30), JobsWidth(30))) // 设置 Image Size
              .byImageCornerRadius(JobsWidth(8)) // 设置 Image Corner Radius
@@ -146,7 +147,8 @@ Prop_strong()JXCategoryImageView *categoryView;/// 纯图
              make.left.right.equalTo(self.view);
              make.height.mas_equalTo(listContainerViewDefaultOffset);
          });
-     }return _categoryView;
+     }
+     return _categoryView;
  }
 ============================== 方式三 ==============================
 Prop_strong()JXCategoryDotView *categoryView;/// 右上角带红点
@@ -199,7 +201,8 @@ Prop_strong()JXCategoryDotView *categoryView;/// 右上角带红点
              make.left.right.equalTo(self.view);
              make.height.mas_equalTo(listContainerViewDefaultOffset);
          });
-     }return _categoryView;
+     }
+     return _categoryView;
  }
 
 - (void)categoryView:(JXCategoryBaseView *)categoryView
@@ -235,8 +238,9 @@ didSelectedItemAtIndex:(NSInteger)index {
                 /// 内部默认不会格式化数字，直接转成字符串显示。比如业务需要数字超过999显示999+，可以通过该block实现。
                 .byNumberStringFormatterBlock(^NSString *(NSInteger number) { // 设置 Number String Formatter Block
                     if (number &gt; 999) {
-                        return @&quot;999+&quot;;
-                    }return [NSString stringWithFormat:@&quot;%ld&quot;, (long)number];
+                        return @"999+";
+                    }
+                    return [NSString stringWithFormat:@"%ld", (long)number];
                 })
                 .byTitles(self.titles) // 设置 Titles
                 .byTitleSelectedColor(HEXCOLOR(0xAE8330)) // 设置 Title Selected Color
@@ -274,7 +278,8 @@ didSelectedItemAtIndex:(NSInteger)index {
             make.left.right.equalTo(self.view);
             make.height.mas_equalTo(listContainerViewDefaultOffset);
         });
-    }return _categoryView;
+    }
+    return _categoryView;
 }
 ==================================== 公共部分 ====================================
 #ifndef listContainerViewDefaultOffset
@@ -305,9 +310,10 @@ Prop_copy()NSMutableArray &lt;__kindof NSString *&gt;*titles;
             });
         self.view.refresh();
         /// ❤️在需要的地方写❤️
-        NSNumber *currentIndex = self.listContainerView.valueForKey(@&quot;currentIndex&quot;);
-        NSLog(@&quot;滑动或者点击以后，改变控制器，得到的目前最新的index = %d&quot;,currentIndex.intValue);
-    }return _listContainerView;
+        NSNumber *currentIndex = self.listContainerView.valueForKey(@"currentIndex");
+        NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
+    }
+    return _listContainerView;
 }
 
 -(NSMutableArray&lt;__kindof UIViewController&lt;JXCategoryListContentViewDelegate&gt; *&gt; *)childVCMutArr{
@@ -319,19 +325,21 @@ Prop_copy()NSMutableArray &lt;__kindof NSString *&gt;*titles;
                 .add(FMPromoLimitedVC.new) // 追加元素
                 .add(FMPromoOfferVC.new); // 追加元素
         });
-    }return _childVCMutArr;
+    }
+    return _childVCMutArr;
 }
 
 -(NSMutableArray&lt;__kindof NSString *&gt; *)titles{
     if(!_titles){
         _titles = jobsMakeMutArr(^(__kindof NSMutableArray &lt;NSString *&gt;* _Nullable arr) {
-            arr.add(JobsInternationalization(@&quot;ALL&quot;))
-                .add(JobsInternationalization(@&quot;NEWCOMER&quot;)) // 追加元素
-                .add(JobsInternationalization(@&quot;DAILY&quot;)) // 追加元素
-                .add(JobsInternationalization(@&quot;LIMITED&quot;)) // 追加元素
-                .add(JobsInternationalization(@&quot;OFFER&quot;)); // 追加元素
+            arr.add(JobsInternationalization(@"ALL"))
+                .add(JobsInternationalization(@"NEWCOMER")) // 追加元素
+                .add(JobsInternationalization(@"DAILY")) // 追加元素
+                .add(JobsInternationalization(@"LIMITED")) // 追加元素
+                .add(JobsInternationalization(@"OFFER")); // 追加元素
         });
-    }return _titles;
+    }
+    return _titles;
 }
 #pragma mark JXCategoryTitleViewDataSource
 //// 如果将JXCategoryTitleView嵌套进UITableView的cell，每次重用的时候，JXCategoryTitleView进行reloadData时，会重新计算所有的title宽度。所以该应用场景，需要UITableView的cellModel缓存titles的文字宽度，再通过该代理方法返回给JXCategoryTitleView。
@@ -385,7 +393,7 @@ didScrollSelectedItemAtIndex:(NSInteger)index{
 scrollingFromLeftIndex:(NSInteger)leftIndex
         toRightIndex:(NSInteger)rightIndex
                ratio:(CGFloat)ratio {
-    NSLog(@&quot;&quot;);
+    NSLog(@"");
 //    [self.listContainerView scrollingFromLeftIndex:leftIndex
 //                                      toRightIndex:rightIndex
 //                                             ratio:ratio

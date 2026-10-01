@@ -14,8 +14,8 @@
     if(!_label){
         _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             label
-                .byText(@&quot;标题&quot;) // 设置文本
-                .byTextCor(JobsCor(@&quot;#878787&quot;)) // 设置文字颜色
+                .byText(@"标题") // 设置文本
+                .byTextCor(JobsCor(@"#878787")) // 设置文字颜色
                 .byFont(pingFangHKRegular(JobsWidth(16))) // 设置字体
                 .byTextAlignment(NSTextAlignmentCenter) // 设置文字对齐
                 .byNumberOfLines(1) // 设置行数
@@ -31,7 +31,8 @@
                 });
         });
         _label.makeLabelByShowingType(UILabelShowingType_03);
-    }return _label;
+    }
+    return _label;
 }
 
 @end

@@ -24,16 +24,17 @@
             .byAutoManageAppState(YES)
             .byOnTick(^(CGFloat time){
                 @jobs_strongify(self)
-                JobsLog(@&quot;正在倒计时...&quot;);
+                JobsLog(@"正在倒计时...");
                 if (self.objBlock) self.objBlock(timer);
             })
             .byOnFinish(^(JobsTimer *_Nullable timer){
                 @jobs_strongify(self)
-                JobsLog(@&quot;倒计时结束...&quot;);
+                JobsLog(@"倒计时结束...");
                 if (self.objBlock) self.objBlock(timer);
             });
         });
-    };return _timer;
+    };
+    return _timer;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>D7CB8105-E75C-4089-B8D0-F9869824794B</string>
