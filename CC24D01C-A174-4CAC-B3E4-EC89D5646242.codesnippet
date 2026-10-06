@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>IDECodeSnippetCompletionPrefix</key>
+    <string>JobsDebugPanel</string>
+    <key>IDECodeSnippetCompletionScopes</key>
+    <array><string>All</string></array>
+    <key>IDECodeSnippetContents</key>
+    <string>// AppDelegate.h：只在 Debug 导入；OC 老工程使用同名本地聚合头。
+#if DEBUG
+#if __has_include(&lt;JobsDebugPanel/JobsDebugPanel.h&gt;)
+#import &lt;JobsDebugPanel/JobsDebugPanel.h&gt;
+#else
+#import "JobsDebugPanel.h"
+#endif
+#endif
+
+// AppDelegate 启动方法：在主线程完成配置，start() 放在末尾。
+#if DEBUG
+JobsDebugPanelManager.sharedPanel
+    .byEnvironments(@[
+        JobsDebugEnvironment.new
+            .byIdentifier(@"local")
+            .byTitle(@"本地开发 · 18080")
+            .byBaseURL(@"http://127.0.0.1:18080"),
+        JobsDebugEnvironment.new
+            .byIdentifier(@"httpbin")
+            .byTitle(@"HTTPBin 回显环境")
+            .byBaseURL(@"https://httpbin.org"),
+        JobsDebugEnvironment.new
+            .byIdentifier(@"postman")
+            .byTitle(@"Postman 回显环境")
+            .byBaseURL(@"https://postman-echo.com")
+    ])
+    .byDefaultEnvironmentIdentifier(@"local")
+    .byEnvironmentChanged(^(JobsDebugEnvironment *environment) {
+        &lt;#把 environment.baseURL 同步到宿主网络配置#&gt;
+    })
+    .byActions(@[
+        JobsDebugAction.new
+            .byTitle(@"&lt;#自定义功能标题#&gt;")
+            .byImage(nil)
+            .byAction(^(UIViewController *source) {
+                &lt;#自定义功能行为，source 为当前调试页面#&gt;
+            })
+    ])
+    .start();
+#endif</string>
+    <key>IDECodeSnippetIdentifier</key>
+    <string>CC24D01C-A174-4CAC-B3E4-EC89D5646242</string>
+    <key>IDECodeSnippetLanguage</key>
+    <string>Xcode.SourceCodeLanguage.Objective-C</string>
+    <key>IDECodeSnippetPlatformFamily</key>
+    <string>iphoneos</string>
+    <key>IDECodeSnippetSummary</key>
+    <string>Debug 专属圆形入口、持久化 URL 环境与按配置顺序展示的自定义功能。</string>
+    <key>IDECodeSnippetTitle</key>
+    <string>OC@JobsDebugPanel</string>
+    <key>IDECodeSnippetUserSnippet</key>
+    <true/>
+    <key>IDECodeSnippetVersion</key>
+    <integer>2</integer>
+</dict>
+</plist>

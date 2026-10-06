@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>35A2CBE6-0E76-4A24-8C3D-64B70DFCE3B8</string>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>jobsBRPickerAwait</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import BRPickerViewSwift
+
+/// 页面持有 waiter；业务结束时取消同一个 Task。
+let waiter = Task { @MainActor in
+    do {
+        let result = try await &lt;#picker: BRBasePicker&lt;String&gt;#&gt;.awaitResult()
+        &lt;#处理成功结果 result#&gt;
+    } catch is CancellationError {
+        &lt;#取消后的收尾#&gt;
+    } catch {
+        &lt;#处理错误 error#&gt;
+    }
+}
+
+/// 由关闭页面 / 取消业务的入口执行：
+// waiter.cancel()
+</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>awaitResult 使用 try await；Task / 面板取消进入一次性终态。</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Jobs BRPicker 可取消异步等待</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
