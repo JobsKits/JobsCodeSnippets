@@ -11,7 +11,7 @@
     <integer>2</integer>
     <key>IDECodeSnippetContents</key>
     <string>/// JobsOCSplash：远程视频完整缓存后播放，未命中时立即使用本地视频
-[JobsOCSplashMediaCache.shared resumePendingVideoPreloads];
+((JobsOCSplashMediaCache *)JobsOCSplashMediaCache.shared()).resumePendingVideoPreloads();
 JobsOCSplashConfiguration *configuration =
     [JobsOCSplashConfiguration remoteVideo:[NSURL URLWithString:@&quot;https://example.com/splash.mp4&quot;]
                         fallbackLocalVideo:@&quot;welcome_video&quot;
@@ -20,8 +20,8 @@ JobsOCSplashConfiguration *configuration =
 configuration
     .byCountdownSeconds(@8)
     .bySkipButtonVisible(YES)
-    .byTapAction(JobsOCSplashAction.none)
-    .byShakeAction(JobsOCSplashAction.none);
+    .byTapAction(JobsOCSplashAction.none())
+    .byShakeAction(JobsOCSplashAction.none());
 [JobsOCSplashPresenter showOver:self configuration:configuration];
 </string>
     <key>IDECodeSnippetCompletionPrefix</key>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsSwiftUIDebugPanel</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#if DEBUG
+import SwiftUI
+import JobsSwiftUIDebugPanel
+
+// 在 AppDelegate.didFinishLaunchingWithOptions 中配置。
+JobsSwiftUIDebugPanel.shared
+    .byEnvironments([
+        JobsSwiftUIDebugEnvironment()
+            .byIdentifier("local")
+            .byTitle("本地 Mock")
+            .byBaseURL("http://127.0.0.1:18080"),
+        JobsSwiftUIDebugEnvironment()
+            .byIdentifier("httpbin")
+            .byTitle("公共测试")
+            .byBaseURL("https://httpbin.org"),
+        JobsSwiftUIDebugEnvironment()
+            .byIdentifier("postman")
+            .byTitle("联调测试")
+            .byBaseURL("https://postman-echo.com")
+    ])
+    .byDefaultEnvironmentIdentifier("local")
+    .byEnvironmentChanged { environment in
+        &lt;#将 environment.baseURL 写入宿主网络配置#&gt;
+    }
+    .byActions([
+        JobsSwiftUIDebugAction()
+            .byTitle("自定义页面")
+            .byImage(nil)
+            .byDestination {
+                &lt;#YourSwiftUIDemoView#&gt;()
+            },
+        JobsSwiftUIDebugAction()
+            .byTitle("查看当前环境")
+            .byAction {
+                let current = JobsSwiftUIDebugPanel.shared.currentEnvironment
+                JobsSwiftUIDebugPanel.shared.byFeedback(current?.baseURL ?? "未配置")
+            }
+    ])
+    .byStart()
+
+// App 使用 @UIApplicationDelegateAdaptor 注册 delegate。
+// WindowGroup 根视图添加 .jobsSwiftUIDebugPanel()，以上入口均仅在 Debug 中使用。
+// 修饰符自动观察宿主 colorScheme；宿主 preferredColorScheme 或系统外观变化会刷新已打开面板。
+// 圆形 UIButton 入口在菜单与子页面始终可见，再次点击关闭面板并返回原业务页面。
+// 入口可拖动，拖动与点击／长按互斥；长按仅隐藏本次运行；环境 OpenPanel 仍只负责打开。
+#endif</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5767F1F3-29B5-473A-8C43-9C0EC6FA364D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>SwiftUI@JobsSwiftUIDebugPanel</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Debug SwiftUI 面板：三组环境、顺序动作、直接行为与 SwiftUI 目标页。</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

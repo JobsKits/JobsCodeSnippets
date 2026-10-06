@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>IDECodeSnippetCompletionPrefix</key>
+    <string>JobsDebugPanel</string>
+    <key>IDECodeSnippetCompletionScopes</key>
+    <array><string>All</string></array>
+    <key>IDECodeSnippetContents</key>
+    <string>#if DEBUG
+import JobsDebugPanel
+import JobsNetworking
+import JobsByUIKit
+
+JobsDebugPanel.shared
+    .byEnvironments([
+        JobsDebugEnvironment()
+            .byIdentifier("local")
+            .byTitle("本地 Mock")
+            .byBaseURL("http://127.0.0.1:18080"),
+        JobsDebugEnvironment()
+            .byIdentifier("httpbin")
+            .byTitle("公共测试")
+            .byBaseURL("https://httpbin.org")
+    ])
+    .byEnvironmentDidChange { environment in
+        JobsNetworkingDebugEnvironment.shared.byBaseURL(environment.baseURL)
+    }
+    .byAddAction(
+        JobsDebugAction()
+            .byTitle("自定义功能")
+            .byImage(UIImage.make(named: "&lt;#本地图标资源#&gt;"))
+            .byAction { sourceVC in
+                sourceVC.navigationController?.pushViewControllerByAnimated(&lt;#MyDemoVC#&gt;())
+            }
+    )
+    .byStart()
+#endif</string>
+    <key>IDECodeSnippetIdentifier</key>
+    <string>6204EC65-67F1-47FD-AE52-27B09AD905C1</string>
+    <key>IDECodeSnippetLanguage</key>
+    <string>Xcode.SourceCodeLanguage.Swift</string>
+    <key>IDECodeSnippetTitle</key>
+    <string>Swift@JobsDebugPanel</string>
+    <key>IDECodeSnippetUserSnippet</key>
+    <true/>
+    <key>IDECodeSnippetVersion</key>
+    <integer>2</integer>
+</dict>
+</plist>
