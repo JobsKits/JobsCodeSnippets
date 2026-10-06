@@ -1,10 +1,10 @@
-# Xcode@CodeSnippets
+# <span id="前言">Xcode@CodeSnippets</span>
 
 ![Jobs出品，必属精品](https://picsum.photos/1500/400)
 
 [toc]
 
-## 一、背景介绍
+## 一、背景介绍 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 - 实操发现，由于 **Xcode** 自身的功能不足，导致我们经常在重写一些系统父类方法时容易忘了调用 `super`，从而出现一些很难排查的诡异bug；
 
@@ -15,8 +15,8 @@
 - 一些代码本身看似简单，但由于特别常用，所以使用 **code snippets** 可以大大节省时间；
 - <font color=red>**特别鸣谢**</font>：[**QMUI_iOS_CodeSnippets**](https://github.com/QMUI/QMUI_iOS_CodeSnippets.git)
 
-## 二、使用方式
-### 1、脚本自动化
+## 二、使用方式 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 1、脚本自动化 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > 复制👇🏻下面代码到空白文件，并重命名后缀名为`.command`
 
@@ -163,7 +163,7 @@ main() {
 main
 ```
 
-### 2、手动配置
+### 2、手动配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 - **Xcode** 的 **Code Snippets** 文件存放于 `~/Library/Developer/Xcode/UserData/CodeSnippets` 目录
 
@@ -192,3 +192,5 @@ main
   * ![image-20240629115031438](./assets/image-20240629115031438.png)
 
 - 重启 **Xcode** 即可生效
+
+<a id="🔚" href="#前言" style="font-size:17px; color:green; font-weight:bold;">我是有底线的➤点我回到首页</a>
