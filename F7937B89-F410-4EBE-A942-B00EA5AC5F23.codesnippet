@@ -41,9 +41,6 @@
             // show cached data
         }
 
-        api.animatingText = JobsInternationalization(@&quot;正在加载&quot;);
-        api.animatingView = self.view;
-
         [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
             /// 以下是我们需要的值
             JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);

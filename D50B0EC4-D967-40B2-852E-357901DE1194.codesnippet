@@ -146,7 +146,7 @@ private lazy var dateSysTimePicker: BRSystemTimePicker = { [unowned self] in
 private lazy var dateSysCountPicker: BRSystemCountDownPicker = { [unowned self] in
     BRSystemCountDownPicker()
         .byTitle(&quot;倒计时&quot;.tr) // 设置标题
-        .bySelectDate(Date()) // 设置 Select Date
+        .byCountDownDuration(0) // 初始倒计时时长，单位秒
         .byToolbar { $0.byTitle(&quot;倒计时&quot;.tr).byCancelText(&quot;取消&quot;).byConfirmText(&quot;完成&quot;) } // 设置 Toolbar
         .byResult { [weak self] dt in // 设置 Result
             guard let self else { return }
