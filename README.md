@@ -2,11 +2,25 @@
 
 ![Jobs出品，必属精品](https://picsum.photos/1500/400)
 
-[toc]
+<!-- jobs-toc:start -->
+<!-- jobs-toc:source {"v":2,"token":"[toc]"} -->
+<details>
+<summary>📚 目录（点击展开 / 收起）</summary>
+
+- [一、背景介绍](#jobs-toc-heading-1)
+- [二、使用方式](#jobs-toc-heading-2)
+  - [1、脚本自动化](#jobs-toc-heading-3)
+  - [2、手动配置](#jobs-toc-heading-4)
+- [三、实际目录结构](#repository-layout)
+- [四、安装脚本](#repository-script-flows)
+  - [【MacOS】💉双击安装JobsCodeSnippets.command](#jobs-toc-heading-7)
+
+</details>
+<!-- jobs-toc:end -->
 
 [实际目录结构](#repository-layout) · [安装脚本流程](#repository-script-flows)
 
-## 一、背景介绍 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## <span id="jobs-toc-heading-1" data-jobs-toc="v2">一、背景介绍 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a></span><!-- jobs-toc:heading-end -->
 
 - 实操发现，由于 **Xcode** 自身的功能不足，导致我们经常在重写一些系统父类方法时容易忘了调用 `super`，从而出现一些很难排查的诡异bug；
 
@@ -17,8 +31,8 @@
 - 一些代码本身看似简单，但由于特别常用，所以使用 **code snippets** 可以大大节省时间；
 - <font color=red>**特别鸣谢**</font>：[**QMUI_iOS_CodeSnippets**](https://github.com/QMUI/QMUI_iOS_CodeSnippets.git)
 
-## 二、使用方式 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-### 1、脚本自动化 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## <span id="jobs-toc-heading-2" data-jobs-toc="v2">二、使用方式 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a></span><!-- jobs-toc:heading-end -->
+### <span id="jobs-toc-heading-3" data-jobs-toc="v2">1、脚本自动化 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a></span><!-- jobs-toc:heading-end -->
 
 > 复制👇🏻下面代码到空白文件，并重命名后缀名为`.command`
 
@@ -165,7 +179,7 @@ main() {
 main
 ```
 
-### 2、手动配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### <span id="jobs-toc-heading-4" data-jobs-toc="v2">2、手动配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a></span><!-- jobs-toc:heading-end -->
 
 - **Xcode** 的 **Code Snippets** 文件存放于 `~/Library/Developer/Xcode/UserData/CodeSnippets` 目录
 
@@ -207,7 +221,7 @@ main
 
 ## 四、<span id="repository-script-flows">安装脚本</span> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### [【MacOS】💉双击安装JobsCodeSnippets.command](./【MacOS】💉双击安装JobsCodeSnippets.command)
+### <span id="jobs-toc-heading-7" data-jobs-toc="v2">[【MacOS】💉双击安装JobsCodeSnippets.command](./【MacOS】💉双击安装JobsCodeSnippets.command)</span><!-- jobs-toc:heading-end -->
 
 > **目的：** 下载并把 Jobs 代码片段放入当前用户的 Xcode CodeSnippets 目录。
 
