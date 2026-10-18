@@ -4,6 +4,8 @@
 
 [toc]
 
+[实际目录结构](#repository-layout) · [安装脚本流程](#repository-script-flows)
+
 ## 一、背景介绍 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 - 实操发现，由于 **Xcode** 自身的功能不足，导致我们经常在重写一些系统父类方法时容易忘了调用 `super`，从而出现一些很难排查的诡异bug；
@@ -192,5 +194,28 @@ main
   * ![image-20240629115031438](./assets/image-20240629115031438.png)
 
 - 重启 **Xcode** 即可生效
+
+## 三、<span id="repository-layout">实际目录结构</span> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+```text
+🍎JobsCodeSnippets/
+├── README.md / LICENSE / icon.png
+├── assets/                                # 文档截图
+├── *.codesnippet                          # 当前根目录共 111 个 Xcode 代码片段
+└── 【MacOS】💉双击安装JobsCodeSnippets.command
+```
+
+## 四、<span id="repository-script-flows">安装脚本</span> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+### [【MacOS】💉双击安装JobsCodeSnippets.command](./【MacOS】💉双击安装JobsCodeSnippets.command)
+
+> **目的：** 下载并把 Jobs 代码片段放入当前用户的 Xcode CodeSnippets 目录。
+
+* 阅读自述并确认，设置 Git 全局请求缓冲参数，创建用户的 CodeSnippets 目录。
+* 克隆脚本指定的代码片段仓库。
+  * 先尝试 SSH，失败后改用 HTTPS；下载失败则停止后续安装。
+* 重启 Xcode，并打开用户 CodeSnippets 目录。
+* 将克隆目录中的可见文件和隐藏文件移入 CodeSnippets 根目录，再清理克隆目录。
+* 查看安装结果；脚本没有为原 CodeSnippets 内容创建备份，安装前应保留自己需要的片段。
 
 <a id="🔚" href="#前言" style="font-size:17px; color:green; font-weight:bold;">我是有底线的➤点我回到首页</a>
