@@ -23,11 +23,8 @@
 ## <span id="jobs-toc-heading-1" data-jobs-toc="v2">一、背景介绍 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a></span><!-- jobs-toc:heading-end -->
 
 - 实操发现，由于 **Xcode** 自身的功能不足，导致我们经常在重写一些系统父类方法时容易忘了调用 `super`，从而出现一些很难排查的诡异bug；
-
 - **Xcode** 虽然有模糊匹配的代码提醒，但代码提醒只能帮你写方法名，而**code snippets** 还可以帮你填充一些默认的方法实现，或者直接移动光标到方法体内，省去几次光标操作；
-
 - 一些常用的写法本身语法可能比较复杂，难以记忆，例如：实现一个类的单例、使用 `swizzle` 来重写系统控件的方法、block 在不同地方的语法不同等；
-
 - 一些代码本身看似简单，但由于特别常用，所以使用 **code snippets** 可以大大节省时间；
 - <font color=red>**特别鸣谢**</font>：[**QMUI_iOS_CodeSnippets**](https://github.com/QMUI/QMUI_iOS_CodeSnippets.git)
 
