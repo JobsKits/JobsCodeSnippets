@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>62475E43-F043-4A72-BF30-70C1A45C90EF</string>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+	<key>IDECodeSnippetContents</key>
+	<string>import JobsSwiftDeviceGuard
+
+/// 检测不能阻止安装；默认只读。写探测需在业务明确需要时启用。
+let configuration = JobsDeviceGuardConfiguration()
+    .bySandboxWriteProbe(false)
+    .byMinimumDetectedCategories(2)
+JobsDeviceGuard.inspectAsync(configuration: configuration) { report in
+    /// MainActor 回调；未知、不支持、可疑及多类命中默认限制当前敏感动作。
+    guard !report.shouldRestrict else {
+        /// 使用 report.verdict / checks 展示原因，保留退出与重试入口。
+        return
+    }
+    /// noIndicators 仅表示本次未命中；继续既有服务端授权后执行业务。
+}
+</string>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsSwiftDeviceGuard</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@JobsSwiftDeviceGuard</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetSummary</key>
+	<string>设备越狱风险检测、完整结果与保守敏感业务门禁</string>
+</dict>
+</plist>

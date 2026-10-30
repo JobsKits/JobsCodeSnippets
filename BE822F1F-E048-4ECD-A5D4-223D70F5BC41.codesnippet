@@ -47,7 +47,7 @@ private lazy var tableView: UITableView = {
         }
         .cellForRowAt { _, tv, indexPath in // 配置 table cell
             tv.byDequeueReusableCell(withType: UITableViewCell.self, for: indexPath)
-                .byAccessoryType(.disclosureIndicator)
+                .byAccessoryType(.disclosureIndicator) // 原生箭头随 App 主题更新，移除时恢复原外观
                 .byListConfig {
                     $0.byText(&quot;Row \(indexPath.row)&quot;)
                         .bySecondaryText(&quot;一镜到底&quot;)

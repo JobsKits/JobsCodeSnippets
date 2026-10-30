@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>44D1753C-D70F-4F3E-8E2F-B7CEF4290C67</string>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+	<key>IDECodeSnippetContents</key>
+	<string>/// 放在SceneDelegate.willConnect验证windowScene后、任何正常根页面创建前。
+/// 前置：AppDelegate已经evaluateAtLaunch，所有后续Scene读取同一冻结结果。
+guard JobsDeviceLaunchGate.shared.allowsBusinessInitialization else {
+    if let blockedViewController = JobsDeviceLaunchGate.shared.makeBlockedViewController() {
+        window = UIWindow.jobsMake(scene: windowScene, root: blockedViewController)
+    }
+    return
+}
+/// 继续现有根页面、恢复活动及开屏流程。
+</string>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsSwiftDeviceLaunchScene</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@JobsDeviceLaunchGate场景接口</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetSummary</key>
+	<string>宿主启动前同步检测、冻结判定、Scene全屏拦截及策略/页面预埋接口</string>
+</dict>
+</plist>

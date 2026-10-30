@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>238F1994-22B1-4CB4-90E7-1AEA00C0F62E</string>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+	<key>IDECodeSnippetContents</key>
+	<string>/// JobsOCDeviceGuard：同名头文件导入聚合入口，老工程使用 fallback。
+#if __has_include(&lt;JobsOCDeviceGuard/JobsOCDeviceGuard.h&gt;)
+#import &lt;JobsOCDeviceGuard/JobsOCDeviceGuard.h&gt;
+#else
+#import "JobsOCDeviceGuard.h"
+#endif
+
+/// 检测不能阻止安装；默认只读。写探测需在业务明确需要时启用。
+JobsOCDeviceGuardConfiguration *configuration = JobsOCDeviceGuardConfiguration.defaultConfiguration()
+    .bySandboxWriteProbeEnabled(NO)
+    .byMinimumDetectedCategories(2);
+[JobsOCDeviceGuardDetector detectAsyncWithConfiguration:configuration
+                                            completion:^(JobsOCDeviceGuardReport *report) {
+    /// 回到主线程；未知、不支持、可疑及多类命中默认限制当前敏感动作。
+    if (report.shouldRestrict) {
+        /// 使用 report.summaryText / checks 展示原因，保留退出与重试入口。
+        return;
+    }
+    /// noIndicators 仅表示本次未命中；继续既有服务端授权后执行业务。
+}];
+</string>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsOCDeviceGuard</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@JobsOCDeviceGuard</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetSummary</key>
+	<string>设备越狱风险检测、完整结果与保守敏感业务门禁</string>
+</dict>
+</plist>

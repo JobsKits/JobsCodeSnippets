@@ -12,6 +12,7 @@ import JobsDebugPanel
 import JobsNetworking
 import JobsByUIKit
 
+// byStart() 注册监听，入口默认隐藏；摇动显示，长按隐藏，再摇恢复。
 JobsDebugPanel.shared
     .byEnvironments([
         JobsDebugEnvironment()

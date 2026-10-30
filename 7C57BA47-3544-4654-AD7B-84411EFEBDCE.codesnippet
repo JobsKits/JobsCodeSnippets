@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7C57BA47-3544-4654-AD7B-84411EFEBDCE</string>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+	<key>IDECodeSnippetContents</key>
+	<string>/// 宿主已包含JobsDeviceLaunchGate目录；放在AppDelegate.didFinishLaunching业务初始化之前。
+JobsDeviceLaunchGate.shared.configureBeforeLaunch(
+    policy: { report in
+        report.isJailbroken
+    },
+    blockedViewControllerFactory: { decision in
+        JobsDeviceBlockedVC(decision: decision)
+    }
+)
+let decision = JobsDeviceLaunchGate.shared.evaluateAtLaunch()
+if decision.isDeviceBlocked {
+    /// 返回成功等待Scene创建拦截页，后面的业务启动与super调用不执行。
+    return true
+}
+/// 继续原有启动流程；decision/report保留供后续接口读取。
+</string>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsSwiftDeviceLaunchGate</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@JobsDeviceLaunchGate启动接口</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetSummary</key>
+	<string>宿主启动前同步检测、冻结判定、Scene全屏拦截及策略/页面预埋接口</string>
+</dict>
+</plist>

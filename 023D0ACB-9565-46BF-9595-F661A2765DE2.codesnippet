@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>023D0ACB-9565-46BF-9595-F661A2765DE2</string>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+	<key>IDECodeSnippetContents</key>
+	<string>/// 放在Scene连接回调中，windowScene已验证且未创建任何正常根页面。
+self.jobsSetWindowScene(windowScene);
+if (JobsOCDeviceGuardLaunchGate.decision.blocked) {
+    self.jobsSetWindow(UIWindow.initByScene(windowScene)).window
+        .byWindowFrame(windowScene.coordinateSpace.bounds)
+        .byRootViewController(JobsOCDeviceGuardLaunchGate.makeBlockedViewController())
+        .byMakeKeyAndVisible();
+    return;
+}
+/// 继续原有根页面、恢复活动及开屏流程。每个Scene使用新控制器。
+</string>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsOCDeviceLaunchScene</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@JobsOCDeviceGuardLaunchGate场景接口</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetSummary</key>
+	<string>宿主启动前同步检测、冻结判定、Scene全屏拦截及策略/页面预埋接口</string>
+</dict>
+</plist>

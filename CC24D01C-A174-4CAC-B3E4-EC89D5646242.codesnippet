@@ -17,6 +17,7 @@
 #endif
 
 // AppDelegate 启动方法：在主线程完成配置，start() 放在末尾。
+// start() 注册监听，入口默认隐藏；摇动显示，长按隐藏，再摇恢复。
 #if DEBUG
 JobsDebugPanelManager.sharedPanel
     .byEnvironments(@[
@@ -54,7 +55,7 @@ JobsDebugPanelManager.sharedPanel
     <key>IDECodeSnippetPlatformFamily</key>
     <string>iphoneos</string>
     <key>IDECodeSnippetSummary</key>
-    <string>Debug 专属圆形入口、持久化 URL 环境与按配置顺序展示的自定义功能。</string>
+    <string>Debug 摇动显示圆形入口、长按隐藏、再次摇动恢复；持久化 URL 环境与有序自定义功能。</string>
     <key>IDECodeSnippetTitle</key>
     <string>OC@JobsDebugPanel</string>
     <key>IDECodeSnippetUserSnippet</key>

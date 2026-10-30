@@ -73,7 +73,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     return JobsBaseTableViewCell.cellStyleDefaultWithTableView(tableView)
-        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator) // 设置 Accessory Type
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator) // 原生箭头随 App 主题更新，移除时恢复原外观
         .byIndexPath(indexPath) // 设置 Index Path
         .jobsRichElementsTableViewCellBy(self.datas[indexPath.row]) // 设置 Rich Elements Table View Cell By
             .JobsBlock1(^(id _Nullable data) { // 配置链式能力

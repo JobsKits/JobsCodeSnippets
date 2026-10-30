@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>2C75F5EC-A8D6-4781-9539-44CBB198C631</string>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+	<key>IDECodeSnippetContents</key>
+	<string>/// 同名头文件引入宿主JobsOCDeviceGuardLaunchGate.h；放在didFinishLaunching首个业务步骤前。
+[JobsOCDeviceGuardLaunchGate configurePolicy:^BOOL(JobsOCDeviceGuardReport *report) {
+    return report.isJailbroken;
+} blockedViewControllerFactory:^UIViewController *(JobsOCDeviceGuardReport *report) {
+    return [[JobsOCDeviceGuardBlockedVC alloc] initWithReport:report];
+}];
+if (JobsOCDeviceGuardLaunchGate.prepare().blocked) {
+    /// 返回成功等待Scene创建拦截页，后面的显式业务初始化不执行。
+    return YES;
+}
+/// 继续原有启动流程；decision.report/blocked可供后续接口读取。
+</string>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsOCDeviceLaunchGate</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OC@JobsOCDeviceGuardLaunchGate启动接口</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetSummary</key>
+	<string>宿主启动前同步检测、冻结判定、Scene全屏拦截及策略/页面预埋接口</string>
+</dict>
+</plist>
