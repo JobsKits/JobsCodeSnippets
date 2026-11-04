@@ -11,10 +11,10 @@
     <integer>2</integer>
     <key>IDECodeSnippetContents</key>
     <string>/// JobsOCRefresher：挂载 Header、切换状态并原位热替换动画
-JobsOCRefreshConfig *config = JobsOCRefreshConfig.defaultHeaderConfig;
+JobsOCRefreshConfig *config = JobsOCRefreshConfig.defaultHeaderConfig();
 config.showsText = NO;
 config.animator = [[JobsTodayNewsRefreshView alloc]
-                   initWithConfig:JobsTodayNewsRefreshConfig.config];
+                   initWithConfig:JobsTodayNewsRefreshConfig.config()];
 @jobs_weakify(self)
 [self.scrollView jobs_byRefreshHeaderWithConfig:config action:^{
     @jobs_strongify(self)
@@ -22,7 +22,7 @@ config.animator = [[JobsTodayNewsRefreshView alloc]
                                   toState:JobsOCRefreshStateIdle];
 }];
 [self.scrollView jobs_replaceRefreshAnimator:
-    [[JobsDouyinRefreshView alloc] initWithConfig:JobsDouyinRefreshConfig.config]
+    [[JobsDouyinRefreshView alloc] initWithConfig:JobsDouyinRefreshConfig.config()]
                                       atPosition:JobsOCRefreshPositionHeader];
 </string>
     <key>IDECodeSnippetCompletionPrefix</key>

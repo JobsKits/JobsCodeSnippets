@@ -13,6 +13,13 @@
     if (!_textField) {
         @jobs_weakify(self)
         CGFloat TextFieldWidth = self.mj_w - JobsWidth(80);
+        JobsAdNoticeView *adNoticeView = JobsAdNoticeView.new;
+        adNoticeView
+            .bySize(JobsAdNoticeView.viewSizeByModel(nil)) // 设置广告提示视图尺寸
+            .actionObjBlock(^(id _Nullable data) { // 设置数据回调
+
+            });
+        adNoticeView.jobsRichViewByModel(nil); // 装配广告提示内容
         _textField = jobsMakeZYTextField(^(ZYTextField *_Nullable textField) {
             textField
                 .byPlaceholder(@"请输入搜索内容".tr) // 设置占位文字
@@ -21,12 +28,7 @@
                     imageView.byImage(@"放大镜".img);
                 }))
                 .byTextCor(JobsPurpleColor) // 设置文字颜色
-                .byInputAccessoryView(JobsAdNoticeView // 设置 Input Accessory View
-                                      .BySize(JobsAdNoticeView.viewSizeByModel(nil)) // 配置链式能力
-                                      .JobsRichViewByModel2(nil) // 配置链式能力
-                                      .JobsBlock1(^(id _Nullable data) { // 配置链式能力
-
-                                      }))
+                .byInputAccessoryView(adNoticeView) // 设置 Input Accessory View
                 .byLeftViewMode(UITextFieldViewModeAlways) // 设置 Left View Mode
                 .byKeyboardAppearance(UIKeyboardAppearanceAlert) // 设置 Keyboard Appearance
                 .byReturnKeyType(UIReturnKeySearch) // 设置返回键
