@@ -47,6 +47,9 @@ JobsDebugPanelManager.sharedPanel
             })
     ])
     .start();
+// 独占输入模式进入 / 退出时成对调用；不改变用户长按隐藏状态。
+// JobsDebugPanelManager.sharedPanel.byFloatingEntrySuppressionOwner(self);
+// JobsDebugPanelManager.sharedPanel.byFloatingEntrySuppressionOwner(nil);
 #endif</string>
     <key>IDECodeSnippetIdentifier</key>
     <string>CC24D01C-A174-4CAC-B3E4-EC89D5646242</string>

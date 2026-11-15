@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JobsSwiftSearcher</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import JobsByUIKit
+import JobsSwiftBaseDefines
+import JobsSwiftSearcher
+import SnapKit
+
+private lazy var searchView: JobsSwiftSearcherView = {
+    JobsSwiftSearcherView(config: JobsSwiftSearcherConfig.defaultConfig
+        .byPlaceholder("输入关键词开始搜索。")
+        .bySearchButtonTitle("搜索")
+        .byShowsSearchButton(true)
+        .byShowsCancelButton(true)
+        .byInputOnly(false)
+        .byCancelButtonTitle("取消")
+        .byRecommendTitle("搜索推荐")
+        .byHistoryTitle("搜索历史")
+        .byEmptyHistoryTitle("暂无搜索历史")
+        .byEmptyHistoryMessage("输入关键词开始搜索。")
+        .byNoResultsTitle("没有匹配结果")
+        .byNoResultsMessage("试试其他关键词，或清空后查看搜索历史。")
+        .byClearQueryTitle("清空关键词")
+        .byHistoryStorageKey("&lt;#稳定的业务历史键#&gt;")
+        .byHistoryScope(&lt;#String?：稳定账号ID；nil兼容原全局键#&gt;)
+        .byPersistsHistory(true)
+        .byHistoryUserDefaults(UserDefaults.standard)
+        .byMaxHistoryCount(20)
+        .byDismissKeyboardWhenCancel(true)
+        .byAccessibilityIdentifierPrefix("&lt;#业务无障碍前缀#&gt;")
+        .bySearchTextChangedBlock { [weak self] query in
+            /// 只在这里过滤／请求，完成后 byResultCount；提交与选词不重复搜索。
+            self?.&lt;#过滤并更新结果(query)#&gt;
+        }
+        .bySearchSubmittedBlock { query in
+            /// Swift 原提交已记录历史；规范化关键词相同不会重复发输入事件。
+            &lt;#处理确认，不重复搜索#&gt;
+        }
+        .byRecommendSelectedBlock { text in
+            &lt;#处理原推荐选择回调#&gt;
+        }
+        .byItemSelectedBlock { text in
+            &lt;#处理推荐／历史统一选择通知#&gt;
+        }
+        .byHistoryChangedBlock { history in
+            &lt;#处理历史重载通知#&gt;
+        }
+        .byHistoryDeleteBlock { text in
+            &lt;#处理单条删除#&gt;
+        }
+        .byClearHistoryBlock {
+            &lt;#处理清空历史#&gt;
+        }
+        .byCancelBlock { [weak self] in
+            self?.&lt;#退出搜索并恢复宿主状态#&gt;
+        })
+        .byRecommendSearches(["Swift", "UIKit"])
+        .byActionColor(JobsCor.label)
+        .byResultContentView(&lt;#UIView：宿主结果视图#&gt;)
+        .byResultCount(0)
+        .byAddTo(view) { [unowned self] make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.right.bottom.equalToSuperview()
+        }
+}()
+
+/// 以下按需调用；结果变化不会触发 query 回调。
+// searchView.byQuery("Swift", recordHistory: false).focus()
+// searchView.byResultCount(filteredItems.count)
+// searchView.dismissKeyboard()
+// searchView.saveHistory(by: searchView.normalizedQuery)
+// searchView.deleteHistory(by: "Swift")
+// searchView.clearHistory()
+// searchView.reloadHistorySearches()
+// searchView.reloadRecommendedSearches(["Swift", "UIKit"])
+// searchView.reloadWithConfig(searchView.config) // 保留 query／焦点，读取新 scope／策略。
+// searchView.byResultContentView(nil) // 结果视图移走后由宿主还原原父视图和约束。
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>44C57F94-025B-4933-BD8D-F6D55B037F04</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>统一输入、推荐、账号历史、完整空态与宿主结果容器；保留旧API。</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift@JobsSwiftSearcher</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

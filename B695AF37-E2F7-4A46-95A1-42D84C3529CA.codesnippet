@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>jobsOCSearcher</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#if __has_include(&lt;JobsOCSearcher/JobsOCSearcher.h&gt;)
+#import &lt;JobsOCSearcher/JobsOCSearcher.h&gt;
+#else
+#import "JobsOCSearcher.h"
+#endif
+
+/// 在宿主属性中持有 searchView 和 resultsView；回调内使用弱引用避免循环。
+JobsOCSearcherConfig *config = JobsOCSearcherConfig.defaultConfig()
+    .byPlaceholder(@"请输入搜索内容".jobsTr())
+    .byShowsCancelButton(YES)
+    .byShowsSearchButton(YES)
+    .byCancelButtonTitle(@"取消".jobsTr())
+    .byRecommendTitle(@"搜索推荐".jobsTr())
+    .byHistoryTitle(@"搜索历史".jobsTr())
+    .byHistoryStorageKey(@"&lt;#Feature.SearchHistory#&gt;")
+    .byHistoryScope(&lt;#accountID or nil#&gt;)
+    .byPersistsHistory(YES)
+    .byMaxHistoryCount(20)
+    .byDismissKeyboardWhenCancel(YES)
+    .byEmptyHistoryTitle(@"暂无搜索历史".jobsTr())
+    .byEmptyHistoryMessage(@"输入关键词开始搜索。".jobsTr())
+    .byEmptyResultsTitle(@"没有匹配结果".jobsTr())
+    .byEmptyResultsMessage(@"试试其他关键词，或清空后查看搜索历史。".jobsTr())
+    .byClearQueryButtonTitle(@"清空关键词".jobsTr())
+    .bySearchTextDidChangeBlock(^(NSString *query) {
+        &lt;#filter data, update resultsView, then searchView.byResultCount(itemCount)#&gt;;
+    })
+    .bySearchConfirmBlock(^(NSString *query) {
+        &lt;#optional explicit submit action; history already recorded#&gt;;
+    })
+    .byItemSelectedBlock(^(NSString *text) {
+        &lt;#optional recommendation/history selection; no automatic save#&gt;;
+    })
+    .byHistoryChangedBlock(^(NSArray *history) {
+        &lt;#optional history observer#&gt;;
+    })
+    .byHistoryDeleteBlock(^(NSString *text) {
+        &lt;#optional deletion observer#&gt;;
+    })
+    .byClearHistoryBlock(^{
+        &lt;#optional clear observer#&gt;;
+    })
+    .byCancelBlock(^{
+        &lt;#host cancels exclusive search and restores original state#&gt;;
+    });
+_searchView = [JobsOCSearcherView.alloc initWithConfig:config]
+    .byRecommendSearches(&lt;#optional recommended terms#&gt;)
+    .byResultContentView(self.resultsView)
+    .addOn(self.view)
+    .byAdd(^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    });
+/// 结果点击时：self.searchView.saveHistoryByText(self.searchView.normalizedQuery);
+/// 全局语言／主题刷新时：self.searchView.reloadWithConfig(localizedConfig);
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B695AF37-E2F7-4A46-95A1-42D84C3529CA</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>统一输入、推荐、历史、结果与宿主取消</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>JobsOCSearcher 完整宿主接入</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
