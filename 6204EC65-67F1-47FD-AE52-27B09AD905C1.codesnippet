@@ -36,6 +36,9 @@ JobsDebugPanel.shared
             }
     )
     .byStart()
+
+// 独占界面进入时 true，退出时 false；不改原长按隐藏状态或拖动位置。
+// JobsDebugPanel.shared.byFloatingEntrySuppressed(&lt;#是否临时独占界面#&gt;)
 #endif</string>
     <key>IDECodeSnippetIdentifier</key>
     <string>6204EC65-67F1-47FD-AE52-27B09AD905C1</string>
