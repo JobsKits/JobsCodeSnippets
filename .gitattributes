@@ -2,4 +2,5 @@
 # jobs-markdown-toc:start
 "/.jobs-markdown-toc/README.md" filter=jobs-markdown-toc
 "/README.md" filter=jobs-markdown-toc
+"/\343\200\220MacOS\343\200\221\360\237\222\211\345\217\214\345\207\273\345\256\211\350\243\205JobsCodeSnippets.command/README.md" filter=jobs-markdown-toc
 # jobs-markdown-toc:end

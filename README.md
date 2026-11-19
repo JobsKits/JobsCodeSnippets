@@ -213,12 +213,12 @@ main
 ├── README.md / LICENSE / icon.png
 ├── assets/                                # 文档截图
 ├── *.codesnippet                          # 当前根目录共 111 个 Xcode 代码片段
-└── 【MacOS】💉双击安装JobsCodeSnippets.command
+└── 【MacOS】💉双击安装JobsCodeSnippets.command/
 ```
 
 ## 四、<span id="repository-script-flows">安装脚本</span> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### <span id="jobs-toc-heading-7" data-jobs-toc="v2">[【MacOS】💉双击安装JobsCodeSnippets.command](./【MacOS】💉双击安装JobsCodeSnippets.command)</span><!-- jobs-toc:heading-end -->
+### <span id="jobs-toc-heading-7" data-jobs-toc="v2">[【MacOS】💉双击安装JobsCodeSnippets.command](./【MacOS】💉双击安装JobsCodeSnippets.command/【MacOS】💉双击安装JobsCodeSnippets.command)</span><!-- jobs-toc:heading-end -->
 
 > **目的：** 下载并把 Jobs 代码片段放入当前用户的 Xcode CodeSnippets 目录。
 
